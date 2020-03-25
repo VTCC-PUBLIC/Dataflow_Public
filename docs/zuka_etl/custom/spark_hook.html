@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.5" />
+<title>zuka_etl.custom.spark_hook API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>zuka_etl.custom.spark_hook</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+__author__ = &#39;phongphamhong&#39;
+
+# !/usr/bin/python
+#
+# Copyright 11/2/18 Phong Pham Hong &lt;phongbro1805@gmail.com&gt;
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an &#34;AS IS&#34; BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+from zuka_etl.setting import Setting
+from zuka_etl.log import logger, traceback
+import os
+from pyspark.sql import HiveContext
+from pyspark import SparkConf
+from pyspark.sql import SparkSession
+import pyspark.sql.functions as spark_functions
+import pyspark.sql.types as spark_type
+import copy
+from airflow.models import Variable
+import json
+from airflow.hooks.base_hook import BaseHook
+
+
+class SparkHook(BaseHook):
+    &#34;&#34;&#34;
+    Wrapper Spark Context
+    Define Connection on Connection on Airflow
+    Note that just define connection name and extras as json config. Check example of config extras
+        Example:
+               {
+                    &#34;master&#34;: &#34;local[*]&#34;,
+                    &#34;app_name&#34;: &#34;etl_operator_spark&#34;,
+                    &#34;mode&#34;: &#34;client&#34;,
+                    &#34;conf&#34;: {
+                        &#34;spark.jars.packages&#34;: &#34;mysql:mysql-connector-java:5.1.47,org.elasticsearch:elasticsearch-hadoop:6.4.2&#34;,
+                        &#34;spark.dynamicAllocation.enabled&#34;: &#34;true&#34;,
+                        &#34;spark.dynamicAllocation.maxExecutors&#34;: 5,
+                        &#34;spark.executor.cores&#34;: 4,
+                        &#34;spark.executor.memory&#34;: &#34;2G&#34;,
+                        &#34;spark.shuffle.service.enabled&#34;: &#34;true&#34;,
+                        &#34;spark.files.overwrite&#34;: &#34;true&#34;,
+                        &#34;spark.sql.warehouse.dir&#34;: &#34;/apps/spark/warehouse&#34;,
+                        &#34;spark.sql.catalogImplementation&#34;: &#34;hive&#34;,
+                        &#34;spark.sql.sources.partitionOverwriteMode&#34;: &#34;dynamic&#34;,
+                        &#34;hive.exec.dynamic.partition.mode&#34;: &#34;nonstrict&#34;,
+                        &#34;spark.sql.caseSensitive&#34;: &#34;true&#34;
+                    },
+                    &#34;env_vars&#34;: {
+                        &#34;SPARK_HOME&#34;: &#34;&#34;
+                    },
+                    &#34;add_py_file&#34;: [&#34;test.py&#34;]
+                }
+    &#34;&#34;&#34;
+    __DEFAULT_CONNECT = Setting.SPARK_CONFIG_DEFAULT
+    _instance = {}
+    __app_name = &#34;&#34;
+    __master = &#34;&#34;
+    __mode = &#34;&#34;
+    __ENV = {}
+
+    def __init__(self, connection_id=&#34;&#34;,
+                 app_name=&#34;&#34;,
+                 master=&#34;&#34;,
+                 mode=&#34;&#34;,
+                 spark_conf={},
+                 env_vars={},
+                 py_files=[],
+                 auto_find_pyspark=False,
+                 enable_hive_support=True,
+                 **kwargs):
+        &#34;&#34;&#34;
+        Call SparkContext
+            Parameters:
+                kwargs:
+                    connection_id: id of connection
+                    app_name: spark app name
+                    master: local or YARN
+                    mode: mode run on YARN
+                    spark_conf: overwrite some default configs of spark.
+                                Format: Example:
+                                   {
+                                        &#39;spark.jars.packages&#39;: &#39;mysql:mysql-connector-java:5.1.47,org.elasticsearch:elasticsearch-hadoop:6.4.2&#39;,
+                                        &#39;spark.dynamicAllocation.enabled&#39;: &#34;true&#34;,
+                                        &#39;spark.dynamicAllocation.maxExecutors&#39;: 5,
+                                        &#39;spark.executor.cores&#39;: 4,
+                                        &#39;spark.executor.memory&#39;: &#39;2G&#39;,
+                                        &#39;spark.shuffle.service.enabled&#39;: &#34;true&#34;,
+                                        &#34;spark.files.overwrite&#34;: &#34;true&#34;,
+                                        &#34;spark.sql.warehouse.dir&#34;: &#34;/apps/spark/warehouse&#34;,
+                                        &#34;spark.sql.catalogImplementation&#34;: &#34;hive&#34;,
+                                        &#34;spark.sql.sources.partitionOverwriteMode&#34;: &#34;dynamic&#34;,
+                                        &#34;hive.exec.dynamic.partition.mode&#34;: &#34;nonstrict&#34;,
+                                        &#34;spark.sql.caseSensitive&#34;: &#34;true&#34;
+                                   }
+                    env_vars: add some env variables. Example: {
+                        &#34;SPARK_HOME&#34;: &#34;/usr/hdp/current/spark2/&#34;
+                    }
+                    add_py_files: Add some python file path when submit job. Example: [&#34;test.py&#34;]}
+                    auto_find_pyspark: True or False. If true, automatic find pyspark environment by findpspark package
+
+        &#34;&#34;&#34;
+        self.__app_name = app_name.strip()
+        self.__master = master.strip()
+        self.__mode = mode.strip()
+        custom_config = copy.copy(spark_conf if isinstance(spark_conf, dict) else {})
+        env_vars = copy.copy(env_vars if isinstance(env_vars, dict) else {})
+        add_py_files = py_files if isinstance(py_files, list) else []
+        self.__auto_find_pyspark = auto_find_pyspark if isinstance(auto_find_pyspark, bool) else False
+        self.__enable_hive_support = enable_hive_support if isinstance(enable_hive_support, bool) else False
+        self.__load_config = {}
+        self.syslog = logger
+        connection_id = connection_id.strip() if connection_id.strip() != &#34;&#34; else SparkHook.__DEFAULT_CONNECT
+        cn = self.get_connection(conn_id=connection_id)
+        if cn.extra_dejson:
+            self.__load_config = cn.extra_dejson
+        else:
+            logger.warn(&#34;Config for sparkContext of SparkHook is not set. Using default config&#34;)
+        if self.__app_name != &#34;&#34;:
+            self.__load_config[&#34;app_name&#34;] = self.__app_name.strip()
+        else:
+            self.__app_name = self.__load_config.get(&#34;app_name&#34;, &#34;Zuka_etl_spark&#34;)
+        if self.__master != &#34;&#34;:
+            self.__load_config[&#34;master&#34;] = self.__master
+        else:
+            self.__master = self.__load_config.get(&#34;master&#34;, &#34;local[*]&#34;)
+        if self.__mode != &#34;&#34;:
+            self.__load_config[&#34;mode&#34;] = self.__mode
+        else:
+            self.__mode = self.__load_config.get(&#34;mode&#34;, &#34;&#34;)
+        if custom_config:
+            sp_cf = self.__load_config.get(&#34;conf&#34;, {})
+            if not isinstance(sp_cf, dict):
+                sp_cf = {}
+                self.__load_config[&#34;conf&#34;] = sp_cf
+            self.__load_config[&#34;conf&#34;].update(custom_config)
+        if env_vars:
+            env = self.__load_config.get(&#34;env_vars&#34;, {})
+            if not isinstance(env, dict):
+                env = {}
+                self.__load_config[&#34;env_vars&#34;] = env
+            self.__load_config[&#34;env_vars&#34;].update(custom_config)
+        if add_py_files:
+            add = self.__load_config.get(&#34;py_files&#34;, [])
+            if not isinstance(add, list):
+                self.__load_config[&#34;py_files&#34;] = []
+            self.__load_config[&#34;py_files&#34;] = add_py_files
+
+    def get_app_name(self):
+        return self.__app_name
+
+    def get_master(self):
+        return self.__app_name
+
+    def get_mode(self):
+        return self.__app_name
+
+    def get_list_instance(self):
+        return self._instance
+
+    def get_conn(self):
+        return self.session
+
+    def get_config(self):
+        return self.__load_config
+
+    def get_env_vars(self):
+        return self.__load_config.get(&#34;env_vars&#34;, {})
+
+    def get_spark_config(self):
+        return self.__load_config.get(&#34;conf&#34;, {})
+
+    def get_py_files(self):
+        return self.__load_config.get(&#34;py_files&#34;, [])
+
+    @property
+    def session(self):
+        &#34;&#34;&#34;
+        create a Spark Context by SparkSession
+            
+            return: pyspark.sql.session.SparkSession
+
+        &#34;&#34;&#34;
+        if not isinstance(SparkHook._instance, dict):
+            SparkHook._instance = {}
+        ins = SparkHook._instance.get(&#39;_spark_session&#39;)
+        if (not ins or not self.is_active):
+            # import os global variable
+            try:
+                for k, v in self.get_env_vars().items():
+                    self.syslog.info(&#39;SET VARIABLE: %s:%s&#39; % (k, v))
+                    os.environ[k] = v
+            except BaseException as e:
+                self.syslog.info(&#34;Cannot import variable spark because:\n%s&#34; % self.syslog.print_traceback())
+                pass
+
+            self.syslog.info(&#39;[Spark] Create main context ...&#39;)
+
+            if self.__auto_find_pyspark:
+                import findspark
+                self.syslog.info(
+                    &#34;[Spark] init SPARK_HOME by findspark with path: %s &#34; % self.__load_config[&#39;spark_home&#39;])
+                findspark.init()
+            ss = SparkSession.builder.appName(self.__app_name)
+            conf = SparkConf()
+            logger.info(&#34;[Spark] set master: %s&#34; % self.__master)
+            conf.setMaster(self.__master)
+            def_conf = copy.deepcopy(self.get_spark_config())
+            if self.__mode:
+                def_conf[&#34;spark.submit.deployMode&#34;] = self.__mode
+
+            if def_conf:
+                for c, v in def_conf.items():
+                    self.syslog.info(&#39;[Spark] set config: %s: %s&#39; % (c, v))
+                    conf = conf.set(c, v)
+            if self.__enable_hive_support:
+                logger.info(&#34;[Spark] enable HiveSupport: true&#34;)
+                SparkHook._instance[&#39;_spark_session&#39;] = ss.config(conf=conf).enableHiveSupport().getOrCreate()
+            else:
+                SparkHook._instance[&#39;_spark_session&#39;] = ss.config(conf=conf).getOrCreate()
+            py_file = self.get_py_files()
+            if py_file:
+                self.syslog.info(&#34;[Spark] start add file: %s&#34; % py_file)
+                for f in py_file:
+                    SparkHook._instance[&#39;_spark_session&#39;].sparkContext.addPyFile(f)
+            return SparkHook._instance[&#39;_spark_session&#39;]
+        return ins
+
+    @property
+    def sc(self):
+        &#34;&#34;&#34;
+        get spark context from SparkSession
+
+            return: pyspark.context.SparkHook
+
+        &#34;&#34;&#34;
+        return self.session.sparkContext
+
+    @property
+    def is_active(self):
+        &#34;&#34;&#34;
+        check spark_context is running or not
+        
+            return:
+        
+        &#34;&#34;&#34;
+        try:
+            spark = SparkHook._instance.get(&#39;_spark_session&#39;)
+            if spark:
+                spark.sparkContext.sparkUser()
+                return True
+            else:
+                self.syslog.info(&#34;SparkHook have not been initialized&#34;)
+        except BaseException as e:
+            self.syslog.error(&#34;SparkHook is stopped. Error:\n %s&#34; % traceback.format_exc())
+        return False
+
+    @property
+    def spark_funcs(self):
+        return spark_functions
+
+    @property
+    def spark_dtypes(self):
+        &#34;&#34;&#34;
+        return spark data type
+
+            return: pyspark.sql.types
+
+        &#34;&#34;&#34;
+        return spark_type
+
+    @staticmethod
+    def replace_template(text, params):
+        &#34;&#34;&#34;
+        replace template params with given param
+
+            text: ex: select * from {table}
+            params: ex :{table: &#39;table_tempƒ&#39;}
+            return:
+
+        &#34;&#34;&#34;
+        for k, v in params.items():
+            text = text.replace(&#39;{%s}&#39; % k, &#39;%s&#39; % v)
+        return text
+
+    def run_sql(self, sql, log=True, multi=False, replace_params={}):
+        &#34;&#34;&#34;
+        run pyspark sql by sqlContext
+
+            sql:
+            return:
+
+        &#34;&#34;&#34;
+        sql = self.replace_template(sql, replace_params)
+        if not multi:
+            if log:
+                self.syslog.info(
+                    &#34;Start query sql by sqlContext\n:-----------------------------\n%s\n-----------------------&#34; % sql)
+            return self.session.sql(sql)
+        for k in sql.split(&#39;;&#39;):
+            if k.strip():
+                if log:
+                    self.syslog.info(&#34;Run query:\n %s&#34; % k)
+                self.session.sql(k)
+        return True
+
+    def create_df_by_ldict(self, data):
+        &#34;&#34;&#34;
+        create dataframe by list dict
+
+            data: list of dicr
+            return: from pyspark.sql import HiveContext
+
+        &#34;&#34;&#34;
+        return self.session.createDataFrame(data)
+
+    def check_table_exist(self, table):
+        &#34;&#34;&#34;
+        Check table exists or not
+
+            table:
+            return:
+
+        &#34;&#34;&#34;
+        try:
+            database = table.split(&#39;.&#39;)[0]
+            table_name = table.split(&#39;.&#39;)[1]
+            rs = self.run_sql(&#34;show tables in %s like &#39;%s&#39;&#34; % (database, table_name), False).collect()
+            if rs:
+                return True
+            return False
+        except BaseException as e:
+            self.syslog.error(&#34;Error when check table exists: %s \n trace: &#34; % (table, traceback.format_exc()))
+            return False
+
+    def stop(self):
+        try:
+            self.syslog.info(&#39;[Spark] Stop sparkSession, SparkHook and clear instances...&#39;)
+            # self.session.sc.stop()
+            ins = SparkHook._instance.get(&#39;_spark_session&#39;)
+            if ins:
+                logger.info(&#34;Stop spark context of SparkHook...&#34;)
+                ins.sparkContext.stop()
+                try:
+                    logger.info(&#34;Stop spark session of SparkHook...&#34;)
+                    ins.stop()
+                except BaseException as e:
+                    pass
+            SparkHook._instance = {}
+            SparkHook._instance.clear()
+            self._instance = {}
+            return True
+        except BaseException as e:
+            self.syslog.error(&#34;Error when clear spark object: %s \n trace: &#34; % (traceback.format_exc()))
+            return False</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="zuka_etl.custom.spark_hook.SparkHook"><code class="flex name class">
+<span>class <span class="ident">SparkHook</span></span>
+<span>(</span><span>connection_id='', app_name='', master='', mode='', spark_conf={}, env_vars={}, py_files=[], auto_find_pyspark=False, enable_hive_support=True, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Wrapper Spark Context
+Define Connection on Connection on Airflow
+Note that just define connection name and extras as json config. Check example of config extras
+Example:
+{
+"master": "local[*]",
+"app_name": "etl_operator_spark",
+"mode": "client",
+"conf": {
+"spark.jars.packages": "mysql:mysql-connector-java:5.1.47,org.elasticsearch:elasticsearch-hadoop:6.4.2",
+"spark.dynamicAllocation.enabled": "true",
+"spark.dynamicAllocation.maxExecutors": 5,
+"spark.executor.cores": 4,
+"spark.executor.memory": "2G",
+"spark.shuffle.service.enabled": "true",
+"spark.files.overwrite": "true",
+"spark.sql.warehouse.dir": "/apps/spark/warehouse",
+"spark.sql.catalogImplementation": "hive",
+"spark.sql.sources.partitionOverwriteMode": "dynamic",
+"hive.exec.dynamic.partition.mode": "nonstrict",
+"spark.sql.caseSensitive": "true"
+},
+"env_vars": {
+"SPARK_HOME": ""
+},
+"add_py_file": ["test.py"]
+}</p>
+<p>Call SparkContext
+Parameters:
+kwargs:
+connection_id: id of connection
+app_name: spark app name
+master: local or YARN
+mode: mode run on YARN
+spark_conf: overwrite some default configs of spark.
+Format: Example:
+{
+'spark.jars.packages': 'mysql:mysql-connector-java:5.1.47,org.elasticsearch:elasticsearch-hadoop:6.4.2',
+'spark.dynamicAllocation.enabled': "true",
+'spark.dynamicAllocation.maxExecutors': 5,
+'spark.executor.cores': 4,
+'spark.executor.memory': '2G',
+'spark.shuffle.service.enabled': "true",
+"spark.files.overwrite": "true",
+"spark.sql.warehouse.dir": "/apps/spark/warehouse",
+"spark.sql.catalogImplementation": "hive",
+"spark.sql.sources.partitionOverwriteMode": "dynamic",
+"hive.exec.dynamic.partition.mode": "nonstrict",
+"spark.sql.caseSensitive": "true"
+}
+env_vars: add some env variables. Example: {
+"SPARK_HOME": "/usr/hdp/current/spark2/"
+}
+add_py_files: Add some python file path when submit job. Example: ["test.py"]}
+auto_find_pyspark: True or False. If true, automatic find pyspark environment by findpspark package</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SparkHook(BaseHook):
+    &#34;&#34;&#34;
+    Wrapper Spark Context
+    Define Connection on Connection on Airflow
+    Note that just define connection name and extras as json config. Check example of config extras
+        Example:
+               {
+                    &#34;master&#34;: &#34;local[*]&#34;,
+                    &#34;app_name&#34;: &#34;etl_operator_spark&#34;,
+                    &#34;mode&#34;: &#34;client&#34;,
+                    &#34;conf&#34;: {
+                        &#34;spark.jars.packages&#34;: &#34;mysql:mysql-connector-java:5.1.47,org.elasticsearch:elasticsearch-hadoop:6.4.2&#34;,
+                        &#34;spark.dynamicAllocation.enabled&#34;: &#34;true&#34;,
+                        &#34;spark.dynamicAllocation.maxExecutors&#34;: 5,
+                        &#34;spark.executor.cores&#34;: 4,
+                        &#34;spark.executor.memory&#34;: &#34;2G&#34;,
+                        &#34;spark.shuffle.service.enabled&#34;: &#34;true&#34;,
+                        &#34;spark.files.overwrite&#34;: &#34;true&#34;,
+                        &#34;spark.sql.warehouse.dir&#34;: &#34;/apps/spark/warehouse&#34;,
+                        &#34;spark.sql.catalogImplementation&#34;: &#34;hive&#34;,
+                        &#34;spark.sql.sources.partitionOverwriteMode&#34;: &#34;dynamic&#34;,
+                        &#34;hive.exec.dynamic.partition.mode&#34;: &#34;nonstrict&#34;,
+                        &#34;spark.sql.caseSensitive&#34;: &#34;true&#34;
+                    },
+                    &#34;env_vars&#34;: {
+                        &#34;SPARK_HOME&#34;: &#34;&#34;
+                    },
+                    &#34;add_py_file&#34;: [&#34;test.py&#34;]
+                }
+    &#34;&#34;&#34;
+    __DEFAULT_CONNECT = Setting.SPARK_CONFIG_DEFAULT
+    _instance = {}
+    __app_name = &#34;&#34;
+    __master = &#34;&#34;
+    __mode = &#34;&#34;
+    __ENV = {}
+
+    def __init__(self, connection_id=&#34;&#34;,
+                 app_name=&#34;&#34;,
+                 master=&#34;&#34;,
+                 mode=&#34;&#34;,
+                 spark_conf={},
+                 env_vars={},
+                 py_files=[],
+                 auto_find_pyspark=False,
+                 enable_hive_support=True,
+                 **kwargs):
+        &#34;&#34;&#34;
+        Call SparkContext
+            Parameters:
+                kwargs:
+                    connection_id: id of connection
+                    app_name: spark app name
+                    master: local or YARN
+                    mode: mode run on YARN
+                    spark_conf: overwrite some default configs of spark.
+                                Format: Example:
+                                   {
+                                        &#39;spark.jars.packages&#39;: &#39;mysql:mysql-connector-java:5.1.47,org.elasticsearch:elasticsearch-hadoop:6.4.2&#39;,
+                                        &#39;spark.dynamicAllocation.enabled&#39;: &#34;true&#34;,
+                                        &#39;spark.dynamicAllocation.maxExecutors&#39;: 5,
+                                        &#39;spark.executor.cores&#39;: 4,
+                                        &#39;spark.executor.memory&#39;: &#39;2G&#39;,
+                                        &#39;spark.shuffle.service.enabled&#39;: &#34;true&#34;,
+                                        &#34;spark.files.overwrite&#34;: &#34;true&#34;,
+                                        &#34;spark.sql.warehouse.dir&#34;: &#34;/apps/spark/warehouse&#34;,
+                                        &#34;spark.sql.catalogImplementation&#34;: &#34;hive&#34;,
+                                        &#34;spark.sql.sources.partitionOverwriteMode&#34;: &#34;dynamic&#34;,
+                                        &#34;hive.exec.dynamic.partition.mode&#34;: &#34;nonstrict&#34;,
+                                        &#34;spark.sql.caseSensitive&#34;: &#34;true&#34;
+                                   }
+                    env_vars: add some env variables. Example: {
+                        &#34;SPARK_HOME&#34;: &#34;/usr/hdp/current/spark2/&#34;
+                    }
+                    add_py_files: Add some python file path when submit job. Example: [&#34;test.py&#34;]}
+                    auto_find_pyspark: True or False. If true, automatic find pyspark environment by findpspark package
+
+        &#34;&#34;&#34;
+        self.__app_name = app_name.strip()
+        self.__master = master.strip()
+        self.__mode = mode.strip()
+        custom_config = copy.copy(spark_conf if isinstance(spark_conf, dict) else {})
+        env_vars = copy.copy(env_vars if isinstance(env_vars, dict) else {})
+        add_py_files = py_files if isinstance(py_files, list) else []
+        self.__auto_find_pyspark = auto_find_pyspark if isinstance(auto_find_pyspark, bool) else False
+        self.__enable_hive_support = enable_hive_support if isinstance(enable_hive_support, bool) else False
+        self.__load_config = {}
+        self.syslog = logger
+        connection_id = connection_id.strip() if connection_id.strip() != &#34;&#34; else SparkHook.__DEFAULT_CONNECT
+        cn = self.get_connection(conn_id=connection_id)
+        if cn.extra_dejson:
+            self.__load_config = cn.extra_dejson
+        else:
+            logger.warn(&#34;Config for sparkContext of SparkHook is not set. Using default config&#34;)
+        if self.__app_name != &#34;&#34;:
+            self.__load_config[&#34;app_name&#34;] = self.__app_name.strip()
+        else:
+            self.__app_name = self.__load_config.get(&#34;app_name&#34;, &#34;Zuka_etl_spark&#34;)
+        if self.__master != &#34;&#34;:
+            self.__load_config[&#34;master&#34;] = self.__master
+        else:
+            self.__master = self.__load_config.get(&#34;master&#34;, &#34;local[*]&#34;)
+        if self.__mode != &#34;&#34;:
+            self.__load_config[&#34;mode&#34;] = self.__mode
+        else:
+            self.__mode = self.__load_config.get(&#34;mode&#34;, &#34;&#34;)
+        if custom_config:
+            sp_cf = self.__load_config.get(&#34;conf&#34;, {})
+            if not isinstance(sp_cf, dict):
+                sp_cf = {}
+                self.__load_config[&#34;conf&#34;] = sp_cf
+            self.__load_config[&#34;conf&#34;].update(custom_config)
+        if env_vars:
+            env = self.__load_config.get(&#34;env_vars&#34;, {})
+            if not isinstance(env, dict):
+                env = {}
+                self.__load_config[&#34;env_vars&#34;] = env
+            self.__load_config[&#34;env_vars&#34;].update(custom_config)
+        if add_py_files:
+            add = self.__load_config.get(&#34;py_files&#34;, [])
+            if not isinstance(add, list):
+                self.__load_config[&#34;py_files&#34;] = []
+            self.__load_config[&#34;py_files&#34;] = add_py_files
+
+    def get_app_name(self):
+        return self.__app_name
+
+    def get_master(self):
+        return self.__app_name
+
+    def get_mode(self):
+        return self.__app_name
+
+    def get_list_instance(self):
+        return self._instance
+
+    def get_conn(self):
+        return self.session
+
+    def get_config(self):
+        return self.__load_config
+
+    def get_env_vars(self):
+        return self.__load_config.get(&#34;env_vars&#34;, {})
+
+    def get_spark_config(self):
+        return self.__load_config.get(&#34;conf&#34;, {})
+
+    def get_py_files(self):
+        return self.__load_config.get(&#34;py_files&#34;, [])
+
+    @property
+    def session(self):
+        &#34;&#34;&#34;
+        create a Spark Context by SparkSession
+            
+            return: pyspark.sql.session.SparkSession
+
+        &#34;&#34;&#34;
+        if not isinstance(SparkHook._instance, dict):
+            SparkHook._instance = {}
+        ins = SparkHook._instance.get(&#39;_spark_session&#39;)
+        if (not ins or not self.is_active):
+            # import os global variable
+            try:
+                for k, v in self.get_env_vars().items():
+                    self.syslog.info(&#39;SET VARIABLE: %s:%s&#39; % (k, v))
+                    os.environ[k] = v
+            except BaseException as e:
+                self.syslog.info(&#34;Cannot import variable spark because:\n%s&#34; % self.syslog.print_traceback())
+                pass
+
+            self.syslog.info(&#39;[Spark] Create main context ...&#39;)
+
+            if self.__auto_find_pyspark:
+                import findspark
+                self.syslog.info(
+                    &#34;[Spark] init SPARK_HOME by findspark with path: %s &#34; % self.__load_config[&#39;spark_home&#39;])
+                findspark.init()
+            ss = SparkSession.builder.appName(self.__app_name)
+            conf = SparkConf()
+            logger.info(&#34;[Spark] set master: %s&#34; % self.__master)
+            conf.setMaster(self.__master)
+            def_conf = copy.deepcopy(self.get_spark_config())
+            if self.__mode:
+                def_conf[&#34;spark.submit.deployMode&#34;] = self.__mode
+
+            if def_conf:
+                for c, v in def_conf.items():
+                    self.syslog.info(&#39;[Spark] set config: %s: %s&#39; % (c, v))
+                    conf = conf.set(c, v)
+            if self.__enable_hive_support:
+                logger.info(&#34;[Spark] enable HiveSupport: true&#34;)
+                SparkHook._instance[&#39;_spark_session&#39;] = ss.config(conf=conf).enableHiveSupport().getOrCreate()
+            else:
+                SparkHook._instance[&#39;_spark_session&#39;] = ss.config(conf=conf).getOrCreate()
+            py_file = self.get_py_files()
+            if py_file:
+                self.syslog.info(&#34;[Spark] start add file: %s&#34; % py_file)
+                for f in py_file:
+                    SparkHook._instance[&#39;_spark_session&#39;].sparkContext.addPyFile(f)
+            return SparkHook._instance[&#39;_spark_session&#39;]
+        return ins
+
+    @property
+    def sc(self):
+        &#34;&#34;&#34;
+        get spark context from SparkSession
+
+            return: pyspark.context.SparkHook
+
+        &#34;&#34;&#34;
+        return self.session.sparkContext
+
+    @property
+    def is_active(self):
+        &#34;&#34;&#34;
+        check spark_context is running or not
+        
+            return:
+        
+        &#34;&#34;&#34;
+        try:
+            spark = SparkHook._instance.get(&#39;_spark_session&#39;)
+            if spark:
+                spark.sparkContext.sparkUser()
+                return True
+            else:
+                self.syslog.info(&#34;SparkHook have not been initialized&#34;)
+        except BaseException as e:
+            self.syslog.error(&#34;SparkHook is stopped. Error:\n %s&#34; % traceback.format_exc())
+        return False
+
+    @property
+    def spark_funcs(self):
+        return spark_functions
+
+    @property
+    def spark_dtypes(self):
+        &#34;&#34;&#34;
+        return spark data type
+
+            return: pyspark.sql.types
+
+        &#34;&#34;&#34;
+        return spark_type
+
+    @staticmethod
+    def replace_template(text, params):
+        &#34;&#34;&#34;
+        replace template params with given param
+
+            text: ex: select * from {table}
+            params: ex :{table: &#39;table_tempƒ&#39;}
+            return:
+
+        &#34;&#34;&#34;
+        for k, v in params.items():
+            text = text.replace(&#39;{%s}&#39; % k, &#39;%s&#39; % v)
+        return text
+
+    def run_sql(self, sql, log=True, multi=False, replace_params={}):
+        &#34;&#34;&#34;
+        run pyspark sql by sqlContext
+
+            sql:
+            return:
+
+        &#34;&#34;&#34;
+        sql = self.replace_template(sql, replace_params)
+        if not multi:
+            if log:
+                self.syslog.info(
+                    &#34;Start query sql by sqlContext\n:-----------------------------\n%s\n-----------------------&#34; % sql)
+            return self.session.sql(sql)
+        for k in sql.split(&#39;;&#39;):
+            if k.strip():
+                if log:
+                    self.syslog.info(&#34;Run query:\n %s&#34; % k)
+                self.session.sql(k)
+        return True
+
+    def create_df_by_ldict(self, data):
+        &#34;&#34;&#34;
+        create dataframe by list dict
+
+            data: list of dicr
+            return: from pyspark.sql import HiveContext
+
+        &#34;&#34;&#34;
+        return self.session.createDataFrame(data)
+
+    def check_table_exist(self, table):
+        &#34;&#34;&#34;
+        Check table exists or not
+
+            table:
+            return:
+
+        &#34;&#34;&#34;
+        try:
+            database = table.split(&#39;.&#39;)[0]
+            table_name = table.split(&#39;.&#39;)[1]
+            rs = self.run_sql(&#34;show tables in %s like &#39;%s&#39;&#34; % (database, table_name), False).collect()
+            if rs:
+                return True
+            return False
+        except BaseException as e:
+            self.syslog.error(&#34;Error when check table exists: %s \n trace: &#34; % (table, traceback.format_exc()))
+            return False
+
+    def stop(self):
+        try:
+            self.syslog.info(&#39;[Spark] Stop sparkSession, SparkHook and clear instances...&#39;)
+            # self.session.sc.stop()
+            ins = SparkHook._instance.get(&#39;_spark_session&#39;)
+            if ins:
+                logger.info(&#34;Stop spark context of SparkHook...&#34;)
+                ins.sparkContext.stop()
+                try:
+                    logger.info(&#34;Stop spark session of SparkHook...&#34;)
+                    ins.stop()
+                except BaseException as e:
+                    pass
+            SparkHook._instance = {}
+            SparkHook._instance.clear()
+            self._instance = {}
+            return True
+        except BaseException as e:
+            self.syslog.error(&#34;Error when clear spark object: %s \n trace: &#34; % (traceback.format_exc()))
+            return False</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>airflow.hooks.base_hook.BaseHook</li>
+<li>airflow.utils.log.logging_mixin.LoggingMixin</li>
+</ul>
+<h3>Static methods</h3>
+<dl>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.replace_template"><code class="name flex">
+<span>def <span class="ident">replace_template</span></span>(<span>text, params)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>replace template params with given param</p>
+<pre><code>text: ex: select * from {table}
+params: ex :{table: 'table_tempƒ'}
+return:
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def replace_template(text, params):
+    &#34;&#34;&#34;
+    replace template params with given param
+
+        text: ex: select * from {table}
+        params: ex :{table: &#39;table_tempƒ&#39;}
+        return:
+
+    &#34;&#34;&#34;
+    for k, v in params.items():
+        text = text.replace(&#39;{%s}&#39; % k, &#39;%s&#39; % v)
+    return text</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.is_active"><code class="name">var <span class="ident">is_active</span></code></dt>
+<dd>
+<section class="desc"><p>check spark_context is running or not</p>
+<pre><code>return:
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def is_active(self):
+    &#34;&#34;&#34;
+    check spark_context is running or not
+    
+        return:
+    
+    &#34;&#34;&#34;
+    try:
+        spark = SparkHook._instance.get(&#39;_spark_session&#39;)
+        if spark:
+            spark.sparkContext.sparkUser()
+            return True
+        else:
+            self.syslog.info(&#34;SparkHook have not been initialized&#34;)
+    except BaseException as e:
+        self.syslog.error(&#34;SparkHook is stopped. Error:\n %s&#34; % traceback.format_exc())
+    return False</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.sc"><code class="name">var <span class="ident">sc</span></code></dt>
+<dd>
+<section class="desc"><p>get spark context from SparkSession</p>
+<pre><code>return: pyspark.context.SparkHook
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def sc(self):
+    &#34;&#34;&#34;
+    get spark context from SparkSession
+
+        return: pyspark.context.SparkHook
+
+    &#34;&#34;&#34;
+    return self.session.sparkContext</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.session"><code class="name">var <span class="ident">session</span></code></dt>
+<dd>
+<section class="desc"><p>create a Spark Context by SparkSession</p>
+<pre><code>return: pyspark.sql.session.SparkSession
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def session(self):
+    &#34;&#34;&#34;
+    create a Spark Context by SparkSession
+        
+        return: pyspark.sql.session.SparkSession
+
+    &#34;&#34;&#34;
+    if not isinstance(SparkHook._instance, dict):
+        SparkHook._instance = {}
+    ins = SparkHook._instance.get(&#39;_spark_session&#39;)
+    if (not ins or not self.is_active):
+        # import os global variable
+        try:
+            for k, v in self.get_env_vars().items():
+                self.syslog.info(&#39;SET VARIABLE: %s:%s&#39; % (k, v))
+                os.environ[k] = v
+        except BaseException as e:
+            self.syslog.info(&#34;Cannot import variable spark because:\n%s&#34; % self.syslog.print_traceback())
+            pass
+
+        self.syslog.info(&#39;[Spark] Create main context ...&#39;)
+
+        if self.__auto_find_pyspark:
+            import findspark
+            self.syslog.info(
+                &#34;[Spark] init SPARK_HOME by findspark with path: %s &#34; % self.__load_config[&#39;spark_home&#39;])
+            findspark.init()
+        ss = SparkSession.builder.appName(self.__app_name)
+        conf = SparkConf()
+        logger.info(&#34;[Spark] set master: %s&#34; % self.__master)
+        conf.setMaster(self.__master)
+        def_conf = copy.deepcopy(self.get_spark_config())
+        if self.__mode:
+            def_conf[&#34;spark.submit.deployMode&#34;] = self.__mode
+
+        if def_conf:
+            for c, v in def_conf.items():
+                self.syslog.info(&#39;[Spark] set config: %s: %s&#39; % (c, v))
+                conf = conf.set(c, v)
+        if self.__enable_hive_support:
+            logger.info(&#34;[Spark] enable HiveSupport: true&#34;)
+            SparkHook._instance[&#39;_spark_session&#39;] = ss.config(conf=conf).enableHiveSupport().getOrCreate()
+        else:
+            SparkHook._instance[&#39;_spark_session&#39;] = ss.config(conf=conf).getOrCreate()
+        py_file = self.get_py_files()
+        if py_file:
+            self.syslog.info(&#34;[Spark] start add file: %s&#34; % py_file)
+            for f in py_file:
+                SparkHook._instance[&#39;_spark_session&#39;].sparkContext.addPyFile(f)
+        return SparkHook._instance[&#39;_spark_session&#39;]
+    return ins</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.spark_dtypes"><code class="name">var <span class="ident">spark_dtypes</span></code></dt>
+<dd>
+<section class="desc"><p>return spark data type</p>
+<pre><code>return: pyspark.sql.types
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def spark_dtypes(self):
+    &#34;&#34;&#34;
+    return spark data type
+
+        return: pyspark.sql.types
+
+    &#34;&#34;&#34;
+    return spark_type</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.spark_funcs"><code class="name">var <span class="ident">spark_funcs</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def spark_funcs(self):
+    return spark_functions</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.check_table_exist"><code class="name flex">
+<span>def <span class="ident">check_table_exist</span></span>(<span>self, table)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Check table exists or not</p>
+<pre><code>table:
+return:
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_table_exist(self, table):
+    &#34;&#34;&#34;
+    Check table exists or not
+
+        table:
+        return:
+
+    &#34;&#34;&#34;
+    try:
+        database = table.split(&#39;.&#39;)[0]
+        table_name = table.split(&#39;.&#39;)[1]
+        rs = self.run_sql(&#34;show tables in %s like &#39;%s&#39;&#34; % (database, table_name), False).collect()
+        if rs:
+            return True
+        return False
+    except BaseException as e:
+        self.syslog.error(&#34;Error when check table exists: %s \n trace: &#34; % (table, traceback.format_exc()))
+        return False</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.create_df_by_ldict"><code class="name flex">
+<span>def <span class="ident">create_df_by_ldict</span></span>(<span>self, data)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>create dataframe by list dict</p>
+<pre><code>data: list of dicr
+return: from pyspark.sql import HiveContext
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_df_by_ldict(self, data):
+    &#34;&#34;&#34;
+    create dataframe by list dict
+
+        data: list of dicr
+        return: from pyspark.sql import HiveContext
+
+    &#34;&#34;&#34;
+    return self.session.createDataFrame(data)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.get_app_name"><code class="name flex">
+<span>def <span class="ident">get_app_name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_app_name(self):
+    return self.__app_name</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.get_config"><code class="name flex">
+<span>def <span class="ident">get_config</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_config(self):
+    return self.__load_config</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.get_conn"><code class="name flex">
+<span>def <span class="ident">get_conn</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_conn(self):
+    return self.session</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.get_env_vars"><code class="name flex">
+<span>def <span class="ident">get_env_vars</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_env_vars(self):
+    return self.__load_config.get(&#34;env_vars&#34;, {})</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.get_list_instance"><code class="name flex">
+<span>def <span class="ident">get_list_instance</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_list_instance(self):
+    return self._instance</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.get_master"><code class="name flex">
+<span>def <span class="ident">get_master</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_master(self):
+    return self.__app_name</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.get_mode"><code class="name flex">
+<span>def <span class="ident">get_mode</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_mode(self):
+    return self.__app_name</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.get_py_files"><code class="name flex">
+<span>def <span class="ident">get_py_files</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_py_files(self):
+    return self.__load_config.get(&#34;py_files&#34;, [])</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.get_spark_config"><code class="name flex">
+<span>def <span class="ident">get_spark_config</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_spark_config(self):
+    return self.__load_config.get(&#34;conf&#34;, {})</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.run_sql"><code class="name flex">
+<span>def <span class="ident">run_sql</span></span>(<span>self, sql, log=True, multi=False, replace_params={})</span>
+</code></dt>
+<dd>
+<section class="desc"><p>run pyspark sql by sqlContext</p>
+<pre><code>sql:
+return:
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_sql(self, sql, log=True, multi=False, replace_params={}):
+    &#34;&#34;&#34;
+    run pyspark sql by sqlContext
+
+        sql:
+        return:
+
+    &#34;&#34;&#34;
+    sql = self.replace_template(sql, replace_params)
+    if not multi:
+        if log:
+            self.syslog.info(
+                &#34;Start query sql by sqlContext\n:-----------------------------\n%s\n-----------------------&#34; % sql)
+        return self.session.sql(sql)
+    for k in sql.split(&#39;;&#39;):
+        if k.strip():
+            if log:
+                self.syslog.info(&#34;Run query:\n %s&#34; % k)
+            self.session.sql(k)
+    return True</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.spark_hook.SparkHook.stop"><code class="name flex">
+<span>def <span class="ident">stop</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def stop(self):
+    try:
+        self.syslog.info(&#39;[Spark] Stop sparkSession, SparkHook and clear instances...&#39;)
+        # self.session.sc.stop()
+        ins = SparkHook._instance.get(&#39;_spark_session&#39;)
+        if ins:
+            logger.info(&#34;Stop spark context of SparkHook...&#34;)
+            ins.sparkContext.stop()
+            try:
+                logger.info(&#34;Stop spark session of SparkHook...&#34;)
+                ins.stop()
+            except BaseException as e:
+                pass
+        SparkHook._instance = {}
+        SparkHook._instance.clear()
+        self._instance = {}
+        return True
+    except BaseException as e:
+        self.syslog.error(&#34;Error when clear spark object: %s \n trace: &#34; % (traceback.format_exc()))
+        return False</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="zuka_etl.custom" href="index.html">zuka_etl.custom</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="zuka_etl.custom.spark_hook.SparkHook" href="#zuka_etl.custom.spark_hook.SparkHook">SparkHook</a></code></h4>
+<ul class="two-column">
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.check_table_exist" href="#zuka_etl.custom.spark_hook.SparkHook.check_table_exist">check_table_exist</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.create_df_by_ldict" href="#zuka_etl.custom.spark_hook.SparkHook.create_df_by_ldict">create_df_by_ldict</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.get_app_name" href="#zuka_etl.custom.spark_hook.SparkHook.get_app_name">get_app_name</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.get_config" href="#zuka_etl.custom.spark_hook.SparkHook.get_config">get_config</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.get_conn" href="#zuka_etl.custom.spark_hook.SparkHook.get_conn">get_conn</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.get_env_vars" href="#zuka_etl.custom.spark_hook.SparkHook.get_env_vars">get_env_vars</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.get_list_instance" href="#zuka_etl.custom.spark_hook.SparkHook.get_list_instance">get_list_instance</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.get_master" href="#zuka_etl.custom.spark_hook.SparkHook.get_master">get_master</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.get_mode" href="#zuka_etl.custom.spark_hook.SparkHook.get_mode">get_mode</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.get_py_files" href="#zuka_etl.custom.spark_hook.SparkHook.get_py_files">get_py_files</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.get_spark_config" href="#zuka_etl.custom.spark_hook.SparkHook.get_spark_config">get_spark_config</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.is_active" href="#zuka_etl.custom.spark_hook.SparkHook.is_active">is_active</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.replace_template" href="#zuka_etl.custom.spark_hook.SparkHook.replace_template">replace_template</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.run_sql" href="#zuka_etl.custom.spark_hook.SparkHook.run_sql">run_sql</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.sc" href="#zuka_etl.custom.spark_hook.SparkHook.sc">sc</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.session" href="#zuka_etl.custom.spark_hook.SparkHook.session">session</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.spark_dtypes" href="#zuka_etl.custom.spark_hook.SparkHook.spark_dtypes">spark_dtypes</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.spark_funcs" href="#zuka_etl.custom.spark_hook.SparkHook.spark_funcs">spark_funcs</a></code></li>
+<li><code><a title="zuka_etl.custom.spark_hook.SparkHook.stop" href="#zuka_etl.custom.spark_hook.SparkHook.stop">stop</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

@@ -1,0 +1,1136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.5" />
+<title>zuka_etl.helpers.time_utils API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>zuka_etl.helpers.time_utils</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+__author__ = &#39;phongphamhong&#39;
+
+# !/usr/bin/python
+#
+# Copyright 11/9/18 Phong Pham Hong &lt;phongbro1805@gmail.com&gt;
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an &#34;AS IS&#34; BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# # set enviroment in dev mode
+from dateutil.relativedelta import relativedelta
+from dateutil.rrule import rrule, DAILY, WEEKLY, MONTHLY
+from pytz import timezone
+from zuka_etl.setting import Setting
+import pytz
+import math
+import datetime
+import parser
+import copy
+import traceback
+import calendar
+import time
+
+
+def render_date_range(from_date, to_date, size=&#39;DAILY&#39;):
+    from_date = convert_time(from_date)
+    to_date = convert_time(to_date, end_day=True)
+    b = DAILY
+    if size == &#39;DAILY&#39;:
+        b = DAILY
+    elif size == &#39;WEEKLY&#39;:
+        b = WEEKLY
+    elif size == &#39;MONTHLY&#39;:
+        b = MONTHLY
+    max = None
+    for dt in rrule(b, dtstart=from_date, until=to_date):
+        max = dt
+        yield dt
+    if max.date() != to_date.date():
+        yield to_date
+
+
+def convert_timestamp(string_time, reset_time=False, end_day=False, big_int=True):
+    if convert_int(string_time) &gt; 0:
+        return string_time
+    st = convert_time(string_time, reset_time=reset_time, end_day=end_day) - convert_time(&#39;1970-01-01&#39;)
+    return convert_long(int(st.total_seconds()))
+
+
+def convert_timestamp_to_datetime(time_st):
+    return convert_time(&#39;1970-01-01&#39;) + datetime.timedelta(seconds=time_st)
+
+
+def convert_int(value):
+    try:
+        result = int(round(convert_float(value)))
+        return result
+    except BaseException as e:
+        return 0
+
+
+def convert_long(value):
+    try:
+        result = convert_int(round(convert_float(value)))
+        return result
+    except BaseException as e:
+        return 0
+
+
+def convert_float(value):
+    try:
+        result = float(value)
+        return result
+    except BaseException as e:
+        return 0.0
+
+
+def convert_time(string_time, reset_time=False, end_day=False, convert_time_type=&#39;datetime&#39;, **kwargs):
+    if string_time in [None, &#39;&#39;]:
+        return None
+    parsing = string_time
+
+    if type(string_time) is not datetime.datetime and datetime:
+        # format YY:mm:dd
+        year, month, day, hour, second, minute = convert_int(string_time[:4]), convert_int(
+            string_time[5:7]), convert_int(
+            string_time[8:10]), convert_int(string_time[11: 13]), convert_int(string_time[14: 16]), convert_int(
+            string_time[17: 19])
+
+        microsecond = string_time[20: 30].split(&#39;+&#39;)
+        microsecond = convert_int(microsecond[0]) if microsecond else 0
+        microsecond = 999999 if microsecond &gt; 999999 else 0
+        if year &lt; 1000 or month &gt; 12 or month &lt; 1 or len(parsing) &lt; 10:
+            parsing = parser.parse(string_time, **kwargs)
+        else:
+            parsing = datetime.datetime(year, month, day, hour, second, minute, microsecond)
+
+    if reset_time:
+        parsing = parsing.replace(hour=0, minute=0, second=0, microsecond=0)
+    if end_day:
+        parsing = parsing.replace(hour=23, minute=59, second=59, microsecond=999999)
+
+    if convert_time_type == &#39;datetime&#39;:
+        return parsing
+    elif convert_time_type == &#39;timestamp&#39;:
+        return convert_timestamp(parsing)
+
+
+def current_local_iso_date(reset_time=False):
+    utc = current_time_utc(reset_time)
+    pst_now = utc.astimezone(pytz.timezone(Setting.LOCAL_TIME_ZONE))
+    return pst_now.strftime(&#34;%Y-%m-%dT%H:%M:%S.%fZ&#34;)
+
+
+def current_time_utc(reset_time=False):
+    time = datetime.datetime.utcnow().strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+    return convert_time(time, reset_time=reset_time)
+
+
+def current_time_utc_timestamp(reset_time=False):
+    return convert_timestamp(current_time_utc(reset_time=reset_time))
+
+
+def current_time_local(reset_time=False):
+    return current_time_with_tz(tz=Setting.LOCAL_TIME_ZONE, reset_time=reset_time)
+
+
+def current_time_local_timestamp(reset_time=False):
+    return convert_timestamp(current_time_with_tz(tz=Setting.LOCAL_TIME_ZONE, reset_time=reset_time))
+
+
+def current_time_with_tz(tz, reset_time=False):
+    tz = str(tz) if tz else &#39;UTC&#39;
+    d = datetime.datetime.now(pytz.timezone(tz)).strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+
+    return convert_time(d, reset_time=reset_time).astimezone(pytz.timezone(tz))
+
+def current_unixtime():
+    return time.time()
+
+def convert_datetime_to_utc(tz, date_time, reset_time=False, check_is_dst=True):
+    local = timezone(tz)
+    naive = datetime.datetime.strptime(convert_time(date_time).strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;),
+                                       &#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+
+    if check_is_dst:
+        local_dt = local.localize(naive, is_dst=None)
+    else:
+        try:
+            local_dt = local.localize(naive, is_dst=None)
+        except BaseException as e:
+            local_dt = local.localize(naive, is_dst=False)
+    return convert_time(local_dt.astimezone(pytz.utc).strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;), reset_time=reset_time)
+
+
+def convert_utc_to_timzone(tz, date_time, reset_time=False):
+    date_time = convert_time(date_time)
+    return convert_time(
+        convert_time(date_time.replace(tzinfo=pytz.utc).astimezone(pytz.timezone(tz)), reset_time=reset_time).strftime(
+            &#34;%Y-%m-%d %H:%M:%S.%f&#34;))
+
+
+def convert_time_tz_other_tz(date_time, from_tz, to_tz):
+    # convert utc
+    d = convert_datetime_to_utc(tz=from_tz, date_time=date_time)
+    # convert utc to datetime that belong other timezone
+    return convert_utc_to_timzone(tz=to_tz, date_time=d)
+
+
+def convert_unixtime(date_time, tz=Setting.LOCAL_TIME_ZONE, reset_time=False):
+    utc = convert_datetime_to_utc(tz=tz, date_time=date_time, reset_time=reset_time)
+    return convert_timestamp(utc)
+
+
+def convert_from_unixtime(unixtime, tz=Setting.LOCAL_TIME_ZONE, reset_time=False):
+    utc = convert_timestamp_to_datetime(unixtime)
+    return convert_utc_to_timzone(tz=tz, date_time=utc, reset_time=reset_time)
+
+
+def render_date_range_by_sesson_one_day(date_day, tz, to_utc=True):
+    date_day = convert_time(date_day, end_day=True)
+    mark_result = []
+    mark_delta_time = 0
+    item_range = []
+    for i in range(0, 24):
+        date_day = date_day.replace(hour=i)
+        try:
+            delta_time = (convert_datetime_to_utc(tz=tz, date_time=date_day) - date_day).total_seconds()
+            if mark_delta_time == delta_time or mark_delta_time == 0:
+                mark_delta_time = delta_time
+                item_range.append(date_day)
+            else:
+                mark_delta_time = delta_time
+                mark_result.append(item_range)
+                item_range = []
+                item_range.append(date_day)
+        except BaseException as e:
+            continue
+    if item_range:
+        mark_result.append(item_range)
+    result = []
+
+    for list_time in mark_result:
+        result.append([
+            list_time[0].replace(minute=00, second=00, microsecond=000000),
+            list_time[-1].replace(minute=59, second=59, microsecond=999999),
+        ])
+    return result
+
+
+def render_date_range_by_season_and_timezone(from_date, to_date, tz, to_utc=False):
+    &#34;&#34;&#34;
+    split one date range to small date ranges by seasons.
+        
+        from_date:
+        to_date:
+        tz:
+        to_utc:
+        return:
+    
+    &#34;&#34;&#34;
+    list_render = render_date_range(from_date=from_date, to_date=to_date)
+    mark_delta_time = 0
+    mark_result = []
+    item_range = []
+    for local_time in list_render:
+        local_time = convert_time(local_time, reset_time=True)
+
+        time_in_utc = convert_datetime_to_utc(date_time=local_time, tz=tz)
+        delta_time = (time_in_utc - local_time).total_seconds()
+        if mark_delta_time == delta_time or mark_delta_time == 0:
+            mark_delta_time = delta_time
+            item_range.append(local_time)
+        else:
+            mark_delta_time = delta_time
+            # get change on one day
+            session_local_time = render_date_range_by_sesson_one_day(date_day=item_range[-1], tz=tz)
+
+            if session_local_time:
+                item_range.append(session_local_time[0][-1])
+            mark_result.append([item_range[0], item_range[-1]])
+            item_range = [session_local_time[-1][0], local_time]
+
+    if item_range:
+        mark_result.append([item_range[0], convert_time(item_range[-1], end_day=True)])
+    result = []
+    for list_time in mark_result:
+        st = list_time[0].replace(minute=00, second=00, microsecond=000000)
+        stop = list_time[-1].replace(minute=59, second=59, microsecond=999999)
+        if to_utc:
+            result.append([
+                convert_datetime_to_utc(date_time=st, tz=tz),
+                convert_datetime_to_utc(date_time=stop, tz=tz),
+            ])
+        else:
+            result.append([
+                st,
+                stop
+            ])
+    return result
+
+
+def retry_function(function, number=3, time_sleep=10, print_log_cb=None, finish_cb=None):
+    &#34;&#34;&#34;
+    run a function with retry...
+    
+        function:
+        return:
+    
+    &#34;&#34;&#34;
+    n = 0
+    error = &#34;&#34;
+    while True:
+        n += 1
+
+        if n &gt;= number:
+            if finish_cb:
+                return finish_cb()
+            raise ValueError(&#39;retry limit exceeded for function %s.\nTraceback: %s&#39; % (function.__name__, error))
+        try:
+            rs = function()
+            return rs
+        except BaseException as e:
+            trb = traceback.format_exc()
+            error = trb
+            if print_log_cb:
+                print_log_cb(n, e)
+            time.sleep(time_sleep)
+
+
+def convert_value_of_dicts_by_given_define(item, define_convert):
+    for k in item:
+        if k in define_convert:
+            if define_convert[k] in [&#39;int&#39;, &#39;tinyint&#39;]:
+                item[k] = convert_int(item[k])
+            elif define_convert[k] == &#39;bigint&#39;:
+                item[k] = convert_long(item[k])
+            elif define_convert[k] == &#39;float&#39;:
+                item[k] = convert_float(item[k])
+            elif define_convert[k] == &#39;datetime&#39;:
+                item[k] = convert_time(item[k])
+            elif define_convert[k] == &#39;timestamp&#39;:
+                item[k] = convert_timestamp(item[k])
+    return item
+
+
+def convert_value_of_dicts_by_given_define_dict(item, define_convert, type=&#39;&#39;):
+    for k, v in item.iteritems():
+        key_value = k.lower() if type == &#39;lower&#39; else k
+        if define_convert.has_key(key_value):
+            if define_convert[key_value] in [&#39;int&#39;, &#39;tinyint&#39;]:
+                item[k] = convert_int(item[k])
+            elif define_convert[key_value] == &#39;bigint&#39;:
+                item[k] = convert_long(item[k])
+            elif define_convert[key_value] == &#39;float&#39;:
+                item[k] = convert_float(item[k])
+            elif define_convert[key_value] == &#39;datetime&#39;:
+                item[k] = convert_time(item[k])
+            elif define_convert[k] == &#39;timestamp&#39;:
+                item[k] = convert_timestamp(item[k])
+    return item
+
+
+def get_last_day_of_week(day):
+    dayofweek = datetime.timedelta(days=day.weekday())
+    day = copy.copy(day)
+    if dayofweek.days == 6:
+        day = day + datetime.timedelta(days=1)
+    dayofweek = datetime.timedelta(days=day.weekday())
+    return day - dayofweek + datetime.timedelta(days=5)
+
+
+def get_first_day_of_week(day):
+    dayofweek = datetime.timedelta(days=day.weekday())
+    day = copy.copy(day)
+    if dayofweek.days == 6:
+        day = day + datetime.timedelta(days=1)
+    dayofweek = datetime.timedelta(days=day.weekday())
+    return day - dayofweek - datetime.timedelta(days=1)
+
+
+def get_last_day_of_month(day, formattime=&#39;&#39;):
+    d = day.replace(day=calendar.monthrange(day.year, day.month)[1])
+    if formattime == &#39;timestamp&#39;:
+        return convert_timestamp(d, reset_time=True)
+    return d
+
+
+def get_first_day_of_month(day):
+    return convert_time(&#39;%s-%s-01&#39; % (day.year, day.month))
+
+
+def get_previous_months_by_day(day, months=1):
+    t = convert_time(day)
+    return t - relativedelta(months=months)
+
+
+def get_next_months_by_day(day, months=1):
+    t = convert_time(day)
+    return t + relativedelta(months=months)
+
+
+def convert_date_to_dim_date(date_time):
+    time = datetime.datetime.strftime(date_time, &#34;%Y%m%d&#34;)
+    return time
+
+
+def get_quarter_from_date(date_time):
+    &#39;&#39;&#39;
+
+        date_time: datetime
+        return:
+    
+    &#39;&#39;&#39;
+
+    month = date_time.month
+    quarter = math.ceil(month / 3.)
+    return &#34;Q&#34; + str(quarter)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="zuka_etl.helpers.time_utils.convert_date_to_dim_date"><code class="name flex">
+<span>def <span class="ident">convert_date_to_dim_date</span></span>(<span>date_time)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_date_to_dim_date(date_time):
+    time = datetime.datetime.strftime(date_time, &#34;%Y%m%d&#34;)
+    return time</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.convert_datetime_to_utc"><code class="name flex">
+<span>def <span class="ident">convert_datetime_to_utc</span></span>(<span>tz, date_time, reset_time=False, check_is_dst=True)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_datetime_to_utc(tz, date_time, reset_time=False, check_is_dst=True):
+    local = timezone(tz)
+    naive = datetime.datetime.strptime(convert_time(date_time).strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;),
+                                       &#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+
+    if check_is_dst:
+        local_dt = local.localize(naive, is_dst=None)
+    else:
+        try:
+            local_dt = local.localize(naive, is_dst=None)
+        except BaseException as e:
+            local_dt = local.localize(naive, is_dst=False)
+    return convert_time(local_dt.astimezone(pytz.utc).strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;), reset_time=reset_time)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.convert_float"><code class="name flex">
+<span>def <span class="ident">convert_float</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_float(value):
+    try:
+        result = float(value)
+        return result
+    except BaseException as e:
+        return 0.0</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.convert_from_unixtime"><code class="name flex">
+<span>def <span class="ident">convert_from_unixtime</span></span>(<span>unixtime, tz="'Asia/Bangkok'", reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_from_unixtime(unixtime, tz=Setting.LOCAL_TIME_ZONE, reset_time=False):
+    utc = convert_timestamp_to_datetime(unixtime)
+    return convert_utc_to_timzone(tz=tz, date_time=utc, reset_time=reset_time)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.convert_int"><code class="name flex">
+<span>def <span class="ident">convert_int</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_int(value):
+    try:
+        result = int(round(convert_float(value)))
+        return result
+    except BaseException as e:
+        return 0</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.convert_long"><code class="name flex">
+<span>def <span class="ident">convert_long</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_long(value):
+    try:
+        result = convert_int(round(convert_float(value)))
+        return result
+    except BaseException as e:
+        return 0</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.convert_time"><code class="name flex">
+<span>def <span class="ident">convert_time</span></span>(<span>string_time, reset_time=False, end_day=False, convert_time_type='datetime', **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_time(string_time, reset_time=False, end_day=False, convert_time_type=&#39;datetime&#39;, **kwargs):
+    if string_time in [None, &#39;&#39;]:
+        return None
+    parsing = string_time
+
+    if type(string_time) is not datetime.datetime and datetime:
+        # format YY:mm:dd
+        year, month, day, hour, second, minute = convert_int(string_time[:4]), convert_int(
+            string_time[5:7]), convert_int(
+            string_time[8:10]), convert_int(string_time[11: 13]), convert_int(string_time[14: 16]), convert_int(
+            string_time[17: 19])
+
+        microsecond = string_time[20: 30].split(&#39;+&#39;)
+        microsecond = convert_int(microsecond[0]) if microsecond else 0
+        microsecond = 999999 if microsecond &gt; 999999 else 0
+        if year &lt; 1000 or month &gt; 12 or month &lt; 1 or len(parsing) &lt; 10:
+            parsing = parser.parse(string_time, **kwargs)
+        else:
+            parsing = datetime.datetime(year, month, day, hour, second, minute, microsecond)
+
+    if reset_time:
+        parsing = parsing.replace(hour=0, minute=0, second=0, microsecond=0)
+    if end_day:
+        parsing = parsing.replace(hour=23, minute=59, second=59, microsecond=999999)
+
+    if convert_time_type == &#39;datetime&#39;:
+        return parsing
+    elif convert_time_type == &#39;timestamp&#39;:
+        return convert_timestamp(parsing)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.convert_time_tz_other_tz"><code class="name flex">
+<span>def <span class="ident">convert_time_tz_other_tz</span></span>(<span>date_time, from_tz, to_tz)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_time_tz_other_tz(date_time, from_tz, to_tz):
+    # convert utc
+    d = convert_datetime_to_utc(tz=from_tz, date_time=date_time)
+    # convert utc to datetime that belong other timezone
+    return convert_utc_to_timzone(tz=to_tz, date_time=d)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.convert_timestamp"><code class="name flex">
+<span>def <span class="ident">convert_timestamp</span></span>(<span>string_time, reset_time=False, end_day=False, big_int=True)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_timestamp(string_time, reset_time=False, end_day=False, big_int=True):
+    if convert_int(string_time) &gt; 0:
+        return string_time
+    st = convert_time(string_time, reset_time=reset_time, end_day=end_day) - convert_time(&#39;1970-01-01&#39;)
+    return convert_long(int(st.total_seconds()))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.convert_timestamp_to_datetime"><code class="name flex">
+<span>def <span class="ident">convert_timestamp_to_datetime</span></span>(<span>time_st)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_timestamp_to_datetime(time_st):
+    return convert_time(&#39;1970-01-01&#39;) + datetime.timedelta(seconds=time_st)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.convert_unixtime"><code class="name flex">
+<span>def <span class="ident">convert_unixtime</span></span>(<span>date_time, tz="'Asia/Bangkok'", reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_unixtime(date_time, tz=Setting.LOCAL_TIME_ZONE, reset_time=False):
+    utc = convert_datetime_to_utc(tz=tz, date_time=date_time, reset_time=reset_time)
+    return convert_timestamp(utc)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.convert_utc_to_timzone"><code class="name flex">
+<span>def <span class="ident">convert_utc_to_timzone</span></span>(<span>tz, date_time, reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_utc_to_timzone(tz, date_time, reset_time=False):
+    date_time = convert_time(date_time)
+    return convert_time(
+        convert_time(date_time.replace(tzinfo=pytz.utc).astimezone(pytz.timezone(tz)), reset_time=reset_time).strftime(
+            &#34;%Y-%m-%d %H:%M:%S.%f&#34;))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.convert_value_of_dicts_by_given_define"><code class="name flex">
+<span>def <span class="ident">convert_value_of_dicts_by_given_define</span></span>(<span>item, define_convert)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_value_of_dicts_by_given_define(item, define_convert):
+    for k in item:
+        if k in define_convert:
+            if define_convert[k] in [&#39;int&#39;, &#39;tinyint&#39;]:
+                item[k] = convert_int(item[k])
+            elif define_convert[k] == &#39;bigint&#39;:
+                item[k] = convert_long(item[k])
+            elif define_convert[k] == &#39;float&#39;:
+                item[k] = convert_float(item[k])
+            elif define_convert[k] == &#39;datetime&#39;:
+                item[k] = convert_time(item[k])
+            elif define_convert[k] == &#39;timestamp&#39;:
+                item[k] = convert_timestamp(item[k])
+    return item</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.convert_value_of_dicts_by_given_define_dict"><code class="name flex">
+<span>def <span class="ident">convert_value_of_dicts_by_given_define_dict</span></span>(<span>item, define_convert, type='')</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_value_of_dicts_by_given_define_dict(item, define_convert, type=&#39;&#39;):
+    for k, v in item.iteritems():
+        key_value = k.lower() if type == &#39;lower&#39; else k
+        if define_convert.has_key(key_value):
+            if define_convert[key_value] in [&#39;int&#39;, &#39;tinyint&#39;]:
+                item[k] = convert_int(item[k])
+            elif define_convert[key_value] == &#39;bigint&#39;:
+                item[k] = convert_long(item[k])
+            elif define_convert[key_value] == &#39;float&#39;:
+                item[k] = convert_float(item[k])
+            elif define_convert[key_value] == &#39;datetime&#39;:
+                item[k] = convert_time(item[k])
+            elif define_convert[k] == &#39;timestamp&#39;:
+                item[k] = convert_timestamp(item[k])
+    return item</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.current_local_iso_date"><code class="name flex">
+<span>def <span class="ident">current_local_iso_date</span></span>(<span>reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_local_iso_date(reset_time=False):
+    utc = current_time_utc(reset_time)
+    pst_now = utc.astimezone(pytz.timezone(Setting.LOCAL_TIME_ZONE))
+    return pst_now.strftime(&#34;%Y-%m-%dT%H:%M:%S.%fZ&#34;)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.current_time_local"><code class="name flex">
+<span>def <span class="ident">current_time_local</span></span>(<span>reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_time_local(reset_time=False):
+    return current_time_with_tz(tz=Setting.LOCAL_TIME_ZONE, reset_time=reset_time)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.current_time_local_timestamp"><code class="name flex">
+<span>def <span class="ident">current_time_local_timestamp</span></span>(<span>reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_time_local_timestamp(reset_time=False):
+    return convert_timestamp(current_time_with_tz(tz=Setting.LOCAL_TIME_ZONE, reset_time=reset_time))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.current_time_utc"><code class="name flex">
+<span>def <span class="ident">current_time_utc</span></span>(<span>reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_time_utc(reset_time=False):
+    time = datetime.datetime.utcnow().strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+    return convert_time(time, reset_time=reset_time)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.current_time_utc_timestamp"><code class="name flex">
+<span>def <span class="ident">current_time_utc_timestamp</span></span>(<span>reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_time_utc_timestamp(reset_time=False):
+    return convert_timestamp(current_time_utc(reset_time=reset_time))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.current_time_with_tz"><code class="name flex">
+<span>def <span class="ident">current_time_with_tz</span></span>(<span>tz, reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_time_with_tz(tz, reset_time=False):
+    tz = str(tz) if tz else &#39;UTC&#39;
+    d = datetime.datetime.now(pytz.timezone(tz)).strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+
+    return convert_time(d, reset_time=reset_time).astimezone(pytz.timezone(tz))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.current_unixtime"><code class="name flex">
+<span>def <span class="ident">current_unixtime</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_unixtime():
+    return time.time()</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.get_first_day_of_month"><code class="name flex">
+<span>def <span class="ident">get_first_day_of_month</span></span>(<span>day)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_first_day_of_month(day):
+    return convert_time(&#39;%s-%s-01&#39; % (day.year, day.month))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.get_first_day_of_week"><code class="name flex">
+<span>def <span class="ident">get_first_day_of_week</span></span>(<span>day)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_first_day_of_week(day):
+    dayofweek = datetime.timedelta(days=day.weekday())
+    day = copy.copy(day)
+    if dayofweek.days == 6:
+        day = day + datetime.timedelta(days=1)
+    dayofweek = datetime.timedelta(days=day.weekday())
+    return day - dayofweek - datetime.timedelta(days=1)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.get_last_day_of_month"><code class="name flex">
+<span>def <span class="ident">get_last_day_of_month</span></span>(<span>day, formattime='')</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_last_day_of_month(day, formattime=&#39;&#39;):
+    d = day.replace(day=calendar.monthrange(day.year, day.month)[1])
+    if formattime == &#39;timestamp&#39;:
+        return convert_timestamp(d, reset_time=True)
+    return d</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.get_last_day_of_week"><code class="name flex">
+<span>def <span class="ident">get_last_day_of_week</span></span>(<span>day)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_last_day_of_week(day):
+    dayofweek = datetime.timedelta(days=day.weekday())
+    day = copy.copy(day)
+    if dayofweek.days == 6:
+        day = day + datetime.timedelta(days=1)
+    dayofweek = datetime.timedelta(days=day.weekday())
+    return day - dayofweek + datetime.timedelta(days=5)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.get_next_months_by_day"><code class="name flex">
+<span>def <span class="ident">get_next_months_by_day</span></span>(<span>day, months=1)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_next_months_by_day(day, months=1):
+    t = convert_time(day)
+    return t + relativedelta(months=months)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.get_previous_months_by_day"><code class="name flex">
+<span>def <span class="ident">get_previous_months_by_day</span></span>(<span>day, months=1)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_previous_months_by_day(day, months=1):
+    t = convert_time(day)
+    return t - relativedelta(months=months)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.get_quarter_from_date"><code class="name flex">
+<span>def <span class="ident">get_quarter_from_date</span></span>(<span>date_time)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>date_time: datetime
+return:</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_quarter_from_date(date_time):
+    &#39;&#39;&#39;
+
+        date_time: datetime
+        return:
+    
+    &#39;&#39;&#39;
+
+    month = date_time.month
+    quarter = math.ceil(month / 3.)
+    return &#34;Q&#34; + str(quarter)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.render_date_range"><code class="name flex">
+<span>def <span class="ident">render_date_range</span></span>(<span>from_date, to_date, size='DAILY')</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render_date_range(from_date, to_date, size=&#39;DAILY&#39;):
+    from_date = convert_time(from_date)
+    to_date = convert_time(to_date, end_day=True)
+    b = DAILY
+    if size == &#39;DAILY&#39;:
+        b = DAILY
+    elif size == &#39;WEEKLY&#39;:
+        b = WEEKLY
+    elif size == &#39;MONTHLY&#39;:
+        b = MONTHLY
+    max = None
+    for dt in rrule(b, dtstart=from_date, until=to_date):
+        max = dt
+        yield dt
+    if max.date() != to_date.date():
+        yield to_date</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.render_date_range_by_season_and_timezone"><code class="name flex">
+<span>def <span class="ident">render_date_range_by_season_and_timezone</span></span>(<span>from_date, to_date, tz, to_utc=False)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>split one date range to small date ranges by seasons.</p>
+<pre><code>from_date:
+to_date:
+tz:
+to_utc:
+return:
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render_date_range_by_season_and_timezone(from_date, to_date, tz, to_utc=False):
+    &#34;&#34;&#34;
+    split one date range to small date ranges by seasons.
+        
+        from_date:
+        to_date:
+        tz:
+        to_utc:
+        return:
+    
+    &#34;&#34;&#34;
+    list_render = render_date_range(from_date=from_date, to_date=to_date)
+    mark_delta_time = 0
+    mark_result = []
+    item_range = []
+    for local_time in list_render:
+        local_time = convert_time(local_time, reset_time=True)
+
+        time_in_utc = convert_datetime_to_utc(date_time=local_time, tz=tz)
+        delta_time = (time_in_utc - local_time).total_seconds()
+        if mark_delta_time == delta_time or mark_delta_time == 0:
+            mark_delta_time = delta_time
+            item_range.append(local_time)
+        else:
+            mark_delta_time = delta_time
+            # get change on one day
+            session_local_time = render_date_range_by_sesson_one_day(date_day=item_range[-1], tz=tz)
+
+            if session_local_time:
+                item_range.append(session_local_time[0][-1])
+            mark_result.append([item_range[0], item_range[-1]])
+            item_range = [session_local_time[-1][0], local_time]
+
+    if item_range:
+        mark_result.append([item_range[0], convert_time(item_range[-1], end_day=True)])
+    result = []
+    for list_time in mark_result:
+        st = list_time[0].replace(minute=00, second=00, microsecond=000000)
+        stop = list_time[-1].replace(minute=59, second=59, microsecond=999999)
+        if to_utc:
+            result.append([
+                convert_datetime_to_utc(date_time=st, tz=tz),
+                convert_datetime_to_utc(date_time=stop, tz=tz),
+            ])
+        else:
+            result.append([
+                st,
+                stop
+            ])
+    return result</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.render_date_range_by_sesson_one_day"><code class="name flex">
+<span>def <span class="ident">render_date_range_by_sesson_one_day</span></span>(<span>date_day, tz, to_utc=True)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render_date_range_by_sesson_one_day(date_day, tz, to_utc=True):
+    date_day = convert_time(date_day, end_day=True)
+    mark_result = []
+    mark_delta_time = 0
+    item_range = []
+    for i in range(0, 24):
+        date_day = date_day.replace(hour=i)
+        try:
+            delta_time = (convert_datetime_to_utc(tz=tz, date_time=date_day) - date_day).total_seconds()
+            if mark_delta_time == delta_time or mark_delta_time == 0:
+                mark_delta_time = delta_time
+                item_range.append(date_day)
+            else:
+                mark_delta_time = delta_time
+                mark_result.append(item_range)
+                item_range = []
+                item_range.append(date_day)
+        except BaseException as e:
+            continue
+    if item_range:
+        mark_result.append(item_range)
+    result = []
+
+    for list_time in mark_result:
+        result.append([
+            list_time[0].replace(minute=00, second=00, microsecond=000000),
+            list_time[-1].replace(minute=59, second=59, microsecond=999999),
+        ])
+    return result</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.time_utils.retry_function"><code class="name flex">
+<span>def <span class="ident">retry_function</span></span>(<span>function, number=3, time_sleep=10, print_log_cb=None, finish_cb=None)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>run a function with retry&hellip;</p>
+<pre><code>function:
+return:
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def retry_function(function, number=3, time_sleep=10, print_log_cb=None, finish_cb=None):
+    &#34;&#34;&#34;
+    run a function with retry...
+    
+        function:
+        return:
+    
+    &#34;&#34;&#34;
+    n = 0
+    error = &#34;&#34;
+    while True:
+        n += 1
+
+        if n &gt;= number:
+            if finish_cb:
+                return finish_cb()
+            raise ValueError(&#39;retry limit exceeded for function %s.\nTraceback: %s&#39; % (function.__name__, error))
+        try:
+            rs = function()
+            return rs
+        except BaseException as e:
+            trb = traceback.format_exc()
+            error = trb
+            if print_log_cb:
+                print_log_cb(n, e)
+            time.sleep(time_sleep)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="zuka_etl.helpers" href="index.html">zuka_etl.helpers</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="zuka_etl.helpers.time_utils.convert_date_to_dim_date" href="#zuka_etl.helpers.time_utils.convert_date_to_dim_date">convert_date_to_dim_date</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.convert_datetime_to_utc" href="#zuka_etl.helpers.time_utils.convert_datetime_to_utc">convert_datetime_to_utc</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.convert_float" href="#zuka_etl.helpers.time_utils.convert_float">convert_float</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.convert_from_unixtime" href="#zuka_etl.helpers.time_utils.convert_from_unixtime">convert_from_unixtime</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.convert_int" href="#zuka_etl.helpers.time_utils.convert_int">convert_int</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.convert_long" href="#zuka_etl.helpers.time_utils.convert_long">convert_long</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.convert_time" href="#zuka_etl.helpers.time_utils.convert_time">convert_time</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.convert_time_tz_other_tz" href="#zuka_etl.helpers.time_utils.convert_time_tz_other_tz">convert_time_tz_other_tz</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.convert_timestamp" href="#zuka_etl.helpers.time_utils.convert_timestamp">convert_timestamp</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.convert_timestamp_to_datetime" href="#zuka_etl.helpers.time_utils.convert_timestamp_to_datetime">convert_timestamp_to_datetime</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.convert_unixtime" href="#zuka_etl.helpers.time_utils.convert_unixtime">convert_unixtime</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.convert_utc_to_timzone" href="#zuka_etl.helpers.time_utils.convert_utc_to_timzone">convert_utc_to_timzone</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.convert_value_of_dicts_by_given_define" href="#zuka_etl.helpers.time_utils.convert_value_of_dicts_by_given_define">convert_value_of_dicts_by_given_define</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.convert_value_of_dicts_by_given_define_dict" href="#zuka_etl.helpers.time_utils.convert_value_of_dicts_by_given_define_dict">convert_value_of_dicts_by_given_define_dict</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.current_local_iso_date" href="#zuka_etl.helpers.time_utils.current_local_iso_date">current_local_iso_date</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.current_time_local" href="#zuka_etl.helpers.time_utils.current_time_local">current_time_local</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.current_time_local_timestamp" href="#zuka_etl.helpers.time_utils.current_time_local_timestamp">current_time_local_timestamp</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.current_time_utc" href="#zuka_etl.helpers.time_utils.current_time_utc">current_time_utc</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.current_time_utc_timestamp" href="#zuka_etl.helpers.time_utils.current_time_utc_timestamp">current_time_utc_timestamp</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.current_time_with_tz" href="#zuka_etl.helpers.time_utils.current_time_with_tz">current_time_with_tz</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.current_unixtime" href="#zuka_etl.helpers.time_utils.current_unixtime">current_unixtime</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.get_first_day_of_month" href="#zuka_etl.helpers.time_utils.get_first_day_of_month">get_first_day_of_month</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.get_first_day_of_week" href="#zuka_etl.helpers.time_utils.get_first_day_of_week">get_first_day_of_week</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.get_last_day_of_month" href="#zuka_etl.helpers.time_utils.get_last_day_of_month">get_last_day_of_month</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.get_last_day_of_week" href="#zuka_etl.helpers.time_utils.get_last_day_of_week">get_last_day_of_week</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.get_next_months_by_day" href="#zuka_etl.helpers.time_utils.get_next_months_by_day">get_next_months_by_day</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.get_previous_months_by_day" href="#zuka_etl.helpers.time_utils.get_previous_months_by_day">get_previous_months_by_day</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.get_quarter_from_date" href="#zuka_etl.helpers.time_utils.get_quarter_from_date">get_quarter_from_date</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.render_date_range" href="#zuka_etl.helpers.time_utils.render_date_range">render_date_range</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.render_date_range_by_season_and_timezone" href="#zuka_etl.helpers.time_utils.render_date_range_by_season_and_timezone">render_date_range_by_season_and_timezone</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.render_date_range_by_sesson_one_day" href="#zuka_etl.helpers.time_utils.render_date_range_by_sesson_one_day">render_date_range_by_sesson_one_day</a></code></li>
+<li><code><a title="zuka_etl.helpers.time_utils.retry_function" href="#zuka_etl.helpers.time_utils.retry_function">retry_function</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

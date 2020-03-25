@@ -1,0 +1,1260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.5" />
+<title>zuka_etl.helpers.hadoop API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>zuka_etl.helpers.hadoop</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+__author__ = &#39;phongphamhong&#39;
+# !/usr/bin/python
+#
+# Copyright 11/9/18 Phong Pham Hong &lt;phongbro1805@gmail.com&gt;
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an &#34;AS IS&#34; BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# # set enviroment in dev mode
+
+from urllib.request import urlopen
+import requests
+import anyjson
+import logging
+
+from datetime import datetime
+from itertools import groupby
+
+from airflow.operators.sensors import BaseSensorOperator
+from airflow.operators import BaseOperator
+from airflow.utils.decorators import apply_defaults
+from airflow.models import Variable
+import os
+from zuka_etl.log import logger, traceback
+from airflow.models import Variable
+import json
+from zuka_etl.setting import Setting
+
+
+def log(text):
+    logger.info(text)
+
+
+def yarn_kill_app(app_id):
+    h = &#39;{0}/ws/v1/cluster/apps/{1}/state&#39;.format(Setting.YARN_HOST, app_id)
+    request = requests.put(url=h, data=&#39;{&#34;state&#34;:&#34;KILLED&#34;}&#39;,
+                           headers={&#34;Content-Type&#34;: &#34;application/json&#34;})
+    logger.info(&#34;[Yarn kill] Host: %s&#34; % h)
+    c = request.content
+    logger.info(&#34;[Yarn kill] Result: %s&#34; % c)
+
+
+def yarn_finish_app(app_id):
+    h = &#39;{0}/ws/v1/cluster/apps/{1}/state&#39;.format(Setting.YARN_HOST, app_id)
+    request = requests.put(url=h, data=&#39;{&#34;state&#34;:&#34;FINISHED&#34;}&#39;,
+                           headers={&#34;Content-Type&#34;: &#34;application/json&#34;})
+    logger.info(&#34;[Yarn kill] Host: %s&#34; % h)
+    c = request.content
+    logger.info(&#34;[Yarn kill] Result: %s&#34; % c)
+
+
+def yarn_kill_app_by_cmd(app_id):
+    cmd = &#34;yarn application -kill %s&#34; % app_id
+    logger.info(&#34;[Yarn kill cmd] kill app by cmd: %s&#34; % cmd)
+    try:
+        import os
+        os.system(cmd)
+    except BaseException as e:
+        logger.error(&#34;[Yarn kill cmd] Error when kill application on yarn by cmd: \n%s&#34; % traceback.format_exc())
+
+
+def yarn_apps(status=[]):
+    h = &#39;{0}/ws/v1/cluster/apps?states={1}&#39;.format(Setting.YARN_HOST, &#34;,&#34;.join(status))
+    request = requests.get(url=h, headers={&#34;Content-Type&#34;: &#34;application/json&#34;})
+    logger.info(&#34;[Yarn list apps] Host: %s&#34; % h)
+    response = request.content
+    return anyjson.deserialize(response.read())
+
+
+def yarn_apps_running_and_accepted():
+    return yarn_apps([&#34;RUNNING&#34;, &#34;ACCEPTED&#34;])
+
+
+def yarn_get_app_running_or_accepted(name, user):
+    results = yarn_apps_running_and_accepted()[&#34;apps&#34;][&#34;app&#34;]
+    app = filter(lambda a: a[&#39;name&#39;] == name and a[&#34;user&#34;] == user, results)
+    return app
+
+
+class YarnAppNotRunningSensor(BaseSensorOperator):
+    template_fields = tuple()
+
+    @apply_defaults
+    def __init__(self, app_name, app_user, *args, **kwargs):
+        super(YarnAppNotRunningSensor, self).__init__(*args, **kwargs)
+        self.timeout = 0
+        self.poke_interval = 1
+        self.soft_fail = True
+        self.app_name = app_name
+        self.app_user = app_user
+
+    def poke(self, context):
+        log(&#34;Schedule interval: &#34; + str(context[&#34;task&#34;].schedule_interval))
+        log(&#34;Execution date: &#34; + str(context[&#34;execution_date&#34;]))
+        log(&#34;Timeout: &#34; + str(self.timeout))
+        app = yarn_get_app_running_or_accepted(self.app_name, self.app_user)
+        log(&#34;App found: &#34; + str(app))
+        return not app
+
+
+class YarnAppTakingTooMuchTime(BaseSensorOperator):
+    template_fields = tuple()
+
+    @apply_defaults
+    def __init__(self, app_name, app_user, max_minutes, *args, **kwargs):
+        super(YarnAppTakingTooMuchTime, self).__init__(*args, **kwargs)
+        self.timeout = 0
+        self.poke_interval = 1
+        self.soft_fail = True
+        self.app_name = app_name
+        self.app_user = app_user
+        self.max_minutes = max_minutes
+
+    def poke(self, context):
+        apps = yarn_get_app_running_or_accepted(self.app_name, self.app_user)
+        for app in apps:
+            elapsed_minutes = app[&#34;elapsedTime&#34;] / 60000
+            if self.max_minutes &lt; elapsed_minutes:
+                return True
+        return False
+
+
+class YarnKillAppOperator(BaseOperator):
+
+    @apply_defaults
+    def __init__(self, app_name, app_user, *args, **kwargs):
+        super(YarnKillAppOperator, self).__init__(*args, **kwargs)
+        self.app_name = app_name
+        self.app_user = app_user
+
+    def execute(self, context):
+        apps = yarn_get_app_running_or_accepted(self.app_name, self.app_user)
+        log(&#34;apps: &#34; + str(apps))
+        for app in apps:
+            app_id = app[&#39;id&#39;]
+            log(&#34;killing &#34; + app_id)
+            yarn_kill_app(app_id)
+
+
+class YarnAvoidDuplicatedApp(BaseOperator):
+
+    @apply_defaults
+    def __init__(self, app_prefix, app_user, *args, **kwargs):
+        super(YarnAvoidDuplicatedApp, self).__init__(*args, **kwargs)
+        self.app_prefix = app_prefix
+        self.app_user = app_user
+
+    def execute(self, context):
+        apps = yarn_apps_running_and_accepted()[&#34;apps&#34;][&#34;app&#34;]
+        filterfunc = lambda a: a[&#39;name&#39;].startswith(self.app_prefix) and a[&#34;user&#34;] == self.app_user
+        filtereds = filter(filterfunc, apps)
+        mapped = [(a[&#34;name&#34;], a[&#34;id&#34;], a[&#34;elapsedTime&#34;]) for a in filtereds]
+        keygroup = lambda a: a[0]
+        grouped = groupby(sorted(mapped, key=keygroup), keygroup)
+        for app in grouped:
+            self.kill_new_ones(list(app[1]))
+
+    def kill_new_ones(self, apps):
+        if len(apps) &gt; 1:
+            log(&#34;found duplicated jobs for &#34; + apps[0][0])
+            sorts = sorted(apps, key=lambda a: a[2])
+            sliced = sorts[:len(sorts) - 1]
+            log(&#34;leaving original app: &#34; + sorts[-1][1])
+            for tokill in sliced:
+                log(&#34;killing duplicated app: &#34; + tokill[1])
+                yarn_kill_app(tokill[1])
+
+
+def hdfs_file_info(path):
+    norm_path = path.replace(&#34;hdfs://&#34;, &#34;&#34;)
+    api = &#34;{0}/webhdfs/v1{1}?op=LISTSTATUS&#34;.format(Setting.HDFS_HOST, norm_path)
+    logger.info(&#34;[Yarn file info] Host: %s&#34; % api)
+    body = requests.get(api).content
+    return json.loads(body)
+
+
+def hdfs_file_modified_date(path):
+    result = hdfs_file_info(path)
+    return result[&#34;FileStatuses&#34;][&#34;FileStatus&#34;][0][&#34;modificationTime&#34;]
+
+
+class HdfsFileHasChanged(BaseSensorOperator):
+    template_fields = tuple()
+
+    @apply_defaults
+    def __init__(self, file_path, *args, **kwargs):
+        super(HdfsFileHasChanged, self).__init__(*args, **kwargs)
+        self.timeout = 0
+        self.poke_interval = 1
+        self.soft_fail = True
+        self.file_path = file_path
+
+    def poke(self, context):
+        key = self.dag.dag_id + &#34;:&#34; + self.file_path + &#34;:last_modification&#34;
+        log(&#34;key: &#34; + str(key))
+        last = self.safe_get_var(key)
+        new = hdfs_file_modified_date(self.file_path)
+        log(&#34;last: &#34; + str(last))
+        log(&#34;new: &#34; + str(new))
+        Variable.set(key, new)
+        result = last and int(new) &gt; int(last)
+        log(&#34;result: &#34; + str(result))
+        return result
+
+    def safe_get_var(self, key):
+        try:
+            return Variable.get(key)
+        except:
+            return None
+
+
+if __name__ == &#34;__main__&#34;:
+    yarn_kill_app(&#34;111111&#34;)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="zuka_etl.helpers.hadoop.hdfs_file_info"><code class="name flex">
+<span>def <span class="ident">hdfs_file_info</span></span>(<span>path)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hdfs_file_info(path):
+    norm_path = path.replace(&#34;hdfs://&#34;, &#34;&#34;)
+    api = &#34;{0}/webhdfs/v1{1}?op=LISTSTATUS&#34;.format(Setting.HDFS_HOST, norm_path)
+    logger.info(&#34;[Yarn file info] Host: %s&#34; % api)
+    body = requests.get(api).content
+    return json.loads(body)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.hdfs_file_modified_date"><code class="name flex">
+<span>def <span class="ident">hdfs_file_modified_date</span></span>(<span>path)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hdfs_file_modified_date(path):
+    result = hdfs_file_info(path)
+    return result[&#34;FileStatuses&#34;][&#34;FileStatus&#34;][0][&#34;modificationTime&#34;]</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.log"><code class="name flex">
+<span>def <span class="ident">log</span></span>(<span>text)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def log(text):
+    logger.info(text)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.yarn_apps"><code class="name flex">
+<span>def <span class="ident">yarn_apps</span></span>(<span>status=[])</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def yarn_apps(status=[]):
+    h = &#39;{0}/ws/v1/cluster/apps?states={1}&#39;.format(Setting.YARN_HOST, &#34;,&#34;.join(status))
+    request = requests.get(url=h, headers={&#34;Content-Type&#34;: &#34;application/json&#34;})
+    logger.info(&#34;[Yarn list apps] Host: %s&#34; % h)
+    response = request.content
+    return anyjson.deserialize(response.read())</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.yarn_apps_running_and_accepted"><code class="name flex">
+<span>def <span class="ident">yarn_apps_running_and_accepted</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def yarn_apps_running_and_accepted():
+    return yarn_apps([&#34;RUNNING&#34;, &#34;ACCEPTED&#34;])</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.yarn_finish_app"><code class="name flex">
+<span>def <span class="ident">yarn_finish_app</span></span>(<span>app_id)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def yarn_finish_app(app_id):
+    h = &#39;{0}/ws/v1/cluster/apps/{1}/state&#39;.format(Setting.YARN_HOST, app_id)
+    request = requests.put(url=h, data=&#39;{&#34;state&#34;:&#34;FINISHED&#34;}&#39;,
+                           headers={&#34;Content-Type&#34;: &#34;application/json&#34;})
+    logger.info(&#34;[Yarn kill] Host: %s&#34; % h)
+    c = request.content
+    logger.info(&#34;[Yarn kill] Result: %s&#34; % c)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.yarn_get_app_running_or_accepted"><code class="name flex">
+<span>def <span class="ident">yarn_get_app_running_or_accepted</span></span>(<span>name, user)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def yarn_get_app_running_or_accepted(name, user):
+    results = yarn_apps_running_and_accepted()[&#34;apps&#34;][&#34;app&#34;]
+    app = filter(lambda a: a[&#39;name&#39;] == name and a[&#34;user&#34;] == user, results)
+    return app</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.yarn_kill_app"><code class="name flex">
+<span>def <span class="ident">yarn_kill_app</span></span>(<span>app_id)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def yarn_kill_app(app_id):
+    h = &#39;{0}/ws/v1/cluster/apps/{1}/state&#39;.format(Setting.YARN_HOST, app_id)
+    request = requests.put(url=h, data=&#39;{&#34;state&#34;:&#34;KILLED&#34;}&#39;,
+                           headers={&#34;Content-Type&#34;: &#34;application/json&#34;})
+    logger.info(&#34;[Yarn kill] Host: %s&#34; % h)
+    c = request.content
+    logger.info(&#34;[Yarn kill] Result: %s&#34; % c)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.yarn_kill_app_by_cmd"><code class="name flex">
+<span>def <span class="ident">yarn_kill_app_by_cmd</span></span>(<span>app_id)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def yarn_kill_app_by_cmd(app_id):
+    cmd = &#34;yarn application -kill %s&#34; % app_id
+    logger.info(&#34;[Yarn kill cmd] kill app by cmd: %s&#34; % cmd)
+    try:
+        import os
+        os.system(cmd)
+    except BaseException as e:
+        logger.error(&#34;[Yarn kill cmd] Error when kill application on yarn by cmd: \n%s&#34; % traceback.format_exc())</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="zuka_etl.helpers.hadoop.HdfsFileHasChanged"><code class="flex name class">
+<span>class <span class="ident">HdfsFileHasChanged</span></span>
+<span>(</span><span>file_path, *args, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Sensor operators are derived from this class and inherit these attributes.</p>
+<p>Sensor operators keep executing at a time interval and succeed when
+a criteria is met and fail if and when they time out.</p>
+<p>:param soft_fail: Set to true to mark the task as SKIPPED on failure
+:type soft_fail: bool
+:param poke_interval: Time in seconds that the job should wait in
+between each tries
+:type poke_interval: int
+:param timeout: Time, in seconds before the task times out and fails.
+:type timeout: int
+:param mode: How the sensor operates.
+Options are: <code>{ poke | reschedule }</code>, default is <code>poke</code>.
+When set to <code>poke</code> the sensor is taking up a worker slot for its
+whole execution time and sleeps between pokes. Use this mode if the
+expected runtime of the sensor is short or if a short poke interval
+is required. Note that the sensor will hold onto a worker slot and
+a pool slot for the duration of the sensor's runtime in this mode.
+When set to <code>reschedule</code> the sensor task frees the worker slot when
+the criteria is not yet met and it's rescheduled at a later time. Use
+this mode if the time before the criteria is met is expected to be
+quite long. The poke interval should be more than one minute to
+prevent too much load on the scheduler.
+:type mode: str</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class HdfsFileHasChanged(BaseSensorOperator):
+    template_fields = tuple()
+
+    @apply_defaults
+    def __init__(self, file_path, *args, **kwargs):
+        super(HdfsFileHasChanged, self).__init__(*args, **kwargs)
+        self.timeout = 0
+        self.poke_interval = 1
+        self.soft_fail = True
+        self.file_path = file_path
+
+    def poke(self, context):
+        key = self.dag.dag_id + &#34;:&#34; + self.file_path + &#34;:last_modification&#34;
+        log(&#34;key: &#34; + str(key))
+        last = self.safe_get_var(key)
+        new = hdfs_file_modified_date(self.file_path)
+        log(&#34;last: &#34; + str(last))
+        log(&#34;new: &#34; + str(new))
+        Variable.set(key, new)
+        result = last and int(new) &gt; int(last)
+        log(&#34;result: &#34; + str(result))
+        return result
+
+    def safe_get_var(self, key):
+        try:
+            return Variable.get(key)
+        except:
+            return None</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>airflow.operators.sensors.BaseSensorOperator</li>
+<li>airflow.sensors.base_sensor_operator.BaseSensorOperator</li>
+<li>airflow.models.baseoperator.BaseOperator</li>
+<li>airflow.models.skipmixin.SkipMixin</li>
+<li>airflow.utils.log.logging_mixin.LoggingMixin</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="zuka_etl.helpers.hadoop.HdfsFileHasChanged.template_fields"><code class="name">var <span class="ident">template_fields</span></code></dt>
+<dd>
+<section class="desc"></section>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.helpers.hadoop.HdfsFileHasChanged.poke"><code class="name flex">
+<span>def <span class="ident">poke</span></span>(<span>self, context)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Function that the sensors defined while deriving this class should
+override.</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def poke(self, context):
+    key = self.dag.dag_id + &#34;:&#34; + self.file_path + &#34;:last_modification&#34;
+    log(&#34;key: &#34; + str(key))
+    last = self.safe_get_var(key)
+    new = hdfs_file_modified_date(self.file_path)
+    log(&#34;last: &#34; + str(last))
+    log(&#34;new: &#34; + str(new))
+    Variable.set(key, new)
+    result = last and int(new) &gt; int(last)
+    log(&#34;result: &#34; + str(result))
+    return result</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.HdfsFileHasChanged.safe_get_var"><code class="name flex">
+<span>def <span class="ident">safe_get_var</span></span>(<span>self, key)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def safe_get_var(self, key):
+    try:
+        return Variable.get(key)
+    except:
+        return None</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.YarnAppNotRunningSensor"><code class="flex name class">
+<span>class <span class="ident">YarnAppNotRunningSensor</span></span>
+<span>(</span><span>app_name, app_user, *args, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Sensor operators are derived from this class and inherit these attributes.</p>
+<p>Sensor operators keep executing at a time interval and succeed when
+a criteria is met and fail if and when they time out.</p>
+<p>:param soft_fail: Set to true to mark the task as SKIPPED on failure
+:type soft_fail: bool
+:param poke_interval: Time in seconds that the job should wait in
+between each tries
+:type poke_interval: int
+:param timeout: Time, in seconds before the task times out and fails.
+:type timeout: int
+:param mode: How the sensor operates.
+Options are: <code>{ poke | reschedule }</code>, default is <code>poke</code>.
+When set to <code>poke</code> the sensor is taking up a worker slot for its
+whole execution time and sleeps between pokes. Use this mode if the
+expected runtime of the sensor is short or if a short poke interval
+is required. Note that the sensor will hold onto a worker slot and
+a pool slot for the duration of the sensor's runtime in this mode.
+When set to <code>reschedule</code> the sensor task frees the worker slot when
+the criteria is not yet met and it's rescheduled at a later time. Use
+this mode if the time before the criteria is met is expected to be
+quite long. The poke interval should be more than one minute to
+prevent too much load on the scheduler.
+:type mode: str</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class YarnAppNotRunningSensor(BaseSensorOperator):
+    template_fields = tuple()
+
+    @apply_defaults
+    def __init__(self, app_name, app_user, *args, **kwargs):
+        super(YarnAppNotRunningSensor, self).__init__(*args, **kwargs)
+        self.timeout = 0
+        self.poke_interval = 1
+        self.soft_fail = True
+        self.app_name = app_name
+        self.app_user = app_user
+
+    def poke(self, context):
+        log(&#34;Schedule interval: &#34; + str(context[&#34;task&#34;].schedule_interval))
+        log(&#34;Execution date: &#34; + str(context[&#34;execution_date&#34;]))
+        log(&#34;Timeout: &#34; + str(self.timeout))
+        app = yarn_get_app_running_or_accepted(self.app_name, self.app_user)
+        log(&#34;App found: &#34; + str(app))
+        return not app</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>airflow.operators.sensors.BaseSensorOperator</li>
+<li>airflow.sensors.base_sensor_operator.BaseSensorOperator</li>
+<li>airflow.models.baseoperator.BaseOperator</li>
+<li>airflow.models.skipmixin.SkipMixin</li>
+<li>airflow.utils.log.logging_mixin.LoggingMixin</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="zuka_etl.helpers.hadoop.YarnAppNotRunningSensor.template_fields"><code class="name">var <span class="ident">template_fields</span></code></dt>
+<dd>
+<section class="desc"></section>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.helpers.hadoop.YarnAppNotRunningSensor.poke"><code class="name flex">
+<span>def <span class="ident">poke</span></span>(<span>self, context)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Function that the sensors defined while deriving this class should
+override.</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def poke(self, context):
+    log(&#34;Schedule interval: &#34; + str(context[&#34;task&#34;].schedule_interval))
+    log(&#34;Execution date: &#34; + str(context[&#34;execution_date&#34;]))
+    log(&#34;Timeout: &#34; + str(self.timeout))
+    app = yarn_get_app_running_or_accepted(self.app_name, self.app_user)
+    log(&#34;App found: &#34; + str(app))
+    return not app</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.YarnAppTakingTooMuchTime"><code class="flex name class">
+<span>class <span class="ident">YarnAppTakingTooMuchTime</span></span>
+<span>(</span><span>app_name, app_user, max_minutes, *args, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Sensor operators are derived from this class and inherit these attributes.</p>
+<p>Sensor operators keep executing at a time interval and succeed when
+a criteria is met and fail if and when they time out.</p>
+<p>:param soft_fail: Set to true to mark the task as SKIPPED on failure
+:type soft_fail: bool
+:param poke_interval: Time in seconds that the job should wait in
+between each tries
+:type poke_interval: int
+:param timeout: Time, in seconds before the task times out and fails.
+:type timeout: int
+:param mode: How the sensor operates.
+Options are: <code>{ poke | reschedule }</code>, default is <code>poke</code>.
+When set to <code>poke</code> the sensor is taking up a worker slot for its
+whole execution time and sleeps between pokes. Use this mode if the
+expected runtime of the sensor is short or if a short poke interval
+is required. Note that the sensor will hold onto a worker slot and
+a pool slot for the duration of the sensor's runtime in this mode.
+When set to <code>reschedule</code> the sensor task frees the worker slot when
+the criteria is not yet met and it's rescheduled at a later time. Use
+this mode if the time before the criteria is met is expected to be
+quite long. The poke interval should be more than one minute to
+prevent too much load on the scheduler.
+:type mode: str</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class YarnAppTakingTooMuchTime(BaseSensorOperator):
+    template_fields = tuple()
+
+    @apply_defaults
+    def __init__(self, app_name, app_user, max_minutes, *args, **kwargs):
+        super(YarnAppTakingTooMuchTime, self).__init__(*args, **kwargs)
+        self.timeout = 0
+        self.poke_interval = 1
+        self.soft_fail = True
+        self.app_name = app_name
+        self.app_user = app_user
+        self.max_minutes = max_minutes
+
+    def poke(self, context):
+        apps = yarn_get_app_running_or_accepted(self.app_name, self.app_user)
+        for app in apps:
+            elapsed_minutes = app[&#34;elapsedTime&#34;] / 60000
+            if self.max_minutes &lt; elapsed_minutes:
+                return True
+        return False</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>airflow.operators.sensors.BaseSensorOperator</li>
+<li>airflow.sensors.base_sensor_operator.BaseSensorOperator</li>
+<li>airflow.models.baseoperator.BaseOperator</li>
+<li>airflow.models.skipmixin.SkipMixin</li>
+<li>airflow.utils.log.logging_mixin.LoggingMixin</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="zuka_etl.helpers.hadoop.YarnAppTakingTooMuchTime.template_fields"><code class="name">var <span class="ident">template_fields</span></code></dt>
+<dd>
+<section class="desc"></section>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.helpers.hadoop.YarnAppTakingTooMuchTime.poke"><code class="name flex">
+<span>def <span class="ident">poke</span></span>(<span>self, context)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Function that the sensors defined while deriving this class should
+override.</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def poke(self, context):
+    apps = yarn_get_app_running_or_accepted(self.app_name, self.app_user)
+    for app in apps:
+        elapsed_minutes = app[&#34;elapsedTime&#34;] / 60000
+        if self.max_minutes &lt; elapsed_minutes:
+            return True
+    return False</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.YarnAvoidDuplicatedApp"><code class="flex name class">
+<span>class <span class="ident">YarnAvoidDuplicatedApp</span></span>
+<span>(</span><span>app_prefix, app_user, *args, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Abstract base class for all operators. Since operators create objects that
+become nodes in the dag, BaseOperator contains many recursive methods for
+dag crawling behavior. To derive this class, you are expected to override
+the constructor as well as the 'execute' method.</p>
+<p>Operators derived from this class should perform or trigger certain tasks
+synchronously (wait for completion). Example of operators could be an
+operator that runs a Pig job (PigOperator), a sensor operator that
+waits for a partition to land in Hive (HiveSensorOperator), or one that
+moves data from Hive to MySQL (Hive2MySqlOperator). Instances of these
+operators (tasks) target specific operations, running specific scripts,
+functions or data transfers.</p>
+<p>This class is abstract and shouldn't be instantiated. Instantiating a
+class derived from this one results in the creation of a task object,
+which ultimately becomes a node in DAG objects. Task dependencies should
+be set by using the set_upstream and/or set_downstream methods.</p>
+<p>:param task_id: a unique, meaningful id for the task
+:type task_id: str
+:param owner: the owner of the task, using the unix username is recommended
+:type owner: str
+:param email: the 'to' email address(es) used in email alerts. This can be a
+single email or multiple ones. Multiple addresses can be specified as a
+comma or semi-colon separated string or by passing a list of strings.
+:type email: str or list[str]
+:param email_on_retry: Indicates whether email alerts should be sent when a
+task is retried
+:type email_on_retry: bool
+:param email_on_failure: Indicates whether email alerts should be sent when
+a task failed
+:type email_on_failure: bool
+:param retries: the number of retries that should be performed before
+failing the task
+:type retries: int
+:param retry_delay: delay between retries
+:type retry_delay: datetime.timedelta
+:param retry_exponential_backoff: allow progressive longer waits between
+retries by using exponential backoff algorithm on retry delay (delay
+will be converted into seconds)
+:type retry_exponential_backoff: bool
+:param max_retry_delay: maximum delay interval between retries
+:type max_retry_delay: datetime.timedelta
+:param start_date: The <code>start_date</code> for the task, determines
+the <code>execution_date</code> for the first task instance. The best practice
+is to have the start_date rounded
+to your DAG's <code>schedule_interval</code>. Daily jobs have their start_date
+some day at 00:00:00, hourly jobs have their start_date at 00:00
+of a specific hour. Note that Airflow simply looks at the latest
+<code>execution_date</code> and adds the <code>schedule_interval</code> to determine
+the next <code>execution_date</code>. It is also very important
+to note that different tasks' dependencies
+need to line up in time. If task A depends on task B and their
+start_date are offset in a way that their execution_date don't line
+up, A's dependencies will never be met. If you are looking to delay
+a task, for example running a daily task at 2AM, look into the
+<code>TimeSensor</code> and <code>TimeDeltaSensor</code>. We advise against using
+dynamic <code>start_date</code> and recommend using fixed ones. Read the
+FAQ entry about start_date for more information.
+:type start_date: datetime.datetime
+:param end_date: if specified, the scheduler won't go beyond this date
+:type end_date: datetime.datetime
+:param depends_on_past: when set to true, task instances will run
+sequentially while relying on the previous task's schedule to
+succeed. The task instance for the start_date is allowed to run.
+:type depends_on_past: bool
+:param wait_for_downstream: when set to true, an instance of task
+X will wait for tasks immediately downstream of the previous instance
+of task X to finish successfully before it runs. This is useful if the
+different instances of a task X alter the same asset, and this asset
+is used by tasks downstream of task X. Note that depends_on_past
+is forced to True wherever wait_for_downstream is used.
+:type wait_for_downstream: bool
+:param queue: which queue to target when running this job. Not
+all executors implement queue management, the CeleryExecutor
+does support targeting specific queues.
+:type queue: str
+:param dag: a reference to the dag the task is attached to (if any)
+:type dag: airflow.models.DAG
+:param priority_weight: priority weight of this task against other task.
+This allows the executor to trigger higher priority tasks before
+others when things get backed up. Set priority_weight as a higher
+number for more important tasks.
+:type priority_weight: int
+:param weight_rule: weighting method used for the effective total
+priority weight of the task. Options are:
+<code>{ downstream | upstream | absolute }</code> default is <code>downstream</code>
+When set to <code>downstream</code> the effective weight of the task is the
+aggregate sum of all downstream descendants. As a result, upstream
+tasks will have higher weight and will be scheduled more aggressively
+when using positive weight values. This is useful when you have
+multiple dag run instances and desire to have all upstream tasks to
+complete for all runs before each dag can continue processing
+downstream tasks. When set to <code>upstream</code> the effective weight is the
+aggregate sum of all upstream ancestors. This is the opposite where
+downtream tasks have higher weight and will be scheduled more
+aggressively when using positive weight values. This is useful when you
+have multiple dag run instances and prefer to have each dag complete
+before starting upstream tasks of other dags.
+When set to
+<code>absolute</code>, the effective weight is the exact <code>priority_weight</code>
+specified without additional weighting. You may want to do this when
+you know exactly what priority weight each task should have.
+Additionally, when set to <code>absolute</code>, there is bonus effect of
+significantly speeding up the task creation process as for very large
+DAGS. Options can be set as string or using the constants defined in
+the static class <code>airflow.utils.WeightRule</code>
+:type weight_rule: str
+:param queue: specifies which task queue to use
+:type queue: str
+:param pool: the slot pool this task should run in, slot pools are a
+way to limit concurrency for certain tasks
+:type pool: str
+:param sla: time by which the job is expected to succeed. Note that
+this represents the <code>timedelta</code> after the period is closed. For
+example if you set an SLA of 1 hour, the scheduler would send an email
+soon after 1:00AM on the <code>2016-01-02</code> if the <code>2016-01-01</code> instance
+has not succeeded yet.
+The scheduler pays special attention for jobs with an SLA and
+sends alert
+emails for sla misses. SLA misses are also recorded in the database
+for future reference. All tasks that share the same SLA time
+get bundled in a single email, sent soon after that time. SLA
+notification are sent once and only once for each task instance.
+:type sla: datetime.timedelta
+:param execution_timeout: max time allowed for the execution of
+this task instance, if it goes beyond it will raise and fail.
+:type execution_timeout: datetime.timedelta
+:param on_failure_callback: a function to be called when a task instance
+of this task fails. a context dictionary is passed as a single
+parameter to this function. Context contains references to related
+objects to the task instance and is documented under the macros
+section of the API.
+:type on_failure_callback: callable
+:param on_retry_callback: much like the <code>on_failure_callback</code> except
+that it is executed when retries occur.
+:type on_retry_callback: callable
+:param on_success_callback: much like the <code>on_failure_callback</code> except
+that it is executed when the task succeeds.
+:type on_success_callback: callable
+:param trigger_rule: defines the rule by which dependencies are applied
+for the task to get triggered. Options are:
+<code>{ all_success | all_failed | all_done | one_success |
+one_failed | none_failed | none_skipped | dummy}</code>
+default is <code>all_success</code>. Options can be set as string or
+using the constants defined in the static class
+<code>airflow.utils.TriggerRule</code>
+:type trigger_rule: str
+:param resources: A map of resource parameter names (the argument names of the
+Resources constructor) to their values.
+:type resources: dict
+:param run_as_user: unix username to impersonate while running the task
+:type run_as_user: str
+:param task_concurrency: When set, a task will be able to limit the concurrent
+runs across execution_dates
+:type task_concurrency: int
+:param executor_config: Additional task-level configuration parameters that are
+interpreted by a specific executor. Parameters are namespaced by the name of
+executor.</p>
+<pre><code>**Example**: to run this task in a specific docker container through
+the KubernetesExecutor ::
+
+    MyOperator(...,
+        executor_config={
+        "KubernetesExecutor":
+            {"image": "myCustomDockerImage"}
+            }
+    )
+</code></pre>
+<p>:type executor_config: dict
+:param do_xcom_push: if True, an XCom is pushed containing the Operator's
+result
+:type do_xcom_push: bool</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class YarnAvoidDuplicatedApp(BaseOperator):
+
+    @apply_defaults
+    def __init__(self, app_prefix, app_user, *args, **kwargs):
+        super(YarnAvoidDuplicatedApp, self).__init__(*args, **kwargs)
+        self.app_prefix = app_prefix
+        self.app_user = app_user
+
+    def execute(self, context):
+        apps = yarn_apps_running_and_accepted()[&#34;apps&#34;][&#34;app&#34;]
+        filterfunc = lambda a: a[&#39;name&#39;].startswith(self.app_prefix) and a[&#34;user&#34;] == self.app_user
+        filtereds = filter(filterfunc, apps)
+        mapped = [(a[&#34;name&#34;], a[&#34;id&#34;], a[&#34;elapsedTime&#34;]) for a in filtereds]
+        keygroup = lambda a: a[0]
+        grouped = groupby(sorted(mapped, key=keygroup), keygroup)
+        for app in grouped:
+            self.kill_new_ones(list(app[1]))
+
+    def kill_new_ones(self, apps):
+        if len(apps) &gt; 1:
+            log(&#34;found duplicated jobs for &#34; + apps[0][0])
+            sorts = sorted(apps, key=lambda a: a[2])
+            sliced = sorts[:len(sorts) - 1]
+            log(&#34;leaving original app: &#34; + sorts[-1][1])
+            for tokill in sliced:
+                log(&#34;killing duplicated app: &#34; + tokill[1])
+                yarn_kill_app(tokill[1])</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>airflow.models.baseoperator.BaseOperator</li>
+<li>airflow.utils.log.logging_mixin.LoggingMixin</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.helpers.hadoop.YarnAvoidDuplicatedApp.execute"><code class="name flex">
+<span>def <span class="ident">execute</span></span>(<span>self, context)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>This is the main method to derive when creating an operator.
+Context is the same dictionary used as when rendering jinja templates.</p>
+<p>Refer to get_template_context for more context.</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def execute(self, context):
+    apps = yarn_apps_running_and_accepted()[&#34;apps&#34;][&#34;app&#34;]
+    filterfunc = lambda a: a[&#39;name&#39;].startswith(self.app_prefix) and a[&#34;user&#34;] == self.app_user
+    filtereds = filter(filterfunc, apps)
+    mapped = [(a[&#34;name&#34;], a[&#34;id&#34;], a[&#34;elapsedTime&#34;]) for a in filtereds]
+    keygroup = lambda a: a[0]
+    grouped = groupby(sorted(mapped, key=keygroup), keygroup)
+    for app in grouped:
+        self.kill_new_ones(list(app[1]))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.YarnAvoidDuplicatedApp.kill_new_ones"><code class="name flex">
+<span>def <span class="ident">kill_new_ones</span></span>(<span>self, apps)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def kill_new_ones(self, apps):
+    if len(apps) &gt; 1:
+        log(&#34;found duplicated jobs for &#34; + apps[0][0])
+        sorts = sorted(apps, key=lambda a: a[2])
+        sliced = sorts[:len(sorts) - 1]
+        log(&#34;leaving original app: &#34; + sorts[-1][1])
+        for tokill in sliced:
+            log(&#34;killing duplicated app: &#34; + tokill[1])
+            yarn_kill_app(tokill[1])</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.helpers.hadoop.YarnKillAppOperator"><code class="flex name class">
+<span>class <span class="ident">YarnKillAppOperator</span></span>
+<span>(</span><span>app_name, app_user, *args, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Abstract base class for all operators. Since operators create objects that
+become nodes in the dag, BaseOperator contains many recursive methods for
+dag crawling behavior. To derive this class, you are expected to override
+the constructor as well as the 'execute' method.</p>
+<p>Operators derived from this class should perform or trigger certain tasks
+synchronously (wait for completion). Example of operators could be an
+operator that runs a Pig job (PigOperator), a sensor operator that
+waits for a partition to land in Hive (HiveSensorOperator), or one that
+moves data from Hive to MySQL (Hive2MySqlOperator). Instances of these
+operators (tasks) target specific operations, running specific scripts,
+functions or data transfers.</p>
+<p>This class is abstract and shouldn't be instantiated. Instantiating a
+class derived from this one results in the creation of a task object,
+which ultimately becomes a node in DAG objects. Task dependencies should
+be set by using the set_upstream and/or set_downstream methods.</p>
+<p>:param task_id: a unique, meaningful id for the task
+:type task_id: str
+:param owner: the owner of the task, using the unix username is recommended
+:type owner: str
+:param email: the 'to' email address(es) used in email alerts. This can be a
+single email or multiple ones. Multiple addresses can be specified as a
+comma or semi-colon separated string or by passing a list of strings.
+:type email: str or list[str]
+:param email_on_retry: Indicates whether email alerts should be sent when a
+task is retried
+:type email_on_retry: bool
+:param email_on_failure: Indicates whether email alerts should be sent when
+a task failed
+:type email_on_failure: bool
+:param retries: the number of retries that should be performed before
+failing the task
+:type retries: int
+:param retry_delay: delay between retries
+:type retry_delay: datetime.timedelta
+:param retry_exponential_backoff: allow progressive longer waits between
+retries by using exponential backoff algorithm on retry delay (delay
+will be converted into seconds)
+:type retry_exponential_backoff: bool
+:param max_retry_delay: maximum delay interval between retries
+:type max_retry_delay: datetime.timedelta
+:param start_date: The <code>start_date</code> for the task, determines
+the <code>execution_date</code> for the first task instance. The best practice
+is to have the start_date rounded
+to your DAG's <code>schedule_interval</code>. Daily jobs have their start_date
+some day at 00:00:00, hourly jobs have their start_date at 00:00
+of a specific hour. Note that Airflow simply looks at the latest
+<code>execution_date</code> and adds the <code>schedule_interval</code> to determine
+the next <code>execution_date</code>. It is also very important
+to note that different tasks' dependencies
+need to line up in time. If task A depends on task B and their
+start_date are offset in a way that their execution_date don't line
+up, A's dependencies will never be met. If you are looking to delay
+a task, for example running a daily task at 2AM, look into the
+<code>TimeSensor</code> and <code>TimeDeltaSensor</code>. We advise against using
+dynamic <code>start_date</code> and recommend using fixed ones. Read the
+FAQ entry about start_date for more information.
+:type start_date: datetime.datetime
+:param end_date: if specified, the scheduler won't go beyond this date
+:type end_date: datetime.datetime
+:param depends_on_past: when set to true, task instances will run
+sequentially while relying on the previous task's schedule to
+succeed. The task instance for the start_date is allowed to run.
+:type depends_on_past: bool
+:param wait_for_downstream: when set to true, an instance of task
+X will wait for tasks immediately downstream of the previous instance
+of task X to finish successfully before it runs. This is useful if the
+different instances of a task X alter the same asset, and this asset
+is used by tasks downstream of task X. Note that depends_on_past
+is forced to True wherever wait_for_downstream is used.
+:type wait_for_downstream: bool
+:param queue: which queue to target when running this job. Not
+all executors implement queue management, the CeleryExecutor
+does support targeting specific queues.
+:type queue: str
+:param dag: a reference to the dag the task is attached to (if any)
+:type dag: airflow.models.DAG
+:param priority_weight: priority weight of this task against other task.
+This allows the executor to trigger higher priority tasks before
+others when things get backed up. Set priority_weight as a higher
+number for more important tasks.
+:type priority_weight: int
+:param weight_rule: weighting method used for the effective total
+priority weight of the task. Options are:
+<code>{ downstream | upstream | absolute }</code> default is <code>downstream</code>
+When set to <code>downstream</code> the effective weight of the task is the
+aggregate sum of all downstream descendants. As a result, upstream
+tasks will have higher weight and will be scheduled more aggressively
+when using positive weight values. This is useful when you have
+multiple dag run instances and desire to have all upstream tasks to
+complete for all runs before each dag can continue processing
+downstream tasks. When set to <code>upstream</code> the effective weight is the
+aggregate sum of all upstream ancestors. This is the opposite where
+downtream tasks have higher weight and will be scheduled more
+aggressively when using positive weight values. This is useful when you
+have multiple dag run instances and prefer to have each dag complete
+before starting upstream tasks of other dags.
+When set to
+<code>absolute</code>, the effective weight is the exact <code>priority_weight</code>
+specified without additional weighting. You may want to do this when
+you know exactly what priority weight each task should have.
+Additionally, when set to <code>absolute</code>, there is bonus effect of
+significantly speeding up the task creation process as for very large
+DAGS. Options can be set as string or using the constants defined in
+the static class <code>airflow.utils.WeightRule</code>
+:type weight_rule: str
+:param queue: specifies which task queue to use
+:type queue: str
+:param pool: the slot pool this task should run in, slot pools are a
+way to limit concurrency for certain tasks
+:type pool: str
+:param sla: time by which the job is expected to succeed. Note that
+this represents the <code>timedelta</code> after the period is closed. For
+example if you set an SLA of 1 hour, the scheduler would send an email
+soon after 1:00AM on the <code>2016-01-02</code> if the <code>2016-01-01</code> instance
+has not succeeded yet.
+The scheduler pays special attention for jobs with an SLA and
+sends alert
+emails for sla misses. SLA misses are also recorded in the database
+for future reference. All tasks that share the same SLA time
+get bundled in a single email, sent soon after that time. SLA
+notification are sent once and only once for each task instance.
+:type sla: datetime.timedelta
+:param execution_timeout: max time allowed for the execution of
+this task instance, if it goes beyond it will raise and fail.
+:type execution_timeout: datetime.timedelta
+:param on_failure_callback: a function to be called when a task instance
+of this task fails. a context dictionary is passed as a single
+parameter to this function. Context contains references to related
+objects to the task instance and is documented under the macros
+section of the API.
+:type on_failure_callback: callable
+:param on_retry_callback: much like the <code>on_failure_callback</code> except
+that it is executed when retries occur.
+:type on_retry_callback: callable
+:param on_success_callback: much like the <code>on_failure_callback</code> except
+that it is executed when the task succeeds.
+:type on_success_callback: callable
+:param trigger_rule: defines the rule by which dependencies are applied
+for the task to get triggered. Options are:
+<code>{ all_success | all_failed | all_done | one_success |
+one_failed | none_failed | none_skipped | dummy}</code>
+default is <code>all_success</code>. Options can be set as string or
+using the constants defined in the static class
+<code>airflow.utils.TriggerRule</code>
+:type trigger_rule: str
+:param resources: A map of resource parameter names (the argument names of the
+Resources constructor) to their values.
+:type resources: dict
+:param run_as_user: unix username to impersonate while running the task
+:type run_as_user: str
+:param task_concurrency: When set, a task will be able to limit the concurrent
+runs across execution_dates
+:type task_concurrency: int
+:param executor_config: Additional task-level configuration parameters that are
+interpreted by a specific executor. Parameters are namespaced by the name of
+executor.</p>
+<pre><code>**Example**: to run this task in a specific docker container through
+the KubernetesExecutor ::
+
+    MyOperator(...,
+        executor_config={
+        "KubernetesExecutor":
+            {"image": "myCustomDockerImage"}
+            }
+    )
+</code></pre>
+<p>:type executor_config: dict
+:param do_xcom_push: if True, an XCom is pushed containing the Operator's
+result
+:type do_xcom_push: bool</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class YarnKillAppOperator(BaseOperator):
+
+    @apply_defaults
+    def __init__(self, app_name, app_user, *args, **kwargs):
+        super(YarnKillAppOperator, self).__init__(*args, **kwargs)
+        self.app_name = app_name
+        self.app_user = app_user
+
+    def execute(self, context):
+        apps = yarn_get_app_running_or_accepted(self.app_name, self.app_user)
+        log(&#34;apps: &#34; + str(apps))
+        for app in apps:
+            app_id = app[&#39;id&#39;]
+            log(&#34;killing &#34; + app_id)
+            yarn_kill_app(app_id)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>airflow.models.baseoperator.BaseOperator</li>
+<li>airflow.utils.log.logging_mixin.LoggingMixin</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.helpers.hadoop.YarnKillAppOperator.execute"><code class="name flex">
+<span>def <span class="ident">execute</span></span>(<span>self, context)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>This is the main method to derive when creating an operator.
+Context is the same dictionary used as when rendering jinja templates.</p>
+<p>Refer to get_template_context for more context.</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def execute(self, context):
+    apps = yarn_get_app_running_or_accepted(self.app_name, self.app_user)
+    log(&#34;apps: &#34; + str(apps))
+    for app in apps:
+        app_id = app[&#39;id&#39;]
+        log(&#34;killing &#34; + app_id)
+        yarn_kill_app(app_id)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="zuka_etl.helpers" href="index.html">zuka_etl.helpers</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="zuka_etl.helpers.hadoop.hdfs_file_info" href="#zuka_etl.helpers.hadoop.hdfs_file_info">hdfs_file_info</a></code></li>
+<li><code><a title="zuka_etl.helpers.hadoop.hdfs_file_modified_date" href="#zuka_etl.helpers.hadoop.hdfs_file_modified_date">hdfs_file_modified_date</a></code></li>
+<li><code><a title="zuka_etl.helpers.hadoop.log" href="#zuka_etl.helpers.hadoop.log">log</a></code></li>
+<li><code><a title="zuka_etl.helpers.hadoop.yarn_apps" href="#zuka_etl.helpers.hadoop.yarn_apps">yarn_apps</a></code></li>
+<li><code><a title="zuka_etl.helpers.hadoop.yarn_apps_running_and_accepted" href="#zuka_etl.helpers.hadoop.yarn_apps_running_and_accepted">yarn_apps_running_and_accepted</a></code></li>
+<li><code><a title="zuka_etl.helpers.hadoop.yarn_finish_app" href="#zuka_etl.helpers.hadoop.yarn_finish_app">yarn_finish_app</a></code></li>
+<li><code><a title="zuka_etl.helpers.hadoop.yarn_get_app_running_or_accepted" href="#zuka_etl.helpers.hadoop.yarn_get_app_running_or_accepted">yarn_get_app_running_or_accepted</a></code></li>
+<li><code><a title="zuka_etl.helpers.hadoop.yarn_kill_app" href="#zuka_etl.helpers.hadoop.yarn_kill_app">yarn_kill_app</a></code></li>
+<li><code><a title="zuka_etl.helpers.hadoop.yarn_kill_app_by_cmd" href="#zuka_etl.helpers.hadoop.yarn_kill_app_by_cmd">yarn_kill_app_by_cmd</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="zuka_etl.helpers.hadoop.HdfsFileHasChanged" href="#zuka_etl.helpers.hadoop.HdfsFileHasChanged">HdfsFileHasChanged</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.helpers.hadoop.HdfsFileHasChanged.poke" href="#zuka_etl.helpers.hadoop.HdfsFileHasChanged.poke">poke</a></code></li>
+<li><code><a title="zuka_etl.helpers.hadoop.HdfsFileHasChanged.safe_get_var" href="#zuka_etl.helpers.hadoop.HdfsFileHasChanged.safe_get_var">safe_get_var</a></code></li>
+<li><code><a title="zuka_etl.helpers.hadoop.HdfsFileHasChanged.template_fields" href="#zuka_etl.helpers.hadoop.HdfsFileHasChanged.template_fields">template_fields</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.helpers.hadoop.YarnAppNotRunningSensor" href="#zuka_etl.helpers.hadoop.YarnAppNotRunningSensor">YarnAppNotRunningSensor</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.helpers.hadoop.YarnAppNotRunningSensor.poke" href="#zuka_etl.helpers.hadoop.YarnAppNotRunningSensor.poke">poke</a></code></li>
+<li><code><a title="zuka_etl.helpers.hadoop.YarnAppNotRunningSensor.template_fields" href="#zuka_etl.helpers.hadoop.YarnAppNotRunningSensor.template_fields">template_fields</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.helpers.hadoop.YarnAppTakingTooMuchTime" href="#zuka_etl.helpers.hadoop.YarnAppTakingTooMuchTime">YarnAppTakingTooMuchTime</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.helpers.hadoop.YarnAppTakingTooMuchTime.poke" href="#zuka_etl.helpers.hadoop.YarnAppTakingTooMuchTime.poke">poke</a></code></li>
+<li><code><a title="zuka_etl.helpers.hadoop.YarnAppTakingTooMuchTime.template_fields" href="#zuka_etl.helpers.hadoop.YarnAppTakingTooMuchTime.template_fields">template_fields</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.helpers.hadoop.YarnAvoidDuplicatedApp" href="#zuka_etl.helpers.hadoop.YarnAvoidDuplicatedApp">YarnAvoidDuplicatedApp</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.helpers.hadoop.YarnAvoidDuplicatedApp.execute" href="#zuka_etl.helpers.hadoop.YarnAvoidDuplicatedApp.execute">execute</a></code></li>
+<li><code><a title="zuka_etl.helpers.hadoop.YarnAvoidDuplicatedApp.kill_new_ones" href="#zuka_etl.helpers.hadoop.YarnAvoidDuplicatedApp.kill_new_ones">kill_new_ones</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.helpers.hadoop.YarnKillAppOperator" href="#zuka_etl.helpers.hadoop.YarnKillAppOperator">YarnKillAppOperator</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.helpers.hadoop.YarnKillAppOperator.execute" href="#zuka_etl.helpers.hadoop.YarnKillAppOperator.execute">execute</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

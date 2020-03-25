@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.5" />
+<title>zuka_etl.custom.operator API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>zuka_etl.custom.operator</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+__author__ = &#39;phongphamhong&#39;
+
+# !/usr/bin/python
+#
+# Copyright 11/9/18 Phong Pham Hong &lt;phongbro1805@gmail.com&gt;
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an &#34;AS IS&#34; BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# # set enviroment in dev mode
+
+# from zuka_etl.log import logger
+
+from airflow import DAG
+import airflow.operators as airflow_operators
+from airflow.operators.bash_operator import BashOperator
+from airflow.operators.python_operator import PythonOperator
+from airflow.contrib.operators.spark_submit_operator import SparkSubmitOperator
+from datetime import datetime, timedelta
+from zuka_etl.utils import current_time_local
+from zuka_etl.setting import Setting
+from zuka_etl.log import logger, traceback
+from airflow.utils.decorators import apply_defaults
+from zuka_etl.pipeline.process import Process
+from airflow.exceptions import AirflowException
+from airflow.hooks.base_hook import BaseHook
+
+
+class EtlOperator(PythonOperator):
+    &#34;&#34;&#34;
+    Process ETL pipeline
+
+        Example:
+
+            def ex(pipeline):
+                pipeline.logger.info(&#34;This is extract function&#34;)
+                pipeline.set_shipper(&#34;a&#34;, &#34;11&#34;)
+                return 1
+
+            def transform(pipeline, value):
+                pipeline.logger.info(&#34;This is transform function&#34;)
+                print(value)
+                return value
+
+            def load(pipeline, value):
+                pipeline.logger.info(&#34;This is load function&#34;)
+                print(value)
+                pipeline.logger.info(pipeline.get_shipper(&#34;a&#34;))
+                # save every thing you want
+
+            EtlOperator(
+                task_id=&#34;phong&#34;,
+                extract=ex,
+                transform=tras,
+                load=load
+            )
+    &#34;&#34;&#34;
+
+    @apply_defaults
+    def __init__(
+            self,
+            extract,  # type: Callable
+            transform=None,  # type: Callable
+            load=None,  # type: Callable
+            extract_kwargs=None,  # type: Optional[Dict]
+            provide_context=False,  # type: bool
+            templates_dict=None,  # type: Optional[Dict]
+            templates_exts=None,  # type: Optional[Iterable[str]]
+            *args,
+            **kwargs
+    ):
+        super(EtlOperator, self).__init__(
+            python_callable=extract,
+            op_args=None,
+            op_kwargs=None,
+            provide_context=provide_context,
+            templates_dict=templates_dict,
+            templates_exts=templates_exts, *args, **kwargs)
+        self.python_callable = self.build_pipeline(task_id=self.task_id,
+                                                   extract=extract,
+                                                   transform=transform,
+                                                   load=load, additional_args=None,
+                                                   additional_kwargs=extract_kwargs).run
+
+    @staticmethod
+    def build_pipeline(task_id, extract, transform, load, additional_args, additional_kwargs):
+        return Process(task_id, extract=extract, transform=transform, load=load, additional_args=additional_args,
+                       additional_kwargs=additional_kwargs)
+
+    def kill_yarn_app(self):
+        try:
+            from zuka_etl.helpers.hadoop import yarn_kill_app, yarn_kill_app_by_cmd
+            from zuka_etl.custom.spark_hook import SparkHook
+            sp = SparkHook()
+            if (sp.is_active and &#34;local&#34; not in sp.get_master()):
+                logger.info(&#34;[Trigger on_kill event&#34;)
+                app_id = sp.sc.applicationId
+                if app_id:
+                    logger.info(&#34;[Yarn] kill app by api&#34;)
+                    try:
+                        sp.stop()
+                    except BaseException as e:
+                        logger.warn(&#34;[Yarn Kill] Cannot stop spark context:\n%s&#34;, traceback.format_exc())
+                        try:
+                            yarn_kill_app(app_id=app_id)
+                        except BaseException as e:
+                            logger.warn(&#34;[Yarn Kill] error: %s &#34; % traceback.format_exc())
+                        yarn_kill_app_by_cmd(app_id=app_id)
+
+                logger.info(&#34;[Yarn Kill] done.&#34;)
+            else:
+                logger.info(&#34;Skip kill yarn application because Spark is not actived&#34;)
+        except BaseException as e:
+            logger.warn(&#34;Error when run on_kill:\n%s&#34; % traceback.format_exc())
+
+    def execute(self, context):
+        super(EtlOperator, self).execute(context=context)
+        self.kill_yarn_app()
+
+
+class SparkSubmitOperator(SparkSubmitOperator):
+    &#34;&#34;&#34;
+    Process Submit
+
+        Example:
+            from zuka_etl.custom.operator import SparkSubmitOperator
+
+            ZukaSubmitOperator(
+                task_id=&#34;phong&#34;,
+                java_class = &#34;&#34;,
+                application = &#34;/home/projects/job.jar&#34;,
+                dag = dag_config
+            )
+
+    This hook is a wrapper around the SparkSubmitOperator to kick off a spark-submit job.
+    It requires that the &#34;spark-submit&#34; binary is in the PATH or the spark-home is set
+    in the extra on the connection.
+
+        Parameters:
+            application: str, the application that submitted as a job,  either jar or 
+                py file. (templated)
+            conf: dict, arbitrary Spark configuration properties (templated)            
+            conn_id: str, the connection id as configured in Airflow  administration. 
+                When an invalid connection_id  is supplied, it will default to yarn.
+            files: str, upload additional files to the executor running the job, 
+                separated by a comma. Files will be placed in the working directory 
+                of each executor.
+                    For example, serialized objects. (templated)
+            py_files: str, additional python files used by the job, can be .zip, .egg 
+                or .py. (templated)
+            jars: str, submit additional jars to upload and place them in executor 
+                classpath. (templated)
+            driver_class_path: str, additional, driver-specific, classpath 
+                settings. (templated)
+            java_class: str, the main class of the Java application
+            packages: str, comma-separated list of maven coordinates of  jars to 
+                include on the driver and executor classpaths. (templated)
+            exclude_packages: str, comma-separated list of maven coordinates 
+                of jars to exclude while resolving the dependencies provided in 
+                &#39;packages&#39; (templated)
+            repositories: str, comma-separated list of additional remote repositories 
+                to search for the maven coordinates given with &#39;packages&#39;
+            total_executor_cores: int, (Standalone &amp; Mesos only) total cores for all 
+                executors (Default: all the available cores on the worker)
+            executor_cores: int (Standalone &amp; YARN only) Number of cores 
+                per executor (Default: 2)
+            executor_memory: str, memory per executor 
+                (e.g. 1000M, 2G) (Default: 1G)
+            driver_memory: str, memory allocated to the driver 
+                (e.g. 1000M, 2G) (Default: 1G)
+            keytab: str, full path to the file that contains the keytab (templated)
+            principal: str, the name of the kerberos principal used 
+                for keytab (templated)
+            proxy_user: str, user to impersonate when submitting the 
+                application (templated)
+            name: str, name of the job (default airflow-spark). (templated)
+            num_executors: int, number of executors to launch
+            application_args: list, arguments for the application being 
+                submitted (templated)
+            env_vars: dict, environment variables for spark-submit. It supports 
+                yarn and k8s mode too. (templated)
+            verbose: bool, whether to pass the verbose flag to spark-submit process 
+                for debugging
+            spark_binary: str, the command to use for spark submit.
+                                 Some distros may use spark2-submit.
+
+    &#34;&#34;&#34;
+
+    @apply_defaults
+    def __init__(self,
+                 application,
+                 conf={},
+                 conn_id=Setting.SPARK_CONFIG_SUBMIT_DEFAULT,
+                 files=None,
+                 py_files=None,
+                 archives=None,
+                 driver_class_path=None,
+                 jars=None,
+                 java_class=None,
+                 packages=None,
+                 exclude_packages=None,
+                 repositories=None,
+                 total_executor_cores=None,
+                 executor_cores=None,
+                 executor_memory=None,
+                 driver_memory=None,
+                 keytab=None,
+                 principal=None,
+                 proxy_user=None,
+                 name=&#39;zuka_etl_spark&#39;,
+                 num_executors=None,
+                 application_args=None,
+                 env_vars=None,
+                 verbose=False,
+                 spark_binary=&#34;spark-submit&#34;,
+                 *args,
+                 **kwargs):
+        hook = BaseHook.get_connection(conn_id=conn_id)
+        name = name if name.strip() != &#34;&#34; else hook.get_app_name()
+        cf_json = hook.extra_dejson
+        spark_cf = cf_json.get(&#34;conf&#34;, conf)
+        if isinstance(conf, dict) and conf:
+            for k, v in conf.items():
+                logger.info(&#34;Update spark_conf with %s: %s&#34; % (k, v))
+                spark_cf.update(k, v)
+
+        if env_vars is None:
+            env_vars = cf_json.get(&#34;env_vars&#34;, {})
+
+        super(SparkSubmitOperator, self).__init__(
+            application=application,
+            conf=spark_cf,
+            conn_id=conn_id,
+            files=files,
+            py_files=py_files,
+            archives=archives,
+            driver_class_path=driver_class_path,
+            jars=jars,
+            java_class=java_class,
+            packages=packages,
+            exclude_packages=exclude_packages,
+            repositories=repositories,
+            total_executor_cores=total_executor_cores,
+            executor_cores=executor_cores,
+            executor_memory=executor_memory,
+            driver_memory=driver_memory,
+            keytab=keytab,
+            principal=principal,
+            proxy_user=proxy_user,
+            name=name,
+            num_executors=num_executors,
+            application_args=application_args,
+            env_vars=env_vars,
+            verbose=verbose,
+            spark_binary=spark_binary,
+            *args,
+            **kwargs
+        )
+
+    def execute_env_vars(self, env_vars={}):
+        import os
+        try:
+            for k, v in env_vars.items():
+                logger.info(&#39;SET VARIABLE: %s:%s&#39; % (k, v))
+                os.environ[k] = v
+        except BaseException as e:
+            logger.info(&#34;Cannot import variable spark because:\n%s&#34; % self.syslog.print_traceback())
+
+    def execute(self, context):
+        self.execute_env_vars(env_vars=self._env_vars)
+        return super(SparkSubmitOperator, self).execute(context)
+
+
+if __name__ == &#34;__main__&#34;:
+    pass</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="zuka_etl.custom.operator.EtlOperator"><code class="flex name class">
+<span>class <span class="ident">EtlOperator</span></span>
+<span>(</span><span>extract, transform=None, load=None, extract_kwargs=None, provide_context=False, templates_dict=None, templates_exts=None, *args, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Process ETL pipeline</p>
+<pre><code>Example:
+
+    def ex(pipeline):
+        pipeline.logger.info("This is extract function")
+        pipeline.set_shipper("a", "11")
+        return 1
+
+    def transform(pipeline, value):
+        pipeline.logger.info("This is transform function")
+        print(value)
+        return value
+
+    def load(pipeline, value):
+        pipeline.logger.info("This is load function")
+        print(value)
+        pipeline.logger.info(pipeline.get_shipper("a"))
+        # save every thing you want
+
+    EtlOperator(
+        task_id="phong",
+        extract=ex,
+        transform=tras,
+        load=load
+    )
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class EtlOperator(PythonOperator):
+    &#34;&#34;&#34;
+    Process ETL pipeline
+
+        Example:
+
+            def ex(pipeline):
+                pipeline.logger.info(&#34;This is extract function&#34;)
+                pipeline.set_shipper(&#34;a&#34;, &#34;11&#34;)
+                return 1
+
+            def transform(pipeline, value):
+                pipeline.logger.info(&#34;This is transform function&#34;)
+                print(value)
+                return value
+
+            def load(pipeline, value):
+                pipeline.logger.info(&#34;This is load function&#34;)
+                print(value)
+                pipeline.logger.info(pipeline.get_shipper(&#34;a&#34;))
+                # save every thing you want
+
+            EtlOperator(
+                task_id=&#34;phong&#34;,
+                extract=ex,
+                transform=tras,
+                load=load
+            )
+    &#34;&#34;&#34;
+
+    @apply_defaults
+    def __init__(
+            self,
+            extract,  # type: Callable
+            transform=None,  # type: Callable
+            load=None,  # type: Callable
+            extract_kwargs=None,  # type: Optional[Dict]
+            provide_context=False,  # type: bool
+            templates_dict=None,  # type: Optional[Dict]
+            templates_exts=None,  # type: Optional[Iterable[str]]
+            *args,
+            **kwargs
+    ):
+        super(EtlOperator, self).__init__(
+            python_callable=extract,
+            op_args=None,
+            op_kwargs=None,
+            provide_context=provide_context,
+            templates_dict=templates_dict,
+            templates_exts=templates_exts, *args, **kwargs)
+        self.python_callable = self.build_pipeline(task_id=self.task_id,
+                                                   extract=extract,
+                                                   transform=transform,
+                                                   load=load, additional_args=None,
+                                                   additional_kwargs=extract_kwargs).run
+
+    @staticmethod
+    def build_pipeline(task_id, extract, transform, load, additional_args, additional_kwargs):
+        return Process(task_id, extract=extract, transform=transform, load=load, additional_args=additional_args,
+                       additional_kwargs=additional_kwargs)
+
+    def kill_yarn_app(self):
+        try:
+            from zuka_etl.helpers.hadoop import yarn_kill_app, yarn_kill_app_by_cmd
+            from zuka_etl.custom.spark_hook import SparkHook
+            sp = SparkHook()
+            if (sp.is_active and &#34;local&#34; not in sp.get_master()):
+                logger.info(&#34;[Trigger on_kill event&#34;)
+                app_id = sp.sc.applicationId
+                if app_id:
+                    logger.info(&#34;[Yarn] kill app by api&#34;)
+                    try:
+                        sp.stop()
+                    except BaseException as e:
+                        logger.warn(&#34;[Yarn Kill] Cannot stop spark context:\n%s&#34;, traceback.format_exc())
+                        try:
+                            yarn_kill_app(app_id=app_id)
+                        except BaseException as e:
+                            logger.warn(&#34;[Yarn Kill] error: %s &#34; % traceback.format_exc())
+                        yarn_kill_app_by_cmd(app_id=app_id)
+
+                logger.info(&#34;[Yarn Kill] done.&#34;)
+            else:
+                logger.info(&#34;Skip kill yarn application because Spark is not actived&#34;)
+        except BaseException as e:
+            logger.warn(&#34;Error when run on_kill:\n%s&#34; % traceback.format_exc())
+
+    def execute(self, context):
+        super(EtlOperator, self).execute(context=context)
+        self.kill_yarn_app()</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>airflow.operators.python_operator.PythonOperator</li>
+<li>airflow.models.baseoperator.BaseOperator</li>
+<li>airflow.utils.log.logging_mixin.LoggingMixin</li>
+</ul>
+<h3>Static methods</h3>
+<dl>
+<dt id="zuka_etl.custom.operator.EtlOperator.build_pipeline"><code class="name flex">
+<span>def <span class="ident">build_pipeline</span></span>(<span>task_id, extract, transform, load, additional_args, additional_kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def build_pipeline(task_id, extract, transform, load, additional_args, additional_kwargs):
+    return Process(task_id, extract=extract, transform=transform, load=load, additional_args=additional_args,
+                   additional_kwargs=additional_kwargs)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.custom.operator.EtlOperator.execute"><code class="name flex">
+<span>def <span class="ident">execute</span></span>(<span>self, context)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>This is the main method to derive when creating an operator.
+Context is the same dictionary used as when rendering jinja templates.</p>
+<p>Refer to get_template_context for more context.</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def execute(self, context):
+    super(EtlOperator, self).execute(context=context)
+    self.kill_yarn_app()</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.operator.EtlOperator.kill_yarn_app"><code class="name flex">
+<span>def <span class="ident">kill_yarn_app</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def kill_yarn_app(self):
+    try:
+        from zuka_etl.helpers.hadoop import yarn_kill_app, yarn_kill_app_by_cmd
+        from zuka_etl.custom.spark_hook import SparkHook
+        sp = SparkHook()
+        if (sp.is_active and &#34;local&#34; not in sp.get_master()):
+            logger.info(&#34;[Trigger on_kill event&#34;)
+            app_id = sp.sc.applicationId
+            if app_id:
+                logger.info(&#34;[Yarn] kill app by api&#34;)
+                try:
+                    sp.stop()
+                except BaseException as e:
+                    logger.warn(&#34;[Yarn Kill] Cannot stop spark context:\n%s&#34;, traceback.format_exc())
+                    try:
+                        yarn_kill_app(app_id=app_id)
+                    except BaseException as e:
+                        logger.warn(&#34;[Yarn Kill] error: %s &#34; % traceback.format_exc())
+                    yarn_kill_app_by_cmd(app_id=app_id)
+
+            logger.info(&#34;[Yarn Kill] done.&#34;)
+        else:
+            logger.info(&#34;Skip kill yarn application because Spark is not actived&#34;)
+    except BaseException as e:
+        logger.warn(&#34;Error when run on_kill:\n%s&#34; % traceback.format_exc())</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.custom.operator.SparkSubmitOperator"><code class="flex name class">
+<span>class <span class="ident">SparkSubmitOperator</span></span>
+<span>(</span><span>application, conf={}, conn_id='spark_connection_default_submit', files=None, py_files=None, archives=None, driver_class_path=None, jars=None, java_class=None, packages=None, exclude_packages=None, repositories=None, total_executor_cores=None, executor_cores=None, executor_memory=None, driver_memory=None, keytab=None, principal=None, proxy_user=None, name='zuka_etl_spark', num_executors=None, application_args=None, env_vars=None, verbose=False, spark_binary='spark-submit', *args, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Process Submit</p>
+<pre><code>Example:
+    from zuka_etl.custom.operator import SparkSubmitOperator
+
+    ZukaSubmitOperator(
+        task_id="phong",
+        java_class = "",
+        application = "/home/projects/job.jar",
+        dag = dag_config
+    )
+</code></pre>
+<p>This hook is a wrapper around the SparkSubmitOperator to kick off a spark-submit job.
+It requires that the "spark-submit" binary is in the PATH or the spark-home is set
+in the extra on the connection.</p>
+<pre><code>Parameters:
+    application: str, the application that submitted as a job,  either jar or 
+        py file. (templated)
+    conf: dict, arbitrary Spark configuration properties (templated)            
+    conn_id: str, the connection id as configured in Airflow  administration. 
+        When an invalid connection_id  is supplied, it will default to yarn.
+    files: str, upload additional files to the executor running the job, 
+        separated by a comma. Files will be placed in the working directory 
+        of each executor.
+            For example, serialized objects. (templated)
+    py_files: str, additional python files used by the job, can be .zip, .egg 
+        or .py. (templated)
+    jars: str, submit additional jars to upload and place them in executor 
+        classpath. (templated)
+    driver_class_path: str, additional, driver-specific, classpath 
+        settings. (templated)
+    java_class: str, the main class of the Java application
+    packages: str, comma-separated list of maven coordinates of  jars to 
+        include on the driver and executor classpaths. (templated)
+    exclude_packages: str, comma-separated list of maven coordinates 
+        of jars to exclude while resolving the dependencies provided in 
+        'packages' (templated)
+    repositories: str, comma-separated list of additional remote repositories 
+        to search for the maven coordinates given with 'packages'
+    total_executor_cores: int, (Standalone &amp; Mesos only) total cores for all 
+        executors (Default: all the available cores on the worker)
+    executor_cores: int (Standalone &amp; YARN only) Number of cores 
+        per executor (Default: 2)
+    executor_memory: str, memory per executor 
+        (e.g. 1000M, 2G) (Default: 1G)
+    driver_memory: str, memory allocated to the driver 
+        (e.g. 1000M, 2G) (Default: 1G)
+    keytab: str, full path to the file that contains the keytab (templated)
+    principal: str, the name of the kerberos principal used 
+        for keytab (templated)
+    proxy_user: str, user to impersonate when submitting the 
+        application (templated)
+    name: str, name of the job (default airflow-spark). (templated)
+    num_executors: int, number of executors to launch
+    application_args: list, arguments for the application being 
+        submitted (templated)
+    env_vars: dict, environment variables for spark-submit. It supports 
+        yarn and k8s mode too. (templated)
+    verbose: bool, whether to pass the verbose flag to spark-submit process 
+        for debugging
+    spark_binary: str, the command to use for spark submit.
+                         Some distros may use spark2-submit.
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SparkSubmitOperator(SparkSubmitOperator):
+    &#34;&#34;&#34;
+    Process Submit
+
+        Example:
+            from zuka_etl.custom.operator import SparkSubmitOperator
+
+            ZukaSubmitOperator(
+                task_id=&#34;phong&#34;,
+                java_class = &#34;&#34;,
+                application = &#34;/home/projects/job.jar&#34;,
+                dag = dag_config
+            )
+
+    This hook is a wrapper around the SparkSubmitOperator to kick off a spark-submit job.
+    It requires that the &#34;spark-submit&#34; binary is in the PATH or the spark-home is set
+    in the extra on the connection.
+
+        Parameters:
+            application: str, the application that submitted as a job,  either jar or 
+                py file. (templated)
+            conf: dict, arbitrary Spark configuration properties (templated)            
+            conn_id: str, the connection id as configured in Airflow  administration. 
+                When an invalid connection_id  is supplied, it will default to yarn.
+            files: str, upload additional files to the executor running the job, 
+                separated by a comma. Files will be placed in the working directory 
+                of each executor.
+                    For example, serialized objects. (templated)
+            py_files: str, additional python files used by the job, can be .zip, .egg 
+                or .py. (templated)
+            jars: str, submit additional jars to upload and place them in executor 
+                classpath. (templated)
+            driver_class_path: str, additional, driver-specific, classpath 
+                settings. (templated)
+            java_class: str, the main class of the Java application
+            packages: str, comma-separated list of maven coordinates of  jars to 
+                include on the driver and executor classpaths. (templated)
+            exclude_packages: str, comma-separated list of maven coordinates 
+                of jars to exclude while resolving the dependencies provided in 
+                &#39;packages&#39; (templated)
+            repositories: str, comma-separated list of additional remote repositories 
+                to search for the maven coordinates given with &#39;packages&#39;
+            total_executor_cores: int, (Standalone &amp; Mesos only) total cores for all 
+                executors (Default: all the available cores on the worker)
+            executor_cores: int (Standalone &amp; YARN only) Number of cores 
+                per executor (Default: 2)
+            executor_memory: str, memory per executor 
+                (e.g. 1000M, 2G) (Default: 1G)
+            driver_memory: str, memory allocated to the driver 
+                (e.g. 1000M, 2G) (Default: 1G)
+            keytab: str, full path to the file that contains the keytab (templated)
+            principal: str, the name of the kerberos principal used 
+                for keytab (templated)
+            proxy_user: str, user to impersonate when submitting the 
+                application (templated)
+            name: str, name of the job (default airflow-spark). (templated)
+            num_executors: int, number of executors to launch
+            application_args: list, arguments for the application being 
+                submitted (templated)
+            env_vars: dict, environment variables for spark-submit. It supports 
+                yarn and k8s mode too. (templated)
+            verbose: bool, whether to pass the verbose flag to spark-submit process 
+                for debugging
+            spark_binary: str, the command to use for spark submit.
+                                 Some distros may use spark2-submit.
+
+    &#34;&#34;&#34;
+
+    @apply_defaults
+    def __init__(self,
+                 application,
+                 conf={},
+                 conn_id=Setting.SPARK_CONFIG_SUBMIT_DEFAULT,
+                 files=None,
+                 py_files=None,
+                 archives=None,
+                 driver_class_path=None,
+                 jars=None,
+                 java_class=None,
+                 packages=None,
+                 exclude_packages=None,
+                 repositories=None,
+                 total_executor_cores=None,
+                 executor_cores=None,
+                 executor_memory=None,
+                 driver_memory=None,
+                 keytab=None,
+                 principal=None,
+                 proxy_user=None,
+                 name=&#39;zuka_etl_spark&#39;,
+                 num_executors=None,
+                 application_args=None,
+                 env_vars=None,
+                 verbose=False,
+                 spark_binary=&#34;spark-submit&#34;,
+                 *args,
+                 **kwargs):
+        hook = BaseHook.get_connection(conn_id=conn_id)
+        name = name if name.strip() != &#34;&#34; else hook.get_app_name()
+        cf_json = hook.extra_dejson
+        spark_cf = cf_json.get(&#34;conf&#34;, conf)
+        if isinstance(conf, dict) and conf:
+            for k, v in conf.items():
+                logger.info(&#34;Update spark_conf with %s: %s&#34; % (k, v))
+                spark_cf.update(k, v)
+
+        if env_vars is None:
+            env_vars = cf_json.get(&#34;env_vars&#34;, {})
+
+        super(SparkSubmitOperator, self).__init__(
+            application=application,
+            conf=spark_cf,
+            conn_id=conn_id,
+            files=files,
+            py_files=py_files,
+            archives=archives,
+            driver_class_path=driver_class_path,
+            jars=jars,
+            java_class=java_class,
+            packages=packages,
+            exclude_packages=exclude_packages,
+            repositories=repositories,
+            total_executor_cores=total_executor_cores,
+            executor_cores=executor_cores,
+            executor_memory=executor_memory,
+            driver_memory=driver_memory,
+            keytab=keytab,
+            principal=principal,
+            proxy_user=proxy_user,
+            name=name,
+            num_executors=num_executors,
+            application_args=application_args,
+            env_vars=env_vars,
+            verbose=verbose,
+            spark_binary=spark_binary,
+            *args,
+            **kwargs
+        )
+
+    def execute_env_vars(self, env_vars={}):
+        import os
+        try:
+            for k, v in env_vars.items():
+                logger.info(&#39;SET VARIABLE: %s:%s&#39; % (k, v))
+                os.environ[k] = v
+        except BaseException as e:
+            logger.info(&#34;Cannot import variable spark because:\n%s&#34; % self.syslog.print_traceback())
+
+    def execute(self, context):
+        self.execute_env_vars(env_vars=self._env_vars)
+        return super(SparkSubmitOperator, self).execute(context)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>airflow.contrib.operators.spark_submit_operator.SparkSubmitOperator</li>
+<li>airflow.models.baseoperator.BaseOperator</li>
+<li>airflow.utils.log.logging_mixin.LoggingMixin</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.custom.operator.SparkSubmitOperator.execute"><code class="name flex">
+<span>def <span class="ident">execute</span></span>(<span>self, context)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Call the SparkSubmitHook to run the provided spark job</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def execute(self, context):
+    self.execute_env_vars(env_vars=self._env_vars)
+    return super(SparkSubmitOperator, self).execute(context)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.custom.operator.SparkSubmitOperator.execute_env_vars"><code class="name flex">
+<span>def <span class="ident">execute_env_vars</span></span>(<span>self, env_vars={})</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def execute_env_vars(self, env_vars={}):
+    import os
+    try:
+        for k, v in env_vars.items():
+            logger.info(&#39;SET VARIABLE: %s:%s&#39; % (k, v))
+            os.environ[k] = v
+    except BaseException as e:
+        logger.info(&#34;Cannot import variable spark because:\n%s&#34; % self.syslog.print_traceback())</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="zuka_etl.custom" href="index.html">zuka_etl.custom</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="zuka_etl.custom.operator.EtlOperator" href="#zuka_etl.custom.operator.EtlOperator">EtlOperator</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.custom.operator.EtlOperator.build_pipeline" href="#zuka_etl.custom.operator.EtlOperator.build_pipeline">build_pipeline</a></code></li>
+<li><code><a title="zuka_etl.custom.operator.EtlOperator.execute" href="#zuka_etl.custom.operator.EtlOperator.execute">execute</a></code></li>
+<li><code><a title="zuka_etl.custom.operator.EtlOperator.kill_yarn_app" href="#zuka_etl.custom.operator.EtlOperator.kill_yarn_app">kill_yarn_app</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.custom.operator.SparkSubmitOperator" href="#zuka_etl.custom.operator.SparkSubmitOperator">SparkSubmitOperator</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.custom.operator.SparkSubmitOperator.execute" href="#zuka_etl.custom.operator.SparkSubmitOperator.execute">execute</a></code></li>
+<li><code><a title="zuka_etl.custom.operator.SparkSubmitOperator.execute_env_vars" href="#zuka_etl.custom.operator.SparkSubmitOperator.execute_env_vars">execute_env_vars</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

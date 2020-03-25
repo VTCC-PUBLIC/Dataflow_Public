@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.5" />
+<title>zuka_etl.pipeline.extract_utils.spark API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>zuka_etl.pipeline.extract_utils.spark</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+__author__ = &#39;phongphamhong&#39;
+
+# !/usr/bin/python
+#
+# Copyright 11/9/18 Phong Pham Hong &lt;phongbro1805@gmail.com&gt;
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an &#34;AS IS&#34; BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# # set enviroment in dev mode
+import copy
+from zuka_etl.log import logger
+
+from airflow.hooks.base_hook import BaseHook
+from zuka_etl.utils import generate_batches
+from pyspark.sql.types import *
+from zuka_etl.utils import timeit
+
+
+class SparkDfFromDriver(object):
+    &#34;&#34;&#34;
+        Using driver that setup by JAR and Spark Session
+   
+    &#34;&#34;&#34;
+
+    @staticmethod
+    def from_jdbc(table, connection_id, spark_session=None, **kwargs):
+        &#34;&#34;&#34;
+         create a dataframe with jdbc
+
+         config on airflow connection with extra options:
+         
+             {
+                &#34;type&#34;: &#34;mysql&#34;,
+                &#34;options&#34; :{
+                }
+             }
+        
+                table: table or sql query: ex: (select * from a) s . You need to pass an 
+                    alias like example
+                connection_id: defined from admin-connection airflow
+                kwargs:
+                    params: param to replace on query. ex: select * from {table}, params will be: 
+                    {&#39;table&#39;: &#39;database.test_table&#39;}
+                return:
+        
+        &#34;&#34;&#34;
+        from zuka_etl.custom.spark_hook import SparkHook
+        config = BaseHook.get_connection(connection_id)
+        jdbc_type = config.extra_dejson.get(&#34;type&#34;)
+        if jdbc_type is None or jdbc_type.strip() == &#34;&#34;:
+            raise ValueError(&#34;type on extra config is not defined&#34;)
+        option = config.extra_dejson.get(&#34;options&#34;)
+        option = &#34;&#34; if option is None else option
+
+        session = spark_session if spark_session is not None else SparkHook().session
+        str_con = &#34;jdbc:%s://%s%s/%s%s&#34; % (
+            jdbc_type, config.host,
+            ((&#34;:%s&#34; % config.port) if config.port is not None else (&#34;&#34;)), config.schema,
+            (&#34;?%s&#34; % option) if option != &#34;&#34; else &#34;&#34;)
+        if table.strip()[:1] != &#39;(&#39;:
+            table = &#39;(%s) s&#39; % table
+        table = SparkHook.replace_template(text=table, params=kwargs.get(&#39;params&#39;, {}))
+        logger.info(
+            &#39;[Spark] create dataframe with host: %s\nSource:\n%s\n&#39; % (str_con, table))
+        driver = config.extra_dejson.get(&#34;driver_class&#34;)
+        logger.info(&#34;[Spark] driver class: %s&#34; % driver)
+        return session.read.format(&#34;jdbc&#34;).options(
+            url=str_con,
+            driver=driver,
+            dbtable=table,
+            user=config.login,
+            password=config.get_password()
+        ).load()
+
+    @staticmethod
+    def from_elastic(index, query_string, connection_id, **kwargs):
+        &#34;&#34;&#34;
+         Create a dataframe from elastichsearch
+
+                index: elastichsearch index
+                query q:  query string: q=dim_date:[1543536000 TO 1543536000] 
+                    AND item_type:DEAL
+                elastich_config: elastichsearch config name (you can find this name on 
+                    Setting of project in DATA_SOURCE params to replace on query. 
+                    ex: q=field_a:[{start} TO {stop}], params will be: {&#39;start&#39;: 1111111,&#39;stop&#39;: 1222222}
+                return: pyspark.sql.dataframe.DataFrame
+        
+         &#34;&#34;&#34;
+        from zuka_etl.custom.spark_hook import SparkHook
+        config = BaseHook.get_connection(connection_id)
+        table = SparkHook.replace_template(text=index, params=kwargs.get(&#39;params&#39;, {}))
+        qr = &#39;%s?q=%s&#39; % (table, query_string)
+        logger.info(
+            &#39;[Spark] create dataframe with elastichsearch host: %s\nSource: \n%s\nFull query: %s\n&#39; % (
+                config.host, index, qr))
+
+        ct = SparkHook().sql_context.read.format(&#34;org.elasticsearch.spark.sql&#34;)
+        cf = {
+            &#34;es.nodes&#34;: config.host,
+            &#34;es.port&#34;: config.port
+        }
+        if kwargs.get(&#39;select&#39;, &#39;&#39;):
+            cf.update({
+                &#39;es.read.field.include&#39;: kwargs.get(&#39;select&#39;, &#39;&#39;)
+            })
+        cf.update(kwargs.get(&#39;config&#39;, {}))
+        cf.update(config.get(&#39;option&#39;, {}))
+        for k, v in cf.items():
+            logger.info(&#34;set conifg elastic: %s:%s&#34; % (k, v))
+            ct = ct.option(k, v)
+        return ct.load(qr)
+
+
+class SparkDfFromQueryNative(object):
+    &#34;&#34;&#34;
+    Using Native Query from python library databases
+    &#34;&#34;&#34;
+
+    @staticmethod
+    def from_jdbc(table, connection_id, spark_session=None, **kwargs):
+        pass
+
+
+class SparkDfFromIterator(object):
+    DEFAULT_BATCH_SIZE = 100000
+    &#34;&#34;&#34;
+    Import data from iterator to Spark Dataframe
+    &#34;&#34;&#34;
+
+    @staticmethod
+    @timeit
+    def import_batch(data, session, schema):
+        if schema is not None:
+            df_temp = session.createDataFrame(data, schema)
+        else:
+            df_temp = session.createDataFrame(data)
+        return df_temp
+
+    @staticmethod
+    def from_iterator(iter, batch_size=DEFAULT_BATCH_SIZE, transform_item=None, spark_session=None, schema=None,
+                      **kwargs):
+        &#34;&#34;&#34;
+        Create dataframe with list of data: [{&#34;id&#34; : 1,&#34;name&#34;: &#34;phong&#34;},{&#34;id&#34; : 2,&#34;name&#34;: &#34;phong&#34;}]
+
+            iter: list data
+            batch_size: data will split into batches, this is config of size of each batch
+            transform_item: transform function if you want to transform each value
+            spark_session:
+            schema: Spark Schema DF of Spark
+            kwargs:
+            return:
+        
+        &#34;&#34;&#34;
+        from zuka_etl.custom.spark_hook import SparkHook
+        f = generate_batches(iter, batch_size_limit=batch_size, callback_item=transform_item, remove_none=True)
+        sp = spark_session if spark_session is not None else SparkHook().session
+        df = None
+        n = 0
+        total = 0
+        for batch in f:
+            df_temp = SparkDfFromIterator.import_batch(batch, sp, schema)
+            if n &lt;= 0:
+                df = df_temp
+            else:
+                df = df.union(df_temp)
+            total += len(batch)
+            logger.info(&#34;Import to df: %s done!&#34; % total)
+            n += 1
+        return df
+
+    @staticmethod
+    def from_iterator_with_checkpoint(iter, checkpoint_func, return_func, batch_size=DEFAULT_BATCH_SIZE,
+                                      transform_item=None,
+                                      spark_session=None,
+                                      schema=None, **kwargs):
+        &#34;&#34;&#34;
+        Create dataframe with list of data: [{&#34;id&#34; : 1,&#34;name&#34;: &#34;phong&#34;},{&#34;id&#34; : 2,&#34;name&#34;: &#34;phong&#34;}]
+
+            iter: list data
+            checkpoint_func: function process a dataframe. Format: checkpoint_func(index_batch, df_batch)
+            return_func: function output data: Format: return_func(spark_session)
+            batch_size: data will split into batches, this is config of size of each batch
+            transform_item: transform function if you want to transform each value
+            spark_session:
+            schema: Spark Schema DF of Spark
+            kwargs:
+            return:
+        
+        &#34;&#34;&#34;
+        from zuka_etl.custom.spark_hook import SparkHook
+        if callable(checkpoint_func) is False:
+            raise ValueError(&#34;checkpoint_func must be function&#34;)
+        f = generate_batches(iter, batch_size_limit=batch_size, callback_item=transform_item, remove_none=True)
+        sp = spark_session if spark_session is not None else SparkHook().session
+        df = None
+        n = 0
+        total = 0
+        for batch in f:
+            df_temp = SparkDfFromIterator.import_batch(batch, sp, schema)
+            logger.info(&#34;Process checkpoint from index: %s&#34; % n)
+            checkpoint_func(n, df_temp)
+            total += len(batch)
+            logger.info(&#34;Import to df: %s done!&#34; % total)
+            n += 1
+
+        return return_func(spark_session)
+
+    @staticmethod
+    def from_iterator_with_checkpoint_hdfs(iter,
+                                           write_function,
+                                           return_function,
+                                           batch_size=DEFAULT_BATCH_SIZE,
+                                           transform_item=None,
+                                           spark_session=None,
+                                           schema=None, mode=&#34;append&#34;,
+                                           **kwargs):
+        &#34;&#34;&#34;
+        Create dataframe with list of data: [{&#34;id&#34; : 1,&#34;name&#34;: &#34;phong&#34;},{&#34;id&#34; : 2,&#34;name&#34;: &#34;phong&#34;}]
+
+            iter: list data
+            write_function: callable function for writing data: write_function(p): p.format(&#34;parquet&#34;).save(path hdfs)
+            return_function: function for output data: Format: return_function(spark_session)
+            batch_size: data will split into batches, this is config of size of each batch
+            transform_item: transform function if you want to transform each value
+            spark_session:
+            schema: Spark Schema DF of Spark
+            mode: append or replace targer ouput
+            kwargs:
+            return:
+        
+        &#34;&#34;&#34;
+        if callable(write_function) is False:
+            raise ValueError(&#34;write_function must be function&#34;)
+
+        def checkpoint_func(index, df):
+            c = df.write.mode(&#34;overwrite&#34; if (index == 0 and mode == &#34;replace&#34;) else &#34;append&#34;)
+            return write_function(c)
+
+        return SparkDfFromIterator.from_iterator_with_checkpoint(iter=iter,
+                                                                 checkpoint_func=checkpoint_func,
+                                                                 return_func=return_function,
+                                                                 batch_size=batch_size,
+                                                                 transform_item=transform_item,
+                                                                 spark_session=spark_session,
+                                                                 schema=schema,
+                                                                 **kwargs
+                                                                 )</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="zuka_etl.pipeline.extract_utils.spark.SparkDfFromDriver"><code class="flex name class">
+<span>class <span class="ident">SparkDfFromDriver</span></span>
+</code></dt>
+<dd>
+<section class="desc"><p>Using driver that setup by JAR and Spark Session</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SparkDfFromDriver(object):
+    &#34;&#34;&#34;
+        Using driver that setup by JAR and Spark Session
+   
+    &#34;&#34;&#34;
+
+    @staticmethod
+    def from_jdbc(table, connection_id, spark_session=None, **kwargs):
+        &#34;&#34;&#34;
+         create a dataframe with jdbc
+
+         config on airflow connection with extra options:
+         
+             {
+                &#34;type&#34;: &#34;mysql&#34;,
+                &#34;options&#34; :{
+                }
+             }
+        
+                table: table or sql query: ex: (select * from a) s . You need to pass an 
+                    alias like example
+                connection_id: defined from admin-connection airflow
+                kwargs:
+                    params: param to replace on query. ex: select * from {table}, params will be: 
+                    {&#39;table&#39;: &#39;database.test_table&#39;}
+                return:
+        
+        &#34;&#34;&#34;
+        from zuka_etl.custom.spark_hook import SparkHook
+        config = BaseHook.get_connection(connection_id)
+        jdbc_type = config.extra_dejson.get(&#34;type&#34;)
+        if jdbc_type is None or jdbc_type.strip() == &#34;&#34;:
+            raise ValueError(&#34;type on extra config is not defined&#34;)
+        option = config.extra_dejson.get(&#34;options&#34;)
+        option = &#34;&#34; if option is None else option
+
+        session = spark_session if spark_session is not None else SparkHook().session
+        str_con = &#34;jdbc:%s://%s%s/%s%s&#34; % (
+            jdbc_type, config.host,
+            ((&#34;:%s&#34; % config.port) if config.port is not None else (&#34;&#34;)), config.schema,
+            (&#34;?%s&#34; % option) if option != &#34;&#34; else &#34;&#34;)
+        if table.strip()[:1] != &#39;(&#39;:
+            table = &#39;(%s) s&#39; % table
+        table = SparkHook.replace_template(text=table, params=kwargs.get(&#39;params&#39;, {}))
+        logger.info(
+            &#39;[Spark] create dataframe with host: %s\nSource:\n%s\n&#39; % (str_con, table))
+        driver = config.extra_dejson.get(&#34;driver_class&#34;)
+        logger.info(&#34;[Spark] driver class: %s&#34; % driver)
+        return session.read.format(&#34;jdbc&#34;).options(
+            url=str_con,
+            driver=driver,
+            dbtable=table,
+            user=config.login,
+            password=config.get_password()
+        ).load()
+
+    @staticmethod
+    def from_elastic(index, query_string, connection_id, **kwargs):
+        &#34;&#34;&#34;
+         Create a dataframe from elastichsearch
+
+                index: elastichsearch index
+                query q:  query string: q=dim_date:[1543536000 TO 1543536000] 
+                    AND item_type:DEAL
+                elastich_config: elastichsearch config name (you can find this name on 
+                    Setting of project in DATA_SOURCE params to replace on query. 
+                    ex: q=field_a:[{start} TO {stop}], params will be: {&#39;start&#39;: 1111111,&#39;stop&#39;: 1222222}
+                return: pyspark.sql.dataframe.DataFrame
+        
+         &#34;&#34;&#34;
+        from zuka_etl.custom.spark_hook import SparkHook
+        config = BaseHook.get_connection(connection_id)
+        table = SparkHook.replace_template(text=index, params=kwargs.get(&#39;params&#39;, {}))
+        qr = &#39;%s?q=%s&#39; % (table, query_string)
+        logger.info(
+            &#39;[Spark] create dataframe with elastichsearch host: %s\nSource: \n%s\nFull query: %s\n&#39; % (
+                config.host, index, qr))
+
+        ct = SparkHook().sql_context.read.format(&#34;org.elasticsearch.spark.sql&#34;)
+        cf = {
+            &#34;es.nodes&#34;: config.host,
+            &#34;es.port&#34;: config.port
+        }
+        if kwargs.get(&#39;select&#39;, &#39;&#39;):
+            cf.update({
+                &#39;es.read.field.include&#39;: kwargs.get(&#39;select&#39;, &#39;&#39;)
+            })
+        cf.update(kwargs.get(&#39;config&#39;, {}))
+        cf.update(config.get(&#39;option&#39;, {}))
+        for k, v in cf.items():
+            logger.info(&#34;set conifg elastic: %s:%s&#34; % (k, v))
+            ct = ct.option(k, v)
+        return ct.load(qr)</code></pre>
+</details>
+<h3>Static methods</h3>
+<dl>
+<dt id="zuka_etl.pipeline.extract_utils.spark.SparkDfFromDriver.from_elastic"><code class="name flex">
+<span>def <span class="ident">from_elastic</span></span>(<span>index, query_string, connection_id, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Create a dataframe from elastichsearch</p>
+<pre><code>   index: elastichsearch index
+   query q:  query string: q=dim_date:[1543536000 TO 1543536000] 
+       AND item_type:DEAL
+   elastich_config: elastichsearch config name (you can find this name on 
+       Setting of project in DATA_SOURCE params to replace on query. 
+       ex: q=field_a:[{start} TO {stop}], params will be: {'start': 1111111,'stop': 1222222}
+   return: pyspark.sql.dataframe.DataFrame
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def from_elastic(index, query_string, connection_id, **kwargs):
+    &#34;&#34;&#34;
+     Create a dataframe from elastichsearch
+
+            index: elastichsearch index
+            query q:  query string: q=dim_date:[1543536000 TO 1543536000] 
+                AND item_type:DEAL
+            elastich_config: elastichsearch config name (you can find this name on 
+                Setting of project in DATA_SOURCE params to replace on query. 
+                ex: q=field_a:[{start} TO {stop}], params will be: {&#39;start&#39;: 1111111,&#39;stop&#39;: 1222222}
+            return: pyspark.sql.dataframe.DataFrame
+    
+     &#34;&#34;&#34;
+    from zuka_etl.custom.spark_hook import SparkHook
+    config = BaseHook.get_connection(connection_id)
+    table = SparkHook.replace_template(text=index, params=kwargs.get(&#39;params&#39;, {}))
+    qr = &#39;%s?q=%s&#39; % (table, query_string)
+    logger.info(
+        &#39;[Spark] create dataframe with elastichsearch host: %s\nSource: \n%s\nFull query: %s\n&#39; % (
+            config.host, index, qr))
+
+    ct = SparkHook().sql_context.read.format(&#34;org.elasticsearch.spark.sql&#34;)
+    cf = {
+        &#34;es.nodes&#34;: config.host,
+        &#34;es.port&#34;: config.port
+    }
+    if kwargs.get(&#39;select&#39;, &#39;&#39;):
+        cf.update({
+            &#39;es.read.field.include&#39;: kwargs.get(&#39;select&#39;, &#39;&#39;)
+        })
+    cf.update(kwargs.get(&#39;config&#39;, {}))
+    cf.update(config.get(&#39;option&#39;, {}))
+    for k, v in cf.items():
+        logger.info(&#34;set conifg elastic: %s:%s&#34; % (k, v))
+        ct = ct.option(k, v)
+    return ct.load(qr)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.extract_utils.spark.SparkDfFromDriver.from_jdbc"><code class="name flex">
+<span>def <span class="ident">from_jdbc</span></span>(<span>table, connection_id, spark_session=None, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>create a dataframe with jdbc</p>
+<p>config on airflow connection with extra options:</p>
+<pre><code>{
+   "type": "mysql",
+   "options" :{
+   }
+}
+
+   table: table or sql query: ex: (select * from a) s . You need to pass an 
+       alias like example
+   connection_id: defined from admin-connection airflow
+   kwargs:
+       params: param to replace on query. ex: select * from {table}, params will be: 
+       {'table': 'database.test_table'}
+   return:
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def from_jdbc(table, connection_id, spark_session=None, **kwargs):
+    &#34;&#34;&#34;
+     create a dataframe with jdbc
+
+     config on airflow connection with extra options:
+     
+         {
+            &#34;type&#34;: &#34;mysql&#34;,
+            &#34;options&#34; :{
+            }
+         }
+    
+            table: table or sql query: ex: (select * from a) s . You need to pass an 
+                alias like example
+            connection_id: defined from admin-connection airflow
+            kwargs:
+                params: param to replace on query. ex: select * from {table}, params will be: 
+                {&#39;table&#39;: &#39;database.test_table&#39;}
+            return:
+    
+    &#34;&#34;&#34;
+    from zuka_etl.custom.spark_hook import SparkHook
+    config = BaseHook.get_connection(connection_id)
+    jdbc_type = config.extra_dejson.get(&#34;type&#34;)
+    if jdbc_type is None or jdbc_type.strip() == &#34;&#34;:
+        raise ValueError(&#34;type on extra config is not defined&#34;)
+    option = config.extra_dejson.get(&#34;options&#34;)
+    option = &#34;&#34; if option is None else option
+
+    session = spark_session if spark_session is not None else SparkHook().session
+    str_con = &#34;jdbc:%s://%s%s/%s%s&#34; % (
+        jdbc_type, config.host,
+        ((&#34;:%s&#34; % config.port) if config.port is not None else (&#34;&#34;)), config.schema,
+        (&#34;?%s&#34; % option) if option != &#34;&#34; else &#34;&#34;)
+    if table.strip()[:1] != &#39;(&#39;:
+        table = &#39;(%s) s&#39; % table
+    table = SparkHook.replace_template(text=table, params=kwargs.get(&#39;params&#39;, {}))
+    logger.info(
+        &#39;[Spark] create dataframe with host: %s\nSource:\n%s\n&#39; % (str_con, table))
+    driver = config.extra_dejson.get(&#34;driver_class&#34;)
+    logger.info(&#34;[Spark] driver class: %s&#34; % driver)
+    return session.read.format(&#34;jdbc&#34;).options(
+        url=str_con,
+        driver=driver,
+        dbtable=table,
+        user=config.login,
+        password=config.get_password()
+    ).load()</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator"><code class="flex name class">
+<span>class <span class="ident">SparkDfFromIterator</span></span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SparkDfFromIterator(object):
+    DEFAULT_BATCH_SIZE = 100000
+    &#34;&#34;&#34;
+    Import data from iterator to Spark Dataframe
+    &#34;&#34;&#34;
+
+    @staticmethod
+    @timeit
+    def import_batch(data, session, schema):
+        if schema is not None:
+            df_temp = session.createDataFrame(data, schema)
+        else:
+            df_temp = session.createDataFrame(data)
+        return df_temp
+
+    @staticmethod
+    def from_iterator(iter, batch_size=DEFAULT_BATCH_SIZE, transform_item=None, spark_session=None, schema=None,
+                      **kwargs):
+        &#34;&#34;&#34;
+        Create dataframe with list of data: [{&#34;id&#34; : 1,&#34;name&#34;: &#34;phong&#34;},{&#34;id&#34; : 2,&#34;name&#34;: &#34;phong&#34;}]
+
+            iter: list data
+            batch_size: data will split into batches, this is config of size of each batch
+            transform_item: transform function if you want to transform each value
+            spark_session:
+            schema: Spark Schema DF of Spark
+            kwargs:
+            return:
+        
+        &#34;&#34;&#34;
+        from zuka_etl.custom.spark_hook import SparkHook
+        f = generate_batches(iter, batch_size_limit=batch_size, callback_item=transform_item, remove_none=True)
+        sp = spark_session if spark_session is not None else SparkHook().session
+        df = None
+        n = 0
+        total = 0
+        for batch in f:
+            df_temp = SparkDfFromIterator.import_batch(batch, sp, schema)
+            if n &lt;= 0:
+                df = df_temp
+            else:
+                df = df.union(df_temp)
+            total += len(batch)
+            logger.info(&#34;Import to df: %s done!&#34; % total)
+            n += 1
+        return df
+
+    @staticmethod
+    def from_iterator_with_checkpoint(iter, checkpoint_func, return_func, batch_size=DEFAULT_BATCH_SIZE,
+                                      transform_item=None,
+                                      spark_session=None,
+                                      schema=None, **kwargs):
+        &#34;&#34;&#34;
+        Create dataframe with list of data: [{&#34;id&#34; : 1,&#34;name&#34;: &#34;phong&#34;},{&#34;id&#34; : 2,&#34;name&#34;: &#34;phong&#34;}]
+
+            iter: list data
+            checkpoint_func: function process a dataframe. Format: checkpoint_func(index_batch, df_batch)
+            return_func: function output data: Format: return_func(spark_session)
+            batch_size: data will split into batches, this is config of size of each batch
+            transform_item: transform function if you want to transform each value
+            spark_session:
+            schema: Spark Schema DF of Spark
+            kwargs:
+            return:
+        
+        &#34;&#34;&#34;
+        from zuka_etl.custom.spark_hook import SparkHook
+        if callable(checkpoint_func) is False:
+            raise ValueError(&#34;checkpoint_func must be function&#34;)
+        f = generate_batches(iter, batch_size_limit=batch_size, callback_item=transform_item, remove_none=True)
+        sp = spark_session if spark_session is not None else SparkHook().session
+        df = None
+        n = 0
+        total = 0
+        for batch in f:
+            df_temp = SparkDfFromIterator.import_batch(batch, sp, schema)
+            logger.info(&#34;Process checkpoint from index: %s&#34; % n)
+            checkpoint_func(n, df_temp)
+            total += len(batch)
+            logger.info(&#34;Import to df: %s done!&#34; % total)
+            n += 1
+
+        return return_func(spark_session)
+
+    @staticmethod
+    def from_iterator_with_checkpoint_hdfs(iter,
+                                           write_function,
+                                           return_function,
+                                           batch_size=DEFAULT_BATCH_SIZE,
+                                           transform_item=None,
+                                           spark_session=None,
+                                           schema=None, mode=&#34;append&#34;,
+                                           **kwargs):
+        &#34;&#34;&#34;
+        Create dataframe with list of data: [{&#34;id&#34; : 1,&#34;name&#34;: &#34;phong&#34;},{&#34;id&#34; : 2,&#34;name&#34;: &#34;phong&#34;}]
+
+            iter: list data
+            write_function: callable function for writing data: write_function(p): p.format(&#34;parquet&#34;).save(path hdfs)
+            return_function: function for output data: Format: return_function(spark_session)
+            batch_size: data will split into batches, this is config of size of each batch
+            transform_item: transform function if you want to transform each value
+            spark_session:
+            schema: Spark Schema DF of Spark
+            mode: append or replace targer ouput
+            kwargs:
+            return:
+        
+        &#34;&#34;&#34;
+        if callable(write_function) is False:
+            raise ValueError(&#34;write_function must be function&#34;)
+
+        def checkpoint_func(index, df):
+            c = df.write.mode(&#34;overwrite&#34; if (index == 0 and mode == &#34;replace&#34;) else &#34;append&#34;)
+            return write_function(c)
+
+        return SparkDfFromIterator.from_iterator_with_checkpoint(iter=iter,
+                                                                 checkpoint_func=checkpoint_func,
+                                                                 return_func=return_function,
+                                                                 batch_size=batch_size,
+                                                                 transform_item=transform_item,
+                                                                 spark_session=spark_session,
+                                                                 schema=schema,
+                                                                 **kwargs
+                                                                 )</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.DEFAULT_BATCH_SIZE"><code class="name">var <span class="ident">DEFAULT_BATCH_SIZE</span></code></dt>
+<dd>
+<section class="desc"><p>Import data from iterator to Spark Dataframe</p></section>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.from_iterator"><code class="name flex">
+<span>def <span class="ident">from_iterator</span></span>(<span>iter, batch_size=100000, transform_item=None, spark_session=None, schema=None, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Create dataframe with list of data: [{"id" : 1,"name": "phong"},{"id" : 2,"name": "phong"}]</p>
+<pre><code>iter: list data
+batch_size: data will split into batches, this is config of size of each batch
+transform_item: transform function if you want to transform each value
+spark_session:
+schema: Spark Schema DF of Spark
+kwargs:
+return:
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def from_iterator(iter, batch_size=DEFAULT_BATCH_SIZE, transform_item=None, spark_session=None, schema=None,
+                  **kwargs):
+    &#34;&#34;&#34;
+    Create dataframe with list of data: [{&#34;id&#34; : 1,&#34;name&#34;: &#34;phong&#34;},{&#34;id&#34; : 2,&#34;name&#34;: &#34;phong&#34;}]
+
+        iter: list data
+        batch_size: data will split into batches, this is config of size of each batch
+        transform_item: transform function if you want to transform each value
+        spark_session:
+        schema: Spark Schema DF of Spark
+        kwargs:
+        return:
+    
+    &#34;&#34;&#34;
+    from zuka_etl.custom.spark_hook import SparkHook
+    f = generate_batches(iter, batch_size_limit=batch_size, callback_item=transform_item, remove_none=True)
+    sp = spark_session if spark_session is not None else SparkHook().session
+    df = None
+    n = 0
+    total = 0
+    for batch in f:
+        df_temp = SparkDfFromIterator.import_batch(batch, sp, schema)
+        if n &lt;= 0:
+            df = df_temp
+        else:
+            df = df.union(df_temp)
+        total += len(batch)
+        logger.info(&#34;Import to df: %s done!&#34; % total)
+        n += 1
+    return df</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.from_iterator_with_checkpoint"><code class="name flex">
+<span>def <span class="ident">from_iterator_with_checkpoint</span></span>(<span>iter, checkpoint_func, return_func, batch_size=100000, transform_item=None, spark_session=None, schema=None, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Create dataframe with list of data: [{"id" : 1,"name": "phong"},{"id" : 2,"name": "phong"}]</p>
+<pre><code>iter: list data
+checkpoint_func: function process a dataframe. Format: checkpoint_func(index_batch, df_batch)
+return_func: function output data: Format: return_func(spark_session)
+batch_size: data will split into batches, this is config of size of each batch
+transform_item: transform function if you want to transform each value
+spark_session:
+schema: Spark Schema DF of Spark
+kwargs:
+return:
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def from_iterator_with_checkpoint(iter, checkpoint_func, return_func, batch_size=DEFAULT_BATCH_SIZE,
+                                  transform_item=None,
+                                  spark_session=None,
+                                  schema=None, **kwargs):
+    &#34;&#34;&#34;
+    Create dataframe with list of data: [{&#34;id&#34; : 1,&#34;name&#34;: &#34;phong&#34;},{&#34;id&#34; : 2,&#34;name&#34;: &#34;phong&#34;}]
+
+        iter: list data
+        checkpoint_func: function process a dataframe. Format: checkpoint_func(index_batch, df_batch)
+        return_func: function output data: Format: return_func(spark_session)
+        batch_size: data will split into batches, this is config of size of each batch
+        transform_item: transform function if you want to transform each value
+        spark_session:
+        schema: Spark Schema DF of Spark
+        kwargs:
+        return:
+    
+    &#34;&#34;&#34;
+    from zuka_etl.custom.spark_hook import SparkHook
+    if callable(checkpoint_func) is False:
+        raise ValueError(&#34;checkpoint_func must be function&#34;)
+    f = generate_batches(iter, batch_size_limit=batch_size, callback_item=transform_item, remove_none=True)
+    sp = spark_session if spark_session is not None else SparkHook().session
+    df = None
+    n = 0
+    total = 0
+    for batch in f:
+        df_temp = SparkDfFromIterator.import_batch(batch, sp, schema)
+        logger.info(&#34;Process checkpoint from index: %s&#34; % n)
+        checkpoint_func(n, df_temp)
+        total += len(batch)
+        logger.info(&#34;Import to df: %s done!&#34; % total)
+        n += 1
+
+    return return_func(spark_session)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.from_iterator_with_checkpoint_hdfs"><code class="name flex">
+<span>def <span class="ident">from_iterator_with_checkpoint_hdfs</span></span>(<span>iter, write_function, return_function, batch_size=100000, transform_item=None, spark_session=None, schema=None, mode='append', **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Create dataframe with list of data: [{"id" : 1,"name": "phong"},{"id" : 2,"name": "phong"}]</p>
+<pre><code>iter: list data
+write_function: callable function for writing data: write_function(p): p.format("parquet").save(path hdfs)
+return_function: function for output data: Format: return_function(spark_session)
+batch_size: data will split into batches, this is config of size of each batch
+transform_item: transform function if you want to transform each value
+spark_session:
+schema: Spark Schema DF of Spark
+mode: append or replace targer ouput
+kwargs:
+return:
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def from_iterator_with_checkpoint_hdfs(iter,
+                                       write_function,
+                                       return_function,
+                                       batch_size=DEFAULT_BATCH_SIZE,
+                                       transform_item=None,
+                                       spark_session=None,
+                                       schema=None, mode=&#34;append&#34;,
+                                       **kwargs):
+    &#34;&#34;&#34;
+    Create dataframe with list of data: [{&#34;id&#34; : 1,&#34;name&#34;: &#34;phong&#34;},{&#34;id&#34; : 2,&#34;name&#34;: &#34;phong&#34;}]
+
+        iter: list data
+        write_function: callable function for writing data: write_function(p): p.format(&#34;parquet&#34;).save(path hdfs)
+        return_function: function for output data: Format: return_function(spark_session)
+        batch_size: data will split into batches, this is config of size of each batch
+        transform_item: transform function if you want to transform each value
+        spark_session:
+        schema: Spark Schema DF of Spark
+        mode: append or replace targer ouput
+        kwargs:
+        return:
+    
+    &#34;&#34;&#34;
+    if callable(write_function) is False:
+        raise ValueError(&#34;write_function must be function&#34;)
+
+    def checkpoint_func(index, df):
+        c = df.write.mode(&#34;overwrite&#34; if (index == 0 and mode == &#34;replace&#34;) else &#34;append&#34;)
+        return write_function(c)
+
+    return SparkDfFromIterator.from_iterator_with_checkpoint(iter=iter,
+                                                             checkpoint_func=checkpoint_func,
+                                                             return_func=return_function,
+                                                             batch_size=batch_size,
+                                                             transform_item=transform_item,
+                                                             spark_session=spark_session,
+                                                             schema=schema,
+                                                             **kwargs
+                                                             )</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.import_batch"><code class="name flex">
+<span>def <span class="ident">import_batch</span></span>(<span>*args, **kw)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def timed(*args, **kw):
+    ts = time.time()
+    result = method(*args, **kw)
+    te = time.time()
+    logger.info(&#34;[PROCESS TIME]: &#34; + (&#39;%r (%r, %r) %2.2f sec&#39; % \
+                                      (method.__name__, type(args), type(kw), te - ts)))
+    return result</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.pipeline.extract_utils.spark.SparkDfFromQueryNative"><code class="flex name class">
+<span>class <span class="ident">SparkDfFromQueryNative</span></span>
+</code></dt>
+<dd>
+<section class="desc"><p>Using Native Query from python library databases</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SparkDfFromQueryNative(object):
+    &#34;&#34;&#34;
+    Using Native Query from python library databases
+    &#34;&#34;&#34;
+
+    @staticmethod
+    def from_jdbc(table, connection_id, spark_session=None, **kwargs):
+        pass</code></pre>
+</details>
+<h3>Static methods</h3>
+<dl>
+<dt id="zuka_etl.pipeline.extract_utils.spark.SparkDfFromQueryNative.from_jdbc"><code class="name flex">
+<span>def <span class="ident">from_jdbc</span></span>(<span>table, connection_id, spark_session=None, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def from_jdbc(table, connection_id, spark_session=None, **kwargs):
+    pass</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="zuka_etl.pipeline.extract_utils" href="index.html">zuka_etl.pipeline.extract_utils</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="zuka_etl.pipeline.extract_utils.spark.SparkDfFromDriver" href="#zuka_etl.pipeline.extract_utils.spark.SparkDfFromDriver">SparkDfFromDriver</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.pipeline.extract_utils.spark.SparkDfFromDriver.from_elastic" href="#zuka_etl.pipeline.extract_utils.spark.SparkDfFromDriver.from_elastic">from_elastic</a></code></li>
+<li><code><a title="zuka_etl.pipeline.extract_utils.spark.SparkDfFromDriver.from_jdbc" href="#zuka_etl.pipeline.extract_utils.spark.SparkDfFromDriver.from_jdbc">from_jdbc</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator" href="#zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator">SparkDfFromIterator</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.DEFAULT_BATCH_SIZE" href="#zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.DEFAULT_BATCH_SIZE">DEFAULT_BATCH_SIZE</a></code></li>
+<li><code><a title="zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.from_iterator" href="#zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.from_iterator">from_iterator</a></code></li>
+<li><code><a title="zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.from_iterator_with_checkpoint" href="#zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.from_iterator_with_checkpoint">from_iterator_with_checkpoint</a></code></li>
+<li><code><a title="zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.from_iterator_with_checkpoint_hdfs" href="#zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.from_iterator_with_checkpoint_hdfs">from_iterator_with_checkpoint_hdfs</a></code></li>
+<li><code><a title="zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.import_batch" href="#zuka_etl.pipeline.extract_utils.spark.SparkDfFromIterator.import_batch">import_batch</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.pipeline.extract_utils.spark.SparkDfFromQueryNative" href="#zuka_etl.pipeline.extract_utils.spark.SparkDfFromQueryNative">SparkDfFromQueryNative</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.pipeline.extract_utils.spark.SparkDfFromQueryNative.from_jdbc" href="#zuka_etl.pipeline.extract_utils.spark.SparkDfFromQueryNative.from_jdbc">from_jdbc</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

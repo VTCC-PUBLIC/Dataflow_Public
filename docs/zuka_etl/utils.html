@@ -1,0 +1,2711 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.5" />
+<title>zuka_etl.utils API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>zuka_etl.utils</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">__author__ = &#39;phongphamhong&#39;
+import calendar
+import datetime
+import pprint
+import re
+import signal
+import traceback
+import socket, struct
+from functools import wraps
+from dateutil import parser
+from dateutil.relativedelta import relativedelta
+from dateutil.rrule import rrule, DAILY, WEEKLY, MONTHLY
+from pytz import timezone
+from zuka_etl.log import logger
+import sys, os, time, atexit
+from zuka_etl.setting import Setting
+import pytz
+import math
+
+
+def timeit(method):
+    def timed(*args, **kw):
+        ts = time.time()
+        result = method(*args, **kw)
+        te = time.time()
+        logger.info(&#34;[PROCESS TIME]: &#34; + (&#39;%r (%r, %r) %2.2f sec&#39; % \
+                                          (method.__name__, type(args), type(kw), te - ts)))
+        return result
+
+    return timed
+
+
+def timeit_with_show_params(method):
+    def timed(*args, **kw):
+        ts = time.time()
+        result = method(*args, **kw)
+        te = time.time()
+        logger.info(&#34;[PROCESS TIME]: &#34; + &#39;%r (%r, %r) %2.2f sec&#39; % \
+                    (method.__name__, args, kw, te - ts))
+        return result
+
+    return timed
+
+
+class TimeoutError(Exception):
+    pass
+
+
+@timeit
+def timeout(seconds=10, error_message=None):
+    def decorator(func):
+        def _handle_timeout(signum, frame):
+            if callable(error_message):
+                raise error_message()
+            else:
+                raise TimeoutError(&#34;Timeout after %s(s)&#34; % seconds)
+
+        def wrapper(*args, **kwargs):
+            # disable this function on windows
+            if os.name == &#39;nt&#39;:
+                return func(*args, **kwargs)
+            else:
+                signal.signal(signal.SIGALRM, _handle_timeout)
+                signal.alarm(seconds)
+                try:
+                    result = func(*args, **kwargs)
+                finally:
+                    signal.alarm(0)
+                return result
+
+        return wraps(func)(wrapper)
+
+    return decorator
+
+
+def debug_tool(*args, **kwargs):
+    pprint.pprint(args)
+    if &#34;keep&#34; not in kwargs or kwargs[&#34;keep&#34;] == False:
+        pprint.pprint(&#34;-----------------------------stop debug-------------------------------&#34;)
+        sys.exit()
+
+
+# works in Python 2 &amp; 3
+class Singleton(object):
+    _instances = {}
+
+    def __new__(class_, *args, **kwargs):
+        if class_ not in class_._instances:
+            class_._instances[class_] = super(Singleton, class_).__new__(class_, *args, **kwargs)
+        return class_._instances[class_]
+
+
+def intersect(a, b):
+    return list(set(a) &amp; set(b))
+
+
+def parser_object_to_dict(object):
+    if isinstance(object, list):
+        result = []
+        for k in object:
+            result.append(parser_object_to_dict(k))
+    elif hasattr(object, &#39;__keylist__&#39;):
+        keylist = object[&#39;__keylist__&#39;]
+        result = {}
+        for key in keylist:
+            item = getattr(object, key)
+            data = None
+            if hasattr(item, &#39;__keylist__&#39;):
+                data = parser_object_to_dict(item)
+            elif isinstance(item, list):
+                data = parser_object_to_dict(item)
+            else:
+                data = item
+            key = key.replace(&#39;.&#39;, &#39;/&#39;)
+            result[key] = data
+        return result
+    else:
+        result = object
+    return result
+
+
+def compare_dicts(d1, d2, _group=True):
+    result = {}
+    listtype = [&#39;__added&#39;, &#39;__removed&#39;, &#39;__changed_old_data&#39;, &#39;__changed_new_data&#39;]
+    for k in listtype:
+        result[k] = {}
+
+    # starting compare 2 dicts
+    for k in d1.keys():
+        if not d2.has_key(k):
+            result[&#39;__removed&#39;][k] = d1[k]
+        else:
+
+            if type(d1[k]) is dict:
+                compare = compare_dicts(d1[k], d2[k], False)
+                if compare:
+                    result[k] = compare
+            elif type(d1[k]) is list and type(d2[k]) is list:
+                compare = compare_lists(d1[k], d2[k])
+                if compare:
+                    result[k] = compare
+            else:
+                if d1[k] != d2[k]:
+                    result[&#39;__changed_old_data&#39;][k] = d1[k]
+                    result[&#39;__changed_new_data&#39;][k] = d2[k]
+
+    for k in d2.keys():
+        if not d1.has_key(k):
+            result[&#39;__added&#39;][k] = d2[k]
+    result = {k: result[k] for k in result if type(result[k]) is not dict or result[k]}
+    # filter and group
+    if _group and result:
+        def group_result(data, root=&#39;&#39;):
+            rs = {}
+            for root_key, root_item in data.iteritems():
+                if root_key in listtype:
+                    rs[root_key] = {}
+                    if root == &#39;&#39;:
+                        rs[root_key] = root_item
+                    else:
+                        rs[root_key][root] = root_item
+                elif type(root_item) is dict:
+                    r = group_result(root_item, root_key)
+                    ex = data.copy()
+                    for k, v in r.iteritems():
+                        if k in ex:
+                            ex[k].update(v)
+                        else:
+                            ex[k] = v
+                    rs.update({k: ex[k] for k in ex if k in listtype})
+            return rs
+
+        return group_result(result)
+
+    return result
+
+
+def compare_lists(l1, l2):
+    removed = [k for k in l1 if k not in l2]
+    added = [k for k in l2 if k not in l1]
+    if added or removed:
+        return {
+            &#39;__added&#39;: added,
+            &#39;__removed&#39;: removed,
+        }
+    return {}
+
+
+def render_date_range(from_date, to_date, size=&#39;DAILY&#39;):
+    from_date = convert_time(from_date)
+    to_date = convert_time(to_date, end_day=True)
+    b = DAILY
+    if size == &#39;DAILY&#39;:
+        b = DAILY
+    elif size == &#39;WEEKLY&#39;:
+        b = WEEKLY
+    elif size == &#39;MONTHLY&#39;:
+        b = MONTHLY
+    max = None
+    for dt in rrule(b, dtstart=from_date, until=to_date):
+        max = dt
+        yield dt
+    if max.date() != to_date.date():
+        yield to_date
+
+
+import copy
+
+
+def generate_batches_date_range(from_date, to_date, size=&#39;DAILY&#39;):
+    from_date = convert_time(from_date)
+    from_date_convert = copy.copy(from_date)
+    if size == &#39;MONTHLY&#39;:
+        from_date_convert = get_first_day_of_month(from_date)
+    to_date = convert_time(to_date, end_day=True)
+    date_range = list(render_date_range(from_date_convert, to_date, size=size))
+    batch = []
+    d_max = None
+    n = 0
+    len_r = len(date_range)
+    for d in date_range:
+        d_max = d
+        lenth = len(batch)
+        n += 1
+        if size == &#39;MONTHLY&#39;:
+            f_day = get_first_day_of_month(d) if n &gt; 1 else convert_time(from_date)
+            l_day = get_last_day_of_month(convert_time(d, end_day=True)) if n &lt; len_r - 1 else to_date
+            if d.month == to_date.month and d.year == to_date.year:
+                yield [f_day, l_day]
+                return
+            yield [f_day, l_day]
+            continue
+
+        if lenth &lt;= 0:
+            batch.append(d)
+        else:
+            if size != &#39;DAILY&#39; and d.date() == to_date.date():
+                d_max = None
+                n = to_date
+            else:
+                n = convert_time(d - datetime.timedelta(days=1), end_day=True)
+
+            batch.append(n)
+            yield batch
+            batch = []
+            batch.append(d)
+    if d_max:
+        yield [convert_time(d_max, reset_time=True), convert_time(d_max, end_day=True)]
+
+
+def is_interger(number):
+    return str(number).isdigit()
+
+
+def is_numeric(number):
+    return str(number).replace(&#39;.&#39;, &#39;&#39;, 1).isdigit()
+
+
+def access_dict_by_dot(item={}, field=&#39;&#39;, default=None, lower_key=False):
+    if item and field:
+        sli = field.split(&#39;.&#39;)
+
+        if (type(item) is list and str(convert_int(field)) == field):
+            index = convert_int(field)
+            if len(item) &gt; index:
+                return item[index]
+            return default
+        else:
+            if lower_key:
+                sli = field.lower().split(&#39;.&#39;)
+                item = {k.lower(): v for k, v in item.iteritems()}
+            fs = item.get(sli[0], default)
+        if len(sli) == 1:
+            return fs
+        del sli[0]
+        return access_dict_by_dot(item=fs, field=&#34;.&#34;.join(sli), default=default, lower_key=lower_key)
+    return default
+
+
+def convert_int(value):
+    try:
+        result = int(round(convert_float(value)))
+        return result
+    except BaseException as e:
+        return 0
+
+
+def convert_long(value):
+    try:
+        result = convert_int(round(convert_float(value)))
+        return result
+    except BaseException as e:
+        return 0
+
+
+def convert_float(value):
+    try:
+        result = float(value)
+        return result
+    except BaseException as e:
+        return 0.0
+
+
+def convert_time(string_time, reset_time=False, end_day=False, convert_time_type=&#39;datetime&#39;, **kwargs):
+    if string_time in [None, &#39;&#39;]:
+        return None
+    parsing = string_time
+
+    if type(string_time) is not datetime.datetime and datetime:
+        # format YY:mm:dd
+        year, month, day, hour, second, minute = convert_int(string_time[:4]), convert_int(
+            string_time[5:7]), convert_int(
+            string_time[8:10]), convert_int(string_time[11: 13]), convert_int(string_time[14: 16]), convert_int(
+            string_time[17: 19])
+
+        microsecond = string_time[20: 30].split(&#39;+&#39;)
+        microsecond = convert_int(microsecond[0]) if microsecond else 0
+        microsecond = 999999 if microsecond &gt; 999999 else 0
+        if year &lt; 1000 or month &gt; 12 or month &lt; 1 or len(parsing) &lt; 10:
+            parsing = parser.parse(string_time, **kwargs)
+        else:
+            parsing = datetime.datetime(year, month, day, hour, second, minute, microsecond)
+
+    if reset_time:
+        parsing = parsing.replace(hour=0, minute=0, second=0, microsecond=0)
+    if end_day:
+        parsing = parsing.replace(hour=23, minute=59, second=59, microsecond=999999)
+
+    if convert_time_type == &#39;datetime&#39;:
+        return parsing
+    elif convert_time_type == &#39;timestamp&#39;:
+        return convert_timestamp(parsing)
+
+
+def convert_timestamp(string_time, reset_time=False, end_day=False, big_int=True):
+    if convert_int(string_time) &gt; 0:
+        return string_time
+    st = convert_time(string_time, reset_time=reset_time, end_day=end_day) - convert_time(&#39;1970-01-01&#39;)
+    return convert_long(int(st.total_seconds()))
+
+
+def convert_timestamp_to_datetime(time_st):
+    return convert_time(&#39;1970-01-01&#39;) + datetime.timedelta(seconds=time_st)
+
+
+def generate_batches(iterable, batch_size_limit, callback_item=None, remove_false_value=False, remove_none=False,
+                     log_object=None):
+    &#34;&#34;&#34;
+    make a generate batches for a list or iterable
+    :param iterable:
+    :param batch_size_limit:
+    :param callback_item:
+    :param remove_false_value: ignore value False in list
+    :param log_object: logs some message
+    :return:
+    &#34;&#34;&#34;
+    batch_size_limit = int(batch_size_limit)
+    &#34;&#34;&#34;
+    Generator that yields lists of length size batch_size_limit containing
+    objects yielded by the iterable.
+    &#34;&#34;&#34;
+    batch = []
+    st = time.time()
+    for item in iterable:
+        if callback_item:
+            item = callback_item(item)
+        if len(batch) == batch_size_limit:
+            if log_object:
+                log_object.print_log(&#39;[PROCESSING BATCH TIME]: %s&#39; % (time.time() - st))
+            yield batch
+            batch = []
+            st = time.time()
+        if remove_none and item is None:
+            continue
+        else:
+            batch.append(item)
+
+    if len(batch):
+        if log_object:
+            log_object.print_log(&#39;[PROCESSING BATCH TIME]: %s&#39; % (time.time() - st))
+        yield batch
+
+
+def current_local_iso_date(reset_time=False):
+    utc = current_time_utc(reset_time)
+    pst_now = utc.astimezone(pytz.timezone(Setting.LOCAL_TIME_ZONE))
+    return pst_now.strftime(&#34;%Y-%m-%dT%H:%M:%S.%fZ&#34;)
+
+
+def current_time_utc(reset_time=False):
+    time = datetime.datetime.utcnow().strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+    return convert_time(time, reset_time=reset_time)
+
+
+def current_time_utc_timestamp(reset_time=False):
+    return convert_timestamp(current_time_utc(reset_time=reset_time))
+
+
+def current_time_local(reset_time=False):
+    return current_time_with_tz(tz=Setting.LOCAL_TIME_ZONE, reset_time=reset_time)
+
+
+def current_time_local_timestamp(reset_time=False):
+    return convert_timestamp(current_time_with_tz(tz=Setting.LOCAL_TIME_ZONE, reset_time=reset_time))
+
+
+def current_time_with_tz(tz, reset_time=False):
+    tz = str(tz) if tz else &#39;UTC&#39;
+    d = datetime.datetime.now(pytz.timezone(tz)).strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+
+    return convert_time(d, reset_time=reset_time).astimezone(pytz.timezone(tz))
+
+
+def convert_datetime_to_utc(tz, date_time, reset_time=False, check_is_dst=True):
+    local = timezone(tz)
+    naive = datetime.datetime.strptime(convert_time(date_time).strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;),
+                                       &#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+
+    if check_is_dst:
+        local_dt = local.localize(naive, is_dst=None)
+    else:
+        try:
+            local_dt = local.localize(naive, is_dst=None)
+        except BaseException as e:
+            local_dt = local.localize(naive, is_dst=False)
+    return convert_time(local_dt.astimezone(pytz.utc).strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;), reset_time=reset_time)
+
+
+def convert_utc_to_timzone(tz, date_time, reset_time=False):
+    date_time = convert_time(date_time)
+    return convert_time(
+        convert_time(date_time.replace(tzinfo=pytz.utc).astimezone(pytz.timezone(tz)), reset_time=reset_time).strftime(
+            &#34;%Y-%m-%d %H:%M:%S.%f&#34;))
+
+
+def convert_time_tz_other_tz(date_time, from_tz, to_tz):
+    # convert utc
+    d = convert_datetime_to_utc(tz=from_tz, date_time=date_time)
+    # convert utc to datetime that belong other timezone
+    return convert_utc_to_timzone(tz=to_tz, date_time=d)
+
+
+def convert_unixtime(date_time, tz=Setting.LOCAL_TIME_ZONE, reset_time=False):
+    utc = convert_datetime_to_utc(tz=tz, date_time=date_time, reset_time=reset_time)
+    return convert_timestamp(utc)
+
+
+def convert_from_unixtime(unixtime, tz=Setting.LOCAL_TIME_ZONE, reset_time=False):
+    utc = convert_timestamp_to_datetime(unixtime)
+    return convert_utc_to_timzone(tz=tz, date_time=utc, reset_time=reset_time)
+
+
+def ip2long(ip):
+    return struct.unpack(&#34;!L&#34;, socket.inet_aton(ip))[0]
+
+
+def get_int_from_string(string):
+    return map(int, re.findall(r&#39;\d+&#39;, string))
+
+
+def dashrepl(matchobj):
+    str6 = matchobj.group(6).strip()
+    str7 = matchobj.group(7).strip()
+    str5 = matchobj.group(5)
+    if len(str5) == 1:
+        str5 = &#39;0&#39; + str5
+
+    str4 = matchobj.group(4)
+    if len(str4) == 1:
+        str4 = &#39;0&#39; + str4
+
+    str3 = matchobj.group(3)
+    if len(str3) == 1:
+        str3 = &#39;0&#39; + str3
+
+    str2 = matchobj.group(2)
+    if len(str2) == 1:
+        str2 = &#39;0&#39; + str2
+
+    if str5 == &#39;59&#39;:
+        str6 = &#39;59.999999&#39;
+    else:
+        str6 = (&#39;00:000&#39; if str6 == &#39;&#39; else str6.replace(&#39;, &#39;, &#39;&#39;))
+
+    if str6 == &#39;00.000&#39; or str6 == &#39;59.999999&#39;:
+        str7 = &#39;&#39;
+    else:
+        str7 = (&#39;&#39; if str7 == &#39;&#39; else &#39;.&#39; + str7.replace(&#39;, &#39;, &#39;&#39;))
+
+    return &#39;ISODate(&#34;&#39; + matchobj.group(
+        1) + &#39;-&#39; + str2 + &#39;-&#39; + str3 + &#39;T&#39; + str4 + &#39;:&#39; + str5 + &#39;:&#39; + str6 + str7 + &#39;Z&#34;)&#39;
+
+
+def convert_print(aggregate):
+    str = pprint.pformat(aggregate)
+    str = str.replace(&#39; None&#39;, &#39;null&#39;)
+    str = str.replace(&#34;u&#39;&#34;, &#34;&#39;&#34;)
+    str = str.replace(&#39; True&#39;, &#39;true&#39;)
+    str = re.sub(
+        &#39;datetime\.datetime\(([0-9]{4}), ([0-9]{1,2}), ([0-9]{1,2}), ([0-9]{1,2}), ([0-9]{1,2})(|, [0-9]{1,2})(|, [0-9]{1,7})\)&#39;,
+        dashrepl, str)
+    return str
+
+
+def replace_array(content, array_params, a=[&#39;{&#39;, &#39;}&#39;]):
+    for key, value in array_params.iteritems():
+        content = content.replace(a[0] + key + a[1], value)
+    return content
+
+
+def render_date_range_by_sesson_one_day(date_day, tz, to_utc=True):
+    date_day = convert_time(date_day, end_day=True)
+    mark_result = []
+    mark_delta_time = 0
+    item_range = []
+    for i in range(0, 24):
+        date_day = date_day.replace(hour=i)
+        try:
+            delta_time = (convert_datetime_to_utc(tz=tz, date_time=date_day) - date_day).total_seconds()
+            if mark_delta_time == delta_time or mark_delta_time == 0:
+                mark_delta_time = delta_time
+                item_range.append(date_day)
+            else:
+                mark_delta_time = delta_time
+                mark_result.append(item_range)
+                item_range = []
+                item_range.append(date_day)
+        except BaseException as e:
+            continue
+    if item_range:
+        mark_result.append(item_range)
+    result = []
+
+    for list_time in mark_result:
+        result.append([
+            list_time[0].replace(minute=00, second=00, microsecond=000000),
+            list_time[-1].replace(minute=59, second=59, microsecond=999999),
+        ])
+    return result
+
+
+def render_date_range_by_season_and_timezone(from_date, to_date, tz, to_utc=False):
+    &#34;&#34;&#34;
+    split one date range to small date ranges by seasons.
+    :param from_date:
+    :param to_date:
+    :param tz:
+    :param to_utc:
+    :return:
+    &#34;&#34;&#34;
+    list_render = render_date_range(from_date=from_date, to_date=to_date)
+    mark_delta_time = 0
+    mark_result = []
+    item_range = []
+    for local_time in list_render:
+        local_time = convert_time(local_time, reset_time=True)
+
+        time_in_utc = convert_datetime_to_utc(date_time=local_time, tz=tz)
+        delta_time = (time_in_utc - local_time).total_seconds()
+        if mark_delta_time == delta_time or mark_delta_time == 0:
+            mark_delta_time = delta_time
+            item_range.append(local_time)
+        else:
+            mark_delta_time = delta_time
+            # get change on one day
+            session_local_time = render_date_range_by_sesson_one_day(date_day=item_range[-1], tz=tz)
+
+            if session_local_time:
+                item_range.append(session_local_time[0][-1])
+            mark_result.append([item_range[0], item_range[-1]])
+            item_range = [session_local_time[-1][0], local_time]
+
+    if item_range:
+        mark_result.append([item_range[0], convert_time(item_range[-1], end_day=True)])
+    result = []
+    for list_time in mark_result:
+        st = list_time[0].replace(minute=00, second=00, microsecond=000000)
+        stop = list_time[-1].replace(minute=59, second=59, microsecond=999999)
+        if to_utc:
+            result.append([
+                convert_datetime_to_utc(date_time=st, tz=tz),
+                convert_datetime_to_utc(date_time=stop, tz=tz),
+            ])
+        else:
+            result.append([
+                st,
+                stop
+            ])
+    return result
+
+
+def retry_function(function, number=3, time_sleep=10, print_log_cb=None, finish_cb=None):
+    &#34;&#34;&#34;
+    run a function with retry...
+    :param function:
+    :return:
+    &#34;&#34;&#34;
+    n = 0
+    error = &#34;&#34;
+    while True:
+        n += 1
+
+        if n &gt;= number:
+            if finish_cb:
+                return finish_cb()
+            raise ValueError(&#39;retry limit exceeded for function %s.\nTraceback: %s&#39; % (function.__name__, error))
+        try:
+            rs = function()
+            return rs
+        except BaseException as e:
+            trb = traceback.format_exc()
+            error = trb
+            if print_log_cb:
+                print_log_cb(n, e)
+            time.sleep(time_sleep)
+
+
+def convert_value_of_dicts_by_given_define(item, define_convert):
+    for k in item:
+        if k in define_convert:
+            if define_convert[k] in [&#39;int&#39;, &#39;tinyint&#39;]:
+                item[k] = convert_int(item[k])
+            elif define_convert[k] == &#39;bigint&#39;:
+                item[k] = convert_long(item[k])
+            elif define_convert[k] == &#39;float&#39;:
+                item[k] = convert_float(item[k])
+            elif define_convert[k] == &#39;datetime&#39;:
+                item[k] = convert_time(item[k])
+            elif define_convert[k] == &#39;timestamp&#39;:
+                item[k] = convert_timestamp(item[k])
+    return item
+
+
+def convert_value_of_dicts_by_given_define_dict(item, define_convert, type=&#39;&#39;):
+    for k, v in item.iteritems():
+        key_value = k.lower() if type == &#39;lower&#39; else k
+        if define_convert.has_key(key_value):
+            if define_convert[key_value] in [&#39;int&#39;, &#39;tinyint&#39;]:
+                item[k] = convert_int(item[k])
+            elif define_convert[key_value] == &#39;bigint&#39;:
+                item[k] = convert_long(item[k])
+            elif define_convert[key_value] == &#39;float&#39;:
+                item[k] = convert_float(item[k])
+            elif define_convert[key_value] == &#39;datetime&#39;:
+                item[k] = convert_time(item[k])
+            elif define_convert[k] == &#39;timestamp&#39;:
+                item[k] = convert_timestamp(item[k])
+    return item
+
+
+def get_last_day_of_week(day):
+    dayofweek = datetime.timedelta(days=day.weekday())
+    day = copy.copy(day)
+    if dayofweek.days == 6:
+        day = day + datetime.timedelta(days=1)
+    dayofweek = datetime.timedelta(days=day.weekday())
+    return day - dayofweek + datetime.timedelta(days=5)
+
+
+def get_first_day_of_week(day):
+    dayofweek = datetime.timedelta(days=day.weekday())
+    day = copy.copy(day)
+    if dayofweek.days == 6:
+        day = day + datetime.timedelta(days=1)
+    dayofweek = datetime.timedelta(days=day.weekday())
+    return day - dayofweek - datetime.timedelta(days=1)
+
+
+def get_last_day_of_month(day, formattime=&#39;&#39;):
+    d = day.replace(day=calendar.monthrange(day.year, day.month)[1])
+    if formattime == &#39;timestamp&#39;:
+        return convert_timestamp(d, reset_time=True)
+    return d
+
+
+def get_first_day_of_month(day):
+    return convert_time(&#39;%s-%s-01&#39; % (day.year, day.month))
+
+
+def get_previous_months_by_day(day, months=1):
+    t = convert_time(day)
+    return t - relativedelta(months=months)
+
+
+def get_next_months_by_day(day, months=1):
+    t = convert_time(day)
+    return t + relativedelta(months=months)
+
+
+class static_property(object):
+    def __init__(self, getter, setter=None):
+        self._getter = getter
+        self._setter = setter
+
+    def setter(self, setter):
+        self._setter = setter
+
+    def __get__(self, obj, cls=None):
+        return self._getter(cls)  # for static remove cls from the call
+
+    def __set__(self, *args):
+        return self._setter(*args)
+
+
+def beauti_dict(aggregate):
+    &#34;&#34;&#34;
+    make a dict is beautiful in string
+    :param aggregate:
+    :return:
+    &#34;&#34;&#34;
+
+    def dashrepl(matchobj):
+        str6 = matchobj.group(6).strip()
+        str7 = matchobj.group(7).strip()
+        str5 = matchobj.group(5)
+        if len(str5) == 1:
+            str5 = &#39;0&#39; + str5
+
+        str4 = matchobj.group(4)
+        if len(str4) == 1:
+            str4 = &#39;0&#39; + str4
+
+        str3 = matchobj.group(3)
+        if len(str3) == 1:
+            str3 = &#39;0&#39; + str3
+
+        str2 = matchobj.group(2)
+        if len(str2) == 1:
+            str2 = &#39;0&#39; + str2
+
+        if str5 == &#39;59&#39;:
+            str6 = &#39;59.999999&#39;
+        else:
+            str6 = (&#39;00:000&#39; if str6 == &#39;&#39; else str6.replace(&#39;, &#39;, &#39;&#39;))
+
+        if str6 == &#39;00.000&#39; or str6 == &#39;59.999999&#39;:
+            str7 = &#39;&#39;
+        else:
+            str7 = (&#39;&#39; if str7 == &#39;&#39; else &#39;.&#39; + str7.replace(&#39;, &#39;, &#39;&#39;))
+
+        return &#39;ISODate(&#34;&#39; + matchobj.group(
+            1) + &#39;-&#39; + str2 + &#39;-&#39; + str3 + &#39;T&#39; + str4 + &#39;:&#39; + str5 + &#39;:&#39; + str6 + str7 + &#39;Z&#34;)&#39;
+
+    str = pprint.pformat(aggregate)
+    str = str.replace(&#39; None&#39;, &#39;null&#39;)
+    str = str.replace(&#34;u&#39;&#34;, &#34;&#39;&#34;)
+    str = str.replace(&#39; True&#39;, &#39;true&#39;)
+    str = str.replace(&#39; False&#39;, &#39;false&#39;)
+    str = re.sub(
+        &#39;datetime\.datetime\(([0-9]{4}), ([0-9]{1,2}), ([0-9]{1,2}), ([0-9]{1,2}), ([0-9]{1,2})(|, [0-9]{1,2})(|, [0-9]{1,7})\)&#39;,
+        dashrepl, str)
+    return str
+
+
+def convert_percent(value):
+    try:
+        result = value.replace(&#39;%&#39;, &#39;&#39;)
+        result = convert_float(result)
+        return result
+    except BaseException as e:
+        return 0
+
+
+def clean_phone_number(number):
+    try:
+        return &#34;+%s&#34; % re.sub(&#34;[^0-9]&#34;, &#39;&#39;, number)
+    except BaseException as e:
+        return &#39;&#39;
+
+
+def validate_vn_mphone(number):
+    &#34;&#34;&#34;
+    validate Vietname mobile phone
+    :param number:
+    :return: provider, phone after cleaned, old phone
+    &#34;&#34;&#34;
+    number = &#39;0%s&#39; % (clean_phone_number(number).replace(&#39;+&#39;, &#39;&#39;).lstrip(&#39;84&#39;).lstrip(&#39;0&#39;))
+    print(number)
+    if len(number) not in [10, 11]:
+        return None, None, None
+    conf_phone = {
+        &#39;VTT&#39;: {&#39;086&#39;: &#39;086&#39;,
+                &#39;096&#39;: &#39;096&#39;,
+                &#39;097&#39;: &#39;097&#39;,
+                &#39;098&#39;: &#39;098&#39;,
+                &#39;0162&#39;: &#39;032&#39;,
+                &#39;0163&#39;: &#39;033&#39;,
+                &#39;0164&#39;: &#39;034&#39;,
+                &#39;0165&#39;: &#39;035&#39;,
+                &#39;0166&#39;: &#39;036&#39;,
+                &#39;0167&#39;: &#39;037&#39;,
+                &#39;0168&#39;: &#39;038&#39;,
+                &#39;0169&#39;: &#39;039&#39;},
+        &#39;VMS&#39;: {&#39;090&#39;: &#39;090&#39;, &#39;093&#39;: &#39;093&#39;, &#39;0120&#39;: &#39;070&#39;, &#39;0121&#39;: &#39;079&#39;, &#39;0122&#39;: &#39;077&#39;, &#39;0126&#39;: &#39;076&#39;, &#39;0128&#39;: &#39;078&#39;},
+        &#39;VNP&#39;: {&#39;091&#39;: &#39;091&#39;, &#39;094&#39;: &#39;094&#39;, &#39;0123&#39;: &#39;083&#39;, &#39;0124&#39;: &#39;084&#39;, &#39;0125&#39;: &#39;085&#39;, &#39;0127&#39;: &#39;081&#39;, &#39;0129&#39;: &#39;082&#39;},
+        &#39;VNM&#39;: {&#39;092&#39;: &#39;092&#39;, &#39;056&#39;: &#39;056&#39;, &#39;058&#39;: &#39;058&#39;},
+        &#39;GMB&#39;: {&#39;099&#39;: &#39;099&#39;, &#39;0199&#39;: &#39;059&#39;}
+
+    }
+    prefix = [number[0:3], number[0:4]]
+    for k, v in conf_phone.items():
+        d = list(set(list(v.keys()) + list(v.values())))
+        for pr in (prefix):
+            if pr in d:
+                c_p = &#39;%s%s&#39; % (v.get(pr, pr), number.lstrip(pr))
+                return k, number, c_p
+    return None, None, None
+
+
+def convert_date_to_dim_date(date_time):
+    time = datetime.datetime.strftime(date_time, &#34;%Y%m%d&#34;)
+    return time
+
+
+def get_quarter_from_date(date_time):
+    &#39;&#39;&#39;
+
+    :param date_time: datetime
+    :return:
+    &#39;&#39;&#39;
+
+    month = date_time.month
+    quarter = math.ceil(month / 3.)
+    return &#34;Q&#34; + str(quarter)
+
+
+def get_week_of_year(date_time):
+    return date_time.isocalendar()
+
+
+from sqlalchemy.types import UserDefinedType
+from sqlalchemy import func
+
+
+class SQlAchemyCustomTpe(object):
+    class PhoneType(UserDefinedType):
+        &#34;&#34;&#34;
+        Phone Number type
+        &#34;&#34;&#34;
+
+        def get_col_spec(self):
+            return &#34;PhoneType&#34;
+
+        def bind_expression(self, bindvalue):
+            return func.ST_GeomFromText(bindvalue, type_=self)
+
+        def column_expression(self, col):
+            return func.ST_AsText(col, type_=self)
+
+    class CustomDimDate(UserDefinedType):
+        &#34;&#34;&#34;
+        Phone Number type
+        &#34;&#34;&#34;
+
+        def get_col_spec(self):
+            return &#34;CustomDimDate&#34;
+
+        def bind_expression(self, bindvalue):
+            return func.ST_GeomFromText(bindvalue, type_=self)
+
+        def column_expression(self, col):
+            return func.ST_AsText(col, type_=self)
+
+    class FromSparkUnixToDimDate(UserDefinedType):
+        &#34;&#34;&#34;
+        Phone Number type
+        &#34;&#34;&#34;
+
+        def get_col_spec(self):
+            return &#34;FromSparkUnixToDimDate&#34;
+
+        def bind_expression(self, bindvalue):
+            return func.ST_GeomFromText(bindvalue, type_=self)
+
+        def column_expression(self, col):
+            return func.ST_AsText(col, type_=self)
+
+    class FromSparkDateToUnix(UserDefinedType):
+        &#34;&#34;&#34;
+        Phone Number type
+        &#34;&#34;&#34;
+
+        def get_col_spec(self):
+            return &#34;FromSparkDateToUnix&#34;
+
+        def bind_expression(self, bindvalue):
+            return func.ST_GeomFromText(bindvalue, type_=self)
+
+        def column_expression(self, col):
+            return func.ST_AsText(col, type_=self)
+
+
+class QuerySparkUtils(object):
+
+    @staticmethod
+    def convert_unix_to_date(field, alias=&#39;&#39;):
+        return &#34;to_utc_timestamp(from_unixtime(%s), &#39;%s&#39;) %s&#34; % (
+            field, Setting.LOCAL_TIME_ZONE, (&#39; as &#39; + alias) if alias else &#39;&#39;)
+
+    @staticmethod
+    def convert_datetime_to_unix(field, alias=&#39;&#39;):
+        return &#34;unix_timestamp(from_utc_timestamp(%s,&#39;%s&#39;)) %s&#34; % (
+            field, Setting.LOCAL_TIME_ZONE, (&#39; as &#39; + alias) if alias else &#39;&#39;)
+
+
+def cligme_first_day_of_week(d):
+    &#34;&#34;&#34;
+    get first day of week with Clingme Standard
+    :param d:
+    :return:
+    &#34;&#34;&#34;
+    return get_first_day_of_week(d) - datetime.timedelta(days=1)
+
+
+def cligme_last_day_of_week(d):
+    &#34;&#34;&#34;
+        get last day of week with Clingme Standard
+        :param d:
+        :return:
+    &#34;&#34;&#34;
+    return get_last_day_of_week(d) - datetime.timedelta(days=1)
+
+
+def std_first_day_of_week(d):
+    &#34;&#34;&#34;
+    get first day of week with Clingme Standard
+    :param d:
+    :return:
+    &#34;&#34;&#34;
+    return get_first_day_of_week(d) + datetime.timedelta(days=1)
+
+
+def clingme_first_day_of_month(day):
+    &#34;&#34;&#34;
+    get first day of month with Clingme Standard
+    :param day:
+    :return:
+    &#34;&#34;&#34;
+    if day.day &lt; 25:
+        if day.month == 1:
+            return convert_time(&#39;%s-%s-25&#39; % (day.year - 1, 12))
+        return convert_time(&#39;%s-%s-25&#39; % (day.year, day.month - 1))
+    else:
+        return convert_time(&#39;%s-%s-25&#39; % (day.year, day.month))
+
+
+def clingme_last_day_of_month(day):
+    &#34;&#34;&#34;
+    get last day of month with Clingme Standard
+    :param day:
+    :return:
+    &#34;&#34;&#34;
+    if day.day &gt;= 25:
+        if day.month == 12:
+            return convert_time(&#39;%s-%s-24&#39; % (day.year + 1, 1))
+        return convert_time(&#39;%s-%s-24&#39; % (day.year, day.month + 1))
+    else:
+        return convert_time(&#39;%s-%s-24&#39; % (day.year, day.month))</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="zuka_etl.utils.access_dict_by_dot"><code class="name flex">
+<span>def <span class="ident">access_dict_by_dot</span></span>(<span>item={}, field='', default=None, lower_key=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def access_dict_by_dot(item={}, field=&#39;&#39;, default=None, lower_key=False):
+    if item and field:
+        sli = field.split(&#39;.&#39;)
+
+        if (type(item) is list and str(convert_int(field)) == field):
+            index = convert_int(field)
+            if len(item) &gt; index:
+                return item[index]
+            return default
+        else:
+            if lower_key:
+                sli = field.lower().split(&#39;.&#39;)
+                item = {k.lower(): v for k, v in item.iteritems()}
+            fs = item.get(sli[0], default)
+        if len(sli) == 1:
+            return fs
+        del sli[0]
+        return access_dict_by_dot(item=fs, field=&#34;.&#34;.join(sli), default=default, lower_key=lower_key)
+    return default</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.beauti_dict"><code class="name flex">
+<span>def <span class="ident">beauti_dict</span></span>(<span>aggregate)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>make a dict is beautiful in string
+:param aggregate:
+:return:</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def beauti_dict(aggregate):
+    &#34;&#34;&#34;
+    make a dict is beautiful in string
+    :param aggregate:
+    :return:
+    &#34;&#34;&#34;
+
+    def dashrepl(matchobj):
+        str6 = matchobj.group(6).strip()
+        str7 = matchobj.group(7).strip()
+        str5 = matchobj.group(5)
+        if len(str5) == 1:
+            str5 = &#39;0&#39; + str5
+
+        str4 = matchobj.group(4)
+        if len(str4) == 1:
+            str4 = &#39;0&#39; + str4
+
+        str3 = matchobj.group(3)
+        if len(str3) == 1:
+            str3 = &#39;0&#39; + str3
+
+        str2 = matchobj.group(2)
+        if len(str2) == 1:
+            str2 = &#39;0&#39; + str2
+
+        if str5 == &#39;59&#39;:
+            str6 = &#39;59.999999&#39;
+        else:
+            str6 = (&#39;00:000&#39; if str6 == &#39;&#39; else str6.replace(&#39;, &#39;, &#39;&#39;))
+
+        if str6 == &#39;00.000&#39; or str6 == &#39;59.999999&#39;:
+            str7 = &#39;&#39;
+        else:
+            str7 = (&#39;&#39; if str7 == &#39;&#39; else &#39;.&#39; + str7.replace(&#39;, &#39;, &#39;&#39;))
+
+        return &#39;ISODate(&#34;&#39; + matchobj.group(
+            1) + &#39;-&#39; + str2 + &#39;-&#39; + str3 + &#39;T&#39; + str4 + &#39;:&#39; + str5 + &#39;:&#39; + str6 + str7 + &#39;Z&#34;)&#39;
+
+    str = pprint.pformat(aggregate)
+    str = str.replace(&#39; None&#39;, &#39;null&#39;)
+    str = str.replace(&#34;u&#39;&#34;, &#34;&#39;&#34;)
+    str = str.replace(&#39; True&#39;, &#39;true&#39;)
+    str = str.replace(&#39; False&#39;, &#39;false&#39;)
+    str = re.sub(
+        &#39;datetime\.datetime\(([0-9]{4}), ([0-9]{1,2}), ([0-9]{1,2}), ([0-9]{1,2}), ([0-9]{1,2})(|, [0-9]{1,2})(|, [0-9]{1,7})\)&#39;,
+        dashrepl, str)
+    return str</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.clean_phone_number"><code class="name flex">
+<span>def <span class="ident">clean_phone_number</span></span>(<span>number)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def clean_phone_number(number):
+    try:
+        return &#34;+%s&#34; % re.sub(&#34;[^0-9]&#34;, &#39;&#39;, number)
+    except BaseException as e:
+        return &#39;&#39;</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.cligme_first_day_of_week"><code class="name flex">
+<span>def <span class="ident">cligme_first_day_of_week</span></span>(<span>d)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>get first day of week with Clingme Standard
+:param d:
+:return:</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def cligme_first_day_of_week(d):
+    &#34;&#34;&#34;
+    get first day of week with Clingme Standard
+    :param d:
+    :return:
+    &#34;&#34;&#34;
+    return get_first_day_of_week(d) - datetime.timedelta(days=1)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.cligme_last_day_of_week"><code class="name flex">
+<span>def <span class="ident">cligme_last_day_of_week</span></span>(<span>d)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>get last day of week with Clingme Standard
+:param d:
+:return:</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def cligme_last_day_of_week(d):
+    &#34;&#34;&#34;
+        get last day of week with Clingme Standard
+        :param d:
+        :return:
+    &#34;&#34;&#34;
+    return get_last_day_of_week(d) - datetime.timedelta(days=1)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.clingme_first_day_of_month"><code class="name flex">
+<span>def <span class="ident">clingme_first_day_of_month</span></span>(<span>day)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>get first day of month with Clingme Standard
+:param day:
+:return:</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def clingme_first_day_of_month(day):
+    &#34;&#34;&#34;
+    get first day of month with Clingme Standard
+    :param day:
+    :return:
+    &#34;&#34;&#34;
+    if day.day &lt; 25:
+        if day.month == 1:
+            return convert_time(&#39;%s-%s-25&#39; % (day.year - 1, 12))
+        return convert_time(&#39;%s-%s-25&#39; % (day.year, day.month - 1))
+    else:
+        return convert_time(&#39;%s-%s-25&#39; % (day.year, day.month))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.clingme_last_day_of_month"><code class="name flex">
+<span>def <span class="ident">clingme_last_day_of_month</span></span>(<span>day)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>get last day of month with Clingme Standard
+:param day:
+:return:</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def clingme_last_day_of_month(day):
+    &#34;&#34;&#34;
+    get last day of month with Clingme Standard
+    :param day:
+    :return:
+    &#34;&#34;&#34;
+    if day.day &gt;= 25:
+        if day.month == 12:
+            return convert_time(&#39;%s-%s-24&#39; % (day.year + 1, 1))
+        return convert_time(&#39;%s-%s-24&#39; % (day.year, day.month + 1))
+    else:
+        return convert_time(&#39;%s-%s-24&#39; % (day.year, day.month))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.compare_dicts"><code class="name flex">
+<span>def <span class="ident">compare_dicts</span></span>(<span>d1, d2)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compare_dicts(d1, d2, _group=True):
+    result = {}
+    listtype = [&#39;__added&#39;, &#39;__removed&#39;, &#39;__changed_old_data&#39;, &#39;__changed_new_data&#39;]
+    for k in listtype:
+        result[k] = {}
+
+    # starting compare 2 dicts
+    for k in d1.keys():
+        if not d2.has_key(k):
+            result[&#39;__removed&#39;][k] = d1[k]
+        else:
+
+            if type(d1[k]) is dict:
+                compare = compare_dicts(d1[k], d2[k], False)
+                if compare:
+                    result[k] = compare
+            elif type(d1[k]) is list and type(d2[k]) is list:
+                compare = compare_lists(d1[k], d2[k])
+                if compare:
+                    result[k] = compare
+            else:
+                if d1[k] != d2[k]:
+                    result[&#39;__changed_old_data&#39;][k] = d1[k]
+                    result[&#39;__changed_new_data&#39;][k] = d2[k]
+
+    for k in d2.keys():
+        if not d1.has_key(k):
+            result[&#39;__added&#39;][k] = d2[k]
+    result = {k: result[k] for k in result if type(result[k]) is not dict or result[k]}
+    # filter and group
+    if _group and result:
+        def group_result(data, root=&#39;&#39;):
+            rs = {}
+            for root_key, root_item in data.iteritems():
+                if root_key in listtype:
+                    rs[root_key] = {}
+                    if root == &#39;&#39;:
+                        rs[root_key] = root_item
+                    else:
+                        rs[root_key][root] = root_item
+                elif type(root_item) is dict:
+                    r = group_result(root_item, root_key)
+                    ex = data.copy()
+                    for k, v in r.iteritems():
+                        if k in ex:
+                            ex[k].update(v)
+                        else:
+                            ex[k] = v
+                    rs.update({k: ex[k] for k in ex if k in listtype})
+            return rs
+
+        return group_result(result)
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.compare_lists"><code class="name flex">
+<span>def <span class="ident">compare_lists</span></span>(<span>l1, l2)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compare_lists(l1, l2):
+    removed = [k for k in l1 if k not in l2]
+    added = [k for k in l2 if k not in l1]
+    if added or removed:
+        return {
+            &#39;__added&#39;: added,
+            &#39;__removed&#39;: removed,
+        }
+    return {}</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_date_to_dim_date"><code class="name flex">
+<span>def <span class="ident">convert_date_to_dim_date</span></span>(<span>date_time)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_date_to_dim_date(date_time):
+    time = datetime.datetime.strftime(date_time, &#34;%Y%m%d&#34;)
+    return time</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_datetime_to_utc"><code class="name flex">
+<span>def <span class="ident">convert_datetime_to_utc</span></span>(<span>tz, date_time, reset_time=False, check_is_dst=True)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_datetime_to_utc(tz, date_time, reset_time=False, check_is_dst=True):
+    local = timezone(tz)
+    naive = datetime.datetime.strptime(convert_time(date_time).strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;),
+                                       &#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+
+    if check_is_dst:
+        local_dt = local.localize(naive, is_dst=None)
+    else:
+        try:
+            local_dt = local.localize(naive, is_dst=None)
+        except BaseException as e:
+            local_dt = local.localize(naive, is_dst=False)
+    return convert_time(local_dt.astimezone(pytz.utc).strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;), reset_time=reset_time)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_float"><code class="name flex">
+<span>def <span class="ident">convert_float</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_float(value):
+    try:
+        result = float(value)
+        return result
+    except BaseException as e:
+        return 0.0</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_from_unixtime"><code class="name flex">
+<span>def <span class="ident">convert_from_unixtime</span></span>(<span>unixtime, tz="'Asia/Bangkok'", reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_from_unixtime(unixtime, tz=Setting.LOCAL_TIME_ZONE, reset_time=False):
+    utc = convert_timestamp_to_datetime(unixtime)
+    return convert_utc_to_timzone(tz=tz, date_time=utc, reset_time=reset_time)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_int"><code class="name flex">
+<span>def <span class="ident">convert_int</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_int(value):
+    try:
+        result = int(round(convert_float(value)))
+        return result
+    except BaseException as e:
+        return 0</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_long"><code class="name flex">
+<span>def <span class="ident">convert_long</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_long(value):
+    try:
+        result = convert_int(round(convert_float(value)))
+        return result
+    except BaseException as e:
+        return 0</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_percent"><code class="name flex">
+<span>def <span class="ident">convert_percent</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_percent(value):
+    try:
+        result = value.replace(&#39;%&#39;, &#39;&#39;)
+        result = convert_float(result)
+        return result
+    except BaseException as e:
+        return 0</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_print"><code class="name flex">
+<span>def <span class="ident">convert_print</span></span>(<span>aggregate)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_print(aggregate):
+    str = pprint.pformat(aggregate)
+    str = str.replace(&#39; None&#39;, &#39;null&#39;)
+    str = str.replace(&#34;u&#39;&#34;, &#34;&#39;&#34;)
+    str = str.replace(&#39; True&#39;, &#39;true&#39;)
+    str = re.sub(
+        &#39;datetime\.datetime\(([0-9]{4}), ([0-9]{1,2}), ([0-9]{1,2}), ([0-9]{1,2}), ([0-9]{1,2})(|, [0-9]{1,2})(|, [0-9]{1,7})\)&#39;,
+        dashrepl, str)
+    return str</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_time"><code class="name flex">
+<span>def <span class="ident">convert_time</span></span>(<span>string_time, reset_time=False, end_day=False, convert_time_type='datetime', **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_time(string_time, reset_time=False, end_day=False, convert_time_type=&#39;datetime&#39;, **kwargs):
+    if string_time in [None, &#39;&#39;]:
+        return None
+    parsing = string_time
+
+    if type(string_time) is not datetime.datetime and datetime:
+        # format YY:mm:dd
+        year, month, day, hour, second, minute = convert_int(string_time[:4]), convert_int(
+            string_time[5:7]), convert_int(
+            string_time[8:10]), convert_int(string_time[11: 13]), convert_int(string_time[14: 16]), convert_int(
+            string_time[17: 19])
+
+        microsecond = string_time[20: 30].split(&#39;+&#39;)
+        microsecond = convert_int(microsecond[0]) if microsecond else 0
+        microsecond = 999999 if microsecond &gt; 999999 else 0
+        if year &lt; 1000 or month &gt; 12 or month &lt; 1 or len(parsing) &lt; 10:
+            parsing = parser.parse(string_time, **kwargs)
+        else:
+            parsing = datetime.datetime(year, month, day, hour, second, minute, microsecond)
+
+    if reset_time:
+        parsing = parsing.replace(hour=0, minute=0, second=0, microsecond=0)
+    if end_day:
+        parsing = parsing.replace(hour=23, minute=59, second=59, microsecond=999999)
+
+    if convert_time_type == &#39;datetime&#39;:
+        return parsing
+    elif convert_time_type == &#39;timestamp&#39;:
+        return convert_timestamp(parsing)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_time_tz_other_tz"><code class="name flex">
+<span>def <span class="ident">convert_time_tz_other_tz</span></span>(<span>date_time, from_tz, to_tz)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_time_tz_other_tz(date_time, from_tz, to_tz):
+    # convert utc
+    d = convert_datetime_to_utc(tz=from_tz, date_time=date_time)
+    # convert utc to datetime that belong other timezone
+    return convert_utc_to_timzone(tz=to_tz, date_time=d)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_timestamp"><code class="name flex">
+<span>def <span class="ident">convert_timestamp</span></span>(<span>string_time, reset_time=False, end_day=False, big_int=True)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_timestamp(string_time, reset_time=False, end_day=False, big_int=True):
+    if convert_int(string_time) &gt; 0:
+        return string_time
+    st = convert_time(string_time, reset_time=reset_time, end_day=end_day) - convert_time(&#39;1970-01-01&#39;)
+    return convert_long(int(st.total_seconds()))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_timestamp_to_datetime"><code class="name flex">
+<span>def <span class="ident">convert_timestamp_to_datetime</span></span>(<span>time_st)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_timestamp_to_datetime(time_st):
+    return convert_time(&#39;1970-01-01&#39;) + datetime.timedelta(seconds=time_st)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_unixtime"><code class="name flex">
+<span>def <span class="ident">convert_unixtime</span></span>(<span>date_time, tz="'Asia/Bangkok'", reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_unixtime(date_time, tz=Setting.LOCAL_TIME_ZONE, reset_time=False):
+    utc = convert_datetime_to_utc(tz=tz, date_time=date_time, reset_time=reset_time)
+    return convert_timestamp(utc)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_utc_to_timzone"><code class="name flex">
+<span>def <span class="ident">convert_utc_to_timzone</span></span>(<span>tz, date_time, reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_utc_to_timzone(tz, date_time, reset_time=False):
+    date_time = convert_time(date_time)
+    return convert_time(
+        convert_time(date_time.replace(tzinfo=pytz.utc).astimezone(pytz.timezone(tz)), reset_time=reset_time).strftime(
+            &#34;%Y-%m-%d %H:%M:%S.%f&#34;))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_value_of_dicts_by_given_define"><code class="name flex">
+<span>def <span class="ident">convert_value_of_dicts_by_given_define</span></span>(<span>item, define_convert)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_value_of_dicts_by_given_define(item, define_convert):
+    for k in item:
+        if k in define_convert:
+            if define_convert[k] in [&#39;int&#39;, &#39;tinyint&#39;]:
+                item[k] = convert_int(item[k])
+            elif define_convert[k] == &#39;bigint&#39;:
+                item[k] = convert_long(item[k])
+            elif define_convert[k] == &#39;float&#39;:
+                item[k] = convert_float(item[k])
+            elif define_convert[k] == &#39;datetime&#39;:
+                item[k] = convert_time(item[k])
+            elif define_convert[k] == &#39;timestamp&#39;:
+                item[k] = convert_timestamp(item[k])
+    return item</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.convert_value_of_dicts_by_given_define_dict"><code class="name flex">
+<span>def <span class="ident">convert_value_of_dicts_by_given_define_dict</span></span>(<span>item, define_convert, type='')</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convert_value_of_dicts_by_given_define_dict(item, define_convert, type=&#39;&#39;):
+    for k, v in item.iteritems():
+        key_value = k.lower() if type == &#39;lower&#39; else k
+        if define_convert.has_key(key_value):
+            if define_convert[key_value] in [&#39;int&#39;, &#39;tinyint&#39;]:
+                item[k] = convert_int(item[k])
+            elif define_convert[key_value] == &#39;bigint&#39;:
+                item[k] = convert_long(item[k])
+            elif define_convert[key_value] == &#39;float&#39;:
+                item[k] = convert_float(item[k])
+            elif define_convert[key_value] == &#39;datetime&#39;:
+                item[k] = convert_time(item[k])
+            elif define_convert[k] == &#39;timestamp&#39;:
+                item[k] = convert_timestamp(item[k])
+    return item</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.current_local_iso_date"><code class="name flex">
+<span>def <span class="ident">current_local_iso_date</span></span>(<span>reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_local_iso_date(reset_time=False):
+    utc = current_time_utc(reset_time)
+    pst_now = utc.astimezone(pytz.timezone(Setting.LOCAL_TIME_ZONE))
+    return pst_now.strftime(&#34;%Y-%m-%dT%H:%M:%S.%fZ&#34;)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.current_time_local"><code class="name flex">
+<span>def <span class="ident">current_time_local</span></span>(<span>reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_time_local(reset_time=False):
+    return current_time_with_tz(tz=Setting.LOCAL_TIME_ZONE, reset_time=reset_time)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.current_time_local_timestamp"><code class="name flex">
+<span>def <span class="ident">current_time_local_timestamp</span></span>(<span>reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_time_local_timestamp(reset_time=False):
+    return convert_timestamp(current_time_with_tz(tz=Setting.LOCAL_TIME_ZONE, reset_time=reset_time))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.current_time_utc"><code class="name flex">
+<span>def <span class="ident">current_time_utc</span></span>(<span>reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_time_utc(reset_time=False):
+    time = datetime.datetime.utcnow().strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+    return convert_time(time, reset_time=reset_time)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.current_time_utc_timestamp"><code class="name flex">
+<span>def <span class="ident">current_time_utc_timestamp</span></span>(<span>reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_time_utc_timestamp(reset_time=False):
+    return convert_timestamp(current_time_utc(reset_time=reset_time))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.current_time_with_tz"><code class="name flex">
+<span>def <span class="ident">current_time_with_tz</span></span>(<span>tz, reset_time=False)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_time_with_tz(tz, reset_time=False):
+    tz = str(tz) if tz else &#39;UTC&#39;
+    d = datetime.datetime.now(pytz.timezone(tz)).strftime(&#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+
+    return convert_time(d, reset_time=reset_time).astimezone(pytz.timezone(tz))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.dashrepl"><code class="name flex">
+<span>def <span class="ident">dashrepl</span></span>(<span>matchobj)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dashrepl(matchobj):
+    str6 = matchobj.group(6).strip()
+    str7 = matchobj.group(7).strip()
+    str5 = matchobj.group(5)
+    if len(str5) == 1:
+        str5 = &#39;0&#39; + str5
+
+    str4 = matchobj.group(4)
+    if len(str4) == 1:
+        str4 = &#39;0&#39; + str4
+
+    str3 = matchobj.group(3)
+    if len(str3) == 1:
+        str3 = &#39;0&#39; + str3
+
+    str2 = matchobj.group(2)
+    if len(str2) == 1:
+        str2 = &#39;0&#39; + str2
+
+    if str5 == &#39;59&#39;:
+        str6 = &#39;59.999999&#39;
+    else:
+        str6 = (&#39;00:000&#39; if str6 == &#39;&#39; else str6.replace(&#39;, &#39;, &#39;&#39;))
+
+    if str6 == &#39;00.000&#39; or str6 == &#39;59.999999&#39;:
+        str7 = &#39;&#39;
+    else:
+        str7 = (&#39;&#39; if str7 == &#39;&#39; else &#39;.&#39; + str7.replace(&#39;, &#39;, &#39;&#39;))
+
+    return &#39;ISODate(&#34;&#39; + matchobj.group(
+        1) + &#39;-&#39; + str2 + &#39;-&#39; + str3 + &#39;T&#39; + str4 + &#39;:&#39; + str5 + &#39;:&#39; + str6 + str7 + &#39;Z&#34;)&#39;</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.debug_tool"><code class="name flex">
+<span>def <span class="ident">debug_tool</span></span>(<span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def debug_tool(*args, **kwargs):
+    pprint.pprint(args)
+    if &#34;keep&#34; not in kwargs or kwargs[&#34;keep&#34;] == False:
+        pprint.pprint(&#34;-----------------------------stop debug-------------------------------&#34;)
+        sys.exit()</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.generate_batches"><code class="name flex">
+<span>def <span class="ident">generate_batches</span></span>(<span>iterable, batch_size_limit, callback_item=None, remove_false_value=False, remove_none=False, log_object=None)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>make a generate batches for a list or iterable
+:param iterable:
+:param batch_size_limit:
+:param callback_item:
+:param remove_false_value: ignore value False in list
+:param log_object: logs some message
+:return:</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_batches(iterable, batch_size_limit, callback_item=None, remove_false_value=False, remove_none=False,
+                     log_object=None):
+    &#34;&#34;&#34;
+    make a generate batches for a list or iterable
+    :param iterable:
+    :param batch_size_limit:
+    :param callback_item:
+    :param remove_false_value: ignore value False in list
+    :param log_object: logs some message
+    :return:
+    &#34;&#34;&#34;
+    batch_size_limit = int(batch_size_limit)
+    &#34;&#34;&#34;
+    Generator that yields lists of length size batch_size_limit containing
+    objects yielded by the iterable.
+    &#34;&#34;&#34;
+    batch = []
+    st = time.time()
+    for item in iterable:
+        if callback_item:
+            item = callback_item(item)
+        if len(batch) == batch_size_limit:
+            if log_object:
+                log_object.print_log(&#39;[PROCESSING BATCH TIME]: %s&#39; % (time.time() - st))
+            yield batch
+            batch = []
+            st = time.time()
+        if remove_none and item is None:
+            continue
+        else:
+            batch.append(item)
+
+    if len(batch):
+        if log_object:
+            log_object.print_log(&#39;[PROCESSING BATCH TIME]: %s&#39; % (time.time() - st))
+        yield batch</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.generate_batches_date_range"><code class="name flex">
+<span>def <span class="ident">generate_batches_date_range</span></span>(<span>from_date, to_date, size='DAILY')</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_batches_date_range(from_date, to_date, size=&#39;DAILY&#39;):
+    from_date = convert_time(from_date)
+    from_date_convert = copy.copy(from_date)
+    if size == &#39;MONTHLY&#39;:
+        from_date_convert = get_first_day_of_month(from_date)
+    to_date = convert_time(to_date, end_day=True)
+    date_range = list(render_date_range(from_date_convert, to_date, size=size))
+    batch = []
+    d_max = None
+    n = 0
+    len_r = len(date_range)
+    for d in date_range:
+        d_max = d
+        lenth = len(batch)
+        n += 1
+        if size == &#39;MONTHLY&#39;:
+            f_day = get_first_day_of_month(d) if n &gt; 1 else convert_time(from_date)
+            l_day = get_last_day_of_month(convert_time(d, end_day=True)) if n &lt; len_r - 1 else to_date
+            if d.month == to_date.month and d.year == to_date.year:
+                yield [f_day, l_day]
+                return
+            yield [f_day, l_day]
+            continue
+
+        if lenth &lt;= 0:
+            batch.append(d)
+        else:
+            if size != &#39;DAILY&#39; and d.date() == to_date.date():
+                d_max = None
+                n = to_date
+            else:
+                n = convert_time(d - datetime.timedelta(days=1), end_day=True)
+
+            batch.append(n)
+            yield batch
+            batch = []
+            batch.append(d)
+    if d_max:
+        yield [convert_time(d_max, reset_time=True), convert_time(d_max, end_day=True)]</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.get_first_day_of_month"><code class="name flex">
+<span>def <span class="ident">get_first_day_of_month</span></span>(<span>day)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_first_day_of_month(day):
+    return convert_time(&#39;%s-%s-01&#39; % (day.year, day.month))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.get_first_day_of_week"><code class="name flex">
+<span>def <span class="ident">get_first_day_of_week</span></span>(<span>day)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_first_day_of_week(day):
+    dayofweek = datetime.timedelta(days=day.weekday())
+    day = copy.copy(day)
+    if dayofweek.days == 6:
+        day = day + datetime.timedelta(days=1)
+    dayofweek = datetime.timedelta(days=day.weekday())
+    return day - dayofweek - datetime.timedelta(days=1)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.get_int_from_string"><code class="name flex">
+<span>def <span class="ident">get_int_from_string</span></span>(<span>string)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_int_from_string(string):
+    return map(int, re.findall(r&#39;\d+&#39;, string))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.get_last_day_of_month"><code class="name flex">
+<span>def <span class="ident">get_last_day_of_month</span></span>(<span>day, formattime='')</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_last_day_of_month(day, formattime=&#39;&#39;):
+    d = day.replace(day=calendar.monthrange(day.year, day.month)[1])
+    if formattime == &#39;timestamp&#39;:
+        return convert_timestamp(d, reset_time=True)
+    return d</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.get_last_day_of_week"><code class="name flex">
+<span>def <span class="ident">get_last_day_of_week</span></span>(<span>day)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_last_day_of_week(day):
+    dayofweek = datetime.timedelta(days=day.weekday())
+    day = copy.copy(day)
+    if dayofweek.days == 6:
+        day = day + datetime.timedelta(days=1)
+    dayofweek = datetime.timedelta(days=day.weekday())
+    return day - dayofweek + datetime.timedelta(days=5)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.get_next_months_by_day"><code class="name flex">
+<span>def <span class="ident">get_next_months_by_day</span></span>(<span>day, months=1)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_next_months_by_day(day, months=1):
+    t = convert_time(day)
+    return t + relativedelta(months=months)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.get_previous_months_by_day"><code class="name flex">
+<span>def <span class="ident">get_previous_months_by_day</span></span>(<span>day, months=1)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_previous_months_by_day(day, months=1):
+    t = convert_time(day)
+    return t - relativedelta(months=months)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.get_quarter_from_date"><code class="name flex">
+<span>def <span class="ident">get_quarter_from_date</span></span>(<span>date_time)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>:param date_time: datetime
+:return:</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_quarter_from_date(date_time):
+    &#39;&#39;&#39;
+
+    :param date_time: datetime
+    :return:
+    &#39;&#39;&#39;
+
+    month = date_time.month
+    quarter = math.ceil(month / 3.)
+    return &#34;Q&#34; + str(quarter)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.get_week_of_year"><code class="name flex">
+<span>def <span class="ident">get_week_of_year</span></span>(<span>date_time)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_week_of_year(date_time):
+    return date_time.isocalendar()</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.intersect"><code class="name flex">
+<span>def <span class="ident">intersect</span></span>(<span>a, b)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def intersect(a, b):
+    return list(set(a) &amp; set(b))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.ip2long"><code class="name flex">
+<span>def <span class="ident">ip2long</span></span>(<span>ip)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ip2long(ip):
+    return struct.unpack(&#34;!L&#34;, socket.inet_aton(ip))[0]</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.is_interger"><code class="name flex">
+<span>def <span class="ident">is_interger</span></span>(<span>number)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_interger(number):
+    return str(number).isdigit()</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.is_numeric"><code class="name flex">
+<span>def <span class="ident">is_numeric</span></span>(<span>number)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_numeric(number):
+    return str(number).replace(&#39;.&#39;, &#39;&#39;, 1).isdigit()</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.parser_object_to_dict"><code class="name flex">
+<span>def <span class="ident">parser_object_to_dict</span></span>(<span>object)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def parser_object_to_dict(object):
+    if isinstance(object, list):
+        result = []
+        for k in object:
+            result.append(parser_object_to_dict(k))
+    elif hasattr(object, &#39;__keylist__&#39;):
+        keylist = object[&#39;__keylist__&#39;]
+        result = {}
+        for key in keylist:
+            item = getattr(object, key)
+            data = None
+            if hasattr(item, &#39;__keylist__&#39;):
+                data = parser_object_to_dict(item)
+            elif isinstance(item, list):
+                data = parser_object_to_dict(item)
+            else:
+                data = item
+            key = key.replace(&#39;.&#39;, &#39;/&#39;)
+            result[key] = data
+        return result
+    else:
+        result = object
+    return result</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.render_date_range"><code class="name flex">
+<span>def <span class="ident">render_date_range</span></span>(<span>from_date, to_date, size='DAILY')</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render_date_range(from_date, to_date, size=&#39;DAILY&#39;):
+    from_date = convert_time(from_date)
+    to_date = convert_time(to_date, end_day=True)
+    b = DAILY
+    if size == &#39;DAILY&#39;:
+        b = DAILY
+    elif size == &#39;WEEKLY&#39;:
+        b = WEEKLY
+    elif size == &#39;MONTHLY&#39;:
+        b = MONTHLY
+    max = None
+    for dt in rrule(b, dtstart=from_date, until=to_date):
+        max = dt
+        yield dt
+    if max.date() != to_date.date():
+        yield to_date</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.render_date_range_by_season_and_timezone"><code class="name flex">
+<span>def <span class="ident">render_date_range_by_season_and_timezone</span></span>(<span>from_date, to_date, tz, to_utc=False)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>split one date range to small date ranges by seasons.
+:param from_date:
+:param to_date:
+:param tz:
+:param to_utc:
+:return:</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render_date_range_by_season_and_timezone(from_date, to_date, tz, to_utc=False):
+    &#34;&#34;&#34;
+    split one date range to small date ranges by seasons.
+    :param from_date:
+    :param to_date:
+    :param tz:
+    :param to_utc:
+    :return:
+    &#34;&#34;&#34;
+    list_render = render_date_range(from_date=from_date, to_date=to_date)
+    mark_delta_time = 0
+    mark_result = []
+    item_range = []
+    for local_time in list_render:
+        local_time = convert_time(local_time, reset_time=True)
+
+        time_in_utc = convert_datetime_to_utc(date_time=local_time, tz=tz)
+        delta_time = (time_in_utc - local_time).total_seconds()
+        if mark_delta_time == delta_time or mark_delta_time == 0:
+            mark_delta_time = delta_time
+            item_range.append(local_time)
+        else:
+            mark_delta_time = delta_time
+            # get change on one day
+            session_local_time = render_date_range_by_sesson_one_day(date_day=item_range[-1], tz=tz)
+
+            if session_local_time:
+                item_range.append(session_local_time[0][-1])
+            mark_result.append([item_range[0], item_range[-1]])
+            item_range = [session_local_time[-1][0], local_time]
+
+    if item_range:
+        mark_result.append([item_range[0], convert_time(item_range[-1], end_day=True)])
+    result = []
+    for list_time in mark_result:
+        st = list_time[0].replace(minute=00, second=00, microsecond=000000)
+        stop = list_time[-1].replace(minute=59, second=59, microsecond=999999)
+        if to_utc:
+            result.append([
+                convert_datetime_to_utc(date_time=st, tz=tz),
+                convert_datetime_to_utc(date_time=stop, tz=tz),
+            ])
+        else:
+            result.append([
+                st,
+                stop
+            ])
+    return result</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.render_date_range_by_sesson_one_day"><code class="name flex">
+<span>def <span class="ident">render_date_range_by_sesson_one_day</span></span>(<span>date_day, tz, to_utc=True)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render_date_range_by_sesson_one_day(date_day, tz, to_utc=True):
+    date_day = convert_time(date_day, end_day=True)
+    mark_result = []
+    mark_delta_time = 0
+    item_range = []
+    for i in range(0, 24):
+        date_day = date_day.replace(hour=i)
+        try:
+            delta_time = (convert_datetime_to_utc(tz=tz, date_time=date_day) - date_day).total_seconds()
+            if mark_delta_time == delta_time or mark_delta_time == 0:
+                mark_delta_time = delta_time
+                item_range.append(date_day)
+            else:
+                mark_delta_time = delta_time
+                mark_result.append(item_range)
+                item_range = []
+                item_range.append(date_day)
+        except BaseException as e:
+            continue
+    if item_range:
+        mark_result.append(item_range)
+    result = []
+
+    for list_time in mark_result:
+        result.append([
+            list_time[0].replace(minute=00, second=00, microsecond=000000),
+            list_time[-1].replace(minute=59, second=59, microsecond=999999),
+        ])
+    return result</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.replace_array"><code class="name flex">
+<span>def <span class="ident">replace_array</span></span>(<span>content, array_params, a=['{', '}'])</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def replace_array(content, array_params, a=[&#39;{&#39;, &#39;}&#39;]):
+    for key, value in array_params.iteritems():
+        content = content.replace(a[0] + key + a[1], value)
+    return content</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.retry_function"><code class="name flex">
+<span>def <span class="ident">retry_function</span></span>(<span>function, number=3, time_sleep=10, print_log_cb=None, finish_cb=None)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>run a function with retry&hellip;
+:param function:
+:return:</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def retry_function(function, number=3, time_sleep=10, print_log_cb=None, finish_cb=None):
+    &#34;&#34;&#34;
+    run a function with retry...
+    :param function:
+    :return:
+    &#34;&#34;&#34;
+    n = 0
+    error = &#34;&#34;
+    while True:
+        n += 1
+
+        if n &gt;= number:
+            if finish_cb:
+                return finish_cb()
+            raise ValueError(&#39;retry limit exceeded for function %s.\nTraceback: %s&#39; % (function.__name__, error))
+        try:
+            rs = function()
+            return rs
+        except BaseException as e:
+            trb = traceback.format_exc()
+            error = trb
+            if print_log_cb:
+                print_log_cb(n, e)
+            time.sleep(time_sleep)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.std_first_day_of_week"><code class="name flex">
+<span>def <span class="ident">std_first_day_of_week</span></span>(<span>d)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>get first day of week with Clingme Standard
+:param d:
+:return:</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def std_first_day_of_week(d):
+    &#34;&#34;&#34;
+    get first day of week with Clingme Standard
+    :param d:
+    :return:
+    &#34;&#34;&#34;
+    return get_first_day_of_week(d) + datetime.timedelta(days=1)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.timeit"><code class="name flex">
+<span>def <span class="ident">timeit</span></span>(<span>method)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def timeit(method):
+    def timed(*args, **kw):
+        ts = time.time()
+        result = method(*args, **kw)
+        te = time.time()
+        logger.info(&#34;[PROCESS TIME]: &#34; + (&#39;%r (%r, %r) %2.2f sec&#39; % \
+                                          (method.__name__, type(args), type(kw), te - ts)))
+        return result
+
+    return timed</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.timeit_with_show_params"><code class="name flex">
+<span>def <span class="ident">timeit_with_show_params</span></span>(<span>method)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def timeit_with_show_params(method):
+    def timed(*args, **kw):
+        ts = time.time()
+        result = method(*args, **kw)
+        te = time.time()
+        logger.info(&#34;[PROCESS TIME]: &#34; + &#39;%r (%r, %r) %2.2f sec&#39; % \
+                    (method.__name__, args, kw, te - ts))
+        return result
+
+    return timed</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.timeout"><code class="name flex">
+<span>def <span class="ident">timeout</span></span>(<span>*args, **kw)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def timed(*args, **kw):
+    ts = time.time()
+    result = method(*args, **kw)
+    te = time.time()
+    logger.info(&#34;[PROCESS TIME]: &#34; + (&#39;%r (%r, %r) %2.2f sec&#39; % \
+                                      (method.__name__, type(args), type(kw), te - ts)))
+    return result</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.validate_vn_mphone"><code class="name flex">
+<span>def <span class="ident">validate_vn_mphone</span></span>(<span>number)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>validate Vietname mobile phone
+:param number:
+:return: provider, phone after cleaned, old phone</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_vn_mphone(number):
+    &#34;&#34;&#34;
+    validate Vietname mobile phone
+    :param number:
+    :return: provider, phone after cleaned, old phone
+    &#34;&#34;&#34;
+    number = &#39;0%s&#39; % (clean_phone_number(number).replace(&#39;+&#39;, &#39;&#39;).lstrip(&#39;84&#39;).lstrip(&#39;0&#39;))
+    print(number)
+    if len(number) not in [10, 11]:
+        return None, None, None
+    conf_phone = {
+        &#39;VTT&#39;: {&#39;086&#39;: &#39;086&#39;,
+                &#39;096&#39;: &#39;096&#39;,
+                &#39;097&#39;: &#39;097&#39;,
+                &#39;098&#39;: &#39;098&#39;,
+                &#39;0162&#39;: &#39;032&#39;,
+                &#39;0163&#39;: &#39;033&#39;,
+                &#39;0164&#39;: &#39;034&#39;,
+                &#39;0165&#39;: &#39;035&#39;,
+                &#39;0166&#39;: &#39;036&#39;,
+                &#39;0167&#39;: &#39;037&#39;,
+                &#39;0168&#39;: &#39;038&#39;,
+                &#39;0169&#39;: &#39;039&#39;},
+        &#39;VMS&#39;: {&#39;090&#39;: &#39;090&#39;, &#39;093&#39;: &#39;093&#39;, &#39;0120&#39;: &#39;070&#39;, &#39;0121&#39;: &#39;079&#39;, &#39;0122&#39;: &#39;077&#39;, &#39;0126&#39;: &#39;076&#39;, &#39;0128&#39;: &#39;078&#39;},
+        &#39;VNP&#39;: {&#39;091&#39;: &#39;091&#39;, &#39;094&#39;: &#39;094&#39;, &#39;0123&#39;: &#39;083&#39;, &#39;0124&#39;: &#39;084&#39;, &#39;0125&#39;: &#39;085&#39;, &#39;0127&#39;: &#39;081&#39;, &#39;0129&#39;: &#39;082&#39;},
+        &#39;VNM&#39;: {&#39;092&#39;: &#39;092&#39;, &#39;056&#39;: &#39;056&#39;, &#39;058&#39;: &#39;058&#39;},
+        &#39;GMB&#39;: {&#39;099&#39;: &#39;099&#39;, &#39;0199&#39;: &#39;059&#39;}
+
+    }
+    prefix = [number[0:3], number[0:4]]
+    for k, v in conf_phone.items():
+        d = list(set(list(v.keys()) + list(v.values())))
+        for pr in (prefix):
+            if pr in d:
+                c_p = &#39;%s%s&#39; % (v.get(pr, pr), number.lstrip(pr))
+                return k, number, c_p
+    return None, None, None</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="zuka_etl.utils.QuerySparkUtils"><code class="flex name class">
+<span>class <span class="ident">QuerySparkUtils</span></span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class QuerySparkUtils(object):
+
+    @staticmethod
+    def convert_unix_to_date(field, alias=&#39;&#39;):
+        return &#34;to_utc_timestamp(from_unixtime(%s), &#39;%s&#39;) %s&#34; % (
+            field, Setting.LOCAL_TIME_ZONE, (&#39; as &#39; + alias) if alias else &#39;&#39;)
+
+    @staticmethod
+    def convert_datetime_to_unix(field, alias=&#39;&#39;):
+        return &#34;unix_timestamp(from_utc_timestamp(%s,&#39;%s&#39;)) %s&#34; % (
+            field, Setting.LOCAL_TIME_ZONE, (&#39; as &#39; + alias) if alias else &#39;&#39;)</code></pre>
+</details>
+<h3>Static methods</h3>
+<dl>
+<dt id="zuka_etl.utils.QuerySparkUtils.convert_datetime_to_unix"><code class="name flex">
+<span>def <span class="ident">convert_datetime_to_unix</span></span>(<span>field, alias='')</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def convert_datetime_to_unix(field, alias=&#39;&#39;):
+    return &#34;unix_timestamp(from_utc_timestamp(%s,&#39;%s&#39;)) %s&#34; % (
+        field, Setting.LOCAL_TIME_ZONE, (&#39; as &#39; + alias) if alias else &#39;&#39;)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.QuerySparkUtils.convert_unix_to_date"><code class="name flex">
+<span>def <span class="ident">convert_unix_to_date</span></span>(<span>field, alias='')</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def convert_unix_to_date(field, alias=&#39;&#39;):
+    return &#34;to_utc_timestamp(from_unixtime(%s), &#39;%s&#39;) %s&#34; % (
+        field, Setting.LOCAL_TIME_ZONE, (&#39; as &#39; + alias) if alias else &#39;&#39;)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.utils.SQlAchemyCustomTpe"><code class="flex name class">
+<span>class <span class="ident">SQlAchemyCustomTpe</span></span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SQlAchemyCustomTpe(object):
+    class PhoneType(UserDefinedType):
+        &#34;&#34;&#34;
+        Phone Number type
+        &#34;&#34;&#34;
+
+        def get_col_spec(self):
+            return &#34;PhoneType&#34;
+
+        def bind_expression(self, bindvalue):
+            return func.ST_GeomFromText(bindvalue, type_=self)
+
+        def column_expression(self, col):
+            return func.ST_AsText(col, type_=self)
+
+    class CustomDimDate(UserDefinedType):
+        &#34;&#34;&#34;
+        Phone Number type
+        &#34;&#34;&#34;
+
+        def get_col_spec(self):
+            return &#34;CustomDimDate&#34;
+
+        def bind_expression(self, bindvalue):
+            return func.ST_GeomFromText(bindvalue, type_=self)
+
+        def column_expression(self, col):
+            return func.ST_AsText(col, type_=self)
+
+    class FromSparkUnixToDimDate(UserDefinedType):
+        &#34;&#34;&#34;
+        Phone Number type
+        &#34;&#34;&#34;
+
+        def get_col_spec(self):
+            return &#34;FromSparkUnixToDimDate&#34;
+
+        def bind_expression(self, bindvalue):
+            return func.ST_GeomFromText(bindvalue, type_=self)
+
+        def column_expression(self, col):
+            return func.ST_AsText(col, type_=self)
+
+    class FromSparkDateToUnix(UserDefinedType):
+        &#34;&#34;&#34;
+        Phone Number type
+        &#34;&#34;&#34;
+
+        def get_col_spec(self):
+            return &#34;FromSparkDateToUnix&#34;
+
+        def bind_expression(self, bindvalue):
+            return func.ST_GeomFromText(bindvalue, type_=self)
+
+        def column_expression(self, col):
+            return func.ST_AsText(col, type_=self)</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="zuka_etl.utils.SQlAchemyCustomTpe.CustomDimDate"><code class="name">var <span class="ident">CustomDimDate</span></code></dt>
+<dd>
+<section class="desc"><p>Phone Number type</p></section>
+</dd>
+<dt id="zuka_etl.utils.SQlAchemyCustomTpe.FromSparkDateToUnix"><code class="name">var <span class="ident">FromSparkDateToUnix</span></code></dt>
+<dd>
+<section class="desc"><p>Phone Number type</p></section>
+</dd>
+<dt id="zuka_etl.utils.SQlAchemyCustomTpe.FromSparkUnixToDimDate"><code class="name">var <span class="ident">FromSparkUnixToDimDate</span></code></dt>
+<dd>
+<section class="desc"><p>Phone Number type</p></section>
+</dd>
+<dt id="zuka_etl.utils.SQlAchemyCustomTpe.PhoneType"><code class="name">var <span class="ident">PhoneType</span></code></dt>
+<dd>
+<section class="desc"><p>Phone Number type</p></section>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.utils.Singleton"><code class="flex name class">
+<span>class <span class="ident">Singleton</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Singleton(object):
+    _instances = {}
+
+    def __new__(class_, *args, **kwargs):
+        if class_ not in class_._instances:
+            class_._instances[class_] = super(Singleton, class_).__new__(class_, *args, **kwargs)
+        return class_._instances[class_]</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.utils.TimeoutError"><code class="flex name class">
+<span>class <span class="ident">TimeoutError</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Common base class for all non-exit exceptions.</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TimeoutError(Exception):
+    pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="zuka_etl.utils.static_property"><code class="flex name class">
+<span>class <span class="ident">static_property</span></span>
+<span>(</span><span>getter, setter=None)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class static_property(object):
+    def __init__(self, getter, setter=None):
+        self._getter = getter
+        self._setter = setter
+
+    def setter(self, setter):
+        self._setter = setter
+
+    def __get__(self, obj, cls=None):
+        return self._getter(cls)  # for static remove cls from the call
+
+    def __set__(self, *args):
+        return self._setter(*args)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.utils.static_property.setter"><code class="name flex">
+<span>def <span class="ident">setter</span></span>(<span>self, setter)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setter(self, setter):
+    self._setter = setter</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="zuka_etl" href="index.html">zuka_etl</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="zuka_etl.utils.access_dict_by_dot" href="#zuka_etl.utils.access_dict_by_dot">access_dict_by_dot</a></code></li>
+<li><code><a title="zuka_etl.utils.beauti_dict" href="#zuka_etl.utils.beauti_dict">beauti_dict</a></code></li>
+<li><code><a title="zuka_etl.utils.clean_phone_number" href="#zuka_etl.utils.clean_phone_number">clean_phone_number</a></code></li>
+<li><code><a title="zuka_etl.utils.cligme_first_day_of_week" href="#zuka_etl.utils.cligme_first_day_of_week">cligme_first_day_of_week</a></code></li>
+<li><code><a title="zuka_etl.utils.cligme_last_day_of_week" href="#zuka_etl.utils.cligme_last_day_of_week">cligme_last_day_of_week</a></code></li>
+<li><code><a title="zuka_etl.utils.clingme_first_day_of_month" href="#zuka_etl.utils.clingme_first_day_of_month">clingme_first_day_of_month</a></code></li>
+<li><code><a title="zuka_etl.utils.clingme_last_day_of_month" href="#zuka_etl.utils.clingme_last_day_of_month">clingme_last_day_of_month</a></code></li>
+<li><code><a title="zuka_etl.utils.compare_dicts" href="#zuka_etl.utils.compare_dicts">compare_dicts</a></code></li>
+<li><code><a title="zuka_etl.utils.compare_lists" href="#zuka_etl.utils.compare_lists">compare_lists</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_date_to_dim_date" href="#zuka_etl.utils.convert_date_to_dim_date">convert_date_to_dim_date</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_datetime_to_utc" href="#zuka_etl.utils.convert_datetime_to_utc">convert_datetime_to_utc</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_float" href="#zuka_etl.utils.convert_float">convert_float</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_from_unixtime" href="#zuka_etl.utils.convert_from_unixtime">convert_from_unixtime</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_int" href="#zuka_etl.utils.convert_int">convert_int</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_long" href="#zuka_etl.utils.convert_long">convert_long</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_percent" href="#zuka_etl.utils.convert_percent">convert_percent</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_print" href="#zuka_etl.utils.convert_print">convert_print</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_time" href="#zuka_etl.utils.convert_time">convert_time</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_time_tz_other_tz" href="#zuka_etl.utils.convert_time_tz_other_tz">convert_time_tz_other_tz</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_timestamp" href="#zuka_etl.utils.convert_timestamp">convert_timestamp</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_timestamp_to_datetime" href="#zuka_etl.utils.convert_timestamp_to_datetime">convert_timestamp_to_datetime</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_unixtime" href="#zuka_etl.utils.convert_unixtime">convert_unixtime</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_utc_to_timzone" href="#zuka_etl.utils.convert_utc_to_timzone">convert_utc_to_timzone</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_value_of_dicts_by_given_define" href="#zuka_etl.utils.convert_value_of_dicts_by_given_define">convert_value_of_dicts_by_given_define</a></code></li>
+<li><code><a title="zuka_etl.utils.convert_value_of_dicts_by_given_define_dict" href="#zuka_etl.utils.convert_value_of_dicts_by_given_define_dict">convert_value_of_dicts_by_given_define_dict</a></code></li>
+<li><code><a title="zuka_etl.utils.current_local_iso_date" href="#zuka_etl.utils.current_local_iso_date">current_local_iso_date</a></code></li>
+<li><code><a title="zuka_etl.utils.current_time_local" href="#zuka_etl.utils.current_time_local">current_time_local</a></code></li>
+<li><code><a title="zuka_etl.utils.current_time_local_timestamp" href="#zuka_etl.utils.current_time_local_timestamp">current_time_local_timestamp</a></code></li>
+<li><code><a title="zuka_etl.utils.current_time_utc" href="#zuka_etl.utils.current_time_utc">current_time_utc</a></code></li>
+<li><code><a title="zuka_etl.utils.current_time_utc_timestamp" href="#zuka_etl.utils.current_time_utc_timestamp">current_time_utc_timestamp</a></code></li>
+<li><code><a title="zuka_etl.utils.current_time_with_tz" href="#zuka_etl.utils.current_time_with_tz">current_time_with_tz</a></code></li>
+<li><code><a title="zuka_etl.utils.dashrepl" href="#zuka_etl.utils.dashrepl">dashrepl</a></code></li>
+<li><code><a title="zuka_etl.utils.debug_tool" href="#zuka_etl.utils.debug_tool">debug_tool</a></code></li>
+<li><code><a title="zuka_etl.utils.generate_batches" href="#zuka_etl.utils.generate_batches">generate_batches</a></code></li>
+<li><code><a title="zuka_etl.utils.generate_batches_date_range" href="#zuka_etl.utils.generate_batches_date_range">generate_batches_date_range</a></code></li>
+<li><code><a title="zuka_etl.utils.get_first_day_of_month" href="#zuka_etl.utils.get_first_day_of_month">get_first_day_of_month</a></code></li>
+<li><code><a title="zuka_etl.utils.get_first_day_of_week" href="#zuka_etl.utils.get_first_day_of_week">get_first_day_of_week</a></code></li>
+<li><code><a title="zuka_etl.utils.get_int_from_string" href="#zuka_etl.utils.get_int_from_string">get_int_from_string</a></code></li>
+<li><code><a title="zuka_etl.utils.get_last_day_of_month" href="#zuka_etl.utils.get_last_day_of_month">get_last_day_of_month</a></code></li>
+<li><code><a title="zuka_etl.utils.get_last_day_of_week" href="#zuka_etl.utils.get_last_day_of_week">get_last_day_of_week</a></code></li>
+<li><code><a title="zuka_etl.utils.get_next_months_by_day" href="#zuka_etl.utils.get_next_months_by_day">get_next_months_by_day</a></code></li>
+<li><code><a title="zuka_etl.utils.get_previous_months_by_day" href="#zuka_etl.utils.get_previous_months_by_day">get_previous_months_by_day</a></code></li>
+<li><code><a title="zuka_etl.utils.get_quarter_from_date" href="#zuka_etl.utils.get_quarter_from_date">get_quarter_from_date</a></code></li>
+<li><code><a title="zuka_etl.utils.get_week_of_year" href="#zuka_etl.utils.get_week_of_year">get_week_of_year</a></code></li>
+<li><code><a title="zuka_etl.utils.intersect" href="#zuka_etl.utils.intersect">intersect</a></code></li>
+<li><code><a title="zuka_etl.utils.ip2long" href="#zuka_etl.utils.ip2long">ip2long</a></code></li>
+<li><code><a title="zuka_etl.utils.is_interger" href="#zuka_etl.utils.is_interger">is_interger</a></code></li>
+<li><code><a title="zuka_etl.utils.is_numeric" href="#zuka_etl.utils.is_numeric">is_numeric</a></code></li>
+<li><code><a title="zuka_etl.utils.parser_object_to_dict" href="#zuka_etl.utils.parser_object_to_dict">parser_object_to_dict</a></code></li>
+<li><code><a title="zuka_etl.utils.render_date_range" href="#zuka_etl.utils.render_date_range">render_date_range</a></code></li>
+<li><code><a title="zuka_etl.utils.render_date_range_by_season_and_timezone" href="#zuka_etl.utils.render_date_range_by_season_and_timezone">render_date_range_by_season_and_timezone</a></code></li>
+<li><code><a title="zuka_etl.utils.render_date_range_by_sesson_one_day" href="#zuka_etl.utils.render_date_range_by_sesson_one_day">render_date_range_by_sesson_one_day</a></code></li>
+<li><code><a title="zuka_etl.utils.replace_array" href="#zuka_etl.utils.replace_array">replace_array</a></code></li>
+<li><code><a title="zuka_etl.utils.retry_function" href="#zuka_etl.utils.retry_function">retry_function</a></code></li>
+<li><code><a title="zuka_etl.utils.std_first_day_of_week" href="#zuka_etl.utils.std_first_day_of_week">std_first_day_of_week</a></code></li>
+<li><code><a title="zuka_etl.utils.timeit" href="#zuka_etl.utils.timeit">timeit</a></code></li>
+<li><code><a title="zuka_etl.utils.timeit_with_show_params" href="#zuka_etl.utils.timeit_with_show_params">timeit_with_show_params</a></code></li>
+<li><code><a title="zuka_etl.utils.timeout" href="#zuka_etl.utils.timeout">timeout</a></code></li>
+<li><code><a title="zuka_etl.utils.validate_vn_mphone" href="#zuka_etl.utils.validate_vn_mphone">validate_vn_mphone</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="zuka_etl.utils.QuerySparkUtils" href="#zuka_etl.utils.QuerySparkUtils">QuerySparkUtils</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.utils.QuerySparkUtils.convert_datetime_to_unix" href="#zuka_etl.utils.QuerySparkUtils.convert_datetime_to_unix">convert_datetime_to_unix</a></code></li>
+<li><code><a title="zuka_etl.utils.QuerySparkUtils.convert_unix_to_date" href="#zuka_etl.utils.QuerySparkUtils.convert_unix_to_date">convert_unix_to_date</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.utils.SQlAchemyCustomTpe" href="#zuka_etl.utils.SQlAchemyCustomTpe">SQlAchemyCustomTpe</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.utils.SQlAchemyCustomTpe.CustomDimDate" href="#zuka_etl.utils.SQlAchemyCustomTpe.CustomDimDate">CustomDimDate</a></code></li>
+<li><code><a title="zuka_etl.utils.SQlAchemyCustomTpe.FromSparkDateToUnix" href="#zuka_etl.utils.SQlAchemyCustomTpe.FromSparkDateToUnix">FromSparkDateToUnix</a></code></li>
+<li><code><a title="zuka_etl.utils.SQlAchemyCustomTpe.FromSparkUnixToDimDate" href="#zuka_etl.utils.SQlAchemyCustomTpe.FromSparkUnixToDimDate">FromSparkUnixToDimDate</a></code></li>
+<li><code><a title="zuka_etl.utils.SQlAchemyCustomTpe.PhoneType" href="#zuka_etl.utils.SQlAchemyCustomTpe.PhoneType">PhoneType</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.utils.Singleton" href="#zuka_etl.utils.Singleton">Singleton</a></code></h4>
+</li>
+<li>
+<h4><code><a title="zuka_etl.utils.TimeoutError" href="#zuka_etl.utils.TimeoutError">TimeoutError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="zuka_etl.utils.static_property" href="#zuka_etl.utils.static_property">static_property</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.utils.static_property.setter" href="#zuka_etl.utils.static_property.setter">setter</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

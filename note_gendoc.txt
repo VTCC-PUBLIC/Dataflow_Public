@@ -1,0 +1,1 @@
+pdoc --html zuka_etl --html-dir docs --force
