@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.7.5" />
+<meta name="generator" content="pdoc 0.8.3" />
 <title>zuka_etl.utils API documentation</title>
 <meta name="description" content="" />
-<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
-<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
-<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 </head>
 <body>
 <main>
@@ -27,21 +29,26 @@
 <pre><code class="python">__author__ = &#39;phongphamhong&#39;
 import calendar
 import datetime
+import os
 import pprint
 import re
 import signal
+import socket
+import struct
+import sys
+import time
 import traceback
-import socket, struct
 from functools import wraps
+
+import math
+import pytz
 from dateutil import parser
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import rrule, DAILY, WEEKLY, MONTHLY
 from pytz import timezone
+
 from zuka_etl.log import logger
-import sys, os, time, atexit
 from zuka_etl.setting import Setting
-import pytz
-import math
 
 
 def timeit(method):
@@ -327,18 +334,18 @@ def convert_float(value):
         return 0.0
 
 
-def convert_time(string_time, reset_time=False, end_day=False, convert_time_type=&#39;datetime&#39;, **kwargs):
+def convert_time(string_time, reset_time=False, end_day=False, convert_time_type=&#39;datetime&#39;, format=&#39;&#39;, **kwargs):
     if string_time in [None, &#39;&#39;]:
         return None
+    if format != &#39;&#39;:
+        string_time = datetime.datetime.strptime(string_time, format)
     parsing = string_time
-
-    if type(string_time) is not datetime.datetime and datetime:
+    if type(string_time) is not datetime.datetime and type(string_time) is not datetime:
         # format YY:mm:dd
         year, month, day, hour, second, minute = convert_int(string_time[:4]), convert_int(
             string_time[5:7]), convert_int(
             string_time[8:10]), convert_int(string_time[11: 13]), convert_int(string_time[14: 16]), convert_int(
             string_time[17: 19])
-
         microsecond = string_time[20: 30].split(&#39;+&#39;)
         microsecond = convert_int(microsecond[0]) if microsecond else 0
         microsecond = 999999 if microsecond &gt; 999999 else 0
@@ -466,12 +473,16 @@ def convert_time_tz_other_tz(date_time, from_tz, to_tz):
     return convert_utc_to_timzone(tz=to_tz, date_time=d)
 
 
-def convert_unixtime(date_time, tz=Setting.LOCAL_TIME_ZONE, reset_time=False):
+def convert_unixtime(date_time, tz=None, reset_time=False):
+    if tz is None:
+        tz = Setting.LOCAL_TIME_ZONE
     utc = convert_datetime_to_utc(tz=tz, date_time=date_time, reset_time=reset_time)
     return convert_timestamp(utc)
 
 
-def convert_from_unixtime(unixtime, tz=Setting.LOCAL_TIME_ZONE, reset_time=False):
+def convert_from_unixtime(unixtime, tz=None, reset_time=False):
+    if tz is None:
+        tz = Setting.LOCAL_TIME_ZONE
     utc = convert_timestamp_to_datetime(unixtime)
     return convert_utc_to_timzone(tz=tz, date_time=utc, reset_time=reset_time)
 
@@ -787,52 +798,6 @@ def convert_percent(value):
         return 0
 
 
-def clean_phone_number(number):
-    try:
-        return &#34;+%s&#34; % re.sub(&#34;[^0-9]&#34;, &#39;&#39;, number)
-    except BaseException as e:
-        return &#39;&#39;
-
-
-def validate_vn_mphone(number):
-    &#34;&#34;&#34;
-    validate Vietname mobile phone
-    :param number:
-    :return: provider, phone after cleaned, old phone
-    &#34;&#34;&#34;
-    number = &#39;0%s&#39; % (clean_phone_number(number).replace(&#39;+&#39;, &#39;&#39;).lstrip(&#39;84&#39;).lstrip(&#39;0&#39;))
-    print(number)
-    if len(number) not in [10, 11]:
-        return None, None, None
-    conf_phone = {
-        &#39;VTT&#39;: {&#39;086&#39;: &#39;086&#39;,
-                &#39;096&#39;: &#39;096&#39;,
-                &#39;097&#39;: &#39;097&#39;,
-                &#39;098&#39;: &#39;098&#39;,
-                &#39;0162&#39;: &#39;032&#39;,
-                &#39;0163&#39;: &#39;033&#39;,
-                &#39;0164&#39;: &#39;034&#39;,
-                &#39;0165&#39;: &#39;035&#39;,
-                &#39;0166&#39;: &#39;036&#39;,
-                &#39;0167&#39;: &#39;037&#39;,
-                &#39;0168&#39;: &#39;038&#39;,
-                &#39;0169&#39;: &#39;039&#39;},
-        &#39;VMS&#39;: {&#39;090&#39;: &#39;090&#39;, &#39;093&#39;: &#39;093&#39;, &#39;0120&#39;: &#39;070&#39;, &#39;0121&#39;: &#39;079&#39;, &#39;0122&#39;: &#39;077&#39;, &#39;0126&#39;: &#39;076&#39;, &#39;0128&#39;: &#39;078&#39;},
-        &#39;VNP&#39;: {&#39;091&#39;: &#39;091&#39;, &#39;094&#39;: &#39;094&#39;, &#39;0123&#39;: &#39;083&#39;, &#39;0124&#39;: &#39;084&#39;, &#39;0125&#39;: &#39;085&#39;, &#39;0127&#39;: &#39;081&#39;, &#39;0129&#39;: &#39;082&#39;},
-        &#39;VNM&#39;: {&#39;092&#39;: &#39;092&#39;, &#39;056&#39;: &#39;056&#39;, &#39;058&#39;: &#39;058&#39;},
-        &#39;GMB&#39;: {&#39;099&#39;: &#39;099&#39;, &#39;0199&#39;: &#39;059&#39;}
-
-    }
-    prefix = [number[0:3], number[0:4]]
-    for k, v in conf_phone.items():
-        d = list(set(list(v.keys()) + list(v.values())))
-        for pr in (prefix):
-            if pr in d:
-                c_p = &#39;%s%s&#39; % (v.get(pr, pr), number.lstrip(pr))
-                return k, number, c_p
-    return None, None, None
-
-
 def convert_date_to_dim_date(date_time):
     time = datetime.datetime.strftime(date_time, &#34;%Y%m%d&#34;)
     return time
@@ -854,134 +819,13 @@ def get_week_of_year(date_time):
     return date_time.isocalendar()
 
 
-from sqlalchemy.types import UserDefinedType
-from sqlalchemy import func
-
-
-class SQlAchemyCustomTpe(object):
-    class PhoneType(UserDefinedType):
-        &#34;&#34;&#34;
-        Phone Number type
-        &#34;&#34;&#34;
-
-        def get_col_spec(self):
-            return &#34;PhoneType&#34;
-
-        def bind_expression(self, bindvalue):
-            return func.ST_GeomFromText(bindvalue, type_=self)
-
-        def column_expression(self, col):
-            return func.ST_AsText(col, type_=self)
-
-    class CustomDimDate(UserDefinedType):
-        &#34;&#34;&#34;
-        Phone Number type
-        &#34;&#34;&#34;
-
-        def get_col_spec(self):
-            return &#34;CustomDimDate&#34;
-
-        def bind_expression(self, bindvalue):
-            return func.ST_GeomFromText(bindvalue, type_=self)
-
-        def column_expression(self, col):
-            return func.ST_AsText(col, type_=self)
-
-    class FromSparkUnixToDimDate(UserDefinedType):
-        &#34;&#34;&#34;
-        Phone Number type
-        &#34;&#34;&#34;
-
-        def get_col_spec(self):
-            return &#34;FromSparkUnixToDimDate&#34;
-
-        def bind_expression(self, bindvalue):
-            return func.ST_GeomFromText(bindvalue, type_=self)
-
-        def column_expression(self, col):
-            return func.ST_AsText(col, type_=self)
-
-    class FromSparkDateToUnix(UserDefinedType):
-        &#34;&#34;&#34;
-        Phone Number type
-        &#34;&#34;&#34;
-
-        def get_col_spec(self):
-            return &#34;FromSparkDateToUnix&#34;
-
-        def bind_expression(self, bindvalue):
-            return func.ST_GeomFromText(bindvalue, type_=self)
-
-        def column_expression(self, col):
-            return func.ST_AsText(col, type_=self)
-
-
-class QuerySparkUtils(object):
-
-    @staticmethod
-    def convert_unix_to_date(field, alias=&#39;&#39;):
-        return &#34;to_utc_timestamp(from_unixtime(%s), &#39;%s&#39;) %s&#34; % (
-            field, Setting.LOCAL_TIME_ZONE, (&#39; as &#39; + alias) if alias else &#39;&#39;)
-
-    @staticmethod
-    def convert_datetime_to_unix(field, alias=&#39;&#39;):
-        return &#34;unix_timestamp(from_utc_timestamp(%s,&#39;%s&#39;)) %s&#34; % (
-            field, Setting.LOCAL_TIME_ZONE, (&#39; as &#39; + alias) if alias else &#39;&#39;)
-
-
-def cligme_first_day_of_week(d):
-    &#34;&#34;&#34;
-    get first day of week with Clingme Standard
-    :param d:
-    :return:
-    &#34;&#34;&#34;
-    return get_first_day_of_week(d) - datetime.timedelta(days=1)
-
-
-def cligme_last_day_of_week(d):
-    &#34;&#34;&#34;
-        get last day of week with Clingme Standard
-        :param d:
-        :return:
-    &#34;&#34;&#34;
-    return get_last_day_of_week(d) - datetime.timedelta(days=1)
-
-
 def std_first_day_of_week(d):
     &#34;&#34;&#34;
     get first day of week with Clingme Standard
     :param d:
     :return:
     &#34;&#34;&#34;
-    return get_first_day_of_week(d) + datetime.timedelta(days=1)
-
-
-def clingme_first_day_of_month(day):
-    &#34;&#34;&#34;
-    get first day of month with Clingme Standard
-    :param day:
-    :return:
-    &#34;&#34;&#34;
-    if day.day &lt; 25:
-        if day.month == 1:
-            return convert_time(&#39;%s-%s-25&#39; % (day.year - 1, 12))
-        return convert_time(&#39;%s-%s-25&#39; % (day.year, day.month - 1))
-    else:
-        return convert_time(&#39;%s-%s-25&#39; % (day.year, day.month))
-
-
-def clingme_last_day_of_month(day):
-    &#34;&#34;&#34;
-    get last day of month with Clingme Standard
-    :param day:
-    :return:
-    &#34;&#34;&#34;
-    if day.day &gt;= 25:
-        if day.month == 12:
-            return convert_time(&#39;%s-%s-24&#39; % (day.year + 1, 1))
-        return convert_time(&#39;%s-%s-24&#39; % (day.year, day.month + 1))
-    else:
-        return convert_time(&#39;%s-%s-24&#39; % (day.year, day.month))</code></pre>
+    return get_first_day_of_week(d) + datetime.timedelta(days=1)</code></pre>
 </details>
 </section>
 <section>
@@ -995,7 +839,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">access_dict_by_dot</span></span>(<span>item={}, field='', default=None, lower_key=False)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1025,9 +869,9 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">beauti_dict</span></span>(<span>aggregate)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>make a dict is beautiful in string
+<div class="desc"><p>make a dict is beautiful in string
 :param aggregate:
-:return:</p></section>
+:return:</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1082,117 +926,11 @@ def clingme_last_day_of_month(day):
     return str</code></pre>
 </details>
 </dd>
-<dt id="zuka_etl.utils.clean_phone_number"><code class="name flex">
-<span>def <span class="ident">clean_phone_number</span></span>(<span>number)</span>
-</code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def clean_phone_number(number):
-    try:
-        return &#34;+%s&#34; % re.sub(&#34;[^0-9]&#34;, &#39;&#39;, number)
-    except BaseException as e:
-        return &#39;&#39;</code></pre>
-</details>
-</dd>
-<dt id="zuka_etl.utils.cligme_first_day_of_week"><code class="name flex">
-<span>def <span class="ident">cligme_first_day_of_week</span></span>(<span>d)</span>
-</code></dt>
-<dd>
-<section class="desc"><p>get first day of week with Clingme Standard
-:param d:
-:return:</p></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def cligme_first_day_of_week(d):
-    &#34;&#34;&#34;
-    get first day of week with Clingme Standard
-    :param d:
-    :return:
-    &#34;&#34;&#34;
-    return get_first_day_of_week(d) - datetime.timedelta(days=1)</code></pre>
-</details>
-</dd>
-<dt id="zuka_etl.utils.cligme_last_day_of_week"><code class="name flex">
-<span>def <span class="ident">cligme_last_day_of_week</span></span>(<span>d)</span>
-</code></dt>
-<dd>
-<section class="desc"><p>get last day of week with Clingme Standard
-:param d:
-:return:</p></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def cligme_last_day_of_week(d):
-    &#34;&#34;&#34;
-        get last day of week with Clingme Standard
-        :param d:
-        :return:
-    &#34;&#34;&#34;
-    return get_last_day_of_week(d) - datetime.timedelta(days=1)</code></pre>
-</details>
-</dd>
-<dt id="zuka_etl.utils.clingme_first_day_of_month"><code class="name flex">
-<span>def <span class="ident">clingme_first_day_of_month</span></span>(<span>day)</span>
-</code></dt>
-<dd>
-<section class="desc"><p>get first day of month with Clingme Standard
-:param day:
-:return:</p></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def clingme_first_day_of_month(day):
-    &#34;&#34;&#34;
-    get first day of month with Clingme Standard
-    :param day:
-    :return:
-    &#34;&#34;&#34;
-    if day.day &lt; 25:
-        if day.month == 1:
-            return convert_time(&#39;%s-%s-25&#39; % (day.year - 1, 12))
-        return convert_time(&#39;%s-%s-25&#39; % (day.year, day.month - 1))
-    else:
-        return convert_time(&#39;%s-%s-25&#39; % (day.year, day.month))</code></pre>
-</details>
-</dd>
-<dt id="zuka_etl.utils.clingme_last_day_of_month"><code class="name flex">
-<span>def <span class="ident">clingme_last_day_of_month</span></span>(<span>day)</span>
-</code></dt>
-<dd>
-<section class="desc"><p>get last day of month with Clingme Standard
-:param day:
-:return:</p></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def clingme_last_day_of_month(day):
-    &#34;&#34;&#34;
-    get last day of month with Clingme Standard
-    :param day:
-    :return:
-    &#34;&#34;&#34;
-    if day.day &gt;= 25:
-        if day.month == 12:
-            return convert_time(&#39;%s-%s-24&#39; % (day.year + 1, 1))
-        return convert_time(&#39;%s-%s-24&#39; % (day.year, day.month + 1))
-    else:
-        return convert_time(&#39;%s-%s-24&#39; % (day.year, day.month))</code></pre>
-</details>
-</dd>
 <dt id="zuka_etl.utils.compare_dicts"><code class="name flex">
 <span>def <span class="ident">compare_dicts</span></span>(<span>d1, d2)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1257,7 +995,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">compare_lists</span></span>(<span>l1, l2)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1277,7 +1015,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">convert_date_to_dim_date</span></span>(<span>date_time)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1291,7 +1029,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">convert_datetime_to_utc</span></span>(<span>tz, date_time, reset_time=False, check_is_dst=True)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1315,7 +1053,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">convert_float</span></span>(<span>value)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1329,15 +1067,17 @@ def clingme_last_day_of_month(day):
 </details>
 </dd>
 <dt id="zuka_etl.utils.convert_from_unixtime"><code class="name flex">
-<span>def <span class="ident">convert_from_unixtime</span></span>(<span>unixtime, tz="'Asia/Bangkok'", reset_time=False)</span>
+<span>def <span class="ident">convert_from_unixtime</span></span>(<span>unixtime, tz=None, reset_time=False)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def convert_from_unixtime(unixtime, tz=Setting.LOCAL_TIME_ZONE, reset_time=False):
+<pre><code class="python">def convert_from_unixtime(unixtime, tz=None, reset_time=False):
+    if tz is None:
+        tz = Setting.LOCAL_TIME_ZONE
     utc = convert_timestamp_to_datetime(unixtime)
     return convert_utc_to_timzone(tz=tz, date_time=utc, reset_time=reset_time)</code></pre>
 </details>
@@ -1346,7 +1086,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">convert_int</span></span>(<span>value)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1363,7 +1103,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">convert_long</span></span>(<span>value)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1380,7 +1120,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">convert_percent</span></span>(<span>value)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1398,7 +1138,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">convert_print</span></span>(<span>aggregate)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1415,26 +1155,26 @@ def clingme_last_day_of_month(day):
 </details>
 </dd>
 <dt id="zuka_etl.utils.convert_time"><code class="name flex">
-<span>def <span class="ident">convert_time</span></span>(<span>string_time, reset_time=False, end_day=False, convert_time_type='datetime', **kwargs)</span>
+<span>def <span class="ident">convert_time</span></span>(<span>string_time, reset_time=False, end_day=False, convert_time_type='datetime', format='', **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def convert_time(string_time, reset_time=False, end_day=False, convert_time_type=&#39;datetime&#39;, **kwargs):
+<pre><code class="python">def convert_time(string_time, reset_time=False, end_day=False, convert_time_type=&#39;datetime&#39;, format=&#39;&#39;, **kwargs):
     if string_time in [None, &#39;&#39;]:
         return None
+    if format != &#39;&#39;:
+        string_time = datetime.datetime.strptime(string_time, format)
     parsing = string_time
-
-    if type(string_time) is not datetime.datetime and datetime:
+    if type(string_time) is not datetime.datetime and type(string_time) is not datetime:
         # format YY:mm:dd
         year, month, day, hour, second, minute = convert_int(string_time[:4]), convert_int(
             string_time[5:7]), convert_int(
             string_time[8:10]), convert_int(string_time[11: 13]), convert_int(string_time[14: 16]), convert_int(
             string_time[17: 19])
-
         microsecond = string_time[20: 30].split(&#39;+&#39;)
         microsecond = convert_int(microsecond[0]) if microsecond else 0
         microsecond = 999999 if microsecond &gt; 999999 else 0
@@ -1458,7 +1198,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">convert_time_tz_other_tz</span></span>(<span>date_time, from_tz, to_tz)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1474,7 +1214,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">convert_timestamp</span></span>(<span>string_time, reset_time=False, end_day=False, big_int=True)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1490,7 +1230,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">convert_timestamp_to_datetime</span></span>(<span>time_st)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1500,15 +1240,17 @@ def clingme_last_day_of_month(day):
 </details>
 </dd>
 <dt id="zuka_etl.utils.convert_unixtime"><code class="name flex">
-<span>def <span class="ident">convert_unixtime</span></span>(<span>date_time, tz="'Asia/Bangkok'", reset_time=False)</span>
+<span>def <span class="ident">convert_unixtime</span></span>(<span>date_time, tz=None, reset_time=False)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def convert_unixtime(date_time, tz=Setting.LOCAL_TIME_ZONE, reset_time=False):
+<pre><code class="python">def convert_unixtime(date_time, tz=None, reset_time=False):
+    if tz is None:
+        tz = Setting.LOCAL_TIME_ZONE
     utc = convert_datetime_to_utc(tz=tz, date_time=date_time, reset_time=reset_time)
     return convert_timestamp(utc)</code></pre>
 </details>
@@ -1517,7 +1259,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">convert_utc_to_timzone</span></span>(<span>tz, date_time, reset_time=False)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1533,7 +1275,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">convert_value_of_dicts_by_given_define</span></span>(<span>item, define_convert)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1558,7 +1300,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">convert_value_of_dicts_by_given_define_dict</span></span>(<span>item, define_convert, type='')</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1584,7 +1326,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">current_local_iso_date</span></span>(<span>reset_time=False)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1599,7 +1341,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">current_time_local</span></span>(<span>reset_time=False)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1612,7 +1354,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">current_time_local_timestamp</span></span>(<span>reset_time=False)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1625,7 +1367,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">current_time_utc</span></span>(<span>reset_time=False)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1639,7 +1381,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">current_time_utc_timestamp</span></span>(<span>reset_time=False)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1652,7 +1394,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">current_time_with_tz</span></span>(<span>tz, reset_time=False)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1668,7 +1410,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">dashrepl</span></span>(<span>matchobj)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1710,7 +1452,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">debug_tool</span></span>(<span>*args, **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1726,13 +1468,13 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">generate_batches</span></span>(<span>iterable, batch_size_limit, callback_item=None, remove_false_value=False, remove_none=False, log_object=None)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>make a generate batches for a list or iterable
+<div class="desc"><p>make a generate batches for a list or iterable
 :param iterable:
 :param batch_size_limit:
 :param callback_item:
 :param remove_false_value: ignore value False in list
 :param log_object: logs some message
-:return:</p></section>
+:return:</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1779,7 +1521,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">generate_batches_date_range</span></span>(<span>from_date, to_date, size='DAILY')</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1829,7 +1571,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">get_first_day_of_month</span></span>(<span>day)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1842,7 +1584,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">get_first_day_of_week</span></span>(<span>day)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1860,7 +1602,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">get_int_from_string</span></span>(<span>string)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1873,7 +1615,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">get_last_day_of_month</span></span>(<span>day, formattime='')</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1889,7 +1631,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">get_last_day_of_week</span></span>(<span>day)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1907,7 +1649,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">get_next_months_by_day</span></span>(<span>day, months=1)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1921,7 +1663,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">get_previous_months_by_day</span></span>(<span>day, months=1)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1935,8 +1677,8 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">get_quarter_from_date</span></span>(<span>date_time)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>:param date_time: datetime
-:return:</p></section>
+<div class="desc"><p>:param date_time: datetime
+:return:</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1957,7 +1699,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">get_week_of_year</span></span>(<span>date_time)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1970,7 +1712,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">intersect</span></span>(<span>a, b)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1983,7 +1725,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">ip2long</span></span>(<span>ip)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1996,7 +1738,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">is_interger</span></span>(<span>number)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2009,7 +1751,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">is_numeric</span></span>(<span>number)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2022,7 +1764,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">parser_object_to_dict</span></span>(<span>object)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2056,7 +1798,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">render_date_range</span></span>(<span>from_date, to_date, size='DAILY')</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2083,12 +1825,12 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">render_date_range_by_season_and_timezone</span></span>(<span>from_date, to_date, tz, to_utc=False)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>split one date range to small date ranges by seasons.
+<div class="desc"><p>split one date range to small date ranges by seasons.
 :param from_date:
 :param to_date:
 :param tz:
 :param to_utc:
-:return:</p></section>
+:return:</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2147,7 +1889,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">render_date_range_by_sesson_one_day</span></span>(<span>date_day, tz, to_utc=True)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2187,7 +1929,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">replace_array</span></span>(<span>content, array_params, a=['{', '}'])</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2202,9 +1944,9 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">retry_function</span></span>(<span>function, number=3, time_sleep=10, print_log_cb=None, finish_cb=None)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>run a function with retry&hellip;
+<div class="desc"><p>run a function with retry&hellip;
 :param function:
-:return:</p></section>
+:return:</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2239,9 +1981,9 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">std_first_day_of_week</span></span>(<span>d)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>get first day of week with Clingme Standard
+<div class="desc"><p>get first day of week with Clingme Standard
 :param d:
-:return:</p></section>
+:return:</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2259,7 +2001,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">timeit</span></span>(<span>method)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2280,7 +2022,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">timeit_with_show_params</span></span>(<span>method)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2301,7 +2043,7 @@ def clingme_last_day_of_month(day):
 <span>def <span class="ident">timeout</span></span>(<span>*args, **kw)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2315,208 +2057,17 @@ def clingme_last_day_of_month(day):
     return result</code></pre>
 </details>
 </dd>
-<dt id="zuka_etl.utils.validate_vn_mphone"><code class="name flex">
-<span>def <span class="ident">validate_vn_mphone</span></span>(<span>number)</span>
-</code></dt>
-<dd>
-<section class="desc"><p>validate Vietname mobile phone
-:param number:
-:return: provider, phone after cleaned, old phone</p></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def validate_vn_mphone(number):
-    &#34;&#34;&#34;
-    validate Vietname mobile phone
-    :param number:
-    :return: provider, phone after cleaned, old phone
-    &#34;&#34;&#34;
-    number = &#39;0%s&#39; % (clean_phone_number(number).replace(&#39;+&#39;, &#39;&#39;).lstrip(&#39;84&#39;).lstrip(&#39;0&#39;))
-    print(number)
-    if len(number) not in [10, 11]:
-        return None, None, None
-    conf_phone = {
-        &#39;VTT&#39;: {&#39;086&#39;: &#39;086&#39;,
-                &#39;096&#39;: &#39;096&#39;,
-                &#39;097&#39;: &#39;097&#39;,
-                &#39;098&#39;: &#39;098&#39;,
-                &#39;0162&#39;: &#39;032&#39;,
-                &#39;0163&#39;: &#39;033&#39;,
-                &#39;0164&#39;: &#39;034&#39;,
-                &#39;0165&#39;: &#39;035&#39;,
-                &#39;0166&#39;: &#39;036&#39;,
-                &#39;0167&#39;: &#39;037&#39;,
-                &#39;0168&#39;: &#39;038&#39;,
-                &#39;0169&#39;: &#39;039&#39;},
-        &#39;VMS&#39;: {&#39;090&#39;: &#39;090&#39;, &#39;093&#39;: &#39;093&#39;, &#39;0120&#39;: &#39;070&#39;, &#39;0121&#39;: &#39;079&#39;, &#39;0122&#39;: &#39;077&#39;, &#39;0126&#39;: &#39;076&#39;, &#39;0128&#39;: &#39;078&#39;},
-        &#39;VNP&#39;: {&#39;091&#39;: &#39;091&#39;, &#39;094&#39;: &#39;094&#39;, &#39;0123&#39;: &#39;083&#39;, &#39;0124&#39;: &#39;084&#39;, &#39;0125&#39;: &#39;085&#39;, &#39;0127&#39;: &#39;081&#39;, &#39;0129&#39;: &#39;082&#39;},
-        &#39;VNM&#39;: {&#39;092&#39;: &#39;092&#39;, &#39;056&#39;: &#39;056&#39;, &#39;058&#39;: &#39;058&#39;},
-        &#39;GMB&#39;: {&#39;099&#39;: &#39;099&#39;, &#39;0199&#39;: &#39;059&#39;}
-
-    }
-    prefix = [number[0:3], number[0:4]]
-    for k, v in conf_phone.items():
-        d = list(set(list(v.keys()) + list(v.values())))
-        for pr in (prefix):
-            if pr in d:
-                c_p = &#39;%s%s&#39; % (v.get(pr, pr), number.lstrip(pr))
-                return k, number, c_p
-    return None, None, None</code></pre>
-</details>
-</dd>
 </dl>
 </section>
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="zuka_etl.utils.QuerySparkUtils"><code class="flex name class">
-<span>class <span class="ident">QuerySparkUtils</span></span>
-</code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class QuerySparkUtils(object):
-
-    @staticmethod
-    def convert_unix_to_date(field, alias=&#39;&#39;):
-        return &#34;to_utc_timestamp(from_unixtime(%s), &#39;%s&#39;) %s&#34; % (
-            field, Setting.LOCAL_TIME_ZONE, (&#39; as &#39; + alias) if alias else &#39;&#39;)
-
-    @staticmethod
-    def convert_datetime_to_unix(field, alias=&#39;&#39;):
-        return &#34;unix_timestamp(from_utc_timestamp(%s,&#39;%s&#39;)) %s&#34; % (
-            field, Setting.LOCAL_TIME_ZONE, (&#39; as &#39; + alias) if alias else &#39;&#39;)</code></pre>
-</details>
-<h3>Static methods</h3>
-<dl>
-<dt id="zuka_etl.utils.QuerySparkUtils.convert_datetime_to_unix"><code class="name flex">
-<span>def <span class="ident">convert_datetime_to_unix</span></span>(<span>field, alias='')</span>
-</code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@staticmethod
-def convert_datetime_to_unix(field, alias=&#39;&#39;):
-    return &#34;unix_timestamp(from_utc_timestamp(%s,&#39;%s&#39;)) %s&#34; % (
-        field, Setting.LOCAL_TIME_ZONE, (&#39; as &#39; + alias) if alias else &#39;&#39;)</code></pre>
-</details>
-</dd>
-<dt id="zuka_etl.utils.QuerySparkUtils.convert_unix_to_date"><code class="name flex">
-<span>def <span class="ident">convert_unix_to_date</span></span>(<span>field, alias='')</span>
-</code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@staticmethod
-def convert_unix_to_date(field, alias=&#39;&#39;):
-    return &#34;to_utc_timestamp(from_unixtime(%s), &#39;%s&#39;) %s&#34; % (
-        field, Setting.LOCAL_TIME_ZONE, (&#39; as &#39; + alias) if alias else &#39;&#39;)</code></pre>
-</details>
-</dd>
-</dl>
-</dd>
-<dt id="zuka_etl.utils.SQlAchemyCustomTpe"><code class="flex name class">
-<span>class <span class="ident">SQlAchemyCustomTpe</span></span>
-</code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class SQlAchemyCustomTpe(object):
-    class PhoneType(UserDefinedType):
-        &#34;&#34;&#34;
-        Phone Number type
-        &#34;&#34;&#34;
-
-        def get_col_spec(self):
-            return &#34;PhoneType&#34;
-
-        def bind_expression(self, bindvalue):
-            return func.ST_GeomFromText(bindvalue, type_=self)
-
-        def column_expression(self, col):
-            return func.ST_AsText(col, type_=self)
-
-    class CustomDimDate(UserDefinedType):
-        &#34;&#34;&#34;
-        Phone Number type
-        &#34;&#34;&#34;
-
-        def get_col_spec(self):
-            return &#34;CustomDimDate&#34;
-
-        def bind_expression(self, bindvalue):
-            return func.ST_GeomFromText(bindvalue, type_=self)
-
-        def column_expression(self, col):
-            return func.ST_AsText(col, type_=self)
-
-    class FromSparkUnixToDimDate(UserDefinedType):
-        &#34;&#34;&#34;
-        Phone Number type
-        &#34;&#34;&#34;
-
-        def get_col_spec(self):
-            return &#34;FromSparkUnixToDimDate&#34;
-
-        def bind_expression(self, bindvalue):
-            return func.ST_GeomFromText(bindvalue, type_=self)
-
-        def column_expression(self, col):
-            return func.ST_AsText(col, type_=self)
-
-    class FromSparkDateToUnix(UserDefinedType):
-        &#34;&#34;&#34;
-        Phone Number type
-        &#34;&#34;&#34;
-
-        def get_col_spec(self):
-            return &#34;FromSparkDateToUnix&#34;
-
-        def bind_expression(self, bindvalue):
-            return func.ST_GeomFromText(bindvalue, type_=self)
-
-        def column_expression(self, col):
-            return func.ST_AsText(col, type_=self)</code></pre>
-</details>
-<h3>Class variables</h3>
-<dl>
-<dt id="zuka_etl.utils.SQlAchemyCustomTpe.CustomDimDate"><code class="name">var <span class="ident">CustomDimDate</span></code></dt>
-<dd>
-<section class="desc"><p>Phone Number type</p></section>
-</dd>
-<dt id="zuka_etl.utils.SQlAchemyCustomTpe.FromSparkDateToUnix"><code class="name">var <span class="ident">FromSparkDateToUnix</span></code></dt>
-<dd>
-<section class="desc"><p>Phone Number type</p></section>
-</dd>
-<dt id="zuka_etl.utils.SQlAchemyCustomTpe.FromSparkUnixToDimDate"><code class="name">var <span class="ident">FromSparkUnixToDimDate</span></code></dt>
-<dd>
-<section class="desc"><p>Phone Number type</p></section>
-</dd>
-<dt id="zuka_etl.utils.SQlAchemyCustomTpe.PhoneType"><code class="name">var <span class="ident">PhoneType</span></code></dt>
-<dd>
-<section class="desc"><p>Phone Number type</p></section>
-</dd>
-</dl>
-</dd>
 <dt id="zuka_etl.utils.Singleton"><code class="flex name class">
 <span>class <span class="ident">Singleton</span></span>
 <span>(</span><span>*args, **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2535,7 +2086,7 @@ def convert_unix_to_date(field, alias=&#39;&#39;):
 <span>(</span><span>...)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Common base class for all non-exit exceptions.</p></section>
+<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2554,7 +2105,7 @@ def convert_unix_to_date(field, alias=&#39;&#39;):
 <span>(</span><span>getter, setter=None)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2579,7 +2130,7 @@ def convert_unix_to_date(field, alias=&#39;&#39;):
 <span>def <span class="ident">setter</span></span>(<span>self, setter)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2608,11 +2159,6 @@ def convert_unix_to_date(field, alias=&#39;&#39;):
 <ul class="">
 <li><code><a title="zuka_etl.utils.access_dict_by_dot" href="#zuka_etl.utils.access_dict_by_dot">access_dict_by_dot</a></code></li>
 <li><code><a title="zuka_etl.utils.beauti_dict" href="#zuka_etl.utils.beauti_dict">beauti_dict</a></code></li>
-<li><code><a title="zuka_etl.utils.clean_phone_number" href="#zuka_etl.utils.clean_phone_number">clean_phone_number</a></code></li>
-<li><code><a title="zuka_etl.utils.cligme_first_day_of_week" href="#zuka_etl.utils.cligme_first_day_of_week">cligme_first_day_of_week</a></code></li>
-<li><code><a title="zuka_etl.utils.cligme_last_day_of_week" href="#zuka_etl.utils.cligme_last_day_of_week">cligme_last_day_of_week</a></code></li>
-<li><code><a title="zuka_etl.utils.clingme_first_day_of_month" href="#zuka_etl.utils.clingme_first_day_of_month">clingme_first_day_of_month</a></code></li>
-<li><code><a title="zuka_etl.utils.clingme_last_day_of_month" href="#zuka_etl.utils.clingme_last_day_of_month">clingme_last_day_of_month</a></code></li>
 <li><code><a title="zuka_etl.utils.compare_dicts" href="#zuka_etl.utils.compare_dicts">compare_dicts</a></code></li>
 <li><code><a title="zuka_etl.utils.compare_lists" href="#zuka_etl.utils.compare_lists">compare_lists</a></code></li>
 <li><code><a title="zuka_etl.utils.convert_date_to_dim_date" href="#zuka_etl.utils.convert_date_to_dim_date">convert_date_to_dim_date</a></code></li>
@@ -2664,27 +2210,10 @@ def convert_unix_to_date(field, alias=&#39;&#39;):
 <li><code><a title="zuka_etl.utils.timeit" href="#zuka_etl.utils.timeit">timeit</a></code></li>
 <li><code><a title="zuka_etl.utils.timeit_with_show_params" href="#zuka_etl.utils.timeit_with_show_params">timeit_with_show_params</a></code></li>
 <li><code><a title="zuka_etl.utils.timeout" href="#zuka_etl.utils.timeout">timeout</a></code></li>
-<li><code><a title="zuka_etl.utils.validate_vn_mphone" href="#zuka_etl.utils.validate_vn_mphone">validate_vn_mphone</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
-<li>
-<h4><code><a title="zuka_etl.utils.QuerySparkUtils" href="#zuka_etl.utils.QuerySparkUtils">QuerySparkUtils</a></code></h4>
-<ul class="">
-<li><code><a title="zuka_etl.utils.QuerySparkUtils.convert_datetime_to_unix" href="#zuka_etl.utils.QuerySparkUtils.convert_datetime_to_unix">convert_datetime_to_unix</a></code></li>
-<li><code><a title="zuka_etl.utils.QuerySparkUtils.convert_unix_to_date" href="#zuka_etl.utils.QuerySparkUtils.convert_unix_to_date">convert_unix_to_date</a></code></li>
-</ul>
-</li>
-<li>
-<h4><code><a title="zuka_etl.utils.SQlAchemyCustomTpe" href="#zuka_etl.utils.SQlAchemyCustomTpe">SQlAchemyCustomTpe</a></code></h4>
-<ul class="">
-<li><code><a title="zuka_etl.utils.SQlAchemyCustomTpe.CustomDimDate" href="#zuka_etl.utils.SQlAchemyCustomTpe.CustomDimDate">CustomDimDate</a></code></li>
-<li><code><a title="zuka_etl.utils.SQlAchemyCustomTpe.FromSparkDateToUnix" href="#zuka_etl.utils.SQlAchemyCustomTpe.FromSparkDateToUnix">FromSparkDateToUnix</a></code></li>
-<li><code><a title="zuka_etl.utils.SQlAchemyCustomTpe.FromSparkUnixToDimDate" href="#zuka_etl.utils.SQlAchemyCustomTpe.FromSparkUnixToDimDate">FromSparkUnixToDimDate</a></code></li>
-<li><code><a title="zuka_etl.utils.SQlAchemyCustomTpe.PhoneType" href="#zuka_etl.utils.SQlAchemyCustomTpe.PhoneType">PhoneType</a></code></li>
-</ul>
-</li>
 <li>
 <h4><code><a title="zuka_etl.utils.Singleton" href="#zuka_etl.utils.Singleton">Singleton</a></code></h4>
 </li>
@@ -2703,9 +2232,7 @@ def convert_unix_to_date(field, alias=&#39;&#39;):
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.3</a>.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad()</script>
 </body>
 </html>

@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.3" />
+<title>zuka_etl.contribution.etl_full_flow.models API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>zuka_etl.contribution.etl_full_flow.models</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+__author__ = &#39;phongphamhong&#39;
+
+#
+# Copyright Phong Pham Hong &lt;phongbro1805@gmail.com&gt;
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an &#34;AS IS&#34; BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+from sqlalchemy import Column, Text
+from sqlalchemy import func
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.types import VARCHAR, INTEGER
+
+from zuka_etl.helpers.time_utils import current_unixtime
+from zuka_etl.log import logger
+
+Base = declarative_base()
+DEFAULT_CONNECTION = &#34;etl_metadata_connection&#34;
+
+
+class LogEtlMetadata(Base):
+    __tablename__ = &#34;etl_metadata_log&#34;
+    STATUS_SUCCESS = 1
+    STATUS_FAILED = 2
+    STATUS_NOT_SET = 0
+    STATUS_CHANGE = 3
+
+    id = Column(INTEGER,
+                primary_key=True,
+                nullable=False,
+                autoincrement=True)
+    task_id = Column(VARCHAR(255), nullable=False)
+    dag_id = Column(VARCHAR(255), nullable=False)
+    created_time = Column(INTEGER, nullable=False, default=int(current_unixtime()))
+    process_time = Column(INTEGER, nullable=False, default=0)
+    status = Column(INTEGER, nullable=False, default=0, comment=&#34;0: Not Set, 1: Success, 2: Failed&#34;)
+    change_time = Column(INTEGER, nullable=False)
+    change_time1 = Column(INTEGER, nullable=False)
+    change_time2 = Column(INTEGER, nullable=False)
+    change_time3 = Column(INTEGER, nullable=False)
+    change_time4 = Column(INTEGER, nullable=False)
+    message = Column(Text)
+    engine = None
+
+    @staticmethod
+    def generate_table(engine=None, re_create=False):
+        if (re_create):
+            LogEtlMetadata.__table__.drop(engine)
+            LogEtlMetadata.__table__.create(engine)
+            logger.info(&#34;Recreate table log etl: %s success&#34; % LogEtlMetadata.__tablename__)
+        else:
+            logger.info(&#34;Create table log etl: %s if not exist&#34; % LogEtlMetadata.__tablename__)
+            LogEtlMetadata.__table__.create(engine, checkfirst=True)
+
+    def load_session(self):
+        from sqlalchemy.orm import scoped_session, sessionmaker
+        engine = self.engine
+        if not engine:
+            raise Exception(&#34;You need to load engine by method load_engine&#34;)
+        return scoped_session(sessionmaker(bind=engine))
+
+    def load_engine(self, engine=None):
+        if not engine:
+            from airflow.hooks.base_hook import BaseHook
+            logger.info(&#34;Load metadata engine from connection: %s&#34; % DEFAULT_CONNECTION)
+            self.engine = BaseHook.get_hook(DEFAULT_CONNECTION).get_sqlalchemy_engine()
+        else:
+            self.engine = engine
+        return self
+
+    def find_task(self, task_id, dag_id):
+        session = self.load_session()
+        logger.info(&#34;Find log by task_id: %s and dag_id: %s&#34; % (task_id, dag_id))
+        rs = session.query(LogEtlMetadata).filter_by(task_id=task_id, dag_id=dag_id).first()
+        if rs:
+            logger.info(&#34;Log with task_id: %s and dag_id: %s exists!&#34; % (task_id, dag_id))
+            return rs
+        else:
+            logger.info(&#34;Cannot find and log with task_id: %s and dag_id: %s&#34; % (task_id, dag_id))
+            return None
+
+    def get_last_checkpoint(self, task_id, dag_id, status=None):
+        session = self.load_session()
+        rs = session.query(
+            func.max(LogEtlMetadata.change_time),
+            func.max(LogEtlMetadata.change_time1),
+            func.max(LogEtlMetadata.change_time2),
+            func.max(LogEtlMetadata.change_time3),
+            func.max(LogEtlMetadata.change_time4),
+        ).filter_by(task_id=task_id, dag_id=dag_id)
+        if status:
+            rs = rs.filter_by(status=status)
+        r = rs.first()
+        rs = (&#34;success: {0}&#34;.format(r)) if r else &#34;failed&#34;
+        logger.info(
+            &#34;Get last change_time with task_id: %s and dag_id: %s status: %s %s!&#34; % (
+                task_id, dag_id, status, rs))
+        return r if r else (0,) * 5
+
+    def save(self, task_id, dag_id, change_time=(0, 0, 0, 0, 0), status=0, message=&#34;&#34;, process_time=0):
+        cls = LogEtlMetadata().load_engine(engine=self.engine)
+        session = cls.load_session()
+        cur_unix = current_unixtime()
+        if task_id.strip() == &#34;&#34; or dag_id.strip() == &#34;&#34;:
+            raise ValueError(&#34;task_id or dag_id must be set&#34;)
+        if not change_time:
+            change_time = (cur_unix,) * 5,
+
+        if status not in (
+                LogEtlMetadata.STATUS_NOT_SET, LogEtlMetadata.STATUS_FAILED, LogEtlMetadata.STATUS_SUCCESS):
+            raise ValueError(&#34;status value: %s is invalid.&#34; % status)
+        created_time = current_unixtime()
+        cls.task_id = task_id
+        cls.dag_id = dag_id
+        cls.created_time = created_time
+        cls.status = status
+        cls.change_time = change_time[0]
+        cls.change_time1 = change_time[1]
+        cls.change_time2 = change_time[2]
+        cls.change_time3 = change_time[3]
+        cls.change_time4 = change_time[4]
+        cls.message = message
+        cls.process_time = process_time if process_time &gt; 0 else 0
+        logger.info(&#34;Save log with task_id: %s and dag_id: %s and time info: %s&#34; % (task_id, dag_id, change_time))
+        cls.generate_table(engine=cls.engine, re_create=False)
+        session.add(cls)
+        session.commit()
+        logger.info(&#34;save success&#34;)
+
+    def delete_by_id(self, id):
+        session = self.load_session()
+        model = session.query(LogEtlMetadata).filter_by(id=id).first()
+        session.delete(model)
+        session.commit()
+        logger.info(&#34;Delete log metadata with id: %s success&#34; % id)
+
+    def update_status_and_message(self, id, status, message=&#34;change&#34;):
+        if status in [LogEtlMetadata.STATUS_CHANGE, LogEtlMetadata.STATUS_FAILED,
+                      LogEtlMetadata.STATUS_NOT_SET, LogEtlMetadata.STATUS_SUCCESS]:
+            session = self.load_session()
+            model = session.query(LogEtlMetadata).filter_by(id=id).first()
+            if model:
+                model.message = message
+                model.status = status
+                session.commit()
+            else:
+                logger.error(&#34;Log: %s not found&#34; % id)
+        else:
+            raise Exception(&#34;status: %s is invalid&#34; % status)
+
+    def debug(self, sql=&#34;&#34;):
+        import pandas as pd
+        from zuka_etl.helpers.time_utils import convert_from_unixtime
+        pd.set_option(&#39;display.max_columns&#39;, None)
+        from zuka_etl.pipeline.extract.pandas_utils import PandasDfFromSQL
+        df = PandasDfFromSQL.from_sql(
+            (&#34;select * from %s order by change_time desc limit 10&#34; % self.__tablename__) if not sql else sql,
+            connection_id=DEFAULT_CONNECTION
+        )
+        df[&#34;created_time_format&#34;] = df.apply(lambda x: convert_from_unixtime(x[&#34;created_time&#34;]), axis=1)
+        df[&#34;change_time_format&#34;] = df.apply(lambda x: convert_from_unixtime(x[&#34;change_time&#34;]), axis=1)
+        return df</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata"><code class="flex name class">
+<span>class <span class="ident">LogEtlMetadata</span></span>
+<span>(</span><span>**kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The base class of the class hierarchy.</p>
+<p>When called, it accepts no arguments and returns a new featureless
+instance that has no instance attributes and cannot be given any.</p>
+<p>A simple constructor that allows initialization from kwargs.</p>
+<p>Sets attributes on the constructed instance using the names and
+values in <code>kwargs</code>.</p>
+<p>Only keys that are present as
+attributes of the instance's class are allowed. These could be,
+for example, any mapped columns or relationships.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LogEtlMetadata(Base):
+    __tablename__ = &#34;etl_metadata_log&#34;
+    STATUS_SUCCESS = 1
+    STATUS_FAILED = 2
+    STATUS_NOT_SET = 0
+    STATUS_CHANGE = 3
+
+    id = Column(INTEGER,
+                primary_key=True,
+                nullable=False,
+                autoincrement=True)
+    task_id = Column(VARCHAR(255), nullable=False)
+    dag_id = Column(VARCHAR(255), nullable=False)
+    created_time = Column(INTEGER, nullable=False, default=int(current_unixtime()))
+    process_time = Column(INTEGER, nullable=False, default=0)
+    status = Column(INTEGER, nullable=False, default=0, comment=&#34;0: Not Set, 1: Success, 2: Failed&#34;)
+    change_time = Column(INTEGER, nullable=False)
+    change_time1 = Column(INTEGER, nullable=False)
+    change_time2 = Column(INTEGER, nullable=False)
+    change_time3 = Column(INTEGER, nullable=False)
+    change_time4 = Column(INTEGER, nullable=False)
+    message = Column(Text)
+    engine = None
+
+    @staticmethod
+    def generate_table(engine=None, re_create=False):
+        if (re_create):
+            LogEtlMetadata.__table__.drop(engine)
+            LogEtlMetadata.__table__.create(engine)
+            logger.info(&#34;Recreate table log etl: %s success&#34; % LogEtlMetadata.__tablename__)
+        else:
+            logger.info(&#34;Create table log etl: %s if not exist&#34; % LogEtlMetadata.__tablename__)
+            LogEtlMetadata.__table__.create(engine, checkfirst=True)
+
+    def load_session(self):
+        from sqlalchemy.orm import scoped_session, sessionmaker
+        engine = self.engine
+        if not engine:
+            raise Exception(&#34;You need to load engine by method load_engine&#34;)
+        return scoped_session(sessionmaker(bind=engine))
+
+    def load_engine(self, engine=None):
+        if not engine:
+            from airflow.hooks.base_hook import BaseHook
+            logger.info(&#34;Load metadata engine from connection: %s&#34; % DEFAULT_CONNECTION)
+            self.engine = BaseHook.get_hook(DEFAULT_CONNECTION).get_sqlalchemy_engine()
+        else:
+            self.engine = engine
+        return self
+
+    def find_task(self, task_id, dag_id):
+        session = self.load_session()
+        logger.info(&#34;Find log by task_id: %s and dag_id: %s&#34; % (task_id, dag_id))
+        rs = session.query(LogEtlMetadata).filter_by(task_id=task_id, dag_id=dag_id).first()
+        if rs:
+            logger.info(&#34;Log with task_id: %s and dag_id: %s exists!&#34; % (task_id, dag_id))
+            return rs
+        else:
+            logger.info(&#34;Cannot find and log with task_id: %s and dag_id: %s&#34; % (task_id, dag_id))
+            return None
+
+    def get_last_checkpoint(self, task_id, dag_id, status=None):
+        session = self.load_session()
+        rs = session.query(
+            func.max(LogEtlMetadata.change_time),
+            func.max(LogEtlMetadata.change_time1),
+            func.max(LogEtlMetadata.change_time2),
+            func.max(LogEtlMetadata.change_time3),
+            func.max(LogEtlMetadata.change_time4),
+        ).filter_by(task_id=task_id, dag_id=dag_id)
+        if status:
+            rs = rs.filter_by(status=status)
+        r = rs.first()
+        rs = (&#34;success: {0}&#34;.format(r)) if r else &#34;failed&#34;
+        logger.info(
+            &#34;Get last change_time with task_id: %s and dag_id: %s status: %s %s!&#34; % (
+                task_id, dag_id, status, rs))
+        return r if r else (0,) * 5
+
+    def save(self, task_id, dag_id, change_time=(0, 0, 0, 0, 0), status=0, message=&#34;&#34;, process_time=0):
+        cls = LogEtlMetadata().load_engine(engine=self.engine)
+        session = cls.load_session()
+        cur_unix = current_unixtime()
+        if task_id.strip() == &#34;&#34; or dag_id.strip() == &#34;&#34;:
+            raise ValueError(&#34;task_id or dag_id must be set&#34;)
+        if not change_time:
+            change_time = (cur_unix,) * 5,
+
+        if status not in (
+                LogEtlMetadata.STATUS_NOT_SET, LogEtlMetadata.STATUS_FAILED, LogEtlMetadata.STATUS_SUCCESS):
+            raise ValueError(&#34;status value: %s is invalid.&#34; % status)
+        created_time = current_unixtime()
+        cls.task_id = task_id
+        cls.dag_id = dag_id
+        cls.created_time = created_time
+        cls.status = status
+        cls.change_time = change_time[0]
+        cls.change_time1 = change_time[1]
+        cls.change_time2 = change_time[2]
+        cls.change_time3 = change_time[3]
+        cls.change_time4 = change_time[4]
+        cls.message = message
+        cls.process_time = process_time if process_time &gt; 0 else 0
+        logger.info(&#34;Save log with task_id: %s and dag_id: %s and time info: %s&#34; % (task_id, dag_id, change_time))
+        cls.generate_table(engine=cls.engine, re_create=False)
+        session.add(cls)
+        session.commit()
+        logger.info(&#34;save success&#34;)
+
+    def delete_by_id(self, id):
+        session = self.load_session()
+        model = session.query(LogEtlMetadata).filter_by(id=id).first()
+        session.delete(model)
+        session.commit()
+        logger.info(&#34;Delete log metadata with id: %s success&#34; % id)
+
+    def update_status_and_message(self, id, status, message=&#34;change&#34;):
+        if status in [LogEtlMetadata.STATUS_CHANGE, LogEtlMetadata.STATUS_FAILED,
+                      LogEtlMetadata.STATUS_NOT_SET, LogEtlMetadata.STATUS_SUCCESS]:
+            session = self.load_session()
+            model = session.query(LogEtlMetadata).filter_by(id=id).first()
+            if model:
+                model.message = message
+                model.status = status
+                session.commit()
+            else:
+                logger.error(&#34;Log: %s not found&#34; % id)
+        else:
+            raise Exception(&#34;status: %s is invalid&#34; % status)
+
+    def debug(self, sql=&#34;&#34;):
+        import pandas as pd
+        from zuka_etl.helpers.time_utils import convert_from_unixtime
+        pd.set_option(&#39;display.max_columns&#39;, None)
+        from zuka_etl.pipeline.extract.pandas_utils import PandasDfFromSQL
+        df = PandasDfFromSQL.from_sql(
+            (&#34;select * from %s order by change_time desc limit 10&#34; % self.__tablename__) if not sql else sql,
+            connection_id=DEFAULT_CONNECTION
+        )
+        df[&#34;created_time_format&#34;] = df.apply(lambda x: convert_from_unixtime(x[&#34;created_time&#34;]), axis=1)
+        df[&#34;change_time_format&#34;] = df.apply(lambda x: convert_from_unixtime(x[&#34;change_time&#34;]), axis=1)
+        return df</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>sqlalchemy.ext.declarative.api.Base</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.STATUS_CHANGE"><code class="name">var <span class="ident">STATUS_CHANGE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.STATUS_FAILED"><code class="name">var <span class="ident">STATUS_FAILED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.STATUS_NOT_SET"><code class="name">var <span class="ident">STATUS_NOT_SET</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.STATUS_SUCCESS"><code class="name">var <span class="ident">STATUS_SUCCESS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.engine"><code class="name">var <span class="ident">engine</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.generate_table"><code class="name flex">
+<span>def <span class="ident">generate_table</span></span>(<span>engine=None, re_create=False)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def generate_table(engine=None, re_create=False):
+    if (re_create):
+        LogEtlMetadata.__table__.drop(engine)
+        LogEtlMetadata.__table__.create(engine)
+        logger.info(&#34;Recreate table log etl: %s success&#34; % LogEtlMetadata.__tablename__)
+    else:
+        logger.info(&#34;Create table log etl: %s if not exist&#34; % LogEtlMetadata.__tablename__)
+        LogEtlMetadata.__table__.create(engine, checkfirst=True)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time"><code class="name">var <span class="ident">change_time</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(self, instance, owner):
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self._supports_population and self.key in dict_:
+        return dict_[self.key]
+    else:
+        return self.impl.get(instance_state(instance), dict_)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time1"><code class="name">var <span class="ident">change_time1</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(self, instance, owner):
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self._supports_population and self.key in dict_:
+        return dict_[self.key]
+    else:
+        return self.impl.get(instance_state(instance), dict_)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time2"><code class="name">var <span class="ident">change_time2</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(self, instance, owner):
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self._supports_population and self.key in dict_:
+        return dict_[self.key]
+    else:
+        return self.impl.get(instance_state(instance), dict_)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time3"><code class="name">var <span class="ident">change_time3</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(self, instance, owner):
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self._supports_population and self.key in dict_:
+        return dict_[self.key]
+    else:
+        return self.impl.get(instance_state(instance), dict_)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time4"><code class="name">var <span class="ident">change_time4</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(self, instance, owner):
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self._supports_population and self.key in dict_:
+        return dict_[self.key]
+    else:
+        return self.impl.get(instance_state(instance), dict_)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.created_time"><code class="name">var <span class="ident">created_time</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(self, instance, owner):
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self._supports_population and self.key in dict_:
+        return dict_[self.key]
+    else:
+        return self.impl.get(instance_state(instance), dict_)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.dag_id"><code class="name">var <span class="ident">dag_id</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(self, instance, owner):
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self._supports_population and self.key in dict_:
+        return dict_[self.key]
+    else:
+        return self.impl.get(instance_state(instance), dict_)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.id"><code class="name">var <span class="ident">id</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(self, instance, owner):
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self._supports_population and self.key in dict_:
+        return dict_[self.key]
+    else:
+        return self.impl.get(instance_state(instance), dict_)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.message"><code class="name">var <span class="ident">message</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(self, instance, owner):
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self._supports_population and self.key in dict_:
+        return dict_[self.key]
+    else:
+        return self.impl.get(instance_state(instance), dict_)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.process_time"><code class="name">var <span class="ident">process_time</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(self, instance, owner):
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self._supports_population and self.key in dict_:
+        return dict_[self.key]
+    else:
+        return self.impl.get(instance_state(instance), dict_)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.status"><code class="name">var <span class="ident">status</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(self, instance, owner):
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self._supports_population and self.key in dict_:
+        return dict_[self.key]
+    else:
+        return self.impl.get(instance_state(instance), dict_)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.task_id"><code class="name">var <span class="ident">task_id</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(self, instance, owner):
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self._supports_population and self.key in dict_:
+        return dict_[self.key]
+    else:
+        return self.impl.get(instance_state(instance), dict_)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.debug"><code class="name flex">
+<span>def <span class="ident">debug</span></span>(<span>self, sql='')</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def debug(self, sql=&#34;&#34;):
+    import pandas as pd
+    from zuka_etl.helpers.time_utils import convert_from_unixtime
+    pd.set_option(&#39;display.max_columns&#39;, None)
+    from zuka_etl.pipeline.extract.pandas_utils import PandasDfFromSQL
+    df = PandasDfFromSQL.from_sql(
+        (&#34;select * from %s order by change_time desc limit 10&#34; % self.__tablename__) if not sql else sql,
+        connection_id=DEFAULT_CONNECTION
+    )
+    df[&#34;created_time_format&#34;] = df.apply(lambda x: convert_from_unixtime(x[&#34;created_time&#34;]), axis=1)
+    df[&#34;change_time_format&#34;] = df.apply(lambda x: convert_from_unixtime(x[&#34;change_time&#34;]), axis=1)
+    return df</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.delete_by_id"><code class="name flex">
+<span>def <span class="ident">delete_by_id</span></span>(<span>self, id)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_by_id(self, id):
+    session = self.load_session()
+    model = session.query(LogEtlMetadata).filter_by(id=id).first()
+    session.delete(model)
+    session.commit()
+    logger.info(&#34;Delete log metadata with id: %s success&#34; % id)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.find_task"><code class="name flex">
+<span>def <span class="ident">find_task</span></span>(<span>self, task_id, dag_id)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_task(self, task_id, dag_id):
+    session = self.load_session()
+    logger.info(&#34;Find log by task_id: %s and dag_id: %s&#34; % (task_id, dag_id))
+    rs = session.query(LogEtlMetadata).filter_by(task_id=task_id, dag_id=dag_id).first()
+    if rs:
+        logger.info(&#34;Log with task_id: %s and dag_id: %s exists!&#34; % (task_id, dag_id))
+        return rs
+    else:
+        logger.info(&#34;Cannot find and log with task_id: %s and dag_id: %s&#34; % (task_id, dag_id))
+        return None</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.get_last_checkpoint"><code class="name flex">
+<span>def <span class="ident">get_last_checkpoint</span></span>(<span>self, task_id, dag_id, status=None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_last_checkpoint(self, task_id, dag_id, status=None):
+    session = self.load_session()
+    rs = session.query(
+        func.max(LogEtlMetadata.change_time),
+        func.max(LogEtlMetadata.change_time1),
+        func.max(LogEtlMetadata.change_time2),
+        func.max(LogEtlMetadata.change_time3),
+        func.max(LogEtlMetadata.change_time4),
+    ).filter_by(task_id=task_id, dag_id=dag_id)
+    if status:
+        rs = rs.filter_by(status=status)
+    r = rs.first()
+    rs = (&#34;success: {0}&#34;.format(r)) if r else &#34;failed&#34;
+    logger.info(
+        &#34;Get last change_time with task_id: %s and dag_id: %s status: %s %s!&#34; % (
+            task_id, dag_id, status, rs))
+    return r if r else (0,) * 5</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.load_engine"><code class="name flex">
+<span>def <span class="ident">load_engine</span></span>(<span>self, engine=None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_engine(self, engine=None):
+    if not engine:
+        from airflow.hooks.base_hook import BaseHook
+        logger.info(&#34;Load metadata engine from connection: %s&#34; % DEFAULT_CONNECTION)
+        self.engine = BaseHook.get_hook(DEFAULT_CONNECTION).get_sqlalchemy_engine()
+    else:
+        self.engine = engine
+    return self</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.load_session"><code class="name flex">
+<span>def <span class="ident">load_session</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_session(self):
+    from sqlalchemy.orm import scoped_session, sessionmaker
+    engine = self.engine
+    if not engine:
+        raise Exception(&#34;You need to load engine by method load_engine&#34;)
+    return scoped_session(sessionmaker(bind=engine))</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.save"><code class="name flex">
+<span>def <span class="ident">save</span></span>(<span>self, task_id, dag_id, change_time=(0, 0, 0, 0, 0), status=0, message='', process_time=0)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save(self, task_id, dag_id, change_time=(0, 0, 0, 0, 0), status=0, message=&#34;&#34;, process_time=0):
+    cls = LogEtlMetadata().load_engine(engine=self.engine)
+    session = cls.load_session()
+    cur_unix = current_unixtime()
+    if task_id.strip() == &#34;&#34; or dag_id.strip() == &#34;&#34;:
+        raise ValueError(&#34;task_id or dag_id must be set&#34;)
+    if not change_time:
+        change_time = (cur_unix,) * 5,
+
+    if status not in (
+            LogEtlMetadata.STATUS_NOT_SET, LogEtlMetadata.STATUS_FAILED, LogEtlMetadata.STATUS_SUCCESS):
+        raise ValueError(&#34;status value: %s is invalid.&#34; % status)
+    created_time = current_unixtime()
+    cls.task_id = task_id
+    cls.dag_id = dag_id
+    cls.created_time = created_time
+    cls.status = status
+    cls.change_time = change_time[0]
+    cls.change_time1 = change_time[1]
+    cls.change_time2 = change_time[2]
+    cls.change_time3 = change_time[3]
+    cls.change_time4 = change_time[4]
+    cls.message = message
+    cls.process_time = process_time if process_time &gt; 0 else 0
+    logger.info(&#34;Save log with task_id: %s and dag_id: %s and time info: %s&#34; % (task_id, dag_id, change_time))
+    cls.generate_table(engine=cls.engine, re_create=False)
+    session.add(cls)
+    session.commit()
+    logger.info(&#34;save success&#34;)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.update_status_and_message"><code class="name flex">
+<span>def <span class="ident">update_status_and_message</span></span>(<span>self, id, status, message='change')</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_status_and_message(self, id, status, message=&#34;change&#34;):
+    if status in [LogEtlMetadata.STATUS_CHANGE, LogEtlMetadata.STATUS_FAILED,
+                  LogEtlMetadata.STATUS_NOT_SET, LogEtlMetadata.STATUS_SUCCESS]:
+        session = self.load_session()
+        model = session.query(LogEtlMetadata).filter_by(id=id).first()
+        if model:
+            model.message = message
+            model.status = status
+            session.commit()
+        else:
+            logger.error(&#34;Log: %s not found&#34; % id)
+    else:
+        raise Exception(&#34;status: %s is invalid&#34; % status)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="zuka_etl.contribution.etl_full_flow" href="index.html">zuka_etl.contribution.etl_full_flow</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata">LogEtlMetadata</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.STATUS_CHANGE" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.STATUS_CHANGE">STATUS_CHANGE</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.STATUS_FAILED" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.STATUS_FAILED">STATUS_FAILED</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.STATUS_NOT_SET" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.STATUS_NOT_SET">STATUS_NOT_SET</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.STATUS_SUCCESS" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.STATUS_SUCCESS">STATUS_SUCCESS</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time">change_time</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time1" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time1">change_time1</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time2" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time2">change_time2</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time3" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time3">change_time3</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time4" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.change_time4">change_time4</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.created_time" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.created_time">created_time</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.dag_id" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.dag_id">dag_id</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.debug" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.debug">debug</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.delete_by_id" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.delete_by_id">delete_by_id</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.engine" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.engine">engine</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.find_task" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.find_task">find_task</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.generate_table" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.generate_table">generate_table</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.get_last_checkpoint" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.get_last_checkpoint">get_last_checkpoint</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.id" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.id">id</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.load_engine" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.load_engine">load_engine</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.load_session" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.load_session">load_session</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.message" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.message">message</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.process_time" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.process_time">process_time</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.save" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.save">save</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.status" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.status">status</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.task_id" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.task_id">task_id</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.update_status_and_message" href="#zuka_etl.contribution.etl_full_flow.models.LogEtlMetadata.update_status_and_message">update_status_and_message</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.3</a>.</p>
+</footer>
+</body>
+</html>

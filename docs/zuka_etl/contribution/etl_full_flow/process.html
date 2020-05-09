@@ -1,0 +1,1549 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.3" />
+<title>zuka_etl.contribution.etl_full_flow.process API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>zuka_etl.contribution.etl_full_flow.process</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+__author__ = &#39;phongphamhong&#39;
+
+import copy
+import time
+import traceback
+
+from zuka_etl.contribution.etl_full_flow.models import LogEtlMetadata
+from zuka_etl.custom.spark_hook import SparkHook
+from zuka_etl.helpers.sql import replace_template
+from zuka_etl.helpers.time_utils import current_unixtime, convert_date_to_dim_date, convert_from_unixtime, \
+    current_time_local, convert_unixtime, convert_time, convert_int
+from zuka_etl.log import logger
+#
+# Copyright Phong Pham Hong &lt;phongbro1805@gmail.com&gt;
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an &#34;AS IS&#34; BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+from zuka_etl.pipeline.process import Process
+
+
+class FullFlowProcess(Process):
+
+    def __init__(self, task_id, dag_id, extract, transform=None, load=None, complete=None,
+                 get_last_checkpoint=&#34;auto&#34;,
+                 calculate_checkpoint_func=&#34;auto&#34;,
+                 additional_args=None,
+                 additional_kwargs=None,
+                 more_params={},
+                 log_metadata_model=&#34;auto&#34;,
+                 save_metadata_log=True,
+                 start_time=None,
+                 end_time=None,
+                 before_run=None,
+                 **kwargs
+                 ):
+        &#34;&#34;&#34;
+        Execute Full ETL process with writing check_point log to metadata
+
+        Parameters
+
+            task_id:
+            dag_id:
+            extract:
+            transform:
+            load:
+            complete:
+            get_last_checkpoint:
+            calculate_checkpoint_func: &#39;auto&#39;, False, Func
+            additional_args:
+            additional_kwargs:
+            more_params:
+            log_metadata_model:
+            save_metadata_log:
+            start_time: unixtime
+            end_time: unixtime
+            kwargs:
+
+        &#34;&#34;&#34;
+        self.task_id = task_id
+        self.dag_id = dag_id
+        self.extract_func = extract
+        self.transform_func = transform
+        self.load_func = load
+        self.shipper = {}
+        self.complete_func = complete
+        self.additional_args = copy.copy(additional_args or {})
+        self.additional_kwargs = copy.copy(additional_kwargs or {})
+        self.more_params = copy.copy(more_params or {})
+        self.params = {}
+
+        if log_metadata_model == &#34;auto&#34;:
+            self.log_model = LogEtlMetadata().load_engine()
+        elif log_metadata_model and not isinstance(log_metadata_model, LogEtlMetadata):
+            raise ValueError(&#34;log_metadata_model must be instance of LogEtlMetadata&#34;)
+        else:
+            self.log_model = None
+
+        self.end_time = end_time
+        self.start_time, self.start_time1, self.start_time2, self.start_time3, self.start_time4 = (start_time,) * 5
+        self.get_last_checkpoint = get_last_checkpoint
+        self.save_metadata_log = save_metadata_log
+        self.calculate_checkpoint_func = calculate_checkpoint_func
+        self.before_run = before_run
+
+    def calculate_last_checkpoint(self):
+        if callable(self.get_last_checkpoint):
+            logger.info(&#34;Run custom get_last_checkpoint function to calculate last checkpoint...&#34;)
+            self.get_last_checkpoint(self)
+            return self
+        if isinstance(self.log_model, LogEtlMetadata) and self.get_last_checkpoint:
+            logger.info(&#34;Get last_checkpoint of previous job on log metadata table&#34;)
+            self.start_time, self.start_time1, self.start_time2, self.start_time3, self.start_time4 = self.log_model.get_last_checkpoint(
+                task_id=self.task_id, dag_id=self.dag_id,
+                status=LogEtlMetadata.STATUS_SUCCESS)
+            if self.start_time is None:
+                logger.info(&#34;Cannot get last_checkpoint of previous job, set current day as start_time&#34;)
+                self.start_time, self.start_time1, self.start_time2, self.start_time3, self.start_time4 = (
+                        (convert_unixtime(date_time=current_time_local(reset_time=True)),) * 5)
+
+            if not self.end_time:
+                self.end_time = convert_unixtime(convert_time(current_time_local(end_day=True)))
+        return self
+
+    def prepare_params(self):
+
+        self.start_time = convert_unixtime(
+            current_time_local(reset_time=True)) if not self.start_time else self.start_time
+        self.start_time1 = convert_unixtime(
+            current_time_local(reset_time=True)) if not self.start_time1 else self.start_time1
+        self.start_time2 = convert_unixtime(
+            current_time_local(reset_time=True)) if not self.start_time2 else self.start_time2
+        self.start_time3 = convert_unixtime(
+            current_time_local(reset_time=True)) if not self.start_time3 else self.start_time3
+        self.start_time4 = convert_unixtime(
+            current_time_local(reset_time=True)) if not self.start_time4 else self.start_time4
+
+        self.end_time = convert_unixtime(
+            current_time_local(end_day=True)) if not self.end_time else self.end_time
+
+        end_date = convert_from_unixtime(self.end_time)
+        start_time, start_time1, start_time2, start_time3, start_time4 = convert_from_unixtime(
+            self.start_time), convert_from_unixtime(self.start_time1), convert_from_unixtime(
+            self.start_time2), convert_from_unixtime(self.start_time3), convert_from_unixtime(self.start_time4)
+        default = {
+            &#34;start_time&#34;: self.start_time,
+            &#34;start_time1&#34;: self.start_time1,
+            &#34;start_time2&#34;: self.start_time2,
+            &#34;start_time3&#34;: self.start_time3,
+            &#34;start_time4&#34;: self.start_time4,
+            &#34;start_date&#34;: start_time.strftime(&#34;%Y-%m-%d&#34;),
+            &#34;start_date1&#34;: start_time1.strftime(&#34;%Y-%m-%d&#34;),
+            &#34;start_date2&#34;: start_time2.strftime(&#34;%Y-%m-%d&#34;),
+            &#34;start_date3&#34;: start_time3.strftime(&#34;%Y-%m-%d&#34;),
+            &#34;start_date4&#34;: start_time4.strftime(&#34;%Y-%m-%d&#34;),
+            &#34;start_datetime&#34;: start_time.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+            &#34;start_datetime1&#34;: start_time1.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+            &#34;start_datetime2&#34;: start_time2.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+            &#34;start_datetime3&#34;: start_time3.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+            &#34;start_datetime4&#34;: start_time4.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+            &#34;start_time_object&#34;: start_time,
+            &#34;start_time_object1&#34;: start_time1,
+            &#34;start_time_object2&#34;: start_time2,
+            &#34;start_time_object3&#34;: start_time3,
+            &#34;start_time_object4&#34;: start_time4,
+            &#34;start_dim_date&#34;: convert_date_to_dim_date(start_time),
+            &#34;start_dim_date1&#34;: convert_date_to_dim_date(start_time1),
+            &#34;start_dim_date2&#34;: convert_date_to_dim_date(start_time2),
+            &#34;start_dim_date3&#34;: convert_date_to_dim_date(start_time3),
+            &#34;start_dim_date4&#34;: convert_date_to_dim_date(start_time4),
+
+            &#34;check_point_will_be_update&#34;: self.end_time,
+            &#34;check_point_will_be_update1&#34;: self.end_time,
+            &#34;check_point_will_be_update2&#34;: self.end_time,
+            &#34;check_point_will_be_update3&#34;: self.end_time,
+            &#34;check_point_will_be_update4&#34;: self.end_time,
+
+            &#34;end_time&#34;: self.end_time,
+            &#34;end_date&#34;: end_date.strftime(&#34;%Y-%m-%d&#34;),
+            &#34;end_time_object&#34;: end_date,
+            &#34;end_dim_date&#34;: convert_date_to_dim_date(end_date),
+
+        }
+        self.params.update(default)
+        self.params.update(self.more_params)
+        return self
+
+    def run(self, *args, **kwargs):
+        self.calculate_last_checkpoint()
+        self.prepare_params()
+        if self.get_last_checkpoint:
+            logger.info(&#34;Time metadata info: \n%s&#34; % self.params)
+        st = time.time()
+
+        if not self.log_model or not self.save_metadata_log:
+            if callable(self.before_run):
+                logger.info(&#34;Execute function before_run before run process...&#34;)
+                self.before_run(self)
+            logger.info(&#34;Skip insert log to metadata because log_mode is not set or save_metadata_log option is True&#34;)
+            return super(FullFlowProcess, self).run()
+        try:
+            if callable(self.before_run):
+                logger.info(&#34;Execute function before_run before run process...&#34;)
+                self.before_run(self)
+            super(FullFlowProcess, self).run()
+            self.log_model.save(
+                task_id=self.task_id,
+                dag_id=self.dag_id,
+                change_time=(self.params.get(&#34;check_point_will_be_update&#34;),
+                             self.params.get(&#34;check_point_will_be_update1&#34;),
+                             self.params.get(&#34;check_point_will_be_update2&#34;),
+                             self.params.get(&#34;check_point_will_be_update3&#34;),
+                             self.params.get(&#34;check_point_will_be_update4&#34;)
+                             ),
+                status=LogEtlMetadata.STATUS_SUCCESS,
+                process_time=time.time() - st,
+                message=&#34;success&#34;
+            )
+        except BaseException as e:
+            self.log_model.save(
+                task_id=self.task_id,
+                dag_id=self.dag_id,
+                change_time=(self.params.get(&#34;check_point_will_be_update&#34;),
+                             self.params.get(&#34;check_point_will_be_update1&#34;),
+                             self.params.get(&#34;check_point_will_be_update2&#34;),
+                             self.params.get(&#34;check_point_will_be_update3&#34;),
+                             self.params.get(&#34;check_point_will_be_update4&#34;)
+                             ),
+                status=LogEtlMetadata.STATUS_FAILED,
+                process_time=int(time.time() - st),
+                message=traceback.format_exc()
+            )
+            raise Exception(e)
+
+    def prepare_checkpoint_to_save(self, trans_value, load_value):
+        return current_unixtime()
+
+    def complete(self, trans_value, load_value):
+        if self.calculate_checkpoint_func is not False:
+            rs = current_unixtime()
+            if callable(self.calculate_checkpoint_func):
+                logger.info(&#34;Calculate check_point to store on metadata table &#34;)
+                rs = self.calculate_checkpoint_func(self, trans_value, load_value)
+            elif self.calculate_checkpoint_func == &#34;auto&#34;:
+                logger.info(&#34;Using default function prepare_check_point_func to store check_point to metadata log&#34;)
+                rs = self.prepare_checkpoint_to_save(trans_value, load_value)
+
+            if isinstance(rs, tuple) or isinstance(rs, list):
+                if len(rs) == 0:
+                    rs = [self.start_time] * 5
+                else:
+                    rs = list(rs[:5]) + [rs[0]] * (5 - len(rs))
+            else:
+                rs = [rs] * 5
+
+            for i, x in enumerate(rs):
+                self.params[&#34;change_date_will_be_update%s&#34; % (i if i &gt; 0 else &#34;&#34;)] = convert_date_to_dim_date(
+                    convert_from_unixtime(x))
+                self.params[&#34;check_point_will_be_update%s&#34; % (i if i &gt; 0 else &#34;&#34;)] = x
+            logger.info(
+                &#34;After calculate automatically, check_point_will_be_update: %s&#34; %
+                (self.params[&#34;check_point_will_be_update&#34;]))
+        return super(FullFlowProcess, self).complete(trans_value, load_value)
+
+
+class SQLToAnyFlowBySpark(FullFlowProcess):
+    &#34;&#34;&#34;
+    SQL ETL Flow by Spark
+    &#34;&#34;&#34;
+
+    def __init__(self, task_id, dag_id, sql_extract,
+                 from_connection_id,
+                 from_spark_conf=&#34;&#34;,
+                 spark_conf: dict = {},
+                 sql_params={},
+                 transform=None,
+                 load=None,
+                 complete=None,
+                 calculate_checkpoint_func=False,
+                 additional_args=None,
+                 additional_kwargs=None,
+                 get_last_checkpoint=False,
+                 log_metadata_model=None,
+                 save_metadata_log=False,
+                 start_time=None,
+                 end_time=None,
+                 before_run=None,
+                 **kwargs
+                 ):
+        &#34;&#34;&#34;
+        Execute ETL flow by SparkSQL
+
+        Parameters
+        
+            task_id:
+            dag_id:
+            sql_extract: list or sql query string
+            from_connection_id:
+            from_spark_conf:
+            spark_conf: list params of SparkHook
+            sql_params:
+            transform: func or list query string
+            load: func or list query string
+            complete:
+            calculate_checkpoint_func:
+            additional_args:
+            additional_kwargs:
+            get_last_checkpoint:
+            log_metadata_model:
+            save_metadata_log:
+            start_time:
+            end_time:
+            kwargs:
+
+        &#34;&#34;&#34;
+        self.sql_extract = sql_extract
+        self.from_connection_id = from_connection_id
+        self.calculate_checkpoint_func = calculate_checkpoint_func
+        self.spark_hook = SparkHook(connection_id=from_spark_conf, **spark_conf)
+        self.update_checkpoint_from_field = kwargs.get(&#34;update_checkpoint_from_field&#34;, [&#34;check_point&#34;])
+        self.update_checkpoint_from_field = [self.update_checkpoint_from_field] if not isinstance(
+            self.update_checkpoint_from_field, list) else self.update_checkpoint_from_field
+        super(SQLToAnyFlowBySpark, self).__init__(task_id=task_id,
+                                                  dag_id=dag_id,
+                                                  extract=None,
+                                                  transform=transform,
+                                                  load=load,
+                                                  complete=complete,
+                                                  get_last_checkpoint=get_last_checkpoint,
+                                                  calculate_checkpoint_func=calculate_checkpoint_func,
+                                                  additional_args=additional_args,
+                                                  additional_kwargs=additional_kwargs,
+                                                  log_metadata_model=log_metadata_model,
+                                                  save_metadata_log=save_metadata_log,
+                                                  more_params=sql_params,
+                                                  start_time=start_time,
+                                                  end_time=end_time,
+                                                  before_run=before_run
+                                                  )
+
+    def extract(self):
+        from zuka_etl.pipeline.extract.spark_utils import SparkDfFromDriver
+        sql_extract = self.sql_extract if isinstance(self.sql_extract, list) else [self.sql_extract]
+        list_df = []
+        for index, sql in enumerate(sql_extract):
+            sql = replace_template(sql, self.params)
+            logger.info(&#34;[Extract] SQL query will be used for extracting: %s&#34; % sql)
+            df = SparkDfFromDriver.from_jdbc(table=sql,
+                                             spark_session=self.spark_hook.session,
+                                             connection_id=self.from_connection_id)
+            logger.info(&#34;[Extract] Create temp view with name: TABLE_TEMP_%s&#34; % index)
+            df.createOrReplaceTempView(&#34;TABLE_TEMP_%s&#34; % index)
+            list_df.append(df)
+        return list_df if isinstance(self.sql_extract, list) else list_df[0]
+
+    def transform(self, extract_value):
+        if isinstance(self.transform_func, list):
+            logger.info(&#34;[Transform] Run Transform by SparkSQL String&#34;)
+            r = None
+            for sql in self.transform_func:
+                sql = replace_template(sql, self.params)
+                r = self.spark_hook.run_sql(sql=sql)
+            return r
+        else:
+            return super(SQLToAnyFlowBySpark, self).transform(extract_value)
+
+    def load(self, transform_value):
+        if isinstance(self.load_func, list):
+            logger.info(&#34;[Load] Run Load by SparkSQL String&#34;)
+            r = None
+            for sql in self.load_func:
+                sql = replace_template(sql, self.params)
+                r = self.spark_hook.run_sql(sql=sql)
+            return r
+        else:
+            return super(SQLToAnyFlowBySpark, self).load(transform_value)
+
+    def prepare_checkpoint_to_save(self, trans_value, load_value):
+        if self.update_checkpoint_from_field:
+            if isinstance(trans_value, list):
+                trans_value = trans_value[-1] if len(trans_value) &gt; 0 else None
+            if trans_value.take(1):
+                col = []
+                for i, k in enumerate(self.update_checkpoint_from_field):
+                    if k not in trans_value.columns:
+                        raise ValueError(&#34;Your Dataframe has not field: %s&#34; % k)
+                    col.append(&#34;cast(max(%s) as int) as max_time%s&#34; % (k, (i if i &gt; 0 else &#34;&#34;)))
+                rs = trans_value.selectExpr(*col).first()
+                if rs:
+                    re = []
+                    for r in rs:
+                        try:
+                            r = convert_int(r)
+                            convert_from_unixtime(r)
+                        except BaseException as e:
+                            raise ValueError(
+                                &#34;Your calculate check_point is invalid: %s, please use unixtime format&#34; % r)
+                        re.append(r)
+                    logger.info(&#34;calculate check_point to save for this job is: %s&#34; % re)
+                    return re
+            else:
+                logger.info(&#34;calculate check_point skip because result of transform function is empty&#34;)
+                return 1
+        else:
+            logger.info(&#34;calculate check_point skip because update_check_point_from_field is empty&#34;)
+            sync = self.params.get(&#34;check_point&#34;, 1)
+            return sync
+
+        raise ValueError(&#34;Cannot calculate check_point for saving into log metadata&#34;)
+
+
+class SQLToAnyFlowByPandas(SQLToAnyFlowBySpark):
+    &#34;&#34;&#34;
+        SQL ETL Flow by pandas
+    &#34;&#34;&#34;
+
+    def extract(self):
+        from zuka_etl.pipeline.extract.pandas_utils import PandasDfFromSQL
+        sql = replace_template(self.sql_extract, self.params)
+        logger.info(&#34;SQL query will be used for extracting: %s&#34; % sql)
+        df = PandasDfFromSQL.from_sql(table=sql, connection_id=self.from_connection_id, **self.additional_kwargs)
+        return df
+
+    def prepare_checkpoint_to_save(self, trans_value, load_value):
+        if not trans_value.empty and self.update_checkpoint_from_field:
+            rs = []
+            for i, k in enumerate(self.update_checkpoint_from_field):
+                if k not in trans_value.columns:
+                    raise ValueError(&#34;Your Dataframe has not field: %s&#34; % k)
+                rs.append(trans_value[k].max())
+            if rs:
+                logger.info(&#34;calculate check_point to save for this job is: %s&#34; % rs)
+                re = []
+                for r in rs:
+                    try:
+                        convert_from_unixtime(r)
+                    except BaseException as e:
+                        logger.error(traceback.format_exc())
+                        raise ValueError(&#34;Your calculate check_point is invalid: %s, please use unixtime format&#34; % r)
+                    re.append(r)
+                return re
+        else:
+            logger.info(&#34;calculate check_point skip because result of transform function is empty&#34;)
+            sync = self.params.get(&#34;check_point&#34;, current_unixtime())
+            return sync
+
+        raise ValueError(&#34;Cannot calculate check_point for saving into log metadata&#34;)
+
+
+class AnyToAnyFlow(FullFlowProcess):
+    &#34;&#34;&#34;
+        Any To Any ETL Flow
+    &#34;&#34;&#34;
+
+    def extract(self):
+        return super(FullFlowProcess, self).extract()
+
+    def prepare_checkpoint_to_save(self, trans_value, load_value):
+        return current_unixtime()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="zuka_etl.contribution.etl_full_flow.process.AnyToAnyFlow"><code class="flex name class">
+<span>class <span class="ident">AnyToAnyFlow</span></span>
+<span>(</span><span>task_id, dag_id, extract, transform=None, load=None, complete=None, get_last_checkpoint='auto', calculate_checkpoint_func='auto', additional_args=None, additional_kwargs=None, more_params={}, log_metadata_model='auto', save_metadata_log=True, start_time=None, end_time=None, before_run=None, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Any To Any ETL Flow</p>
+<p>Execute Full ETL process with writing check_point log to metadata</p>
+<p>Parameters</p>
+<pre><code>task_id:
+dag_id:
+extract:
+transform:
+load:
+complete:
+get_last_checkpoint:
+calculate_checkpoint_func: 'auto', False, Func
+additional_args:
+additional_kwargs:
+more_params:
+log_metadata_model:
+save_metadata_log:
+start_time: unixtime
+end_time: unixtime
+kwargs:
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AnyToAnyFlow(FullFlowProcess):
+    &#34;&#34;&#34;
+        Any To Any ETL Flow
+    &#34;&#34;&#34;
+
+    def extract(self):
+        return super(FullFlowProcess, self).extract()
+
+    def prepare_checkpoint_to_save(self, trans_value, load_value):
+        return current_unixtime()</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess" href="#zuka_etl.contribution.etl_full_flow.process.FullFlowProcess">FullFlowProcess</a></li>
+<li><a title="zuka_etl.pipeline.process.Process" href="../../pipeline/process.html#zuka_etl.pipeline.process.Process">Process</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.contribution.etl_full_flow.process.AnyToAnyFlow.extract"><code class="name flex">
+<span>def <span class="ident">extract</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def extract(self):
+    return super(FullFlowProcess, self).extract()</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.process.AnyToAnyFlow.prepare_checkpoint_to_save"><code class="name flex">
+<span>def <span class="ident">prepare_checkpoint_to_save</span></span>(<span>self, trans_value, load_value)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def prepare_checkpoint_to_save(self, trans_value, load_value):
+    return current_unixtime()</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess"><code class="flex name class">
+<span>class <span class="ident">FullFlowProcess</span></span>
+<span>(</span><span>task_id, dag_id, extract, transform=None, load=None, complete=None, get_last_checkpoint='auto', calculate_checkpoint_func='auto', additional_args=None, additional_kwargs=None, more_params={}, log_metadata_model='auto', save_metadata_log=True, start_time=None, end_time=None, before_run=None, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Process ETL pipeline</p>
+<pre><code>Example:
+    from zuka_etl.db.connect_spark import SparkWrapper
+
+    def ex(this):
+        this.logger.info("This is extract function")
+        this.set_shipper("a", "11")
+        return 1
+
+    def trans(this, value):
+        this.logger.info("This is transform function")
+        print(value)
+        return value
+
+    def load(this, value):
+        this.logger.info("This is load function")
+        print(value)
+        this.logger.info(this.get_shipper("a"))
+        # save every thing you want
+
+    Process(
+        task_id="phong",
+        extract=ex,
+        transform=tras,
+        load=load,
+        complete=lamdba x: x
+    ).run()
+</code></pre>
+<p>Execute Full ETL process with writing check_point log to metadata</p>
+<p>Parameters</p>
+<pre><code>task_id:
+dag_id:
+extract:
+transform:
+load:
+complete:
+get_last_checkpoint:
+calculate_checkpoint_func: 'auto', False, Func
+additional_args:
+additional_kwargs:
+more_params:
+log_metadata_model:
+save_metadata_log:
+start_time: unixtime
+end_time: unixtime
+kwargs:
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class FullFlowProcess(Process):
+
+    def __init__(self, task_id, dag_id, extract, transform=None, load=None, complete=None,
+                 get_last_checkpoint=&#34;auto&#34;,
+                 calculate_checkpoint_func=&#34;auto&#34;,
+                 additional_args=None,
+                 additional_kwargs=None,
+                 more_params={},
+                 log_metadata_model=&#34;auto&#34;,
+                 save_metadata_log=True,
+                 start_time=None,
+                 end_time=None,
+                 before_run=None,
+                 **kwargs
+                 ):
+        &#34;&#34;&#34;
+        Execute Full ETL process with writing check_point log to metadata
+
+        Parameters
+
+            task_id:
+            dag_id:
+            extract:
+            transform:
+            load:
+            complete:
+            get_last_checkpoint:
+            calculate_checkpoint_func: &#39;auto&#39;, False, Func
+            additional_args:
+            additional_kwargs:
+            more_params:
+            log_metadata_model:
+            save_metadata_log:
+            start_time: unixtime
+            end_time: unixtime
+            kwargs:
+
+        &#34;&#34;&#34;
+        self.task_id = task_id
+        self.dag_id = dag_id
+        self.extract_func = extract
+        self.transform_func = transform
+        self.load_func = load
+        self.shipper = {}
+        self.complete_func = complete
+        self.additional_args = copy.copy(additional_args or {})
+        self.additional_kwargs = copy.copy(additional_kwargs or {})
+        self.more_params = copy.copy(more_params or {})
+        self.params = {}
+
+        if log_metadata_model == &#34;auto&#34;:
+            self.log_model = LogEtlMetadata().load_engine()
+        elif log_metadata_model and not isinstance(log_metadata_model, LogEtlMetadata):
+            raise ValueError(&#34;log_metadata_model must be instance of LogEtlMetadata&#34;)
+        else:
+            self.log_model = None
+
+        self.end_time = end_time
+        self.start_time, self.start_time1, self.start_time2, self.start_time3, self.start_time4 = (start_time,) * 5
+        self.get_last_checkpoint = get_last_checkpoint
+        self.save_metadata_log = save_metadata_log
+        self.calculate_checkpoint_func = calculate_checkpoint_func
+        self.before_run = before_run
+
+    def calculate_last_checkpoint(self):
+        if callable(self.get_last_checkpoint):
+            logger.info(&#34;Run custom get_last_checkpoint function to calculate last checkpoint...&#34;)
+            self.get_last_checkpoint(self)
+            return self
+        if isinstance(self.log_model, LogEtlMetadata) and self.get_last_checkpoint:
+            logger.info(&#34;Get last_checkpoint of previous job on log metadata table&#34;)
+            self.start_time, self.start_time1, self.start_time2, self.start_time3, self.start_time4 = self.log_model.get_last_checkpoint(
+                task_id=self.task_id, dag_id=self.dag_id,
+                status=LogEtlMetadata.STATUS_SUCCESS)
+            if self.start_time is None:
+                logger.info(&#34;Cannot get last_checkpoint of previous job, set current day as start_time&#34;)
+                self.start_time, self.start_time1, self.start_time2, self.start_time3, self.start_time4 = (
+                        (convert_unixtime(date_time=current_time_local(reset_time=True)),) * 5)
+
+            if not self.end_time:
+                self.end_time = convert_unixtime(convert_time(current_time_local(end_day=True)))
+        return self
+
+    def prepare_params(self):
+
+        self.start_time = convert_unixtime(
+            current_time_local(reset_time=True)) if not self.start_time else self.start_time
+        self.start_time1 = convert_unixtime(
+            current_time_local(reset_time=True)) if not self.start_time1 else self.start_time1
+        self.start_time2 = convert_unixtime(
+            current_time_local(reset_time=True)) if not self.start_time2 else self.start_time2
+        self.start_time3 = convert_unixtime(
+            current_time_local(reset_time=True)) if not self.start_time3 else self.start_time3
+        self.start_time4 = convert_unixtime(
+            current_time_local(reset_time=True)) if not self.start_time4 else self.start_time4
+
+        self.end_time = convert_unixtime(
+            current_time_local(end_day=True)) if not self.end_time else self.end_time
+
+        end_date = convert_from_unixtime(self.end_time)
+        start_time, start_time1, start_time2, start_time3, start_time4 = convert_from_unixtime(
+            self.start_time), convert_from_unixtime(self.start_time1), convert_from_unixtime(
+            self.start_time2), convert_from_unixtime(self.start_time3), convert_from_unixtime(self.start_time4)
+        default = {
+            &#34;start_time&#34;: self.start_time,
+            &#34;start_time1&#34;: self.start_time1,
+            &#34;start_time2&#34;: self.start_time2,
+            &#34;start_time3&#34;: self.start_time3,
+            &#34;start_time4&#34;: self.start_time4,
+            &#34;start_date&#34;: start_time.strftime(&#34;%Y-%m-%d&#34;),
+            &#34;start_date1&#34;: start_time1.strftime(&#34;%Y-%m-%d&#34;),
+            &#34;start_date2&#34;: start_time2.strftime(&#34;%Y-%m-%d&#34;),
+            &#34;start_date3&#34;: start_time3.strftime(&#34;%Y-%m-%d&#34;),
+            &#34;start_date4&#34;: start_time4.strftime(&#34;%Y-%m-%d&#34;),
+            &#34;start_datetime&#34;: start_time.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+            &#34;start_datetime1&#34;: start_time1.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+            &#34;start_datetime2&#34;: start_time2.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+            &#34;start_datetime3&#34;: start_time3.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+            &#34;start_datetime4&#34;: start_time4.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+            &#34;start_time_object&#34;: start_time,
+            &#34;start_time_object1&#34;: start_time1,
+            &#34;start_time_object2&#34;: start_time2,
+            &#34;start_time_object3&#34;: start_time3,
+            &#34;start_time_object4&#34;: start_time4,
+            &#34;start_dim_date&#34;: convert_date_to_dim_date(start_time),
+            &#34;start_dim_date1&#34;: convert_date_to_dim_date(start_time1),
+            &#34;start_dim_date2&#34;: convert_date_to_dim_date(start_time2),
+            &#34;start_dim_date3&#34;: convert_date_to_dim_date(start_time3),
+            &#34;start_dim_date4&#34;: convert_date_to_dim_date(start_time4),
+
+            &#34;check_point_will_be_update&#34;: self.end_time,
+            &#34;check_point_will_be_update1&#34;: self.end_time,
+            &#34;check_point_will_be_update2&#34;: self.end_time,
+            &#34;check_point_will_be_update3&#34;: self.end_time,
+            &#34;check_point_will_be_update4&#34;: self.end_time,
+
+            &#34;end_time&#34;: self.end_time,
+            &#34;end_date&#34;: end_date.strftime(&#34;%Y-%m-%d&#34;),
+            &#34;end_time_object&#34;: end_date,
+            &#34;end_dim_date&#34;: convert_date_to_dim_date(end_date),
+
+        }
+        self.params.update(default)
+        self.params.update(self.more_params)
+        return self
+
+    def run(self, *args, **kwargs):
+        self.calculate_last_checkpoint()
+        self.prepare_params()
+        if self.get_last_checkpoint:
+            logger.info(&#34;Time metadata info: \n%s&#34; % self.params)
+        st = time.time()
+
+        if not self.log_model or not self.save_metadata_log:
+            if callable(self.before_run):
+                logger.info(&#34;Execute function before_run before run process...&#34;)
+                self.before_run(self)
+            logger.info(&#34;Skip insert log to metadata because log_mode is not set or save_metadata_log option is True&#34;)
+            return super(FullFlowProcess, self).run()
+        try:
+            if callable(self.before_run):
+                logger.info(&#34;Execute function before_run before run process...&#34;)
+                self.before_run(self)
+            super(FullFlowProcess, self).run()
+            self.log_model.save(
+                task_id=self.task_id,
+                dag_id=self.dag_id,
+                change_time=(self.params.get(&#34;check_point_will_be_update&#34;),
+                             self.params.get(&#34;check_point_will_be_update1&#34;),
+                             self.params.get(&#34;check_point_will_be_update2&#34;),
+                             self.params.get(&#34;check_point_will_be_update3&#34;),
+                             self.params.get(&#34;check_point_will_be_update4&#34;)
+                             ),
+                status=LogEtlMetadata.STATUS_SUCCESS,
+                process_time=time.time() - st,
+                message=&#34;success&#34;
+            )
+        except BaseException as e:
+            self.log_model.save(
+                task_id=self.task_id,
+                dag_id=self.dag_id,
+                change_time=(self.params.get(&#34;check_point_will_be_update&#34;),
+                             self.params.get(&#34;check_point_will_be_update1&#34;),
+                             self.params.get(&#34;check_point_will_be_update2&#34;),
+                             self.params.get(&#34;check_point_will_be_update3&#34;),
+                             self.params.get(&#34;check_point_will_be_update4&#34;)
+                             ),
+                status=LogEtlMetadata.STATUS_FAILED,
+                process_time=int(time.time() - st),
+                message=traceback.format_exc()
+            )
+            raise Exception(e)
+
+    def prepare_checkpoint_to_save(self, trans_value, load_value):
+        return current_unixtime()
+
+    def complete(self, trans_value, load_value):
+        if self.calculate_checkpoint_func is not False:
+            rs = current_unixtime()
+            if callable(self.calculate_checkpoint_func):
+                logger.info(&#34;Calculate check_point to store on metadata table &#34;)
+                rs = self.calculate_checkpoint_func(self, trans_value, load_value)
+            elif self.calculate_checkpoint_func == &#34;auto&#34;:
+                logger.info(&#34;Using default function prepare_check_point_func to store check_point to metadata log&#34;)
+                rs = self.prepare_checkpoint_to_save(trans_value, load_value)
+
+            if isinstance(rs, tuple) or isinstance(rs, list):
+                if len(rs) == 0:
+                    rs = [self.start_time] * 5
+                else:
+                    rs = list(rs[:5]) + [rs[0]] * (5 - len(rs))
+            else:
+                rs = [rs] * 5
+
+            for i, x in enumerate(rs):
+                self.params[&#34;change_date_will_be_update%s&#34; % (i if i &gt; 0 else &#34;&#34;)] = convert_date_to_dim_date(
+                    convert_from_unixtime(x))
+                self.params[&#34;check_point_will_be_update%s&#34; % (i if i &gt; 0 else &#34;&#34;)] = x
+            logger.info(
+                &#34;After calculate automatically, check_point_will_be_update: %s&#34; %
+                (self.params[&#34;check_point_will_be_update&#34;]))
+        return super(FullFlowProcess, self).complete(trans_value, load_value)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="zuka_etl.pipeline.process.Process" href="../../pipeline/process.html#zuka_etl.pipeline.process.Process">Process</a></li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="zuka_etl.contribution.etl_full_flow.process.AnyToAnyFlow" href="#zuka_etl.contribution.etl_full_flow.process.AnyToAnyFlow">AnyToAnyFlow</a></li>
+<li><a title="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark" href="#zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark">SQLToAnyFlowBySpark</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.calculate_last_checkpoint"><code class="name flex">
+<span>def <span class="ident">calculate_last_checkpoint</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calculate_last_checkpoint(self):
+    if callable(self.get_last_checkpoint):
+        logger.info(&#34;Run custom get_last_checkpoint function to calculate last checkpoint...&#34;)
+        self.get_last_checkpoint(self)
+        return self
+    if isinstance(self.log_model, LogEtlMetadata) and self.get_last_checkpoint:
+        logger.info(&#34;Get last_checkpoint of previous job on log metadata table&#34;)
+        self.start_time, self.start_time1, self.start_time2, self.start_time3, self.start_time4 = self.log_model.get_last_checkpoint(
+            task_id=self.task_id, dag_id=self.dag_id,
+            status=LogEtlMetadata.STATUS_SUCCESS)
+        if self.start_time is None:
+            logger.info(&#34;Cannot get last_checkpoint of previous job, set current day as start_time&#34;)
+            self.start_time, self.start_time1, self.start_time2, self.start_time3, self.start_time4 = (
+                    (convert_unixtime(date_time=current_time_local(reset_time=True)),) * 5)
+
+        if not self.end_time:
+            self.end_time = convert_unixtime(convert_time(current_time_local(end_day=True)))
+    return self</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.complete"><code class="name flex">
+<span>def <span class="ident">complete</span></span>(<span>self, trans_value, load_value)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def complete(self, trans_value, load_value):
+    if self.calculate_checkpoint_func is not False:
+        rs = current_unixtime()
+        if callable(self.calculate_checkpoint_func):
+            logger.info(&#34;Calculate check_point to store on metadata table &#34;)
+            rs = self.calculate_checkpoint_func(self, trans_value, load_value)
+        elif self.calculate_checkpoint_func == &#34;auto&#34;:
+            logger.info(&#34;Using default function prepare_check_point_func to store check_point to metadata log&#34;)
+            rs = self.prepare_checkpoint_to_save(trans_value, load_value)
+
+        if isinstance(rs, tuple) or isinstance(rs, list):
+            if len(rs) == 0:
+                rs = [self.start_time] * 5
+            else:
+                rs = list(rs[:5]) + [rs[0]] * (5 - len(rs))
+        else:
+            rs = [rs] * 5
+
+        for i, x in enumerate(rs):
+            self.params[&#34;change_date_will_be_update%s&#34; % (i if i &gt; 0 else &#34;&#34;)] = convert_date_to_dim_date(
+                convert_from_unixtime(x))
+            self.params[&#34;check_point_will_be_update%s&#34; % (i if i &gt; 0 else &#34;&#34;)] = x
+        logger.info(
+            &#34;After calculate automatically, check_point_will_be_update: %s&#34; %
+            (self.params[&#34;check_point_will_be_update&#34;]))
+    return super(FullFlowProcess, self).complete(trans_value, load_value)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.prepare_checkpoint_to_save"><code class="name flex">
+<span>def <span class="ident">prepare_checkpoint_to_save</span></span>(<span>self, trans_value, load_value)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def prepare_checkpoint_to_save(self, trans_value, load_value):
+    return current_unixtime()</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.prepare_params"><code class="name flex">
+<span>def <span class="ident">prepare_params</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def prepare_params(self):
+
+    self.start_time = convert_unixtime(
+        current_time_local(reset_time=True)) if not self.start_time else self.start_time
+    self.start_time1 = convert_unixtime(
+        current_time_local(reset_time=True)) if not self.start_time1 else self.start_time1
+    self.start_time2 = convert_unixtime(
+        current_time_local(reset_time=True)) if not self.start_time2 else self.start_time2
+    self.start_time3 = convert_unixtime(
+        current_time_local(reset_time=True)) if not self.start_time3 else self.start_time3
+    self.start_time4 = convert_unixtime(
+        current_time_local(reset_time=True)) if not self.start_time4 else self.start_time4
+
+    self.end_time = convert_unixtime(
+        current_time_local(end_day=True)) if not self.end_time else self.end_time
+
+    end_date = convert_from_unixtime(self.end_time)
+    start_time, start_time1, start_time2, start_time3, start_time4 = convert_from_unixtime(
+        self.start_time), convert_from_unixtime(self.start_time1), convert_from_unixtime(
+        self.start_time2), convert_from_unixtime(self.start_time3), convert_from_unixtime(self.start_time4)
+    default = {
+        &#34;start_time&#34;: self.start_time,
+        &#34;start_time1&#34;: self.start_time1,
+        &#34;start_time2&#34;: self.start_time2,
+        &#34;start_time3&#34;: self.start_time3,
+        &#34;start_time4&#34;: self.start_time4,
+        &#34;start_date&#34;: start_time.strftime(&#34;%Y-%m-%d&#34;),
+        &#34;start_date1&#34;: start_time1.strftime(&#34;%Y-%m-%d&#34;),
+        &#34;start_date2&#34;: start_time2.strftime(&#34;%Y-%m-%d&#34;),
+        &#34;start_date3&#34;: start_time3.strftime(&#34;%Y-%m-%d&#34;),
+        &#34;start_date4&#34;: start_time4.strftime(&#34;%Y-%m-%d&#34;),
+        &#34;start_datetime&#34;: start_time.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+        &#34;start_datetime1&#34;: start_time1.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+        &#34;start_datetime2&#34;: start_time2.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+        &#34;start_datetime3&#34;: start_time3.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+        &#34;start_datetime4&#34;: start_time4.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+        &#34;start_time_object&#34;: start_time,
+        &#34;start_time_object1&#34;: start_time1,
+        &#34;start_time_object2&#34;: start_time2,
+        &#34;start_time_object3&#34;: start_time3,
+        &#34;start_time_object4&#34;: start_time4,
+        &#34;start_dim_date&#34;: convert_date_to_dim_date(start_time),
+        &#34;start_dim_date1&#34;: convert_date_to_dim_date(start_time1),
+        &#34;start_dim_date2&#34;: convert_date_to_dim_date(start_time2),
+        &#34;start_dim_date3&#34;: convert_date_to_dim_date(start_time3),
+        &#34;start_dim_date4&#34;: convert_date_to_dim_date(start_time4),
+
+        &#34;check_point_will_be_update&#34;: self.end_time,
+        &#34;check_point_will_be_update1&#34;: self.end_time,
+        &#34;check_point_will_be_update2&#34;: self.end_time,
+        &#34;check_point_will_be_update3&#34;: self.end_time,
+        &#34;check_point_will_be_update4&#34;: self.end_time,
+
+        &#34;end_time&#34;: self.end_time,
+        &#34;end_date&#34;: end_date.strftime(&#34;%Y-%m-%d&#34;),
+        &#34;end_time_object&#34;: end_date,
+        &#34;end_dim_date&#34;: convert_date_to_dim_date(end_date),
+
+    }
+    self.params.update(default)
+    self.params.update(self.more_params)
+    return self</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>self, *args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run(self, *args, **kwargs):
+    self.calculate_last_checkpoint()
+    self.prepare_params()
+    if self.get_last_checkpoint:
+        logger.info(&#34;Time metadata info: \n%s&#34; % self.params)
+    st = time.time()
+
+    if not self.log_model or not self.save_metadata_log:
+        if callable(self.before_run):
+            logger.info(&#34;Execute function before_run before run process...&#34;)
+            self.before_run(self)
+        logger.info(&#34;Skip insert log to metadata because log_mode is not set or save_metadata_log option is True&#34;)
+        return super(FullFlowProcess, self).run()
+    try:
+        if callable(self.before_run):
+            logger.info(&#34;Execute function before_run before run process...&#34;)
+            self.before_run(self)
+        super(FullFlowProcess, self).run()
+        self.log_model.save(
+            task_id=self.task_id,
+            dag_id=self.dag_id,
+            change_time=(self.params.get(&#34;check_point_will_be_update&#34;),
+                         self.params.get(&#34;check_point_will_be_update1&#34;),
+                         self.params.get(&#34;check_point_will_be_update2&#34;),
+                         self.params.get(&#34;check_point_will_be_update3&#34;),
+                         self.params.get(&#34;check_point_will_be_update4&#34;)
+                         ),
+            status=LogEtlMetadata.STATUS_SUCCESS,
+            process_time=time.time() - st,
+            message=&#34;success&#34;
+        )
+    except BaseException as e:
+        self.log_model.save(
+            task_id=self.task_id,
+            dag_id=self.dag_id,
+            change_time=(self.params.get(&#34;check_point_will_be_update&#34;),
+                         self.params.get(&#34;check_point_will_be_update1&#34;),
+                         self.params.get(&#34;check_point_will_be_update2&#34;),
+                         self.params.get(&#34;check_point_will_be_update3&#34;),
+                         self.params.get(&#34;check_point_will_be_update4&#34;)
+                         ),
+            status=LogEtlMetadata.STATUS_FAILED,
+            process_time=int(time.time() - st),
+            message=traceback.format_exc()
+        )
+        raise Exception(e)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowByPandas"><code class="flex name class">
+<span>class <span class="ident">SQLToAnyFlowByPandas</span></span>
+<span>(</span><span>task_id, dag_id, sql_extract, from_connection_id, from_spark_conf='', spark_conf: dict = {}, sql_params={}, transform=None, load=None, complete=None, calculate_checkpoint_func=False, additional_args=None, additional_kwargs=None, get_last_checkpoint=False, log_metadata_model=None, save_metadata_log=False, start_time=None, end_time=None, before_run=None, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>SQL ETL Flow by pandas</p>
+<p>Execute ETL flow by SparkSQL</p>
+<p>Parameters</p>
+<pre><code>task_id:
+dag_id:
+sql_extract: list or sql query string
+from_connection_id:
+from_spark_conf:
+spark_conf: list params of SparkHook
+sql_params:
+transform: func or list query string
+load: func or list query string
+complete:
+calculate_checkpoint_func:
+additional_args:
+additional_kwargs:
+get_last_checkpoint:
+log_metadata_model:
+save_metadata_log:
+start_time:
+end_time:
+kwargs:
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SQLToAnyFlowByPandas(SQLToAnyFlowBySpark):
+    &#34;&#34;&#34;
+        SQL ETL Flow by pandas
+    &#34;&#34;&#34;
+
+    def extract(self):
+        from zuka_etl.pipeline.extract.pandas_utils import PandasDfFromSQL
+        sql = replace_template(self.sql_extract, self.params)
+        logger.info(&#34;SQL query will be used for extracting: %s&#34; % sql)
+        df = PandasDfFromSQL.from_sql(table=sql, connection_id=self.from_connection_id, **self.additional_kwargs)
+        return df
+
+    def prepare_checkpoint_to_save(self, trans_value, load_value):
+        if not trans_value.empty and self.update_checkpoint_from_field:
+            rs = []
+            for i, k in enumerate(self.update_checkpoint_from_field):
+                if k not in trans_value.columns:
+                    raise ValueError(&#34;Your Dataframe has not field: %s&#34; % k)
+                rs.append(trans_value[k].max())
+            if rs:
+                logger.info(&#34;calculate check_point to save for this job is: %s&#34; % rs)
+                re = []
+                for r in rs:
+                    try:
+                        convert_from_unixtime(r)
+                    except BaseException as e:
+                        logger.error(traceback.format_exc())
+                        raise ValueError(&#34;Your calculate check_point is invalid: %s, please use unixtime format&#34; % r)
+                    re.append(r)
+                return re
+        else:
+            logger.info(&#34;calculate check_point skip because result of transform function is empty&#34;)
+            sync = self.params.get(&#34;check_point&#34;, current_unixtime())
+            return sync
+
+        raise ValueError(&#34;Cannot calculate check_point for saving into log metadata&#34;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark" href="#zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark">SQLToAnyFlowBySpark</a></li>
+<li><a title="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess" href="#zuka_etl.contribution.etl_full_flow.process.FullFlowProcess">FullFlowProcess</a></li>
+<li><a title="zuka_etl.pipeline.process.Process" href="../../pipeline/process.html#zuka_etl.pipeline.process.Process">Process</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowByPandas.extract"><code class="name flex">
+<span>def <span class="ident">extract</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def extract(self):
+    from zuka_etl.pipeline.extract.pandas_utils import PandasDfFromSQL
+    sql = replace_template(self.sql_extract, self.params)
+    logger.info(&#34;SQL query will be used for extracting: %s&#34; % sql)
+    df = PandasDfFromSQL.from_sql(table=sql, connection_id=self.from_connection_id, **self.additional_kwargs)
+    return df</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowByPandas.prepare_checkpoint_to_save"><code class="name flex">
+<span>def <span class="ident">prepare_checkpoint_to_save</span></span>(<span>self, trans_value, load_value)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def prepare_checkpoint_to_save(self, trans_value, load_value):
+    if not trans_value.empty and self.update_checkpoint_from_field:
+        rs = []
+        for i, k in enumerate(self.update_checkpoint_from_field):
+            if k not in trans_value.columns:
+                raise ValueError(&#34;Your Dataframe has not field: %s&#34; % k)
+            rs.append(trans_value[k].max())
+        if rs:
+            logger.info(&#34;calculate check_point to save for this job is: %s&#34; % rs)
+            re = []
+            for r in rs:
+                try:
+                    convert_from_unixtime(r)
+                except BaseException as e:
+                    logger.error(traceback.format_exc())
+                    raise ValueError(&#34;Your calculate check_point is invalid: %s, please use unixtime format&#34; % r)
+                re.append(r)
+            return re
+    else:
+        logger.info(&#34;calculate check_point skip because result of transform function is empty&#34;)
+        sync = self.params.get(&#34;check_point&#34;, current_unixtime())
+        return sync
+
+    raise ValueError(&#34;Cannot calculate check_point for saving into log metadata&#34;)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark"><code class="flex name class">
+<span>class <span class="ident">SQLToAnyFlowBySpark</span></span>
+<span>(</span><span>task_id, dag_id, sql_extract, from_connection_id, from_spark_conf='', spark_conf: dict = {}, sql_params={}, transform=None, load=None, complete=None, calculate_checkpoint_func=False, additional_args=None, additional_kwargs=None, get_last_checkpoint=False, log_metadata_model=None, save_metadata_log=False, start_time=None, end_time=None, before_run=None, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>SQL ETL Flow by Spark</p>
+<p>Execute ETL flow by SparkSQL</p>
+<p>Parameters</p>
+<pre><code>task_id:
+dag_id:
+sql_extract: list or sql query string
+from_connection_id:
+from_spark_conf:
+spark_conf: list params of SparkHook
+sql_params:
+transform: func or list query string
+load: func or list query string
+complete:
+calculate_checkpoint_func:
+additional_args:
+additional_kwargs:
+get_last_checkpoint:
+log_metadata_model:
+save_metadata_log:
+start_time:
+end_time:
+kwargs:
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SQLToAnyFlowBySpark(FullFlowProcess):
+    &#34;&#34;&#34;
+    SQL ETL Flow by Spark
+    &#34;&#34;&#34;
+
+    def __init__(self, task_id, dag_id, sql_extract,
+                 from_connection_id,
+                 from_spark_conf=&#34;&#34;,
+                 spark_conf: dict = {},
+                 sql_params={},
+                 transform=None,
+                 load=None,
+                 complete=None,
+                 calculate_checkpoint_func=False,
+                 additional_args=None,
+                 additional_kwargs=None,
+                 get_last_checkpoint=False,
+                 log_metadata_model=None,
+                 save_metadata_log=False,
+                 start_time=None,
+                 end_time=None,
+                 before_run=None,
+                 **kwargs
+                 ):
+        &#34;&#34;&#34;
+        Execute ETL flow by SparkSQL
+
+        Parameters
+        
+            task_id:
+            dag_id:
+            sql_extract: list or sql query string
+            from_connection_id:
+            from_spark_conf:
+            spark_conf: list params of SparkHook
+            sql_params:
+            transform: func or list query string
+            load: func or list query string
+            complete:
+            calculate_checkpoint_func:
+            additional_args:
+            additional_kwargs:
+            get_last_checkpoint:
+            log_metadata_model:
+            save_metadata_log:
+            start_time:
+            end_time:
+            kwargs:
+
+        &#34;&#34;&#34;
+        self.sql_extract = sql_extract
+        self.from_connection_id = from_connection_id
+        self.calculate_checkpoint_func = calculate_checkpoint_func
+        self.spark_hook = SparkHook(connection_id=from_spark_conf, **spark_conf)
+        self.update_checkpoint_from_field = kwargs.get(&#34;update_checkpoint_from_field&#34;, [&#34;check_point&#34;])
+        self.update_checkpoint_from_field = [self.update_checkpoint_from_field] if not isinstance(
+            self.update_checkpoint_from_field, list) else self.update_checkpoint_from_field
+        super(SQLToAnyFlowBySpark, self).__init__(task_id=task_id,
+                                                  dag_id=dag_id,
+                                                  extract=None,
+                                                  transform=transform,
+                                                  load=load,
+                                                  complete=complete,
+                                                  get_last_checkpoint=get_last_checkpoint,
+                                                  calculate_checkpoint_func=calculate_checkpoint_func,
+                                                  additional_args=additional_args,
+                                                  additional_kwargs=additional_kwargs,
+                                                  log_metadata_model=log_metadata_model,
+                                                  save_metadata_log=save_metadata_log,
+                                                  more_params=sql_params,
+                                                  start_time=start_time,
+                                                  end_time=end_time,
+                                                  before_run=before_run
+                                                  )
+
+    def extract(self):
+        from zuka_etl.pipeline.extract.spark_utils import SparkDfFromDriver
+        sql_extract = self.sql_extract if isinstance(self.sql_extract, list) else [self.sql_extract]
+        list_df = []
+        for index, sql in enumerate(sql_extract):
+            sql = replace_template(sql, self.params)
+            logger.info(&#34;[Extract] SQL query will be used for extracting: %s&#34; % sql)
+            df = SparkDfFromDriver.from_jdbc(table=sql,
+                                             spark_session=self.spark_hook.session,
+                                             connection_id=self.from_connection_id)
+            logger.info(&#34;[Extract] Create temp view with name: TABLE_TEMP_%s&#34; % index)
+            df.createOrReplaceTempView(&#34;TABLE_TEMP_%s&#34; % index)
+            list_df.append(df)
+        return list_df if isinstance(self.sql_extract, list) else list_df[0]
+
+    def transform(self, extract_value):
+        if isinstance(self.transform_func, list):
+            logger.info(&#34;[Transform] Run Transform by SparkSQL String&#34;)
+            r = None
+            for sql in self.transform_func:
+                sql = replace_template(sql, self.params)
+                r = self.spark_hook.run_sql(sql=sql)
+            return r
+        else:
+            return super(SQLToAnyFlowBySpark, self).transform(extract_value)
+
+    def load(self, transform_value):
+        if isinstance(self.load_func, list):
+            logger.info(&#34;[Load] Run Load by SparkSQL String&#34;)
+            r = None
+            for sql in self.load_func:
+                sql = replace_template(sql, self.params)
+                r = self.spark_hook.run_sql(sql=sql)
+            return r
+        else:
+            return super(SQLToAnyFlowBySpark, self).load(transform_value)
+
+    def prepare_checkpoint_to_save(self, trans_value, load_value):
+        if self.update_checkpoint_from_field:
+            if isinstance(trans_value, list):
+                trans_value = trans_value[-1] if len(trans_value) &gt; 0 else None
+            if trans_value.take(1):
+                col = []
+                for i, k in enumerate(self.update_checkpoint_from_field):
+                    if k not in trans_value.columns:
+                        raise ValueError(&#34;Your Dataframe has not field: %s&#34; % k)
+                    col.append(&#34;cast(max(%s) as int) as max_time%s&#34; % (k, (i if i &gt; 0 else &#34;&#34;)))
+                rs = trans_value.selectExpr(*col).first()
+                if rs:
+                    re = []
+                    for r in rs:
+                        try:
+                            r = convert_int(r)
+                            convert_from_unixtime(r)
+                        except BaseException as e:
+                            raise ValueError(
+                                &#34;Your calculate check_point is invalid: %s, please use unixtime format&#34; % r)
+                        re.append(r)
+                    logger.info(&#34;calculate check_point to save for this job is: %s&#34; % re)
+                    return re
+            else:
+                logger.info(&#34;calculate check_point skip because result of transform function is empty&#34;)
+                return 1
+        else:
+            logger.info(&#34;calculate check_point skip because update_check_point_from_field is empty&#34;)
+            sync = self.params.get(&#34;check_point&#34;, 1)
+            return sync
+
+        raise ValueError(&#34;Cannot calculate check_point for saving into log metadata&#34;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess" href="#zuka_etl.contribution.etl_full_flow.process.FullFlowProcess">FullFlowProcess</a></li>
+<li><a title="zuka_etl.pipeline.process.Process" href="../../pipeline/process.html#zuka_etl.pipeline.process.Process">Process</a></li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowByPandas" href="#zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowByPandas">SQLToAnyFlowByPandas</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark.extract"><code class="name flex">
+<span>def <span class="ident">extract</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def extract(self):
+    from zuka_etl.pipeline.extract.spark_utils import SparkDfFromDriver
+    sql_extract = self.sql_extract if isinstance(self.sql_extract, list) else [self.sql_extract]
+    list_df = []
+    for index, sql in enumerate(sql_extract):
+        sql = replace_template(sql, self.params)
+        logger.info(&#34;[Extract] SQL query will be used for extracting: %s&#34; % sql)
+        df = SparkDfFromDriver.from_jdbc(table=sql,
+                                         spark_session=self.spark_hook.session,
+                                         connection_id=self.from_connection_id)
+        logger.info(&#34;[Extract] Create temp view with name: TABLE_TEMP_%s&#34; % index)
+        df.createOrReplaceTempView(&#34;TABLE_TEMP_%s&#34; % index)
+        list_df.append(df)
+    return list_df if isinstance(self.sql_extract, list) else list_df[0]</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark.load"><code class="name flex">
+<span>def <span class="ident">load</span></span>(<span>self, transform_value)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load(self, transform_value):
+    if isinstance(self.load_func, list):
+        logger.info(&#34;[Load] Run Load by SparkSQL String&#34;)
+        r = None
+        for sql in self.load_func:
+            sql = replace_template(sql, self.params)
+            r = self.spark_hook.run_sql(sql=sql)
+        return r
+    else:
+        return super(SQLToAnyFlowBySpark, self).load(transform_value)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark.prepare_checkpoint_to_save"><code class="name flex">
+<span>def <span class="ident">prepare_checkpoint_to_save</span></span>(<span>self, trans_value, load_value)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def prepare_checkpoint_to_save(self, trans_value, load_value):
+    if self.update_checkpoint_from_field:
+        if isinstance(trans_value, list):
+            trans_value = trans_value[-1] if len(trans_value) &gt; 0 else None
+        if trans_value.take(1):
+            col = []
+            for i, k in enumerate(self.update_checkpoint_from_field):
+                if k not in trans_value.columns:
+                    raise ValueError(&#34;Your Dataframe has not field: %s&#34; % k)
+                col.append(&#34;cast(max(%s) as int) as max_time%s&#34; % (k, (i if i &gt; 0 else &#34;&#34;)))
+            rs = trans_value.selectExpr(*col).first()
+            if rs:
+                re = []
+                for r in rs:
+                    try:
+                        r = convert_int(r)
+                        convert_from_unixtime(r)
+                    except BaseException as e:
+                        raise ValueError(
+                            &#34;Your calculate check_point is invalid: %s, please use unixtime format&#34; % r)
+                    re.append(r)
+                logger.info(&#34;calculate check_point to save for this job is: %s&#34; % re)
+                return re
+        else:
+            logger.info(&#34;calculate check_point skip because result of transform function is empty&#34;)
+            return 1
+    else:
+        logger.info(&#34;calculate check_point skip because update_check_point_from_field is empty&#34;)
+        sync = self.params.get(&#34;check_point&#34;, 1)
+        return sync
+
+    raise ValueError(&#34;Cannot calculate check_point for saving into log metadata&#34;)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark.transform"><code class="name flex">
+<span>def <span class="ident">transform</span></span>(<span>self, extract_value)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def transform(self, extract_value):
+    if isinstance(self.transform_func, list):
+        logger.info(&#34;[Transform] Run Transform by SparkSQL String&#34;)
+        r = None
+        for sql in self.transform_func:
+            sql = replace_template(sql, self.params)
+            r = self.spark_hook.run_sql(sql=sql)
+        return r
+    else:
+        return super(SQLToAnyFlowBySpark, self).transform(extract_value)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="zuka_etl.contribution.etl_full_flow" href="index.html">zuka_etl.contribution.etl_full_flow</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="zuka_etl.contribution.etl_full_flow.process.AnyToAnyFlow" href="#zuka_etl.contribution.etl_full_flow.process.AnyToAnyFlow">AnyToAnyFlow</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.contribution.etl_full_flow.process.AnyToAnyFlow.extract" href="#zuka_etl.contribution.etl_full_flow.process.AnyToAnyFlow.extract">extract</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.process.AnyToAnyFlow.prepare_checkpoint_to_save" href="#zuka_etl.contribution.etl_full_flow.process.AnyToAnyFlow.prepare_checkpoint_to_save">prepare_checkpoint_to_save</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess" href="#zuka_etl.contribution.etl_full_flow.process.FullFlowProcess">FullFlowProcess</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.calculate_last_checkpoint" href="#zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.calculate_last_checkpoint">calculate_last_checkpoint</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.complete" href="#zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.complete">complete</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.prepare_checkpoint_to_save" href="#zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.prepare_checkpoint_to_save">prepare_checkpoint_to_save</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.prepare_params" href="#zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.prepare_params">prepare_params</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.run" href="#zuka_etl.contribution.etl_full_flow.process.FullFlowProcess.run">run</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowByPandas" href="#zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowByPandas">SQLToAnyFlowByPandas</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowByPandas.extract" href="#zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowByPandas.extract">extract</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowByPandas.prepare_checkpoint_to_save" href="#zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowByPandas.prepare_checkpoint_to_save">prepare_checkpoint_to_save</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark" href="#zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark">SQLToAnyFlowBySpark</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark.extract" href="#zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark.extract">extract</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark.load" href="#zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark.load">load</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark.prepare_checkpoint_to_save" href="#zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark.prepare_checkpoint_to_save">prepare_checkpoint_to_save</a></code></li>
+<li><code><a title="zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark.transform" href="#zuka_etl.contribution.etl_full_flow.process.SQLToAnyFlowBySpark.transform">transform</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.3</a>.</p>
+</footer>
+</body>
+</html>

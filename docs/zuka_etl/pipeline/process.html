@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.7.5" />
+<meta name="generator" content="pdoc 0.8.3" />
 <title>zuka_etl.pipeline.process API documentation</title>
 <meta name="description" content="" />
-<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
-<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
-<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 </head>
 <body>
 <main>
@@ -76,16 +78,17 @@ class Process(object):
             ).run()
     
     &#34;&#34;&#34;
-    __extract_func = None
-    __transform_func = None
-    __load_func = None
-    __complete_func = None
+    extract_func = None
+    transform_func = None
+    load_func = None
+    complete_func = None
 
-    __shipper = {}
-    __task_id = &#34;&#34;
-    __additional_args = None
-    __additional_kwargs = None
-    __self_instance_key = &#34;pipeline&#34;
+    shipper = {}
+    task_id = &#34;&#34;
+    additional_args = {}
+    additional_kwargs = {}
+    self_instance_key = &#34;pipeline&#34;
+    dag_context= {}
 
     def __init__(self, task_id, extract, transform=None, load=None, complete=None, additional_args=None,
                  additional_kwargs=None):
@@ -103,103 +106,109 @@ class Process(object):
             kwargs
 
         &#34;&#34;&#34;
-        self.__task_id = task_id
-        self.__extract_func = extract
-        self.__transform_func = transform
-        self.__load_func = load
-        self.__shipper = {}
-        self.__complete_func = complete
-        self.__additional_args = copy.copy(additional_args or [])
-        self.__additional_kwargs = copy.copy(additional_kwargs or {})
+        self.task_id = task_id
+        self.extract_func = extract
+        self.transform_func = transform
+        self.load_func = load
+        self.shipper = {}
+        self.complete_func = complete
+        self.additional_args = copy.copy(additional_args or [])
+        self.additional_kwargs = copy.copy(additional_kwargs or {})
 
     @property
     def logger(self):
         return logger
 
     @property
-    def additional_args(self):
-        return self.__additional_args
-
-    @property
     def extract_kargs(self):
-        return self.__additional_kwargs
+        return self.additional_kwargs
 
     def set_shipper(self, key, value):
-        self.__shipper[key] = value
+        if not hasattr(self, &#34;shipper&#34;):
+            self.shipper = {}
+        self.shipper[key] = value
 
     def get_shipper(self, key, default=None):
-        return self.__shipper.get(key, default)
+        if not hasattr(self, &#34;shipper&#34;):
+            self.shipper = {}
+        return self.shipper.get(key, default)
 
     def get_shippers(self):
-        return self.__shipper
+        return self.shipper
 
     @timeit
     def extract(self):
-        if callable(self.__extract_func):
-            args = self.__extract_func.__code__.co_varnames
+        if callable(self.extract_func):
+            self.logger.info(
+                &#34;[Extract] ************ Start run extract function on task: %s ************&#34; % self.task_id)
+            args = self.extract_func.__code__.co_varnames
             self.logger.info(&#34;[Extract] Params of extract_function: %s&#34; % &#34;,&#34;.join(args))
-            if self.__self_instance_key in args \
-                    and self.__self_instance_key not in self.__additional_args \
-                    and self.__self_instance_key not in self.__additional_kwargs.keys():
-                return self.__extract_func(self, *self.__additional_args, **self.__additional_kwargs)
-            return self.__extract_func(*self.__additional_args, **self.__additional_kwargs)
+            if self.self_instance_key in args \
+                    and self.self_instance_key not in self.additional_args \
+                    and self.self_instance_key not in self.additional_kwargs.keys():
+                return self.extract_func(self, *self.additional_args, **self.additional_kwargs)
+            return self.extract_func(*self.additional_args, **self.additional_kwargs)
+        else:
+            logger.info(&#34;[Complete] Skip run Extract function because not defined&#34;)
         return None
 
     @timeit
     def transform(self, extract_value):
-        if callable(self.__transform_func):
-            args = self.__transform_func.__code__.co_varnames
+        if callable(self.transform_func):
+            self.logger.info(
+                &#34;[Transform] ************ Start run transform function on task: %s ************&#34; % self.task_id)
+            args = self.transform_func.__code__.co_varnames
             self.logger.info(&#34;[Transform] Params of transform_function:: %s&#34; % &#34;,&#34;.join(args))
-            if self.__self_instance_key in args \
-                    and self.__self_instance_key not in self.__additional_args \
-                    and self.__self_instance_key not in self.__additional_kwargs.keys():
-                return self.__transform_func(self, extract_value)
-            return self.__transform_func(extract_value)
+            if self.self_instance_key in args \
+                    and self.self_instance_key not in self.additional_args \
+                    and self.self_instance_key not in self.additional_kwargs.keys():
+                return self.transform_func(self, extract_value)
+            return self.transform_func(extract_value)
+        else:
+            logger.info(&#34;[Complete] Skip run Transform function because not defined&#34;)
         return extract_value
 
     @timeit
     def load(self, transform_value):
-        if callable(self.__load_func):
-            args = self.__load_func.__code__.co_varnames
+        if callable(self.load_func):
+            self.logger.info(&#34;[Load] ************ Start run load function on task: %s ************&#34; % self.task_id)
+            args = self.load_func.__code__.co_varnames
             self.logger.info(&#34;[Load] Params of load_function: %s&#34; % (str(args)))
-            if self.__self_instance_key in args \
-                    and self.__self_instance_key not in self.__additional_args \
-                    and self.__self_instance_key not in self.__additional_kwargs.keys():
-                return self.__load_func(self, transform_value)
-            return self.__load_func(transform_value)
+            if self.self_instance_key in args \
+                    and self.self_instance_key not in self.additional_args \
+                    and self.self_instance_key not in self.additional_kwargs.keys():
+                return self.load_func(self, transform_value)
+            return self.load_func(transform_value)
+        else:
+            logger.info(&#34;[Complete] Skip run Load function because not defined&#34;)
         return None
 
     @timeit
-    def complete(self, load_value):
-        if callable(self.__complete_func):
-            args = self.__complete_func.__code__.co_varnames
+    def complete(self, trans_value, load_value):
+        if callable(self.complete_func):
+            self.logger.info(
+                &#34;[Complete] ************ Start run complete function on task: %s ************&#34; % self.task_id)
+            args = self.complete_func.__code__.co_varnames
             self.logger.info(&#34;[Complete] Params of complete_function: %s&#34; % (str(args)))
-            if self.__self_instance_key in args \
-                    and self.__self_instance_key not in self.__additional_args \
-                    and self.__self_instance_key not in self.__additional_kwargs.keys():
-                return self.__complete_func(self, load_value)
-            return self.__load_func(load_value)
+            if self.self_instance_key in args \
+                    and self.self_instance_key not in self.additional_args \
+                    and self.self_instance_key not in self.additional_kwargs.keys():
+                return self.complete_func(self, trans_value, load_value)
+            return self.load_func(trans_value, load_value)
+        else:
+            logger.info(&#34;[Complete] Skip run Complete function because not defined&#34;)
         return None
 
     def run(self):
-        self.logger.info(&#34;***** Start run task: {{%s}} *****&#34; % self.__task_id)
-        self.logger.info(&#34;[Extract] ************ Start run extract function on task: %s ************&#34; % self.__task_id)
+        self.logger.info(&#34;***** Start run task: {{%s}} *****&#34; % self.task_id)
         ex = self.extract()
-        if callable(self.__transform_func):
-            self.logger.info(
-                &#34;[Transform] ************ Start run transform function on task: %s ************&#34; % self.__task_id)
-            trans = self.transform(extract_value=ex)
-        else:
-            self.logger.info(&#34;Skip run Transform because not define function&#34;)
-        if callable(self.__load_func):
-            self.logger.info(&#34;[Load] ************ Start run load function on task: %s ************&#34; % self.__task_id)
-            load = self.load(transform_value=trans)
-        else:
-            self.logger.info(&#34;Skip run Load because not define function&#34;)
-        if (callable(self.__complete_func)):
-            self.logger.info(
-                &#34;[Complete] ************ Start run complete function on task: %s ************&#34; % self.__task_id)
-            self.complete(load_value=load)</code></pre>
+        trans = self.transform(extract_value=ex)
+        if trans is None:
+            trans = ex
+        load = self.load(transform_value=trans)
+        if load is None:
+            load = trans
+        self.complete(trans_value=trans, load_value=load)</code></pre>
 </details>
 </section>
 <section>
@@ -216,7 +225,7 @@ class Process(object):
 <span>(</span><span>task_id, extract, transform=None, load=None, complete=None, additional_args=None, additional_kwargs=None)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Process ETL pipeline</p>
+<div class="desc"><p>Process ETL pipeline</p>
 <pre><code>Example:
     from zuka_etl.db.connect_spark import SparkWrapper
 
@@ -253,7 +262,7 @@ load:
     ex: function(this, transform_value)
 args
 kwargs
-</code></pre></section>
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -290,16 +299,17 @@ kwargs
             ).run()
     
     &#34;&#34;&#34;
-    __extract_func = None
-    __transform_func = None
-    __load_func = None
-    __complete_func = None
+    extract_func = None
+    transform_func = None
+    load_func = None
+    complete_func = None
 
-    __shipper = {}
-    __task_id = &#34;&#34;
-    __additional_args = None
-    __additional_kwargs = None
-    __self_instance_key = &#34;pipeline&#34;
+    shipper = {}
+    task_id = &#34;&#34;
+    additional_args = {}
+    additional_kwargs = {}
+    self_instance_key = &#34;pipeline&#34;
+    dag_context= {}
 
     def __init__(self, task_id, extract, transform=None, load=None, complete=None, additional_args=None,
                  additional_kwargs=None):
@@ -317,133 +327,174 @@ kwargs
             kwargs
 
         &#34;&#34;&#34;
-        self.__task_id = task_id
-        self.__extract_func = extract
-        self.__transform_func = transform
-        self.__load_func = load
-        self.__shipper = {}
-        self.__complete_func = complete
-        self.__additional_args = copy.copy(additional_args or [])
-        self.__additional_kwargs = copy.copy(additional_kwargs or {})
+        self.task_id = task_id
+        self.extract_func = extract
+        self.transform_func = transform
+        self.load_func = load
+        self.shipper = {}
+        self.complete_func = complete
+        self.additional_args = copy.copy(additional_args or [])
+        self.additional_kwargs = copy.copy(additional_kwargs or {})
 
     @property
     def logger(self):
         return logger
 
     @property
-    def additional_args(self):
-        return self.__additional_args
-
-    @property
     def extract_kargs(self):
-        return self.__additional_kwargs
+        return self.additional_kwargs
 
     def set_shipper(self, key, value):
-        self.__shipper[key] = value
+        if not hasattr(self, &#34;shipper&#34;):
+            self.shipper = {}
+        self.shipper[key] = value
 
     def get_shipper(self, key, default=None):
-        return self.__shipper.get(key, default)
+        if not hasattr(self, &#34;shipper&#34;):
+            self.shipper = {}
+        return self.shipper.get(key, default)
 
     def get_shippers(self):
-        return self.__shipper
+        return self.shipper
 
     @timeit
     def extract(self):
-        if callable(self.__extract_func):
-            args = self.__extract_func.__code__.co_varnames
+        if callable(self.extract_func):
+            self.logger.info(
+                &#34;[Extract] ************ Start run extract function on task: %s ************&#34; % self.task_id)
+            args = self.extract_func.__code__.co_varnames
             self.logger.info(&#34;[Extract] Params of extract_function: %s&#34; % &#34;,&#34;.join(args))
-            if self.__self_instance_key in args \
-                    and self.__self_instance_key not in self.__additional_args \
-                    and self.__self_instance_key not in self.__additional_kwargs.keys():
-                return self.__extract_func(self, *self.__additional_args, **self.__additional_kwargs)
-            return self.__extract_func(*self.__additional_args, **self.__additional_kwargs)
+            if self.self_instance_key in args \
+                    and self.self_instance_key not in self.additional_args \
+                    and self.self_instance_key not in self.additional_kwargs.keys():
+                return self.extract_func(self, *self.additional_args, **self.additional_kwargs)
+            return self.extract_func(*self.additional_args, **self.additional_kwargs)
+        else:
+            logger.info(&#34;[Complete] Skip run Extract function because not defined&#34;)
         return None
 
     @timeit
     def transform(self, extract_value):
-        if callable(self.__transform_func):
-            args = self.__transform_func.__code__.co_varnames
+        if callable(self.transform_func):
+            self.logger.info(
+                &#34;[Transform] ************ Start run transform function on task: %s ************&#34; % self.task_id)
+            args = self.transform_func.__code__.co_varnames
             self.logger.info(&#34;[Transform] Params of transform_function:: %s&#34; % &#34;,&#34;.join(args))
-            if self.__self_instance_key in args \
-                    and self.__self_instance_key not in self.__additional_args \
-                    and self.__self_instance_key not in self.__additional_kwargs.keys():
-                return self.__transform_func(self, extract_value)
-            return self.__transform_func(extract_value)
+            if self.self_instance_key in args \
+                    and self.self_instance_key not in self.additional_args \
+                    and self.self_instance_key not in self.additional_kwargs.keys():
+                return self.transform_func(self, extract_value)
+            return self.transform_func(extract_value)
+        else:
+            logger.info(&#34;[Complete] Skip run Transform function because not defined&#34;)
         return extract_value
 
     @timeit
     def load(self, transform_value):
-        if callable(self.__load_func):
-            args = self.__load_func.__code__.co_varnames
+        if callable(self.load_func):
+            self.logger.info(&#34;[Load] ************ Start run load function on task: %s ************&#34; % self.task_id)
+            args = self.load_func.__code__.co_varnames
             self.logger.info(&#34;[Load] Params of load_function: %s&#34; % (str(args)))
-            if self.__self_instance_key in args \
-                    and self.__self_instance_key not in self.__additional_args \
-                    and self.__self_instance_key not in self.__additional_kwargs.keys():
-                return self.__load_func(self, transform_value)
-            return self.__load_func(transform_value)
+            if self.self_instance_key in args \
+                    and self.self_instance_key not in self.additional_args \
+                    and self.self_instance_key not in self.additional_kwargs.keys():
+                return self.load_func(self, transform_value)
+            return self.load_func(transform_value)
+        else:
+            logger.info(&#34;[Complete] Skip run Load function because not defined&#34;)
         return None
 
     @timeit
-    def complete(self, load_value):
-        if callable(self.__complete_func):
-            args = self.__complete_func.__code__.co_varnames
+    def complete(self, trans_value, load_value):
+        if callable(self.complete_func):
+            self.logger.info(
+                &#34;[Complete] ************ Start run complete function on task: %s ************&#34; % self.task_id)
+            args = self.complete_func.__code__.co_varnames
             self.logger.info(&#34;[Complete] Params of complete_function: %s&#34; % (str(args)))
-            if self.__self_instance_key in args \
-                    and self.__self_instance_key not in self.__additional_args \
-                    and self.__self_instance_key not in self.__additional_kwargs.keys():
-                return self.__complete_func(self, load_value)
-            return self.__load_func(load_value)
+            if self.self_instance_key in args \
+                    and self.self_instance_key not in self.additional_args \
+                    and self.self_instance_key not in self.additional_kwargs.keys():
+                return self.complete_func(self, trans_value, load_value)
+            return self.load_func(trans_value, load_value)
+        else:
+            logger.info(&#34;[Complete] Skip run Complete function because not defined&#34;)
         return None
 
     def run(self):
-        self.logger.info(&#34;***** Start run task: {{%s}} *****&#34; % self.__task_id)
-        self.logger.info(&#34;[Extract] ************ Start run extract function on task: %s ************&#34; % self.__task_id)
+        self.logger.info(&#34;***** Start run task: {{%s}} *****&#34; % self.task_id)
         ex = self.extract()
-        if callable(self.__transform_func):
-            self.logger.info(
-                &#34;[Transform] ************ Start run transform function on task: %s ************&#34; % self.__task_id)
-            trans = self.transform(extract_value=ex)
-        else:
-            self.logger.info(&#34;Skip run Transform because not define function&#34;)
-        if callable(self.__load_func):
-            self.logger.info(&#34;[Load] ************ Start run load function on task: %s ************&#34; % self.__task_id)
-            load = self.load(transform_value=trans)
-        else:
-            self.logger.info(&#34;Skip run Load because not define function&#34;)
-        if (callable(self.__complete_func)):
-            self.logger.info(
-                &#34;[Complete] ************ Start run complete function on task: %s ************&#34; % self.__task_id)
-            self.complete(load_value=load)</code></pre>
+        trans = self.transform(extract_value=ex)
+        if trans is None:
+            trans = ex
+        load = self.load(transform_value=trans)
+        if load is None:
+            load = trans
+        self.complete(trans_value=trans, load_value=load)</code></pre>
 </details>
-<h3>Instance variables</h3>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="zuka_etl.contribution.etl_full_flow.process.FullFlowProcess" href="../contribution/etl_full_flow/process.html#zuka_etl.contribution.etl_full_flow.process.FullFlowProcess">FullFlowProcess</a></li>
+</ul>
+<h3>Class variables</h3>
 <dl>
 <dt id="zuka_etl.pipeline.process.Process.additional_args"><code class="name">var <span class="ident">additional_args</span></code></dt>
 <dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@property
-def additional_args(self):
-    return self.__additional_args</code></pre>
-</details>
+<div class="desc"></div>
 </dd>
+<dt id="zuka_etl.pipeline.process.Process.additional_kwargs"><code class="name">var <span class="ident">additional_kwargs</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.pipeline.process.Process.complete_func"><code class="name">var <span class="ident">complete_func</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.pipeline.process.Process.dag_context"><code class="name">var <span class="ident">dag_context</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.pipeline.process.Process.extract_func"><code class="name">var <span class="ident">extract_func</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.pipeline.process.Process.load_func"><code class="name">var <span class="ident">load_func</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.pipeline.process.Process.self_instance_key"><code class="name">var <span class="ident">self_instance_key</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.pipeline.process.Process.shipper"><code class="name">var <span class="ident">shipper</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.pipeline.process.Process.task_id"><code class="name">var <span class="ident">task_id</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.pipeline.process.Process.transform_func"><code class="name">var <span class="ident">transform_func</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
 <dt id="zuka_etl.pipeline.process.Process.extract_kargs"><code class="name">var <span class="ident">extract_kargs</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
 def extract_kargs(self):
-    return self.__additional_kwargs</code></pre>
+    return self.additional_kwargs</code></pre>
 </details>
 </dd>
 <dt id="zuka_etl.pipeline.process.Process.logger"><code class="name">var <span class="ident">logger</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -460,7 +511,7 @@ def logger(self):
 <span>def <span class="ident">complete</span></span>(<span>*args, **kw)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -478,7 +529,7 @@ def logger(self):
 <span>def <span class="ident">extract</span></span>(<span>*args, **kw)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -496,33 +547,35 @@ def logger(self):
 <span>def <span class="ident">get_shipper</span></span>(<span>self, key, default=None)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def get_shipper(self, key, default=None):
-    return self.__shipper.get(key, default)</code></pre>
+    if not hasattr(self, &#34;shipper&#34;):
+        self.shipper = {}
+    return self.shipper.get(key, default)</code></pre>
 </details>
 </dd>
 <dt id="zuka_etl.pipeline.process.Process.get_shippers"><code class="name flex">
 <span>def <span class="ident">get_shippers</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def get_shippers(self):
-    return self.__shipper</code></pre>
+    return self.shipper</code></pre>
 </details>
 </dd>
 <dt id="zuka_etl.pipeline.process.Process.load"><code class="name flex">
 <span>def <span class="ident">load</span></span>(<span>*args, **kw)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -540,50 +593,43 @@ def logger(self):
 <span>def <span class="ident">run</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def run(self):
-    self.logger.info(&#34;***** Start run task: {{%s}} *****&#34; % self.__task_id)
-    self.logger.info(&#34;[Extract] ************ Start run extract function on task: %s ************&#34; % self.__task_id)
+    self.logger.info(&#34;***** Start run task: {{%s}} *****&#34; % self.task_id)
     ex = self.extract()
-    if callable(self.__transform_func):
-        self.logger.info(
-            &#34;[Transform] ************ Start run transform function on task: %s ************&#34; % self.__task_id)
-        trans = self.transform(extract_value=ex)
-    else:
-        self.logger.info(&#34;Skip run Transform because not define function&#34;)
-    if callable(self.__load_func):
-        self.logger.info(&#34;[Load] ************ Start run load function on task: %s ************&#34; % self.__task_id)
-        load = self.load(transform_value=trans)
-    else:
-        self.logger.info(&#34;Skip run Load because not define function&#34;)
-    if (callable(self.__complete_func)):
-        self.logger.info(
-            &#34;[Complete] ************ Start run complete function on task: %s ************&#34; % self.__task_id)
-        self.complete(load_value=load)</code></pre>
+    trans = self.transform(extract_value=ex)
+    if trans is None:
+        trans = ex
+    load = self.load(transform_value=trans)
+    if load is None:
+        load = trans
+    self.complete(trans_value=trans, load_value=load)</code></pre>
 </details>
 </dd>
 <dt id="zuka_etl.pipeline.process.Process.set_shipper"><code class="name flex">
 <span>def <span class="ident">set_shipper</span></span>(<span>self, key, value)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def set_shipper(self, key, value):
-    self.__shipper[key] = value</code></pre>
+    if not hasattr(self, &#34;shipper&#34;):
+        self.shipper = {}
+    self.shipper[key] = value</code></pre>
 </details>
 </dd>
 <dt id="zuka_etl.pipeline.process.Process.transform"><code class="name flex">
 <span>def <span class="ident">transform</span></span>(<span>*args, **kw)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -619,16 +665,25 @@ def logger(self):
 <h4><code><a title="zuka_etl.pipeline.process.Process" href="#zuka_etl.pipeline.process.Process">Process</a></code></h4>
 <ul class="two-column">
 <li><code><a title="zuka_etl.pipeline.process.Process.additional_args" href="#zuka_etl.pipeline.process.Process.additional_args">additional_args</a></code></li>
+<li><code><a title="zuka_etl.pipeline.process.Process.additional_kwargs" href="#zuka_etl.pipeline.process.Process.additional_kwargs">additional_kwargs</a></code></li>
 <li><code><a title="zuka_etl.pipeline.process.Process.complete" href="#zuka_etl.pipeline.process.Process.complete">complete</a></code></li>
+<li><code><a title="zuka_etl.pipeline.process.Process.complete_func" href="#zuka_etl.pipeline.process.Process.complete_func">complete_func</a></code></li>
+<li><code><a title="zuka_etl.pipeline.process.Process.dag_context" href="#zuka_etl.pipeline.process.Process.dag_context">dag_context</a></code></li>
 <li><code><a title="zuka_etl.pipeline.process.Process.extract" href="#zuka_etl.pipeline.process.Process.extract">extract</a></code></li>
+<li><code><a title="zuka_etl.pipeline.process.Process.extract_func" href="#zuka_etl.pipeline.process.Process.extract_func">extract_func</a></code></li>
 <li><code><a title="zuka_etl.pipeline.process.Process.extract_kargs" href="#zuka_etl.pipeline.process.Process.extract_kargs">extract_kargs</a></code></li>
 <li><code><a title="zuka_etl.pipeline.process.Process.get_shipper" href="#zuka_etl.pipeline.process.Process.get_shipper">get_shipper</a></code></li>
 <li><code><a title="zuka_etl.pipeline.process.Process.get_shippers" href="#zuka_etl.pipeline.process.Process.get_shippers">get_shippers</a></code></li>
 <li><code><a title="zuka_etl.pipeline.process.Process.load" href="#zuka_etl.pipeline.process.Process.load">load</a></code></li>
+<li><code><a title="zuka_etl.pipeline.process.Process.load_func" href="#zuka_etl.pipeline.process.Process.load_func">load_func</a></code></li>
 <li><code><a title="zuka_etl.pipeline.process.Process.logger" href="#zuka_etl.pipeline.process.Process.logger">logger</a></code></li>
 <li><code><a title="zuka_etl.pipeline.process.Process.run" href="#zuka_etl.pipeline.process.Process.run">run</a></code></li>
+<li><code><a title="zuka_etl.pipeline.process.Process.self_instance_key" href="#zuka_etl.pipeline.process.Process.self_instance_key">self_instance_key</a></code></li>
 <li><code><a title="zuka_etl.pipeline.process.Process.set_shipper" href="#zuka_etl.pipeline.process.Process.set_shipper">set_shipper</a></code></li>
+<li><code><a title="zuka_etl.pipeline.process.Process.shipper" href="#zuka_etl.pipeline.process.Process.shipper">shipper</a></code></li>
+<li><code><a title="zuka_etl.pipeline.process.Process.task_id" href="#zuka_etl.pipeline.process.Process.task_id">task_id</a></code></li>
 <li><code><a title="zuka_etl.pipeline.process.Process.transform" href="#zuka_etl.pipeline.process.Process.transform">transform</a></code></li>
+<li><code><a title="zuka_etl.pipeline.process.Process.transform_func" href="#zuka_etl.pipeline.process.Process.transform_func">transform_func</a></code></li>
 </ul>
 </li>
 </ul>
@@ -637,9 +692,7 @@ def logger(self):
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.3</a>.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad()</script>
 </body>
 </html>

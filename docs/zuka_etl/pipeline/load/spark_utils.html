@@ -1,0 +1,1886 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.3" />
+<title>zuka_etl.pipeline.load.spark_utils API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>zuka_etl.pipeline.load.spark_utils</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+__author__ = &#39;phongphamhong&#39;
+
+import pyspark
+from airflow.hooks.jdbc_hook import JdbcHook
+from pyspark.sql.dataframe import DataFrame
+
+from zuka_etl.custom.spark_hook import SparkHook
+from zuka_etl.helpers.exceptions import SparkDfEmptyException
+from pyspark.sql.types import *
+# !/usr/bin/python
+#
+# Copyright 11/9/18 Phong Pham Hong &lt;phongbro1805@gmail.com&gt;
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an &#34;AS IS&#34; BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# # set enviroment in dev mode
+from zuka_etl.log import logger
+
+import time
+from datetime import datetime
+from decimal import Decimal
+
+
+class SparkDfToDriver(object):
+    &#34;&#34;&#34;
+        Using driver that setup by JAR and Spark Session
+    &#34;&#34;&#34;
+    MODE_APPEND = &#34;append&#34;
+    MODE_OVERWRITE = &#34;overwrite&#34;
+    MODE_APPEND_PARTITION = &#34;append_partition&#34;
+    MODE_OVERWRITE_PARTITION = &#34;append_overwrite&#34;
+    MODE_TRUNCATE = &#34;truncate&#34;
+    MODE_UPSERT = &#34;upsert&#34;
+
+    @staticmethod
+    def cast_columns(df: pyspark.sql.DataFrame, columns: dict = {},
+                     lowercase_columns: bool = True) -&gt; pyspark.sql.DataFrame:
+        &#34;&#34;&#34;
+                :param df:
+                :param columns:
+                :param lowercase_columns:
+                :return:
+        &#34;&#34;&#34;
+        cols = df.columns
+        columns = {k.lower(): v.lower() for k, v in columns.items()}
+        select = []
+        for k in cols:
+            l_k = k.lower()
+            if columns.get(l_k):
+                v = columns.get(l_k)
+                select.append(&#34;CAST(`%s` as %s) as %s&#34; % (k, v, l_k if lowercase_columns else k))
+            else:
+                select.append(&#34;`%s` as %s&#34; % (k, l_k if lowercase_columns else k))
+        if columns:
+            logger.info(&#34;Columns will be casted: %s&#34; % columns)
+        return df.selectExpr(*select)
+
+    @staticmethod
+    def to_sql(table: str, connection_id: str, spark_df: pyspark.sql.DataFrame, mode: str = MODE_APPEND,
+               lowercase_columns: bool = True, options: dict = {},
+               cast_columns: dict = {},
+               transform_columns: dict = {},
+               empty_error: bool = False,
+               sql_before=&#34;&#34;,
+               sql_after=&#34;&#34;,
+               **kwargs) -&gt; bool:
+        &#34;&#34;&#34;
+        Insert df to sql: mysql, oracle... by jdbc and spark
+            table: table name
+            connection_id: airflow connection id
+            pd_df: pandas dataframe
+            mode: append or overwrite
+            lower_columns: lowercase all column names
+            kwargs:
+            return:
+
+        &#34;&#34;&#34;
+
+        if empty_error:
+            count = spark_df.take(1)
+            if count:
+                logger.info(&#34;Checking Your DataFrame is empty or not: pass!&#34;)
+            else:
+                raise SparkDfEmptyException()
+        config = JdbcHook.get_connection(connection_id)
+        spark_df = SparkDfToDriver.cast_columns(spark_df, cast_columns, lowercase_columns)
+        table = table.strip()
+        if transform_columns:
+            from zuka_etl.pipeline.transform.spark_utils import SparkTransCols
+            spark_df = SparkTransCols.trans_cols(spark_df, transform_columns)
+        if mode == SparkDfToDriver.MODE_TRUNCATE:
+            mode = SparkDfToDriver.MODE_OVERWRITE
+            options[&#39;truncate&#39;] = True
+        writer = spark_df.write.format(&#34;jdbc&#34;).mode(mode).option(&#34;url&#34;,
+                                                                 config.host) \
+            .option(&#34;dbtable&#34;, table) \
+            .option(&#34;user&#34;, config.login) \
+            .option(&#34;password&#34;, config.password) \
+            .option(&#34;driver&#34;, config.extra_dejson.get(&#34;extra__jdbc__drv_clsname&#34;))
+        if isinstance(options, dict) and options:
+            for k, v in options.items():
+                writer = writer.option(k, v)
+        if type(sql_before) is str and sql_before.strip() != &#34;&#34;:
+            sql_before = sql_before.strip().rstrip(&#34;;&#34;)
+            sql_before = sql_before.split(&#39;;\n&#39;)
+            connect = JdbcHook(connection_id)
+            logger.info(&#34;Execute sql before insert into database&#34;)
+            for k in sql_before:
+                if k.strip() != &#39;&#39;:
+                    connect.run(sql=k, autocommit=True)
+        elif callable(sql_before):
+            logger.info(&#34;Execute function before insert into database&#34;)
+            connect = JdbcHook(connection_id)
+            sql_before(connect)
+
+        logger.info(&#34;Start insert by spark to host: %s - table: %s&#34; % (config.host, table))
+        writer.save()
+        logger.info(&#34;Insert by spark to host: %s - table: %s done!&#34; % (config.host, table))
+        if type(sql_after) is str and sql_after.strip() != &#34;&#34;:
+            sql_after = sql_after.strip().rstrip(&#34;;&#34;)
+            sql_after = sql_after.split(&#39;;\n&#39;)
+            connect = JdbcHook(connection_id)
+            logger.info(&#34;Execute sql after insert into database&#34;)
+            for k in sql_after:
+                if k.strip() != &#39;&#39;:
+                    connect.run(sql=k, autocommit=True)
+        elif callable(sql_after):
+            logger.info(&#34;Execute function after insert into database&#34;)
+            connect = JdbcHook(connection_id)
+            sql_after(connect)
+        return True
+
+    @staticmethod
+    def to_sql_2(table: str, connection_id: str, spark_df: pyspark.sql.DataFrame, mode: str = MODE_APPEND,
+                 lowercase_columns: bool = True, options: dict = {},
+                 cast_columns: dict = {},
+                 transform_columns: dict = {},
+                 empty_error: bool = False,
+                 sql_before=&#34;&#34;,
+                 sql_after=&#34;&#34;,
+                 upsert_properties={},
+                 **kwargs) -&gt; bool:
+        &#34;&#34;&#34;
+        Insert df to sql: mysql, oracle... by jdbc and spark
+            table: table name
+            connection_id: airflow connection id
+            pd_df: pandas dataframe
+            mode: append or overwrite
+            lower_columns: lowercase all column names
+            kwargs:
+            return:
+
+        &#34;&#34;&#34;
+
+        if empty_error:
+            count = spark_df.count()
+            if count &gt; 0:
+                logger.info(&#34;Total data on DataFrame: %s&#34; % count)
+            else:
+                raise SparkDfEmptyException()
+        config = JdbcHook.get_connection(connection_id)
+        spark_df = SparkDfToDriver.cast_columns(spark_df, cast_columns, lowercase_columns)
+        table = table.strip()
+        if transform_columns:
+            from zuka_etl.pipeline.transform.spark_utils import SparkTransCols
+            spark_df = SparkTransCols.trans_cols(spark_df, transform_columns)
+        if mode == SparkDfToDriver.MODE_TRUNCATE:
+            mode = SparkDfToDriver.MODE_OVERWRITE
+            options[&#39;truncate&#39;] = True
+        if type(sql_before) is str and sql_before.strip() != &#34;&#34;:
+            sql_before = sql_before.strip().rstrip(&#34;;&#34;)
+            sql_before = sql_before.split(&#39;;\n&#39;)
+            connect = JdbcHook(connection_id)
+            logger.info(&#34;Execute sql before insert into database&#34;)
+            for k in sql_before:
+                if k.strip() != &#39;&#39;:
+                    logger.info(&#34;query: %s&#34; % k)
+                    connect.run(sql=k, autocommit=True)
+        elif callable(sql_before):
+            logger.info(&#34;Execute function before insert into database&#34;)
+            connect = JdbcHook(connection_id)
+            sql_before(connect)
+
+        if mode == SparkDfToDriver.MODE_UPSERT:
+            connect = JdbcHook(connection_id)
+            logger.info(&#34;Start upsert by spark to host: %s - table: %s&#34; % (config.host, table))
+            JdbcUtils.upsert_table(df=spark_df, db_type=upsert_properties.get(&#34;db_type&#34;, &#34;postgresql&#34;), table=table,
+                                   upsert_properties=upsert_properties, conn=connect)
+            logger.info(&#34;Upsert by spark to host: %s - table: %s done!&#34; % (config.host, table))
+        else:
+            writer = spark_df.write.format(&#34;jdbc&#34;).mode(mode).option(&#34;url&#34;, config.host) \
+                .option(&#34;dbtable&#34;, table) \
+                .option(&#34;user&#34;, config.login) \
+                .option(&#34;password&#34;, config.password) \
+                .option(&#34;driver&#34;, config.extra_dejson.get(&#34;extra__jdbc__drv_clsname&#34;))
+            if isinstance(options, dict) and options:
+                for k, v in options.items():
+                    writer = writer.option(k, v)
+            logger.info(&#34;Start insert by spark to host: %s - table: %s&#34; % (config.host, table))
+            writer.save()
+            logger.info(&#34;Insert by spark to host: %s - table: %s done!&#34; % (config.host, table))
+        if type(sql_after) is str and sql_after.strip() != &#34;&#34;:
+            sql_after = sql_after.strip().rstrip(&#34;;&#34;)
+            sql_after = sql_after.split(&#39;;\n&#39;)
+            connect = JdbcHook(connection_id)
+            logger.info(&#34;Execute sql after insert into database&#34;)
+            for k in sql_after:
+                if k.strip() != &#39;&#39;:
+                    logger.info(&#34;query: %s&#34; % k)
+                    connect.run(sql=k, autocommit=True)
+        elif callable(sql_after):
+            logger.info(&#34;Execute function after insert into database&#34;)
+            connect = JdbcHook(connection_id)
+            sql_after(connect)
+        return True
+
+    @staticmethod
+    def to_hive(table: str, spark_df: pyspark.sql.DataFrame, mode: str = MODE_APPEND, format: str = &#34;orc&#34;,
+                lowercase_columns: bool = True,
+                options: dict = {},
+                cast_columns: dict = {},
+                transform_columns: dict = {},
+                partition_by: list = [],
+                empty_error: bool = False,
+                **kwargs) -&gt; bool:
+        &#34;&#34;&#34;
+        Insert df to hive table
+            :param table: hive table name
+            :param spark_df: spark_dataframe
+            :param mode: overwrite or append
+            :param format: orc, parquet, csv..
+            :param lowercase_columns: lower all columns or not
+            :param options: options for spark writer
+            :param partition_by: list fields will be used to partition
+            :param kwargs:
+            :return:
+        &#34;&#34;&#34;
+        import pyspark
+        if empty_error:
+            count = spark_df.take(1)
+            if count:
+                logger.info(&#34;Checking Your DataFrame is empty or not: pass!&#34;)
+            else:
+                raise SparkDfEmptyException()
+        spark_df = SparkDfToDriver.cast_columns(spark_df, cast_columns, lowercase_columns)
+        writer = spark_df.write
+        table = table.strip()
+        if transform_columns:
+            from zuka_etl.pipeline.transform.spark_utils import SparkTransCols
+            spark_df = SparkTransCols.trans_cols(spark_df, transform_columns)
+        if mode in [SparkDfToDriver.MODE_APPEND_PARTITION,
+                    SparkDfToDriver.MODE_OVERWRITE_PARTITION,
+                    SparkDfToDriver.MODE_APPEND]:
+            try:
+                cols = [k[0] for k in SparkHook().run_sql(&#34;show columns in %s&#34; % table, log=False).collect()]
+                logger.info(&#34;Columns will be inserted: %s&#34; % cols)
+                writer = spark_df.select(*cols).write
+                if isinstance(options, dict) and options:
+                    for k, v in options.items():
+                        writer = writer.option(k, v)
+            except pyspark.sql.utils.AnalysisException as e:
+                t = table.split(&#34;.&#34;)
+                t = t[0] if len(t) == 1 else t[1]
+                if (str(e).find(&#34;Table or view &#39;%s&#39; not found&#34; % t) &gt;= 0):
+                    mode = SparkDfToDriver.MODE_OVERWRITE
+                    writer = spark_df.write
+                else:
+                    raise pyspark.sql.utils.AnalysisException(e, e)
+
+        if mode in [SparkDfToDriver.MODE_APPEND_PARTITION,
+                    SparkDfToDriver.MODE_OVERWRITE_PARTITION
+                    ]:
+            c = {
+                &#34;hive.exec.dynamic.partition.mode&#34;: &#34;nonstrict&#34;,
+                &#34;spark.sql.sources.partitionOverwriteMode&#34;: &#34;dynamic&#34;
+            }
+            logger.info(&#34;&#34;&#34;Check spark.conf must have config: %s to prevent loss data (replace entire table)&#34;&#34;&#34; % c)
+            conf = SparkHook().session.sparkContext.getConf()
+            for k, v in c.items():
+                if conf.get(k) != v:
+                    raise SystemError(&#34;You must config SparkConf with %s=%s&#34; % (k, v))
+            logger.info(&#34;Start insert hive table with mode partition: {%s} - {%s}&#34; % (mode, table))
+            writer.format(format).insertInto(table, overwrite=mode == SparkDfToDriver.MODE_OVERWRITE_PARTITION)
+            logger.info(&#34;Insert hive table with mode partition: {%s} - {%s} done!&#34; % (mode, table))
+        elif mode in [SparkDfToDriver.MODE_OVERWRITE, SparkDfToDriver.MODE_APPEND]:
+            writer = writer.mode(mode).format(format)
+            logger.info(&#34;Start insert hive table by spark - table:{%s} {%s}&#34; % (mode, table))
+            writer.saveAsTable(table, partitionBy=partition_by)
+            logger.info(&#34;Insert hive table: table:{%s} {%s} done!&#34; % (mode, table))
+        else:
+            raise ValueError(&#34;mode: %s is invalid&#34; % mode)
+        return True
+
+    @staticmethod
+    def parse_metadata(spark_df):
+        from collections import OrderedDict
+        schema_dict = OrderedDict()
+        schema_parse_table = {
+            &#34;timestamp&#34;: &#34;timestamp&#34;,
+            &#34;string&#34;: &#34;text&#34;,
+            &#34;int&#34;: &#34;integer&#34;,
+            &#34;boolean&#34;: &#34;boolean&#34;
+        }
+        for dtype in spark_df.dtypes:
+            if &#34;decimal&#34; in str(dtype[1]):
+                schema_dict[str(dtype[0])] = str(dtype[1]).replace(&#34;decimal&#34;, &#34;numeric&#34;)
+            else:
+                schema_dict[str(dtype[0])] = schema_parse_table[str(dtype[1])]
+        return schema_dict
+
+
+class JdbcDialect:
+    @staticmethod
+    def get_table_exists_query(table):
+        return f&#34;SELECT 1 FROM {table} WHERE 1=0&#34;
+
+    @staticmethod
+    def get_dialect(db_type):
+        if db_type == &#34;postgresql&#34;:
+            return PostgresqlDialect()
+
+    @staticmethod
+    def get_Jdbc_type(dt: DataType):
+        pass
+
+    @staticmethod
+    def upsert_table(df: DataFrame, table: str, upsert_properties: dict, conn: JdbcHook):
+        pass
+
+
+class PostgresqlDialect(JdbcDialect):
+    @staticmethod
+    def get_Jdbc_type(dt: DataType):
+        if isinstance(dt, StringType):
+            return &#34;TEXT&#34;
+        elif isinstance(dt, BinaryType):
+            return &#34;BYTEA&#34;
+        elif isinstance(dt, BooleanType):
+            return &#34;BOOLEAN&#34;
+        elif isinstance(dt, FloatType):
+            return &#34;FLOAT4&#34;
+        elif isinstance(dt, DoubleType):
+            return &#34;FLOAT8&#34;
+        elif isinstance(dt, DecimalType):
+            return f&#34;NUMERIC({dt.precision}, {dt.scale})&#34;
+        elif isinstance(dt, ByteType):
+            raise Exception(f&#34;Unsupported type in postgresql: {dt}&#34;)
+        else:
+            return None
+
+    @staticmethod
+    def upsert_table(df: DataFrame, table: str, upsert_properties: dict, conn: JdbcHook):
+        num_partitions = upsert_properties.get(&#34;num_partitions&#34;, 20)
+        db_type = upsert_properties.get(&#34;db_type&#34;, &#34;postgresql&#34;)
+
+        def parse_metadata(df_spark):
+            schema_dict = {}
+            dialect = PostgresqlDialect()
+            for field in df_spark.schema.fields:
+                name = field.name
+                typ = JdbcUtils.get_Jdbc_type(field.dataType, dialect)
+                schema_dict[name] = typ
+            return schema_dict
+
+        def create_merge_db(ver, metadata):
+            sql = &#34;&#34;&#34;
+                CREATE OR REPLACE FUNCTION merge_db_{{ver}}({{metadata}}) RETURNS VOID AS
+                $$
+                BEGIN
+                    LOOP
+                        UPDATE {{table}} SET {{val_change}} WHERE {{conflict_col_names}};
+                        IF found THEN
+                            RETURN;
+                        END IF;
+                        BEGIN
+                            INSERT INTO {{table}}({{col_names}}) VALUES ({{col_names_data}});
+                            RETURN;
+                        EXCEPTION WHEN unique_violation THEN
+                        END;
+                    END LOOP;
+                END;
+                $$
+                LANGUAGE plpgsql;
+            &#34;&#34;&#34;
+            new_sql = sql.replace(&#34;{{metadata}}&#34;, &#34;, &#34;.join(
+                [f&#34;{col_name + &#39;_data&#39;} {col_type}&#34; for col_name, col_type in metadata.items()])) \
+                .replace(&#34;{{col_names_data}}&#34;, &#34;, &#34;.join([col_name + &#34;_data&#34; for col_name, _ in metadata.items()])) \
+                .replace(&#34;{{val_change}}&#34;,
+                         &#34;, &#34;.join([f&#34;{col_name} = {col_name + &#39;_data&#39;}&#34; for col_name, _ in metadata.items()])) \
+                .replace(&#34;{{conflict_col_names}}&#34;, &#34;, &#34;.join(
+                [f&#34;{col_name} = {col_name + &#39;_data&#39;}&#34; for col_name in upsert_properties[&#34;conflict_col_names&#34;]])) \
+                .replace(&#34;{{col_names}}&#34;, &#34;, &#34;.join([col_name for col_name, _ in metadata.items()])) \
+                .replace(&#34;{{ver}}&#34;, str(ver)) \
+                .replace(&#34;{{table}}&#34;, str(table))
+            conn.run(sql=new_sql, autocommit=True)
+
+        def delete_merge_db(ver, metadata):
+            conn.run(sql=&#34;drop function if exists merge_db_{{ver}}({{metadata}})&#34;.replace(&#34;{{ver}}&#34;, str(ver)) \
+                     .replace(&#34;{{metadata}}&#34;, &#34;, &#34;.join(
+                [f&#34;{col_name + &#39;_data&#39;} {col_type}&#34; for col_name, col_type in metadata.items()])), autocommit=True)
+
+        def upsert(partitions):
+            sql = &#34;&#34;&#34;
+                {{merge_db}}({{sql_tmp}}) 
+            &#34;&#34;&#34;
+            sql_list = []
+            for row in partitions:
+                t = [row[i] for i in range(len(row))]
+                k = []
+                for i in t:
+                    if isinstance(i, datetime):
+                        k.append(f&#34;&#39;{str(i)}&#39;::timestamp&#34;)
+                    elif isinstance(i, Decimal):
+                        k.append(str(i))
+                    elif isinstance(i, type(None)):
+                        k.append(&#34;&#39;NULL&#39;&#34;)
+                    elif isinstance(i, int):
+                        k.append(str(i))
+                    else:
+                        k.append(f&#34;&#39;{str(i)}&#39;&#34;)
+
+                new_sql = sql.replace(&#34;{{sql_tmp}}&#34;, &#34;, &#34;.join(k)) \
+                    .replace(&#34;{{merge_db}}&#34;, func_merge_db)
+                sql_list.append(new_sql)
+                if len(sql_list) &gt; 1000:
+                    conn.run(sql=&#34;SELECT &#34; + &#34;, &#34;.join(sql_list), autocommit=True)
+                    sql_list = []
+            if len(sql_list) &gt; 0:
+                conn.run(sql=&#34;SELECT &#34; + &#34;, &#34;.join(sql_list), autocommit=True)
+                sql_list = []
+            conn.run(sql=&#34;SELECT &#34; + &#34;, &#34;.join(sql_list), autocommit=True)
+
+        JdbcUtils.create_table_if_not_exits(df_spark=df, db_type=db_type, table=table, conn=conn)
+
+        ver = int(time.time())
+        metadata = parse_metadata(df)
+
+        create_merge_db(ver, metadata)
+        func_merge_db = &#34;merge_db_&#34; + str(ver)
+        df.repartition(numPartitions=num_partitions).foreachPartition(upsert)
+
+        delete_merge_db(ver, metadata)
+
+
+class JdbcUtils:
+    @staticmethod
+    def table_exists(table: str, conn: JdbcHook):
+        try:
+            conn.run(JdbcDialect.get_table_exists_query(table))
+            return True
+        except Exception as ex:
+            logger.error(ex)
+            return False
+
+    @staticmethod
+    def drop_table(table: str, conn: JdbcHook):
+        conn.run(f&#34;DROP TABLE {table}&#34;)
+
+    @staticmethod
+    def schema_string(df_spark: DataFrame, db_type: str):
+        dialect = JdbcDialect.get_dialect(db_type=db_type)
+        sb = []
+        for field in df_spark.schema.fields:
+            name = field.name
+            typ = JdbcUtils.get_Jdbc_type(field.dataType, dialect)
+            nullable = &#34;&#34; if field.nullable else &#34;NOT NULL&#34;
+            sb.append(f&#34;{name} {typ} {nullable}&#34;)
+        return &#34;, &#34;.join(sb)
+
+    @staticmethod
+    def upsert_table(df: DataFrame, db_type: str, table: str, upsert_properties: dict, conn: JdbcHook):
+        dialect = JdbcDialect.get_dialect(db_type=db_type)
+        dialect.upsert_table(df, table, upsert_properties, conn)
+
+    @staticmethod
+    def create_table_if_not_exits(df_spark: DataFrame, db_type: str, table: str, conn: JdbcHook):
+        if not JdbcUtils.table_exists(table=table, conn=conn):
+            schema = JdbcUtils.schema_string(df_spark, db_type)
+            sql = f&#34;CREATE TABLE {table} ({schema})&#34;
+            conn.run(sql)
+
+    @staticmethod
+    def get_Jdbc_type(dt: DataType, dialect: JdbcDialect):
+        return dialect.get_Jdbc_type(dt) if dialect.get_Jdbc_type(dt) is not None else JdbcUtils.get_common_Jdbc_type(
+            dt)
+
+    @staticmethod
+    def get_common_Jdbc_type(dt: DataType):
+        if isinstance(dt, IntegerType):
+            return &#34;INTEGER&#34;
+        elif isinstance(dt, LongType):
+            return &#34;BIGINT&#34;
+        elif isinstance(dt, DoubleType):
+            return &#34;DOUBLE PRECISION&#34;
+        elif isinstance(dt, FloatType):
+            return &#34;REAL&#34;
+        elif isinstance(dt, ShortType):
+            return &#34;INTEGER&#34;
+        elif isinstance(dt, ByteType):
+            return &#34;BYTE&#34;
+        elif isinstance(dt, BooleanType):
+            return &#34;BIT(1)&#34;
+        elif isinstance(dt, StringType):
+            return &#34;TEXT&#34;
+        elif isinstance(dt, BinaryType):
+            return &#34;BLOB&#34;
+        elif isinstance(dt, TimestampType):
+            return &#34;TIMESTAMP&#34;
+        elif isinstance(dt, DateType):
+            return &#34;DATE&#34;
+        elif isinstance(dt, DecimalType):
+            return f&#34;DECIMAL({dt.precision}, {dt.scale})&#34;
+        else:
+            return None</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="zuka_etl.pipeline.load.spark_utils.JdbcDialect"><code class="flex name class">
+<span>class <span class="ident">JdbcDialect</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class JdbcDialect:
+    @staticmethod
+    def get_table_exists_query(table):
+        return f&#34;SELECT 1 FROM {table} WHERE 1=0&#34;
+
+    @staticmethod
+    def get_dialect(db_type):
+        if db_type == &#34;postgresql&#34;:
+            return PostgresqlDialect()
+
+    @staticmethod
+    def get_Jdbc_type(dt: DataType):
+        pass
+
+    @staticmethod
+    def upsert_table(df: DataFrame, table: str, upsert_properties: dict, conn: JdbcHook):
+        pass</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="zuka_etl.pipeline.load.spark_utils.PostgresqlDialect" href="#zuka_etl.pipeline.load.spark_utils.PostgresqlDialect">PostgresqlDialect</a></li>
+</ul>
+<h3>Static methods</h3>
+<dl>
+<dt id="zuka_etl.pipeline.load.spark_utils.JdbcDialect.get_Jdbc_type"><code class="name flex">
+<span>def <span class="ident">get_Jdbc_type</span></span>(<span>dt: pyspark.sql.types.DataType)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def get_Jdbc_type(dt: DataType):
+    pass</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.JdbcDialect.get_dialect"><code class="name flex">
+<span>def <span class="ident">get_dialect</span></span>(<span>db_type)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def get_dialect(db_type):
+    if db_type == &#34;postgresql&#34;:
+        return PostgresqlDialect()</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.JdbcDialect.get_table_exists_query"><code class="name flex">
+<span>def <span class="ident">get_table_exists_query</span></span>(<span>table)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def get_table_exists_query(table):
+    return f&#34;SELECT 1 FROM {table} WHERE 1=0&#34;</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.JdbcDialect.upsert_table"><code class="name flex">
+<span>def <span class="ident">upsert_table</span></span>(<span>df: pyspark.sql.dataframe.DataFrame, table: str, upsert_properties: dict, conn: airflow.hooks.jdbc_hook.JdbcHook)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def upsert_table(df: DataFrame, table: str, upsert_properties: dict, conn: JdbcHook):
+    pass</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.JdbcUtils"><code class="flex name class">
+<span>class <span class="ident">JdbcUtils</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class JdbcUtils:
+    @staticmethod
+    def table_exists(table: str, conn: JdbcHook):
+        try:
+            conn.run(JdbcDialect.get_table_exists_query(table))
+            return True
+        except Exception as ex:
+            logger.error(ex)
+            return False
+
+    @staticmethod
+    def drop_table(table: str, conn: JdbcHook):
+        conn.run(f&#34;DROP TABLE {table}&#34;)
+
+    @staticmethod
+    def schema_string(df_spark: DataFrame, db_type: str):
+        dialect = JdbcDialect.get_dialect(db_type=db_type)
+        sb = []
+        for field in df_spark.schema.fields:
+            name = field.name
+            typ = JdbcUtils.get_Jdbc_type(field.dataType, dialect)
+            nullable = &#34;&#34; if field.nullable else &#34;NOT NULL&#34;
+            sb.append(f&#34;{name} {typ} {nullable}&#34;)
+        return &#34;, &#34;.join(sb)
+
+    @staticmethod
+    def upsert_table(df: DataFrame, db_type: str, table: str, upsert_properties: dict, conn: JdbcHook):
+        dialect = JdbcDialect.get_dialect(db_type=db_type)
+        dialect.upsert_table(df, table, upsert_properties, conn)
+
+    @staticmethod
+    def create_table_if_not_exits(df_spark: DataFrame, db_type: str, table: str, conn: JdbcHook):
+        if not JdbcUtils.table_exists(table=table, conn=conn):
+            schema = JdbcUtils.schema_string(df_spark, db_type)
+            sql = f&#34;CREATE TABLE {table} ({schema})&#34;
+            conn.run(sql)
+
+    @staticmethod
+    def get_Jdbc_type(dt: DataType, dialect: JdbcDialect):
+        return dialect.get_Jdbc_type(dt) if dialect.get_Jdbc_type(dt) is not None else JdbcUtils.get_common_Jdbc_type(
+            dt)
+
+    @staticmethod
+    def get_common_Jdbc_type(dt: DataType):
+        if isinstance(dt, IntegerType):
+            return &#34;INTEGER&#34;
+        elif isinstance(dt, LongType):
+            return &#34;BIGINT&#34;
+        elif isinstance(dt, DoubleType):
+            return &#34;DOUBLE PRECISION&#34;
+        elif isinstance(dt, FloatType):
+            return &#34;REAL&#34;
+        elif isinstance(dt, ShortType):
+            return &#34;INTEGER&#34;
+        elif isinstance(dt, ByteType):
+            return &#34;BYTE&#34;
+        elif isinstance(dt, BooleanType):
+            return &#34;BIT(1)&#34;
+        elif isinstance(dt, StringType):
+            return &#34;TEXT&#34;
+        elif isinstance(dt, BinaryType):
+            return &#34;BLOB&#34;
+        elif isinstance(dt, TimestampType):
+            return &#34;TIMESTAMP&#34;
+        elif isinstance(dt, DateType):
+            return &#34;DATE&#34;
+        elif isinstance(dt, DecimalType):
+            return f&#34;DECIMAL({dt.precision}, {dt.scale})&#34;
+        else:
+            return None</code></pre>
+</details>
+<h3>Static methods</h3>
+<dl>
+<dt id="zuka_etl.pipeline.load.spark_utils.JdbcUtils.create_table_if_not_exits"><code class="name flex">
+<span>def <span class="ident">create_table_if_not_exits</span></span>(<span>df_spark: pyspark.sql.dataframe.DataFrame, db_type: str, table: str, conn: airflow.hooks.jdbc_hook.JdbcHook)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def create_table_if_not_exits(df_spark: DataFrame, db_type: str, table: str, conn: JdbcHook):
+    if not JdbcUtils.table_exists(table=table, conn=conn):
+        schema = JdbcUtils.schema_string(df_spark, db_type)
+        sql = f&#34;CREATE TABLE {table} ({schema})&#34;
+        conn.run(sql)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.JdbcUtils.drop_table"><code class="name flex">
+<span>def <span class="ident">drop_table</span></span>(<span>table: str, conn: airflow.hooks.jdbc_hook.JdbcHook)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def drop_table(table: str, conn: JdbcHook):
+    conn.run(f&#34;DROP TABLE {table}&#34;)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.JdbcUtils.get_Jdbc_type"><code class="name flex">
+<span>def <span class="ident">get_Jdbc_type</span></span>(<span>dt: pyspark.sql.types.DataType, dialect: <a title="zuka_etl.pipeline.load.spark_utils.JdbcDialect" href="#zuka_etl.pipeline.load.spark_utils.JdbcDialect">JdbcDialect</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def get_Jdbc_type(dt: DataType, dialect: JdbcDialect):
+    return dialect.get_Jdbc_type(dt) if dialect.get_Jdbc_type(dt) is not None else JdbcUtils.get_common_Jdbc_type(
+        dt)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.JdbcUtils.get_common_Jdbc_type"><code class="name flex">
+<span>def <span class="ident">get_common_Jdbc_type</span></span>(<span>dt: pyspark.sql.types.DataType)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def get_common_Jdbc_type(dt: DataType):
+    if isinstance(dt, IntegerType):
+        return &#34;INTEGER&#34;
+    elif isinstance(dt, LongType):
+        return &#34;BIGINT&#34;
+    elif isinstance(dt, DoubleType):
+        return &#34;DOUBLE PRECISION&#34;
+    elif isinstance(dt, FloatType):
+        return &#34;REAL&#34;
+    elif isinstance(dt, ShortType):
+        return &#34;INTEGER&#34;
+    elif isinstance(dt, ByteType):
+        return &#34;BYTE&#34;
+    elif isinstance(dt, BooleanType):
+        return &#34;BIT(1)&#34;
+    elif isinstance(dt, StringType):
+        return &#34;TEXT&#34;
+    elif isinstance(dt, BinaryType):
+        return &#34;BLOB&#34;
+    elif isinstance(dt, TimestampType):
+        return &#34;TIMESTAMP&#34;
+    elif isinstance(dt, DateType):
+        return &#34;DATE&#34;
+    elif isinstance(dt, DecimalType):
+        return f&#34;DECIMAL({dt.precision}, {dt.scale})&#34;
+    else:
+        return None</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.JdbcUtils.schema_string"><code class="name flex">
+<span>def <span class="ident">schema_string</span></span>(<span>df_spark: pyspark.sql.dataframe.DataFrame, db_type: str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def schema_string(df_spark: DataFrame, db_type: str):
+    dialect = JdbcDialect.get_dialect(db_type=db_type)
+    sb = []
+    for field in df_spark.schema.fields:
+        name = field.name
+        typ = JdbcUtils.get_Jdbc_type(field.dataType, dialect)
+        nullable = &#34;&#34; if field.nullable else &#34;NOT NULL&#34;
+        sb.append(f&#34;{name} {typ} {nullable}&#34;)
+    return &#34;, &#34;.join(sb)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.JdbcUtils.table_exists"><code class="name flex">
+<span>def <span class="ident">table_exists</span></span>(<span>table: str, conn: airflow.hooks.jdbc_hook.JdbcHook)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def table_exists(table: str, conn: JdbcHook):
+    try:
+        conn.run(JdbcDialect.get_table_exists_query(table))
+        return True
+    except Exception as ex:
+        logger.error(ex)
+        return False</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.JdbcUtils.upsert_table"><code class="name flex">
+<span>def <span class="ident">upsert_table</span></span>(<span>df: pyspark.sql.dataframe.DataFrame, db_type: str, table: str, upsert_properties: dict, conn: airflow.hooks.jdbc_hook.JdbcHook)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def upsert_table(df: DataFrame, db_type: str, table: str, upsert_properties: dict, conn: JdbcHook):
+    dialect = JdbcDialect.get_dialect(db_type=db_type)
+    dialect.upsert_table(df, table, upsert_properties, conn)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.PostgresqlDialect"><code class="flex name class">
+<span>class <span class="ident">PostgresqlDialect</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PostgresqlDialect(JdbcDialect):
+    @staticmethod
+    def get_Jdbc_type(dt: DataType):
+        if isinstance(dt, StringType):
+            return &#34;TEXT&#34;
+        elif isinstance(dt, BinaryType):
+            return &#34;BYTEA&#34;
+        elif isinstance(dt, BooleanType):
+            return &#34;BOOLEAN&#34;
+        elif isinstance(dt, FloatType):
+            return &#34;FLOAT4&#34;
+        elif isinstance(dt, DoubleType):
+            return &#34;FLOAT8&#34;
+        elif isinstance(dt, DecimalType):
+            return f&#34;NUMERIC({dt.precision}, {dt.scale})&#34;
+        elif isinstance(dt, ByteType):
+            raise Exception(f&#34;Unsupported type in postgresql: {dt}&#34;)
+        else:
+            return None
+
+    @staticmethod
+    def upsert_table(df: DataFrame, table: str, upsert_properties: dict, conn: JdbcHook):
+        num_partitions = upsert_properties.get(&#34;num_partitions&#34;, 20)
+        db_type = upsert_properties.get(&#34;db_type&#34;, &#34;postgresql&#34;)
+
+        def parse_metadata(df_spark):
+            schema_dict = {}
+            dialect = PostgresqlDialect()
+            for field in df_spark.schema.fields:
+                name = field.name
+                typ = JdbcUtils.get_Jdbc_type(field.dataType, dialect)
+                schema_dict[name] = typ
+            return schema_dict
+
+        def create_merge_db(ver, metadata):
+            sql = &#34;&#34;&#34;
+                CREATE OR REPLACE FUNCTION merge_db_{{ver}}({{metadata}}) RETURNS VOID AS
+                $$
+                BEGIN
+                    LOOP
+                        UPDATE {{table}} SET {{val_change}} WHERE {{conflict_col_names}};
+                        IF found THEN
+                            RETURN;
+                        END IF;
+                        BEGIN
+                            INSERT INTO {{table}}({{col_names}}) VALUES ({{col_names_data}});
+                            RETURN;
+                        EXCEPTION WHEN unique_violation THEN
+                        END;
+                    END LOOP;
+                END;
+                $$
+                LANGUAGE plpgsql;
+            &#34;&#34;&#34;
+            new_sql = sql.replace(&#34;{{metadata}}&#34;, &#34;, &#34;.join(
+                [f&#34;{col_name + &#39;_data&#39;} {col_type}&#34; for col_name, col_type in metadata.items()])) \
+                .replace(&#34;{{col_names_data}}&#34;, &#34;, &#34;.join([col_name + &#34;_data&#34; for col_name, _ in metadata.items()])) \
+                .replace(&#34;{{val_change}}&#34;,
+                         &#34;, &#34;.join([f&#34;{col_name} = {col_name + &#39;_data&#39;}&#34; for col_name, _ in metadata.items()])) \
+                .replace(&#34;{{conflict_col_names}}&#34;, &#34;, &#34;.join(
+                [f&#34;{col_name} = {col_name + &#39;_data&#39;}&#34; for col_name in upsert_properties[&#34;conflict_col_names&#34;]])) \
+                .replace(&#34;{{col_names}}&#34;, &#34;, &#34;.join([col_name for col_name, _ in metadata.items()])) \
+                .replace(&#34;{{ver}}&#34;, str(ver)) \
+                .replace(&#34;{{table}}&#34;, str(table))
+            conn.run(sql=new_sql, autocommit=True)
+
+        def delete_merge_db(ver, metadata):
+            conn.run(sql=&#34;drop function if exists merge_db_{{ver}}({{metadata}})&#34;.replace(&#34;{{ver}}&#34;, str(ver)) \
+                     .replace(&#34;{{metadata}}&#34;, &#34;, &#34;.join(
+                [f&#34;{col_name + &#39;_data&#39;} {col_type}&#34; for col_name, col_type in metadata.items()])), autocommit=True)
+
+        def upsert(partitions):
+            sql = &#34;&#34;&#34;
+                {{merge_db}}({{sql_tmp}}) 
+            &#34;&#34;&#34;
+            sql_list = []
+            for row in partitions:
+                t = [row[i] for i in range(len(row))]
+                k = []
+                for i in t:
+                    if isinstance(i, datetime):
+                        k.append(f&#34;&#39;{str(i)}&#39;::timestamp&#34;)
+                    elif isinstance(i, Decimal):
+                        k.append(str(i))
+                    elif isinstance(i, type(None)):
+                        k.append(&#34;&#39;NULL&#39;&#34;)
+                    elif isinstance(i, int):
+                        k.append(str(i))
+                    else:
+                        k.append(f&#34;&#39;{str(i)}&#39;&#34;)
+
+                new_sql = sql.replace(&#34;{{sql_tmp}}&#34;, &#34;, &#34;.join(k)) \
+                    .replace(&#34;{{merge_db}}&#34;, func_merge_db)
+                sql_list.append(new_sql)
+                if len(sql_list) &gt; 1000:
+                    conn.run(sql=&#34;SELECT &#34; + &#34;, &#34;.join(sql_list), autocommit=True)
+                    sql_list = []
+            if len(sql_list) &gt; 0:
+                conn.run(sql=&#34;SELECT &#34; + &#34;, &#34;.join(sql_list), autocommit=True)
+                sql_list = []
+            conn.run(sql=&#34;SELECT &#34; + &#34;, &#34;.join(sql_list), autocommit=True)
+
+        JdbcUtils.create_table_if_not_exits(df_spark=df, db_type=db_type, table=table, conn=conn)
+
+        ver = int(time.time())
+        metadata = parse_metadata(df)
+
+        create_merge_db(ver, metadata)
+        func_merge_db = &#34;merge_db_&#34; + str(ver)
+        df.repartition(numPartitions=num_partitions).foreachPartition(upsert)
+
+        delete_merge_db(ver, metadata)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="zuka_etl.pipeline.load.spark_utils.JdbcDialect" href="#zuka_etl.pipeline.load.spark_utils.JdbcDialect">JdbcDialect</a></li>
+</ul>
+<h3>Static methods</h3>
+<dl>
+<dt id="zuka_etl.pipeline.load.spark_utils.PostgresqlDialect.get_Jdbc_type"><code class="name flex">
+<span>def <span class="ident">get_Jdbc_type</span></span>(<span>dt: pyspark.sql.types.DataType)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def get_Jdbc_type(dt: DataType):
+    if isinstance(dt, StringType):
+        return &#34;TEXT&#34;
+    elif isinstance(dt, BinaryType):
+        return &#34;BYTEA&#34;
+    elif isinstance(dt, BooleanType):
+        return &#34;BOOLEAN&#34;
+    elif isinstance(dt, FloatType):
+        return &#34;FLOAT4&#34;
+    elif isinstance(dt, DoubleType):
+        return &#34;FLOAT8&#34;
+    elif isinstance(dt, DecimalType):
+        return f&#34;NUMERIC({dt.precision}, {dt.scale})&#34;
+    elif isinstance(dt, ByteType):
+        raise Exception(f&#34;Unsupported type in postgresql: {dt}&#34;)
+    else:
+        return None</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.PostgresqlDialect.upsert_table"><code class="name flex">
+<span>def <span class="ident">upsert_table</span></span>(<span>df: pyspark.sql.dataframe.DataFrame, table: str, upsert_properties: dict, conn: airflow.hooks.jdbc_hook.JdbcHook)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def upsert_table(df: DataFrame, table: str, upsert_properties: dict, conn: JdbcHook):
+    num_partitions = upsert_properties.get(&#34;num_partitions&#34;, 20)
+    db_type = upsert_properties.get(&#34;db_type&#34;, &#34;postgresql&#34;)
+
+    def parse_metadata(df_spark):
+        schema_dict = {}
+        dialect = PostgresqlDialect()
+        for field in df_spark.schema.fields:
+            name = field.name
+            typ = JdbcUtils.get_Jdbc_type(field.dataType, dialect)
+            schema_dict[name] = typ
+        return schema_dict
+
+    def create_merge_db(ver, metadata):
+        sql = &#34;&#34;&#34;
+            CREATE OR REPLACE FUNCTION merge_db_{{ver}}({{metadata}}) RETURNS VOID AS
+            $$
+            BEGIN
+                LOOP
+                    UPDATE {{table}} SET {{val_change}} WHERE {{conflict_col_names}};
+                    IF found THEN
+                        RETURN;
+                    END IF;
+                    BEGIN
+                        INSERT INTO {{table}}({{col_names}}) VALUES ({{col_names_data}});
+                        RETURN;
+                    EXCEPTION WHEN unique_violation THEN
+                    END;
+                END LOOP;
+            END;
+            $$
+            LANGUAGE plpgsql;
+        &#34;&#34;&#34;
+        new_sql = sql.replace(&#34;{{metadata}}&#34;, &#34;, &#34;.join(
+            [f&#34;{col_name + &#39;_data&#39;} {col_type}&#34; for col_name, col_type in metadata.items()])) \
+            .replace(&#34;{{col_names_data}}&#34;, &#34;, &#34;.join([col_name + &#34;_data&#34; for col_name, _ in metadata.items()])) \
+            .replace(&#34;{{val_change}}&#34;,
+                     &#34;, &#34;.join([f&#34;{col_name} = {col_name + &#39;_data&#39;}&#34; for col_name, _ in metadata.items()])) \
+            .replace(&#34;{{conflict_col_names}}&#34;, &#34;, &#34;.join(
+            [f&#34;{col_name} = {col_name + &#39;_data&#39;}&#34; for col_name in upsert_properties[&#34;conflict_col_names&#34;]])) \
+            .replace(&#34;{{col_names}}&#34;, &#34;, &#34;.join([col_name for col_name, _ in metadata.items()])) \
+            .replace(&#34;{{ver}}&#34;, str(ver)) \
+            .replace(&#34;{{table}}&#34;, str(table))
+        conn.run(sql=new_sql, autocommit=True)
+
+    def delete_merge_db(ver, metadata):
+        conn.run(sql=&#34;drop function if exists merge_db_{{ver}}({{metadata}})&#34;.replace(&#34;{{ver}}&#34;, str(ver)) \
+                 .replace(&#34;{{metadata}}&#34;, &#34;, &#34;.join(
+            [f&#34;{col_name + &#39;_data&#39;} {col_type}&#34; for col_name, col_type in metadata.items()])), autocommit=True)
+
+    def upsert(partitions):
+        sql = &#34;&#34;&#34;
+            {{merge_db}}({{sql_tmp}}) 
+        &#34;&#34;&#34;
+        sql_list = []
+        for row in partitions:
+            t = [row[i] for i in range(len(row))]
+            k = []
+            for i in t:
+                if isinstance(i, datetime):
+                    k.append(f&#34;&#39;{str(i)}&#39;::timestamp&#34;)
+                elif isinstance(i, Decimal):
+                    k.append(str(i))
+                elif isinstance(i, type(None)):
+                    k.append(&#34;&#39;NULL&#39;&#34;)
+                elif isinstance(i, int):
+                    k.append(str(i))
+                else:
+                    k.append(f&#34;&#39;{str(i)}&#39;&#34;)
+
+            new_sql = sql.replace(&#34;{{sql_tmp}}&#34;, &#34;, &#34;.join(k)) \
+                .replace(&#34;{{merge_db}}&#34;, func_merge_db)
+            sql_list.append(new_sql)
+            if len(sql_list) &gt; 1000:
+                conn.run(sql=&#34;SELECT &#34; + &#34;, &#34;.join(sql_list), autocommit=True)
+                sql_list = []
+        if len(sql_list) &gt; 0:
+            conn.run(sql=&#34;SELECT &#34; + &#34;, &#34;.join(sql_list), autocommit=True)
+            sql_list = []
+        conn.run(sql=&#34;SELECT &#34; + &#34;, &#34;.join(sql_list), autocommit=True)
+
+    JdbcUtils.create_table_if_not_exits(df_spark=df, db_type=db_type, table=table, conn=conn)
+
+    ver = int(time.time())
+    metadata = parse_metadata(df)
+
+    create_merge_db(ver, metadata)
+    func_merge_db = &#34;merge_db_&#34; + str(ver)
+    df.repartition(numPartitions=num_partitions).foreachPartition(upsert)
+
+    delete_merge_db(ver, metadata)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver"><code class="flex name class">
+<span>class <span class="ident">SparkDfToDriver</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Using driver that setup by JAR and Spark Session</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SparkDfToDriver(object):
+    &#34;&#34;&#34;
+        Using driver that setup by JAR and Spark Session
+    &#34;&#34;&#34;
+    MODE_APPEND = &#34;append&#34;
+    MODE_OVERWRITE = &#34;overwrite&#34;
+    MODE_APPEND_PARTITION = &#34;append_partition&#34;
+    MODE_OVERWRITE_PARTITION = &#34;append_overwrite&#34;
+    MODE_TRUNCATE = &#34;truncate&#34;
+    MODE_UPSERT = &#34;upsert&#34;
+
+    @staticmethod
+    def cast_columns(df: pyspark.sql.DataFrame, columns: dict = {},
+                     lowercase_columns: bool = True) -&gt; pyspark.sql.DataFrame:
+        &#34;&#34;&#34;
+                :param df:
+                :param columns:
+                :param lowercase_columns:
+                :return:
+        &#34;&#34;&#34;
+        cols = df.columns
+        columns = {k.lower(): v.lower() for k, v in columns.items()}
+        select = []
+        for k in cols:
+            l_k = k.lower()
+            if columns.get(l_k):
+                v = columns.get(l_k)
+                select.append(&#34;CAST(`%s` as %s) as %s&#34; % (k, v, l_k if lowercase_columns else k))
+            else:
+                select.append(&#34;`%s` as %s&#34; % (k, l_k if lowercase_columns else k))
+        if columns:
+            logger.info(&#34;Columns will be casted: %s&#34; % columns)
+        return df.selectExpr(*select)
+
+    @staticmethod
+    def to_sql(table: str, connection_id: str, spark_df: pyspark.sql.DataFrame, mode: str = MODE_APPEND,
+               lowercase_columns: bool = True, options: dict = {},
+               cast_columns: dict = {},
+               transform_columns: dict = {},
+               empty_error: bool = False,
+               sql_before=&#34;&#34;,
+               sql_after=&#34;&#34;,
+               **kwargs) -&gt; bool:
+        &#34;&#34;&#34;
+        Insert df to sql: mysql, oracle... by jdbc and spark
+            table: table name
+            connection_id: airflow connection id
+            pd_df: pandas dataframe
+            mode: append or overwrite
+            lower_columns: lowercase all column names
+            kwargs:
+            return:
+
+        &#34;&#34;&#34;
+
+        if empty_error:
+            count = spark_df.take(1)
+            if count:
+                logger.info(&#34;Checking Your DataFrame is empty or not: pass!&#34;)
+            else:
+                raise SparkDfEmptyException()
+        config = JdbcHook.get_connection(connection_id)
+        spark_df = SparkDfToDriver.cast_columns(spark_df, cast_columns, lowercase_columns)
+        table = table.strip()
+        if transform_columns:
+            from zuka_etl.pipeline.transform.spark_utils import SparkTransCols
+            spark_df = SparkTransCols.trans_cols(spark_df, transform_columns)
+        if mode == SparkDfToDriver.MODE_TRUNCATE:
+            mode = SparkDfToDriver.MODE_OVERWRITE
+            options[&#39;truncate&#39;] = True
+        writer = spark_df.write.format(&#34;jdbc&#34;).mode(mode).option(&#34;url&#34;,
+                                                                 config.host) \
+            .option(&#34;dbtable&#34;, table) \
+            .option(&#34;user&#34;, config.login) \
+            .option(&#34;password&#34;, config.password) \
+            .option(&#34;driver&#34;, config.extra_dejson.get(&#34;extra__jdbc__drv_clsname&#34;))
+        if isinstance(options, dict) and options:
+            for k, v in options.items():
+                writer = writer.option(k, v)
+        if type(sql_before) is str and sql_before.strip() != &#34;&#34;:
+            sql_before = sql_before.strip().rstrip(&#34;;&#34;)
+            sql_before = sql_before.split(&#39;;\n&#39;)
+            connect = JdbcHook(connection_id)
+            logger.info(&#34;Execute sql before insert into database&#34;)
+            for k in sql_before:
+                if k.strip() != &#39;&#39;:
+                    connect.run(sql=k, autocommit=True)
+        elif callable(sql_before):
+            logger.info(&#34;Execute function before insert into database&#34;)
+            connect = JdbcHook(connection_id)
+            sql_before(connect)
+
+        logger.info(&#34;Start insert by spark to host: %s - table: %s&#34; % (config.host, table))
+        writer.save()
+        logger.info(&#34;Insert by spark to host: %s - table: %s done!&#34; % (config.host, table))
+        if type(sql_after) is str and sql_after.strip() != &#34;&#34;:
+            sql_after = sql_after.strip().rstrip(&#34;;&#34;)
+            sql_after = sql_after.split(&#39;;\n&#39;)
+            connect = JdbcHook(connection_id)
+            logger.info(&#34;Execute sql after insert into database&#34;)
+            for k in sql_after:
+                if k.strip() != &#39;&#39;:
+                    connect.run(sql=k, autocommit=True)
+        elif callable(sql_after):
+            logger.info(&#34;Execute function after insert into database&#34;)
+            connect = JdbcHook(connection_id)
+            sql_after(connect)
+        return True
+
+    @staticmethod
+    def to_sql_2(table: str, connection_id: str, spark_df: pyspark.sql.DataFrame, mode: str = MODE_APPEND,
+                 lowercase_columns: bool = True, options: dict = {},
+                 cast_columns: dict = {},
+                 transform_columns: dict = {},
+                 empty_error: bool = False,
+                 sql_before=&#34;&#34;,
+                 sql_after=&#34;&#34;,
+                 upsert_properties={},
+                 **kwargs) -&gt; bool:
+        &#34;&#34;&#34;
+        Insert df to sql: mysql, oracle... by jdbc and spark
+            table: table name
+            connection_id: airflow connection id
+            pd_df: pandas dataframe
+            mode: append or overwrite
+            lower_columns: lowercase all column names
+            kwargs:
+            return:
+
+        &#34;&#34;&#34;
+
+        if empty_error:
+            count = spark_df.count()
+            if count &gt; 0:
+                logger.info(&#34;Total data on DataFrame: %s&#34; % count)
+            else:
+                raise SparkDfEmptyException()
+        config = JdbcHook.get_connection(connection_id)
+        spark_df = SparkDfToDriver.cast_columns(spark_df, cast_columns, lowercase_columns)
+        table = table.strip()
+        if transform_columns:
+            from zuka_etl.pipeline.transform.spark_utils import SparkTransCols
+            spark_df = SparkTransCols.trans_cols(spark_df, transform_columns)
+        if mode == SparkDfToDriver.MODE_TRUNCATE:
+            mode = SparkDfToDriver.MODE_OVERWRITE
+            options[&#39;truncate&#39;] = True
+        if type(sql_before) is str and sql_before.strip() != &#34;&#34;:
+            sql_before = sql_before.strip().rstrip(&#34;;&#34;)
+            sql_before = sql_before.split(&#39;;\n&#39;)
+            connect = JdbcHook(connection_id)
+            logger.info(&#34;Execute sql before insert into database&#34;)
+            for k in sql_before:
+                if k.strip() != &#39;&#39;:
+                    logger.info(&#34;query: %s&#34; % k)
+                    connect.run(sql=k, autocommit=True)
+        elif callable(sql_before):
+            logger.info(&#34;Execute function before insert into database&#34;)
+            connect = JdbcHook(connection_id)
+            sql_before(connect)
+
+        if mode == SparkDfToDriver.MODE_UPSERT:
+            connect = JdbcHook(connection_id)
+            logger.info(&#34;Start upsert by spark to host: %s - table: %s&#34; % (config.host, table))
+            JdbcUtils.upsert_table(df=spark_df, db_type=upsert_properties.get(&#34;db_type&#34;, &#34;postgresql&#34;), table=table,
+                                   upsert_properties=upsert_properties, conn=connect)
+            logger.info(&#34;Upsert by spark to host: %s - table: %s done!&#34; % (config.host, table))
+        else:
+            writer = spark_df.write.format(&#34;jdbc&#34;).mode(mode).option(&#34;url&#34;, config.host) \
+                .option(&#34;dbtable&#34;, table) \
+                .option(&#34;user&#34;, config.login) \
+                .option(&#34;password&#34;, config.password) \
+                .option(&#34;driver&#34;, config.extra_dejson.get(&#34;extra__jdbc__drv_clsname&#34;))
+            if isinstance(options, dict) and options:
+                for k, v in options.items():
+                    writer = writer.option(k, v)
+            logger.info(&#34;Start insert by spark to host: %s - table: %s&#34; % (config.host, table))
+            writer.save()
+            logger.info(&#34;Insert by spark to host: %s - table: %s done!&#34; % (config.host, table))
+        if type(sql_after) is str and sql_after.strip() != &#34;&#34;:
+            sql_after = sql_after.strip().rstrip(&#34;;&#34;)
+            sql_after = sql_after.split(&#39;;\n&#39;)
+            connect = JdbcHook(connection_id)
+            logger.info(&#34;Execute sql after insert into database&#34;)
+            for k in sql_after:
+                if k.strip() != &#39;&#39;:
+                    logger.info(&#34;query: %s&#34; % k)
+                    connect.run(sql=k, autocommit=True)
+        elif callable(sql_after):
+            logger.info(&#34;Execute function after insert into database&#34;)
+            connect = JdbcHook(connection_id)
+            sql_after(connect)
+        return True
+
+    @staticmethod
+    def to_hive(table: str, spark_df: pyspark.sql.DataFrame, mode: str = MODE_APPEND, format: str = &#34;orc&#34;,
+                lowercase_columns: bool = True,
+                options: dict = {},
+                cast_columns: dict = {},
+                transform_columns: dict = {},
+                partition_by: list = [],
+                empty_error: bool = False,
+                **kwargs) -&gt; bool:
+        &#34;&#34;&#34;
+        Insert df to hive table
+            :param table: hive table name
+            :param spark_df: spark_dataframe
+            :param mode: overwrite or append
+            :param format: orc, parquet, csv..
+            :param lowercase_columns: lower all columns or not
+            :param options: options for spark writer
+            :param partition_by: list fields will be used to partition
+            :param kwargs:
+            :return:
+        &#34;&#34;&#34;
+        import pyspark
+        if empty_error:
+            count = spark_df.take(1)
+            if count:
+                logger.info(&#34;Checking Your DataFrame is empty or not: pass!&#34;)
+            else:
+                raise SparkDfEmptyException()
+        spark_df = SparkDfToDriver.cast_columns(spark_df, cast_columns, lowercase_columns)
+        writer = spark_df.write
+        table = table.strip()
+        if transform_columns:
+            from zuka_etl.pipeline.transform.spark_utils import SparkTransCols
+            spark_df = SparkTransCols.trans_cols(spark_df, transform_columns)
+        if mode in [SparkDfToDriver.MODE_APPEND_PARTITION,
+                    SparkDfToDriver.MODE_OVERWRITE_PARTITION,
+                    SparkDfToDriver.MODE_APPEND]:
+            try:
+                cols = [k[0] for k in SparkHook().run_sql(&#34;show columns in %s&#34; % table, log=False).collect()]
+                logger.info(&#34;Columns will be inserted: %s&#34; % cols)
+                writer = spark_df.select(*cols).write
+                if isinstance(options, dict) and options:
+                    for k, v in options.items():
+                        writer = writer.option(k, v)
+            except pyspark.sql.utils.AnalysisException as e:
+                t = table.split(&#34;.&#34;)
+                t = t[0] if len(t) == 1 else t[1]
+                if (str(e).find(&#34;Table or view &#39;%s&#39; not found&#34; % t) &gt;= 0):
+                    mode = SparkDfToDriver.MODE_OVERWRITE
+                    writer = spark_df.write
+                else:
+                    raise pyspark.sql.utils.AnalysisException(e, e)
+
+        if mode in [SparkDfToDriver.MODE_APPEND_PARTITION,
+                    SparkDfToDriver.MODE_OVERWRITE_PARTITION
+                    ]:
+            c = {
+                &#34;hive.exec.dynamic.partition.mode&#34;: &#34;nonstrict&#34;,
+                &#34;spark.sql.sources.partitionOverwriteMode&#34;: &#34;dynamic&#34;
+            }
+            logger.info(&#34;&#34;&#34;Check spark.conf must have config: %s to prevent loss data (replace entire table)&#34;&#34;&#34; % c)
+            conf = SparkHook().session.sparkContext.getConf()
+            for k, v in c.items():
+                if conf.get(k) != v:
+                    raise SystemError(&#34;You must config SparkConf with %s=%s&#34; % (k, v))
+            logger.info(&#34;Start insert hive table with mode partition: {%s} - {%s}&#34; % (mode, table))
+            writer.format(format).insertInto(table, overwrite=mode == SparkDfToDriver.MODE_OVERWRITE_PARTITION)
+            logger.info(&#34;Insert hive table with mode partition: {%s} - {%s} done!&#34; % (mode, table))
+        elif mode in [SparkDfToDriver.MODE_OVERWRITE, SparkDfToDriver.MODE_APPEND]:
+            writer = writer.mode(mode).format(format)
+            logger.info(&#34;Start insert hive table by spark - table:{%s} {%s}&#34; % (mode, table))
+            writer.saveAsTable(table, partitionBy=partition_by)
+            logger.info(&#34;Insert hive table: table:{%s} {%s} done!&#34; % (mode, table))
+        else:
+            raise ValueError(&#34;mode: %s is invalid&#34; % mode)
+        return True
+
+    @staticmethod
+    def parse_metadata(spark_df):
+        from collections import OrderedDict
+        schema_dict = OrderedDict()
+        schema_parse_table = {
+            &#34;timestamp&#34;: &#34;timestamp&#34;,
+            &#34;string&#34;: &#34;text&#34;,
+            &#34;int&#34;: &#34;integer&#34;,
+            &#34;boolean&#34;: &#34;boolean&#34;
+        }
+        for dtype in spark_df.dtypes:
+            if &#34;decimal&#34; in str(dtype[1]):
+                schema_dict[str(dtype[0])] = str(dtype[1]).replace(&#34;decimal&#34;, &#34;numeric&#34;)
+            else:
+                schema_dict[str(dtype[0])] = schema_parse_table[str(dtype[1])]
+        return schema_dict</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_APPEND"><code class="name">var <span class="ident">MODE_APPEND</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_APPEND_PARTITION"><code class="name">var <span class="ident">MODE_APPEND_PARTITION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_OVERWRITE"><code class="name">var <span class="ident">MODE_OVERWRITE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_OVERWRITE_PARTITION"><code class="name">var <span class="ident">MODE_OVERWRITE_PARTITION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_TRUNCATE"><code class="name">var <span class="ident">MODE_TRUNCATE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_UPSERT"><code class="name">var <span class="ident">MODE_UPSERT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.cast_columns"><code class="name flex">
+<span>def <span class="ident">cast_columns</span></span>(<span>df: pyspark.sql.dataframe.DataFrame, columns: dict = {}, lowercase_columns: bool = True) ‑> pyspark.sql.dataframe.DataFrame</span>
+</code></dt>
+<dd>
+<div class="desc"><p>:param df:
+:param columns:
+:param lowercase_columns:
+:return:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def cast_columns(df: pyspark.sql.DataFrame, columns: dict = {},
+                 lowercase_columns: bool = True) -&gt; pyspark.sql.DataFrame:
+    &#34;&#34;&#34;
+            :param df:
+            :param columns:
+            :param lowercase_columns:
+            :return:
+    &#34;&#34;&#34;
+    cols = df.columns
+    columns = {k.lower(): v.lower() for k, v in columns.items()}
+    select = []
+    for k in cols:
+        l_k = k.lower()
+        if columns.get(l_k):
+            v = columns.get(l_k)
+            select.append(&#34;CAST(`%s` as %s) as %s&#34; % (k, v, l_k if lowercase_columns else k))
+        else:
+            select.append(&#34;`%s` as %s&#34; % (k, l_k if lowercase_columns else k))
+    if columns:
+        logger.info(&#34;Columns will be casted: %s&#34; % columns)
+    return df.selectExpr(*select)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.parse_metadata"><code class="name flex">
+<span>def <span class="ident">parse_metadata</span></span>(<span>spark_df)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def parse_metadata(spark_df):
+    from collections import OrderedDict
+    schema_dict = OrderedDict()
+    schema_parse_table = {
+        &#34;timestamp&#34;: &#34;timestamp&#34;,
+        &#34;string&#34;: &#34;text&#34;,
+        &#34;int&#34;: &#34;integer&#34;,
+        &#34;boolean&#34;: &#34;boolean&#34;
+    }
+    for dtype in spark_df.dtypes:
+        if &#34;decimal&#34; in str(dtype[1]):
+            schema_dict[str(dtype[0])] = str(dtype[1]).replace(&#34;decimal&#34;, &#34;numeric&#34;)
+        else:
+            schema_dict[str(dtype[0])] = schema_parse_table[str(dtype[1])]
+    return schema_dict</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.to_hive"><code class="name flex">
+<span>def <span class="ident">to_hive</span></span>(<span>table: str, spark_df: pyspark.sql.dataframe.DataFrame, mode: str = 'append', format: str = 'orc', lowercase_columns: bool = True, options: dict = {}, cast_columns: dict = {}, transform_columns: dict = {}, partition_by: list = [], empty_error: bool = False, **kwargs) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Insert df to hive table
+:param table: hive table name
+:param spark_df: spark_dataframe
+:param mode: overwrite or append
+:param format: orc, parquet, csv..
+:param lowercase_columns: lower all columns or not
+:param options: options for spark writer
+:param partition_by: list fields will be used to partition
+:param kwargs:
+:return:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def to_hive(table: str, spark_df: pyspark.sql.DataFrame, mode: str = MODE_APPEND, format: str = &#34;orc&#34;,
+            lowercase_columns: bool = True,
+            options: dict = {},
+            cast_columns: dict = {},
+            transform_columns: dict = {},
+            partition_by: list = [],
+            empty_error: bool = False,
+            **kwargs) -&gt; bool:
+    &#34;&#34;&#34;
+    Insert df to hive table
+        :param table: hive table name
+        :param spark_df: spark_dataframe
+        :param mode: overwrite or append
+        :param format: orc, parquet, csv..
+        :param lowercase_columns: lower all columns or not
+        :param options: options for spark writer
+        :param partition_by: list fields will be used to partition
+        :param kwargs:
+        :return:
+    &#34;&#34;&#34;
+    import pyspark
+    if empty_error:
+        count = spark_df.take(1)
+        if count:
+            logger.info(&#34;Checking Your DataFrame is empty or not: pass!&#34;)
+        else:
+            raise SparkDfEmptyException()
+    spark_df = SparkDfToDriver.cast_columns(spark_df, cast_columns, lowercase_columns)
+    writer = spark_df.write
+    table = table.strip()
+    if transform_columns:
+        from zuka_etl.pipeline.transform.spark_utils import SparkTransCols
+        spark_df = SparkTransCols.trans_cols(spark_df, transform_columns)
+    if mode in [SparkDfToDriver.MODE_APPEND_PARTITION,
+                SparkDfToDriver.MODE_OVERWRITE_PARTITION,
+                SparkDfToDriver.MODE_APPEND]:
+        try:
+            cols = [k[0] for k in SparkHook().run_sql(&#34;show columns in %s&#34; % table, log=False).collect()]
+            logger.info(&#34;Columns will be inserted: %s&#34; % cols)
+            writer = spark_df.select(*cols).write
+            if isinstance(options, dict) and options:
+                for k, v in options.items():
+                    writer = writer.option(k, v)
+        except pyspark.sql.utils.AnalysisException as e:
+            t = table.split(&#34;.&#34;)
+            t = t[0] if len(t) == 1 else t[1]
+            if (str(e).find(&#34;Table or view &#39;%s&#39; not found&#34; % t) &gt;= 0):
+                mode = SparkDfToDriver.MODE_OVERWRITE
+                writer = spark_df.write
+            else:
+                raise pyspark.sql.utils.AnalysisException(e, e)
+
+    if mode in [SparkDfToDriver.MODE_APPEND_PARTITION,
+                SparkDfToDriver.MODE_OVERWRITE_PARTITION
+                ]:
+        c = {
+            &#34;hive.exec.dynamic.partition.mode&#34;: &#34;nonstrict&#34;,
+            &#34;spark.sql.sources.partitionOverwriteMode&#34;: &#34;dynamic&#34;
+        }
+        logger.info(&#34;&#34;&#34;Check spark.conf must have config: %s to prevent loss data (replace entire table)&#34;&#34;&#34; % c)
+        conf = SparkHook().session.sparkContext.getConf()
+        for k, v in c.items():
+            if conf.get(k) != v:
+                raise SystemError(&#34;You must config SparkConf with %s=%s&#34; % (k, v))
+        logger.info(&#34;Start insert hive table with mode partition: {%s} - {%s}&#34; % (mode, table))
+        writer.format(format).insertInto(table, overwrite=mode == SparkDfToDriver.MODE_OVERWRITE_PARTITION)
+        logger.info(&#34;Insert hive table with mode partition: {%s} - {%s} done!&#34; % (mode, table))
+    elif mode in [SparkDfToDriver.MODE_OVERWRITE, SparkDfToDriver.MODE_APPEND]:
+        writer = writer.mode(mode).format(format)
+        logger.info(&#34;Start insert hive table by spark - table:{%s} {%s}&#34; % (mode, table))
+        writer.saveAsTable(table, partitionBy=partition_by)
+        logger.info(&#34;Insert hive table: table:{%s} {%s} done!&#34; % (mode, table))
+    else:
+        raise ValueError(&#34;mode: %s is invalid&#34; % mode)
+    return True</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.to_sql"><code class="name flex">
+<span>def <span class="ident">to_sql</span></span>(<span>table: str, connection_id: str, spark_df: pyspark.sql.dataframe.DataFrame, mode: str = 'append', lowercase_columns: bool = True, options: dict = {}, cast_columns: dict = {}, transform_columns: dict = {}, empty_error: bool = False, sql_before='', sql_after='', **kwargs) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Insert df to sql: mysql, oracle&hellip; by jdbc and spark
+table: table name
+connection_id: airflow connection id
+pd_df: pandas dataframe
+mode: append or overwrite
+lower_columns: lowercase all column names
+kwargs:
+return:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def to_sql(table: str, connection_id: str, spark_df: pyspark.sql.DataFrame, mode: str = MODE_APPEND,
+           lowercase_columns: bool = True, options: dict = {},
+           cast_columns: dict = {},
+           transform_columns: dict = {},
+           empty_error: bool = False,
+           sql_before=&#34;&#34;,
+           sql_after=&#34;&#34;,
+           **kwargs) -&gt; bool:
+    &#34;&#34;&#34;
+    Insert df to sql: mysql, oracle... by jdbc and spark
+        table: table name
+        connection_id: airflow connection id
+        pd_df: pandas dataframe
+        mode: append or overwrite
+        lower_columns: lowercase all column names
+        kwargs:
+        return:
+
+    &#34;&#34;&#34;
+
+    if empty_error:
+        count = spark_df.take(1)
+        if count:
+            logger.info(&#34;Checking Your DataFrame is empty or not: pass!&#34;)
+        else:
+            raise SparkDfEmptyException()
+    config = JdbcHook.get_connection(connection_id)
+    spark_df = SparkDfToDriver.cast_columns(spark_df, cast_columns, lowercase_columns)
+    table = table.strip()
+    if transform_columns:
+        from zuka_etl.pipeline.transform.spark_utils import SparkTransCols
+        spark_df = SparkTransCols.trans_cols(spark_df, transform_columns)
+    if mode == SparkDfToDriver.MODE_TRUNCATE:
+        mode = SparkDfToDriver.MODE_OVERWRITE
+        options[&#39;truncate&#39;] = True
+    writer = spark_df.write.format(&#34;jdbc&#34;).mode(mode).option(&#34;url&#34;,
+                                                             config.host) \
+        .option(&#34;dbtable&#34;, table) \
+        .option(&#34;user&#34;, config.login) \
+        .option(&#34;password&#34;, config.password) \
+        .option(&#34;driver&#34;, config.extra_dejson.get(&#34;extra__jdbc__drv_clsname&#34;))
+    if isinstance(options, dict) and options:
+        for k, v in options.items():
+            writer = writer.option(k, v)
+    if type(sql_before) is str and sql_before.strip() != &#34;&#34;:
+        sql_before = sql_before.strip().rstrip(&#34;;&#34;)
+        sql_before = sql_before.split(&#39;;\n&#39;)
+        connect = JdbcHook(connection_id)
+        logger.info(&#34;Execute sql before insert into database&#34;)
+        for k in sql_before:
+            if k.strip() != &#39;&#39;:
+                connect.run(sql=k, autocommit=True)
+    elif callable(sql_before):
+        logger.info(&#34;Execute function before insert into database&#34;)
+        connect = JdbcHook(connection_id)
+        sql_before(connect)
+
+    logger.info(&#34;Start insert by spark to host: %s - table: %s&#34; % (config.host, table))
+    writer.save()
+    logger.info(&#34;Insert by spark to host: %s - table: %s done!&#34; % (config.host, table))
+    if type(sql_after) is str and sql_after.strip() != &#34;&#34;:
+        sql_after = sql_after.strip().rstrip(&#34;;&#34;)
+        sql_after = sql_after.split(&#39;;\n&#39;)
+        connect = JdbcHook(connection_id)
+        logger.info(&#34;Execute sql after insert into database&#34;)
+        for k in sql_after:
+            if k.strip() != &#39;&#39;:
+                connect.run(sql=k, autocommit=True)
+    elif callable(sql_after):
+        logger.info(&#34;Execute function after insert into database&#34;)
+        connect = JdbcHook(connection_id)
+        sql_after(connect)
+    return True</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.to_sql_2"><code class="name flex">
+<span>def <span class="ident">to_sql_2</span></span>(<span>table: str, connection_id: str, spark_df: pyspark.sql.dataframe.DataFrame, mode: str = 'append', lowercase_columns: bool = True, options: dict = {}, cast_columns: dict = {}, transform_columns: dict = {}, empty_error: bool = False, sql_before='', sql_after='', upsert_properties={}, **kwargs) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Insert df to sql: mysql, oracle&hellip; by jdbc and spark
+table: table name
+connection_id: airflow connection id
+pd_df: pandas dataframe
+mode: append or overwrite
+lower_columns: lowercase all column names
+kwargs:
+return:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def to_sql_2(table: str, connection_id: str, spark_df: pyspark.sql.DataFrame, mode: str = MODE_APPEND,
+             lowercase_columns: bool = True, options: dict = {},
+             cast_columns: dict = {},
+             transform_columns: dict = {},
+             empty_error: bool = False,
+             sql_before=&#34;&#34;,
+             sql_after=&#34;&#34;,
+             upsert_properties={},
+             **kwargs) -&gt; bool:
+    &#34;&#34;&#34;
+    Insert df to sql: mysql, oracle... by jdbc and spark
+        table: table name
+        connection_id: airflow connection id
+        pd_df: pandas dataframe
+        mode: append or overwrite
+        lower_columns: lowercase all column names
+        kwargs:
+        return:
+
+    &#34;&#34;&#34;
+
+    if empty_error:
+        count = spark_df.count()
+        if count &gt; 0:
+            logger.info(&#34;Total data on DataFrame: %s&#34; % count)
+        else:
+            raise SparkDfEmptyException()
+    config = JdbcHook.get_connection(connection_id)
+    spark_df = SparkDfToDriver.cast_columns(spark_df, cast_columns, lowercase_columns)
+    table = table.strip()
+    if transform_columns:
+        from zuka_etl.pipeline.transform.spark_utils import SparkTransCols
+        spark_df = SparkTransCols.trans_cols(spark_df, transform_columns)
+    if mode == SparkDfToDriver.MODE_TRUNCATE:
+        mode = SparkDfToDriver.MODE_OVERWRITE
+        options[&#39;truncate&#39;] = True
+    if type(sql_before) is str and sql_before.strip() != &#34;&#34;:
+        sql_before = sql_before.strip().rstrip(&#34;;&#34;)
+        sql_before = sql_before.split(&#39;;\n&#39;)
+        connect = JdbcHook(connection_id)
+        logger.info(&#34;Execute sql before insert into database&#34;)
+        for k in sql_before:
+            if k.strip() != &#39;&#39;:
+                logger.info(&#34;query: %s&#34; % k)
+                connect.run(sql=k, autocommit=True)
+    elif callable(sql_before):
+        logger.info(&#34;Execute function before insert into database&#34;)
+        connect = JdbcHook(connection_id)
+        sql_before(connect)
+
+    if mode == SparkDfToDriver.MODE_UPSERT:
+        connect = JdbcHook(connection_id)
+        logger.info(&#34;Start upsert by spark to host: %s - table: %s&#34; % (config.host, table))
+        JdbcUtils.upsert_table(df=spark_df, db_type=upsert_properties.get(&#34;db_type&#34;, &#34;postgresql&#34;), table=table,
+                               upsert_properties=upsert_properties, conn=connect)
+        logger.info(&#34;Upsert by spark to host: %s - table: %s done!&#34; % (config.host, table))
+    else:
+        writer = spark_df.write.format(&#34;jdbc&#34;).mode(mode).option(&#34;url&#34;, config.host) \
+            .option(&#34;dbtable&#34;, table) \
+            .option(&#34;user&#34;, config.login) \
+            .option(&#34;password&#34;, config.password) \
+            .option(&#34;driver&#34;, config.extra_dejson.get(&#34;extra__jdbc__drv_clsname&#34;))
+        if isinstance(options, dict) and options:
+            for k, v in options.items():
+                writer = writer.option(k, v)
+        logger.info(&#34;Start insert by spark to host: %s - table: %s&#34; % (config.host, table))
+        writer.save()
+        logger.info(&#34;Insert by spark to host: %s - table: %s done!&#34; % (config.host, table))
+    if type(sql_after) is str and sql_after.strip() != &#34;&#34;:
+        sql_after = sql_after.strip().rstrip(&#34;;&#34;)
+        sql_after = sql_after.split(&#39;;\n&#39;)
+        connect = JdbcHook(connection_id)
+        logger.info(&#34;Execute sql after insert into database&#34;)
+        for k in sql_after:
+            if k.strip() != &#39;&#39;:
+                logger.info(&#34;query: %s&#34; % k)
+                connect.run(sql=k, autocommit=True)
+    elif callable(sql_after):
+        logger.info(&#34;Execute function after insert into database&#34;)
+        connect = JdbcHook(connection_id)
+        sql_after(connect)
+    return True</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="zuka_etl.pipeline.load" href="index.html">zuka_etl.pipeline.load</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="zuka_etl.pipeline.load.spark_utils.JdbcDialect" href="#zuka_etl.pipeline.load.spark_utils.JdbcDialect">JdbcDialect</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.JdbcDialect.get_Jdbc_type" href="#zuka_etl.pipeline.load.spark_utils.JdbcDialect.get_Jdbc_type">get_Jdbc_type</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.JdbcDialect.get_dialect" href="#zuka_etl.pipeline.load.spark_utils.JdbcDialect.get_dialect">get_dialect</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.JdbcDialect.get_table_exists_query" href="#zuka_etl.pipeline.load.spark_utils.JdbcDialect.get_table_exists_query">get_table_exists_query</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.JdbcDialect.upsert_table" href="#zuka_etl.pipeline.load.spark_utils.JdbcDialect.upsert_table">upsert_table</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.pipeline.load.spark_utils.JdbcUtils" href="#zuka_etl.pipeline.load.spark_utils.JdbcUtils">JdbcUtils</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.JdbcUtils.create_table_if_not_exits" href="#zuka_etl.pipeline.load.spark_utils.JdbcUtils.create_table_if_not_exits">create_table_if_not_exits</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.JdbcUtils.drop_table" href="#zuka_etl.pipeline.load.spark_utils.JdbcUtils.drop_table">drop_table</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.JdbcUtils.get_Jdbc_type" href="#zuka_etl.pipeline.load.spark_utils.JdbcUtils.get_Jdbc_type">get_Jdbc_type</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.JdbcUtils.get_common_Jdbc_type" href="#zuka_etl.pipeline.load.spark_utils.JdbcUtils.get_common_Jdbc_type">get_common_Jdbc_type</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.JdbcUtils.schema_string" href="#zuka_etl.pipeline.load.spark_utils.JdbcUtils.schema_string">schema_string</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.JdbcUtils.table_exists" href="#zuka_etl.pipeline.load.spark_utils.JdbcUtils.table_exists">table_exists</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.JdbcUtils.upsert_table" href="#zuka_etl.pipeline.load.spark_utils.JdbcUtils.upsert_table">upsert_table</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.pipeline.load.spark_utils.PostgresqlDialect" href="#zuka_etl.pipeline.load.spark_utils.PostgresqlDialect">PostgresqlDialect</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.PostgresqlDialect.get_Jdbc_type" href="#zuka_etl.pipeline.load.spark_utils.PostgresqlDialect.get_Jdbc_type">get_Jdbc_type</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.PostgresqlDialect.upsert_table" href="#zuka_etl.pipeline.load.spark_utils.PostgresqlDialect.upsert_table">upsert_table</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver" href="#zuka_etl.pipeline.load.spark_utils.SparkDfToDriver">SparkDfToDriver</a></code></h4>
+<ul class="">
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_APPEND" href="#zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_APPEND">MODE_APPEND</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_APPEND_PARTITION" href="#zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_APPEND_PARTITION">MODE_APPEND_PARTITION</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_OVERWRITE" href="#zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_OVERWRITE">MODE_OVERWRITE</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_OVERWRITE_PARTITION" href="#zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_OVERWRITE_PARTITION">MODE_OVERWRITE_PARTITION</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_TRUNCATE" href="#zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_TRUNCATE">MODE_TRUNCATE</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_UPSERT" href="#zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.MODE_UPSERT">MODE_UPSERT</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.cast_columns" href="#zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.cast_columns">cast_columns</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.parse_metadata" href="#zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.parse_metadata">parse_metadata</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.to_hive" href="#zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.to_hive">to_hive</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.to_sql" href="#zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.to_sql">to_sql</a></code></li>
+<li><code><a title="zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.to_sql_2" href="#zuka_etl.pipeline.load.spark_utils.SparkDfToDriver.to_sql_2">to_sql_2</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.3</a>.</p>
+</footer>
+</body>
+</html>

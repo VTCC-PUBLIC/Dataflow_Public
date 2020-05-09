@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.7.5" />
+<meta name="generator" content="pdoc 0.8.3" />
 <title>zuka_etl.pipeline.extract.spark_utils API documentation</title>
 <meta name="description" content="" />
-<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
-<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
-<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 </head>
 <body>
 <main>
@@ -29,6 +31,12 @@
 
 __author__ = &#39;phongphamhong&#39;
 
+import pandas as pd
+import pyspark.sql.types as types
+from airflow.hooks.base_hook import BaseHook
+from airflow.hooks.jdbc_hook import JdbcHook
+from pyspark.sql.types import StructField, StructType
+
 # !/usr/bin/python
 #
 # Copyright 11/9/18 Phong Pham Hong &lt;phongbro1805@gmail.com&gt;
@@ -39,17 +47,9 @@ __author__ = &#39;phongphamhong&#39;
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # # set enviroment in dev mode
-import copy
 from zuka_etl.log import logger
-
-from airflow.hooks.base_hook import BaseHook
-from airflow.hooks.jdbc_hook import JdbcHook
 from zuka_etl.utils import generate_batches
-from pyspark.sql.types import *
 from zuka_etl.utils import timeit
-import pandas as pd
-from pyspark.sql.types import StructField, StructType
-import pyspark.sql.types as types
 
 
 class SparkDfFromDriver(object):
@@ -59,7 +59,31 @@ class SparkDfFromDriver(object):
     &#34;&#34;&#34;
 
     @staticmethod
-    def from_jdbc(table, connection_id, spark_session=None, auto_cast_field_id=False, **kwargs):
+    def cast_columns(df, columns={}, lowercase_columns=True):
+        &#34;&#34;&#34;
+                :param df:
+                :param columns:
+                :param lowercase_columns:
+                :return:
+        &#34;&#34;&#34;
+        cols = df.columns
+        columns = {k.lower(): v.lower() for k, v in columns.items()}
+        select = []
+        for k in cols:
+            l_k = k.lower()
+            if columns.get(l_k):
+                v = columns.get(l_k)
+                select.append(&#34;CAST(`%s` as %s) as %s&#34; % (k, v, l_k if lowercase_columns else k))
+            else:
+                select.append(&#34;`%s` as %s&#34; % (k, l_k if lowercase_columns else k))
+        logger.info(&#34;Columns will be casted: %s&#34; % columns)
+        return df.selectExpr(*select)
+
+    @staticmethod
+    def from_jdbc(table: str, connection_id: str, spark_session=None,
+                  auto_cast_field_id: bool = False,
+                  lowercase_columns: bool = True,
+                  cast_columns: dict = {}, options: dict = {}, **kwargs):
         &#34;&#34;&#34;
          create a dataframe with jdbc config
          
@@ -76,15 +100,23 @@ class SparkDfFromDriver(object):
         from zuka_etl.custom.spark_hook import SparkHook
         config = JdbcHook.get_connection(connection_id)
         session = spark_session if spark_session is not None else SparkHook().session
+        table = table.strip().rstrip(&#39;;&#39;)
         if table.strip()[:1] != &#39;(&#39;:
             table = &#39;(%s) s&#39; % table
-        df = session.read.format(&#34;jdbc&#34;).option(&#34;url&#34;,
-                                                config.host) \
-            .option(&#34;dbtable&#34;, table) \
-            .option(&#34;user&#34;, config.login) \
-            .option(&#34;password&#34;, config.password) \
-            .option(&#34;driver&#34;, config.extra_dejson.get(&#34;extra__jdbc__drv_clsname&#34;)) \
-            .load()
+
+        df_load = (session.read.format(&#34;jdbc&#34;).option(&#34;url&#34;,
+                                                      config.host)
+                   .option(&#34;dbtable&#34;, table))
+        if config.login:
+            df_load = df_load.option(&#34;user&#34;, config.login)
+        if config.password:
+            df_load = df_load.option(&#34;password&#34;, config.password)
+        df_load = df_load.option(&#34;driver&#34;, config.extra_dejson.get(&#34;extra__jdbc__drv_clsname&#34;)) \
+            .option(&#34;isolationLevel&#34;, &#34;READ_UNCOMMITTED&#34;)
+        if isinstance(options, dict) and options:
+            for k, v in options.items():
+                df_load = df_load.option(k, v)
+        df = df_load.load()
         if auto_cast_field_id:
             col = df.columns
             sel = []
@@ -95,10 +127,11 @@ class SparkDfFromDriver(object):
                 else:
                     sel.append(k)
             return df.selectExpr(*sel)
-        return df
+        return SparkDfFromDriver.cast_columns(df, cast_columns, lowercase_columns)
 
     @staticmethod
-    def from_elastic(index, query_string, connection_id, **kwargs):
+    def from_elastic(index, query_string, connection_id, lowercase_columns=True,
+                     cast_columns={}, **kwargs):
         &#34;&#34;&#34;
          Create a dataframe from elastichsearch
 
@@ -133,17 +166,54 @@ class SparkDfFromDriver(object):
         for k, v in cf.items():
             logger.info(&#34;set conifg elastic: %s:%s&#34; % (k, v))
             ct = ct.option(k, v)
-        return ct.load(qr)
-
-
-class SparkDfFromQueryNative(object):
-    &#34;&#34;&#34;
-    Using Native Query from python library databases
-    &#34;&#34;&#34;
+        df = ct.load(qr)
+        return SparkDfFromDriver.cast_columns(df, cast_columns, lowercase_columns)
 
     @staticmethod
-    def from_jdbc(table, connection_id, spark_session=None, **kwargs):
-        pass
+    def from_csv(file_path: str, spark_session=None,
+                 is_clean_cols_name: bool = True,
+                 lowercase_columns: bool = True,
+                 cast_columns: dict = {}, transform_value: dict = {}, options_csv: dict = {}, output_query: str = &#34;&#34;):
+        &#34;&#34;&#34;
+        Import CSV file as Spark DataFrame
+        Parameter:
+            :param file_path: file path that will be imported
+            :param spark_session:
+            :param is_clean_cols_name: clean column name of csv file. Ex: &#34;Total Number -&gt; total_number&#34;
+            :param cast_columns: convert data type of column. Ex: {&#34;number&#34;: &#34;int&#34;}
+            :param transform_value: transform data of column. Ex: &#34;number&#34;: &#34;cast(number as int) as number&#34;
+            :param options_csv: Options for Spark read csv
+            :param output_query: If this param is set. Dataframe will be registered as table: temp_1 and you can pass query to get data from table: temp_1.
+                                 Ex: &#34;select * from temp_1 where number &gt; 1&#34;
+        :return:
+        &#34;&#34;&#34;
+        from zuka_etl.pipeline.load.spark_utils import SparkDfToDriver
+        from zuka_etl.custom.spark_hook import SparkHook
+        from zuka_etl.pipeline.transform.spark_utils import SparkTransCols
+        from zuka_etl.helpers.sql import clean_col_name
+        session = spark_session if spark_session is not None else SparkHook().session
+        default_option = {&#34;delimiter&#34;: &#39;;&#39;,
+                          &#34;header&#34;: True,
+                          &#34;encoding&#34;: &#34;utf-8&#34;,
+                          &#34;escape&#34;: &#39;&#34;&#39;,
+                          &#34;multiLine&#34;: True}
+        default_option.update(options_csv)
+        df = session.read
+        for k, v in default_option.items():
+            df = df.option(k, v)
+        df = df.csv(file_path)
+        if is_clean_cols_name:
+            for k in df.columns:
+                n_col = clean_col_name(k)
+                df = df.withColumnRenamed(k, n_col)
+        if cast_columns or lowercase_columns:
+            df = SparkDfToDriver.cast_columns(df, columns=cast_columns, lowercase_columns=lowercase_columns)
+        if transform_value:
+            df = SparkTransCols.trans_cols(df, transform_value=transform_value)
+        if output_query:
+            df.createOrReplaceTempView(&#34;temp_1&#34;)
+            df = session.sql(output_query)
+        return df
 
 
 class SparkDfFromIterator(object):
@@ -304,28 +374,7 @@ class SparkDfFromIterator(object):
                                                                  schema=schema,
                                                                  auto_correct_schema=auto_correct_schema,
                                                                  **kwargs
-                                                                 )
-
-#
-# if __name__ == &#34;__main__&#34;:
-#     def data():
-#         import random
-#         return [
-#             {&#34;id&#34;: 1, &#34;name&#34;: &#34;&#34;},
-#             {&#34;id&#34;: 1, &#34;name&#34;: &#34;&#34;},
-#             {&#34;id&#34;: 2.0, &#34;name&#34;: &#34;22&#34;},
-#             {&#34;id&#34;: 1, &#34;name&#34;: &#34;111&#34;}
-#         ]
-#
-#     from zuka_etl.custom.spark_hook import SparkHook
-#     print(SparkDfFromIterator.correct_dtype_by_pandas(data()))
-#     schema = SparkDfFromIterator.correct_dtype_by_pandas(data())
-#     SparkHook().session.createDataFrame(data()).show()
-
-# df = pd.DataFrame(data())
-# # print(df.dtypes, [&#34;%s:%s&#34; % (k, v) for k, v in df.dtypes.items()])
-# df = SparkDfFromIterator.from_iterator(iter=data(), auto_correct_schema=False)
-# df.show()</code></pre>
+                                                                 )</code></pre>
 </details>
 </section>
 <section>
@@ -341,7 +390,7 @@ class SparkDfFromIterator(object):
 <span>class <span class="ident">SparkDfFromDriver</span></span>
 </code></dt>
 <dd>
-<section class="desc"><p>Using driver that setup by JAR and Spark Session</p></section>
+<div class="desc"><p>Using driver that setup by JAR and Spark Session</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -353,7 +402,31 @@ class SparkDfFromIterator(object):
     &#34;&#34;&#34;
 
     @staticmethod
-    def from_jdbc(table, connection_id, spark_session=None, auto_cast_field_id=False, **kwargs):
+    def cast_columns(df, columns={}, lowercase_columns=True):
+        &#34;&#34;&#34;
+                :param df:
+                :param columns:
+                :param lowercase_columns:
+                :return:
+        &#34;&#34;&#34;
+        cols = df.columns
+        columns = {k.lower(): v.lower() for k, v in columns.items()}
+        select = []
+        for k in cols:
+            l_k = k.lower()
+            if columns.get(l_k):
+                v = columns.get(l_k)
+                select.append(&#34;CAST(`%s` as %s) as %s&#34; % (k, v, l_k if lowercase_columns else k))
+            else:
+                select.append(&#34;`%s` as %s&#34; % (k, l_k if lowercase_columns else k))
+        logger.info(&#34;Columns will be casted: %s&#34; % columns)
+        return df.selectExpr(*select)
+
+    @staticmethod
+    def from_jdbc(table: str, connection_id: str, spark_session=None,
+                  auto_cast_field_id: bool = False,
+                  lowercase_columns: bool = True,
+                  cast_columns: dict = {}, options: dict = {}, **kwargs):
         &#34;&#34;&#34;
          create a dataframe with jdbc config
          
@@ -370,15 +443,23 @@ class SparkDfFromIterator(object):
         from zuka_etl.custom.spark_hook import SparkHook
         config = JdbcHook.get_connection(connection_id)
         session = spark_session if spark_session is not None else SparkHook().session
+        table = table.strip().rstrip(&#39;;&#39;)
         if table.strip()[:1] != &#39;(&#39;:
             table = &#39;(%s) s&#39; % table
-        df = session.read.format(&#34;jdbc&#34;).option(&#34;url&#34;,
-                                                config.host) \
-            .option(&#34;dbtable&#34;, table) \
-            .option(&#34;user&#34;, config.login) \
-            .option(&#34;password&#34;, config.password) \
-            .option(&#34;driver&#34;, config.extra_dejson.get(&#34;extra__jdbc__drv_clsname&#34;)) \
-            .load()
+
+        df_load = (session.read.format(&#34;jdbc&#34;).option(&#34;url&#34;,
+                                                      config.host)
+                   .option(&#34;dbtable&#34;, table))
+        if config.login:
+            df_load = df_load.option(&#34;user&#34;, config.login)
+        if config.password:
+            df_load = df_load.option(&#34;password&#34;, config.password)
+        df_load = df_load.option(&#34;driver&#34;, config.extra_dejson.get(&#34;extra__jdbc__drv_clsname&#34;)) \
+            .option(&#34;isolationLevel&#34;, &#34;READ_UNCOMMITTED&#34;)
+        if isinstance(options, dict) and options:
+            for k, v in options.items():
+                df_load = df_load.option(k, v)
+        df = df_load.load()
         if auto_cast_field_id:
             col = df.columns
             sel = []
@@ -389,10 +470,11 @@ class SparkDfFromIterator(object):
                 else:
                     sel.append(k)
             return df.selectExpr(*sel)
-        return df
+        return SparkDfFromDriver.cast_columns(df, cast_columns, lowercase_columns)
 
     @staticmethod
-    def from_elastic(index, query_string, connection_id, **kwargs):
+    def from_elastic(index, query_string, connection_id, lowercase_columns=True,
+                     cast_columns={}, **kwargs):
         &#34;&#34;&#34;
          Create a dataframe from elastichsearch
 
@@ -427,15 +509,162 @@ class SparkDfFromIterator(object):
         for k, v in cf.items():
             logger.info(&#34;set conifg elastic: %s:%s&#34; % (k, v))
             ct = ct.option(k, v)
-        return ct.load(qr)</code></pre>
+        df = ct.load(qr)
+        return SparkDfFromDriver.cast_columns(df, cast_columns, lowercase_columns)
+
+    @staticmethod
+    def from_csv(file_path: str, spark_session=None,
+                 is_clean_cols_name: bool = True,
+                 lowercase_columns: bool = True,
+                 cast_columns: dict = {}, transform_value: dict = {}, options_csv: dict = {}, output_query: str = &#34;&#34;):
+        &#34;&#34;&#34;
+        Import CSV file as Spark DataFrame
+        Parameter:
+            :param file_path: file path that will be imported
+            :param spark_session:
+            :param is_clean_cols_name: clean column name of csv file. Ex: &#34;Total Number -&gt; total_number&#34;
+            :param cast_columns: convert data type of column. Ex: {&#34;number&#34;: &#34;int&#34;}
+            :param transform_value: transform data of column. Ex: &#34;number&#34;: &#34;cast(number as int) as number&#34;
+            :param options_csv: Options for Spark read csv
+            :param output_query: If this param is set. Dataframe will be registered as table: temp_1 and you can pass query to get data from table: temp_1.
+                                 Ex: &#34;select * from temp_1 where number &gt; 1&#34;
+        :return:
+        &#34;&#34;&#34;
+        from zuka_etl.pipeline.load.spark_utils import SparkDfToDriver
+        from zuka_etl.custom.spark_hook import SparkHook
+        from zuka_etl.pipeline.transform.spark_utils import SparkTransCols
+        from zuka_etl.helpers.sql import clean_col_name
+        session = spark_session if spark_session is not None else SparkHook().session
+        default_option = {&#34;delimiter&#34;: &#39;;&#39;,
+                          &#34;header&#34;: True,
+                          &#34;encoding&#34;: &#34;utf-8&#34;,
+                          &#34;escape&#34;: &#39;&#34;&#39;,
+                          &#34;multiLine&#34;: True}
+        default_option.update(options_csv)
+        df = session.read
+        for k, v in default_option.items():
+            df = df.option(k, v)
+        df = df.csv(file_path)
+        if is_clean_cols_name:
+            for k in df.columns:
+                n_col = clean_col_name(k)
+                df = df.withColumnRenamed(k, n_col)
+        if cast_columns or lowercase_columns:
+            df = SparkDfToDriver.cast_columns(df, columns=cast_columns, lowercase_columns=lowercase_columns)
+        if transform_value:
+            df = SparkTransCols.trans_cols(df, transform_value=transform_value)
+        if output_query:
+            df.createOrReplaceTempView(&#34;temp_1&#34;)
+            df = session.sql(output_query)
+        return df</code></pre>
 </details>
 <h3>Static methods</h3>
 <dl>
-<dt id="zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver.from_elastic"><code class="name flex">
-<span>def <span class="ident">from_elastic</span></span>(<span>index, query_string, connection_id, **kwargs)</span>
+<dt id="zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver.cast_columns"><code class="name flex">
+<span>def <span class="ident">cast_columns</span></span>(<span>df, columns={}, lowercase_columns=True)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Create a dataframe from elastichsearch</p>
+<div class="desc"><p>:param df:
+:param columns:
+:param lowercase_columns:
+:return:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def cast_columns(df, columns={}, lowercase_columns=True):
+    &#34;&#34;&#34;
+            :param df:
+            :param columns:
+            :param lowercase_columns:
+            :return:
+    &#34;&#34;&#34;
+    cols = df.columns
+    columns = {k.lower(): v.lower() for k, v in columns.items()}
+    select = []
+    for k in cols:
+        l_k = k.lower()
+        if columns.get(l_k):
+            v = columns.get(l_k)
+            select.append(&#34;CAST(`%s` as %s) as %s&#34; % (k, v, l_k if lowercase_columns else k))
+        else:
+            select.append(&#34;`%s` as %s&#34; % (k, l_k if lowercase_columns else k))
+    logger.info(&#34;Columns will be casted: %s&#34; % columns)
+    return df.selectExpr(*select)</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver.from_csv"><code class="name flex">
+<span>def <span class="ident">from_csv</span></span>(<span>file_path: str, spark_session=None, is_clean_cols_name: bool = True, lowercase_columns: bool = True, cast_columns: dict = {}, transform_value: dict = {}, options_csv: dict = {}, output_query: str = '')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Import CSV file as Spark DataFrame</p>
+<h2 id="parameter">Parameter</h2>
+<p>:param file_path: file path that will be imported
+:param spark_session:
+:param is_clean_cols_name: clean column name of csv file. Ex: "Total Number -&gt; total_number"
+:param cast_columns: convert data type of column. Ex: {"number": "int"}
+:param transform_value: transform data of column. Ex: "number": "cast(number as int) as number"
+:param options_csv: Options for Spark read csv
+:param output_query: If this param is set. Dataframe will be registered as table: temp_1 and you can pass query to get data from table: temp_1.
+Ex: "select * from temp_1 where number &gt; 1"
+:return:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def from_csv(file_path: str, spark_session=None,
+             is_clean_cols_name: bool = True,
+             lowercase_columns: bool = True,
+             cast_columns: dict = {}, transform_value: dict = {}, options_csv: dict = {}, output_query: str = &#34;&#34;):
+    &#34;&#34;&#34;
+    Import CSV file as Spark DataFrame
+    Parameter:
+        :param file_path: file path that will be imported
+        :param spark_session:
+        :param is_clean_cols_name: clean column name of csv file. Ex: &#34;Total Number -&gt; total_number&#34;
+        :param cast_columns: convert data type of column. Ex: {&#34;number&#34;: &#34;int&#34;}
+        :param transform_value: transform data of column. Ex: &#34;number&#34;: &#34;cast(number as int) as number&#34;
+        :param options_csv: Options for Spark read csv
+        :param output_query: If this param is set. Dataframe will be registered as table: temp_1 and you can pass query to get data from table: temp_1.
+                             Ex: &#34;select * from temp_1 where number &gt; 1&#34;
+    :return:
+    &#34;&#34;&#34;
+    from zuka_etl.pipeline.load.spark_utils import SparkDfToDriver
+    from zuka_etl.custom.spark_hook import SparkHook
+    from zuka_etl.pipeline.transform.spark_utils import SparkTransCols
+    from zuka_etl.helpers.sql import clean_col_name
+    session = spark_session if spark_session is not None else SparkHook().session
+    default_option = {&#34;delimiter&#34;: &#39;;&#39;,
+                      &#34;header&#34;: True,
+                      &#34;encoding&#34;: &#34;utf-8&#34;,
+                      &#34;escape&#34;: &#39;&#34;&#39;,
+                      &#34;multiLine&#34;: True}
+    default_option.update(options_csv)
+    df = session.read
+    for k, v in default_option.items():
+        df = df.option(k, v)
+    df = df.csv(file_path)
+    if is_clean_cols_name:
+        for k in df.columns:
+            n_col = clean_col_name(k)
+            df = df.withColumnRenamed(k, n_col)
+    if cast_columns or lowercase_columns:
+        df = SparkDfToDriver.cast_columns(df, columns=cast_columns, lowercase_columns=lowercase_columns)
+    if transform_value:
+        df = SparkTransCols.trans_cols(df, transform_value=transform_value)
+    if output_query:
+        df.createOrReplaceTempView(&#34;temp_1&#34;)
+        df = session.sql(output_query)
+    return df</code></pre>
+</details>
+</dd>
+<dt id="zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver.from_elastic"><code class="name flex">
+<span>def <span class="ident">from_elastic</span></span>(<span>index, query_string, connection_id, lowercase_columns=True, cast_columns={}, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a dataframe from elastichsearch</p>
 <pre><code>   index: elastichsearch index
    query q:  query string: q=dim_date:[1543536000 TO 1543536000] 
        AND item_type:DEAL
@@ -443,13 +672,14 @@ class SparkDfFromIterator(object):
        Setting of project in DATA_SOURCE params to replace on query. 
        ex: q=field_a:[{start} TO {stop}], params will be: {'start': 1111111,'stop': 1222222}
    return: pyspark.sql.dataframe.DataFrame
-</code></pre></section>
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@staticmethod
-def from_elastic(index, query_string, connection_id, **kwargs):
+def from_elastic(index, query_string, connection_id, lowercase_columns=True,
+                 cast_columns={}, **kwargs):
     &#34;&#34;&#34;
      Create a dataframe from elastichsearch
 
@@ -484,14 +714,15 @@ def from_elastic(index, query_string, connection_id, **kwargs):
     for k, v in cf.items():
         logger.info(&#34;set conifg elastic: %s:%s&#34; % (k, v))
         ct = ct.option(k, v)
-    return ct.load(qr)</code></pre>
+    df = ct.load(qr)
+    return SparkDfFromDriver.cast_columns(df, cast_columns, lowercase_columns)</code></pre>
 </details>
 </dd>
 <dt id="zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver.from_jdbc"><code class="name flex">
-<span>def <span class="ident">from_jdbc</span></span>(<span>table, connection_id, spark_session=None, auto_cast_field_id=False, **kwargs)</span>
+<span>def <span class="ident">from_jdbc</span></span>(<span>table: str, connection_id: str, spark_session=None, auto_cast_field_id: bool = False, lowercase_columns: bool = True, cast_columns: dict = {}, options: dict = {}, **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>create a dataframe with jdbc config</p>
+<div class="desc"><p>create a dataframe with jdbc config</p>
 <pre><code>params:
        table: table or sql query: ex: (select * from a) s . You need to pass an 
            alias like example
@@ -500,13 +731,16 @@ def from_elastic(index, query_string, connection_id, **kwargs):
            params: param to replace on query. ex: select * from {table}, params will be: 
            {'table': 'database.test_table'}
        return:
-</code></pre></section>
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@staticmethod
-def from_jdbc(table, connection_id, spark_session=None, auto_cast_field_id=False, **kwargs):
+def from_jdbc(table: str, connection_id: str, spark_session=None,
+              auto_cast_field_id: bool = False,
+              lowercase_columns: bool = True,
+              cast_columns: dict = {}, options: dict = {}, **kwargs):
     &#34;&#34;&#34;
      create a dataframe with jdbc config
      
@@ -523,15 +757,23 @@ def from_jdbc(table, connection_id, spark_session=None, auto_cast_field_id=False
     from zuka_etl.custom.spark_hook import SparkHook
     config = JdbcHook.get_connection(connection_id)
     session = spark_session if spark_session is not None else SparkHook().session
+    table = table.strip().rstrip(&#39;;&#39;)
     if table.strip()[:1] != &#39;(&#39;:
         table = &#39;(%s) s&#39; % table
-    df = session.read.format(&#34;jdbc&#34;).option(&#34;url&#34;,
-                                            config.host) \
-        .option(&#34;dbtable&#34;, table) \
-        .option(&#34;user&#34;, config.login) \
-        .option(&#34;password&#34;, config.password) \
-        .option(&#34;driver&#34;, config.extra_dejson.get(&#34;extra__jdbc__drv_clsname&#34;)) \
-        .load()
+
+    df_load = (session.read.format(&#34;jdbc&#34;).option(&#34;url&#34;,
+                                                  config.host)
+               .option(&#34;dbtable&#34;, table))
+    if config.login:
+        df_load = df_load.option(&#34;user&#34;, config.login)
+    if config.password:
+        df_load = df_load.option(&#34;password&#34;, config.password)
+    df_load = df_load.option(&#34;driver&#34;, config.extra_dejson.get(&#34;extra__jdbc__drv_clsname&#34;)) \
+        .option(&#34;isolationLevel&#34;, &#34;READ_UNCOMMITTED&#34;)
+    if isinstance(options, dict) and options:
+        for k, v in options.items():
+            df_load = df_load.option(k, v)
+    df = df_load.load()
     if auto_cast_field_id:
         col = df.columns
         sel = []
@@ -542,7 +784,7 @@ def from_jdbc(table, connection_id, spark_session=None, auto_cast_field_id=False
             else:
                 sel.append(k)
         return df.selectExpr(*sel)
-    return df</code></pre>
+    return SparkDfFromDriver.cast_columns(df, cast_columns, lowercase_columns)</code></pre>
 </details>
 </dd>
 </dl>
@@ -551,7 +793,7 @@ def from_jdbc(table, connection_id, spark_session=None, auto_cast_field_id=False
 <span>class <span class="ident">SparkDfFromIterator</span></span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -720,7 +962,7 @@ def from_jdbc(table, connection_id, spark_session=None, auto_cast_field_id=False
 <dl>
 <dt id="zuka_etl.pipeline.extract.spark_utils.SparkDfFromIterator.DEFAULT_BATCH_SIZE"><code class="name">var <span class="ident">DEFAULT_BATCH_SIZE</span></code></dt>
 <dd>
-<section class="desc"><p>Import data from iterator to Spark Dataframe</p></section>
+<div class="desc"><p>Import data from iterator to Spark Dataframe</p></div>
 </dd>
 </dl>
 <h3>Static methods</h3>
@@ -729,7 +971,7 @@ def from_jdbc(table, connection_id, spark_session=None, auto_cast_field_id=False
 <span>def <span class="ident">correct_dtype_by_pandas</span></span>(<span>data)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -760,7 +1002,7 @@ def correct_dtype_by_pandas(data):
 <span>def <span class="ident">from_iterator</span></span>(<span>iter, batch_size=100000, transform_item=None, spark_session=None, schema=None, auto_correct_schema=False, **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Create dataframe with list of data: [{"id" : 1,"name": "phong"},{"id" : 2,"name": "phong"}]</p>
+<div class="desc"><p>Create dataframe with list of data: [{"id" : 1,"name": "phong"},{"id" : 2,"name": "phong"}]</p>
 <pre><code>iter: list data
 batch_size: data will split into batches, this is config of size of each batch
 transform_item: transform function if you want to transform each value
@@ -768,7 +1010,7 @@ spark_session:
 schema: Spark Schema DF of Spark
 kwargs:
 return:
-</code></pre></section>
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -818,7 +1060,7 @@ def from_iterator(iter,
 <span>def <span class="ident">from_iterator_with_checkpoint</span></span>(<span>iter, checkpoint_func, return_func, batch_size=100000, transform_item=None, spark_session=None, schema=None, auto_correct_schema=False, **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Create dataframe with list of data: [{"id" : 1,"name": "phong"},{"id" : 2,"name": "phong"}]</p>
+<div class="desc"><p>Create dataframe with list of data: [{"id" : 1,"name": "phong"},{"id" : 2,"name": "phong"}]</p>
 <pre><code>iter: list data
 checkpoint_func: function process a dataframe. Format: checkpoint_func(index_batch, df_batch)
 return_func: function output data: Format: return_func(spark_session)
@@ -828,7 +1070,7 @@ spark_session:
 schema: Spark Schema DF of Spark
 kwargs:
 return:
-</code></pre></section>
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -879,7 +1121,7 @@ def from_iterator_with_checkpoint(iter, checkpoint_func, return_func, batch_size
 <span>def <span class="ident">from_iterator_with_checkpoint_hdfs</span></span>(<span>iter, write_function, return_function, batch_size=100000, transform_item=None, spark_session=None, schema=None, mode='append', auto_correct_schema=False, **kwargs)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Create dataframe with list of data: [{"id" : 1,"name": "phong"},{"id" : 2,"name": "phong"}]</p>
+<div class="desc"><p>Create dataframe with list of data: [{"id" : 1,"name": "phong"},{"id" : 2,"name": "phong"}]</p>
 <pre><code>iter: list data
 write_function: callable function for writing data: write_function(p): p.format("parquet").save(path hdfs)
 return_function: function for output data: Format: return_function(spark_session)
@@ -890,7 +1132,7 @@ schema: Spark Schema DF of Spark
 mode: append or replace targer ouput
 kwargs:
 return:
-</code></pre></section>
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -943,7 +1185,7 @@ def from_iterator_with_checkpoint_hdfs(iter,
 <span>def <span class="ident">import_batch</span></span>(<span>*args, **kw)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -955,42 +1197,6 @@ def from_iterator_with_checkpoint_hdfs(iter,
     logger.info(&#34;[PROCESS TIME]: &#34; + (&#39;%r (%r, %r) %2.2f sec&#39; % \
                                       (method.__name__, type(args), type(kw), te - ts)))
     return result</code></pre>
-</details>
-</dd>
-</dl>
-</dd>
-<dt id="zuka_etl.pipeline.extract.spark_utils.SparkDfFromQueryNative"><code class="flex name class">
-<span>class <span class="ident">SparkDfFromQueryNative</span></span>
-</code></dt>
-<dd>
-<section class="desc"><p>Using Native Query from python library databases</p></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class SparkDfFromQueryNative(object):
-    &#34;&#34;&#34;
-    Using Native Query from python library databases
-    &#34;&#34;&#34;
-
-    @staticmethod
-    def from_jdbc(table, connection_id, spark_session=None, **kwargs):
-        pass</code></pre>
-</details>
-<h3>Static methods</h3>
-<dl>
-<dt id="zuka_etl.pipeline.extract.spark_utils.SparkDfFromQueryNative.from_jdbc"><code class="name flex">
-<span>def <span class="ident">from_jdbc</span></span>(<span>table, connection_id, spark_session=None, **kwargs)</span>
-</code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@staticmethod
-def from_jdbc(table, connection_id, spark_session=None, **kwargs):
-    pass</code></pre>
 </details>
 </dd>
 </dl>
@@ -1014,6 +1220,8 @@ def from_jdbc(table, connection_id, spark_session=None, **kwargs):
 <li>
 <h4><code><a title="zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver" href="#zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver">SparkDfFromDriver</a></code></h4>
 <ul class="">
+<li><code><a title="zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver.cast_columns" href="#zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver.cast_columns">cast_columns</a></code></li>
+<li><code><a title="zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver.from_csv" href="#zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver.from_csv">from_csv</a></code></li>
 <li><code><a title="zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver.from_elastic" href="#zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver.from_elastic">from_elastic</a></code></li>
 <li><code><a title="zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver.from_jdbc" href="#zuka_etl.pipeline.extract.spark_utils.SparkDfFromDriver.from_jdbc">from_jdbc</a></code></li>
 </ul>
@@ -1029,21 +1237,13 @@ def from_jdbc(table, connection_id, spark_session=None, **kwargs):
 <li><code><a title="zuka_etl.pipeline.extract.spark_utils.SparkDfFromIterator.import_batch" href="#zuka_etl.pipeline.extract.spark_utils.SparkDfFromIterator.import_batch">import_batch</a></code></li>
 </ul>
 </li>
-<li>
-<h4><code><a title="zuka_etl.pipeline.extract.spark_utils.SparkDfFromQueryNative" href="#zuka_etl.pipeline.extract.spark_utils.SparkDfFromQueryNative">SparkDfFromQueryNative</a></code></h4>
-<ul class="">
-<li><code><a title="zuka_etl.pipeline.extract.spark_utils.SparkDfFromQueryNative.from_jdbc" href="#zuka_etl.pipeline.extract.spark_utils.SparkDfFromQueryNative.from_jdbc">from_jdbc</a></code></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.3</a>.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad()</script>
 </body>
 </html>
