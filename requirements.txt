@@ -19,7 +19,7 @@ colorlog==4.0.2
 configparser==3.5.3
 confluent-kafka==1.0.0
 croniter==0.3.31
-cryptography==2.9.2
+cryptography==3.2
 cx-Oracle==7.3.0
 cycler==0.10.0
 decorator==4.4.2
