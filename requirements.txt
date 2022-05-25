@@ -106,7 +106,7 @@ pyarrow==0.16.0
 pycparser==2.20
 Pygments==2.6.1
 PyHive==0.6.1
-PyJWT==1.7.1
+PyJWT==2.4.0
 PyMySQL==0.9.3
 pypandoc==1.4
 pyparsing==2.4.6
