@@ -111,7 +111,7 @@ PyMySQL==0.9.3
 pypandoc==1.4
 pyparsing==2.4.6
 pyrsistent==0.16.0
-pyspark==2.3.2
+pyspark==3.2.2
 pyspark-stubs==2.4.0.post7
 python-crfsuite==0.9.7
 python-daemon==2.1.2
